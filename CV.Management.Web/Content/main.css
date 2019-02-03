@@ -1,0 +1,75 @@
+﻿.navbar {
+    height: 90px;
+    margin: 0px;
+}
+
+.navbar-inverse {
+    background-color: #FFFFFF;
+    border-color: #FFFFFF;
+}
+
+.navbar-brand {
+    height: 80px;
+}
+
+    .navbar-brand img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+.nav > li > a {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.navbar-toggle {
+    padding: 10px;
+    margin: 25px 15px 25px 0;
+}
+
+
+@font-face {
+    font-family: 'dax-regularregular';
+    src: url("fonts/ufonts.com_dax-regular.eot");
+    src: url("fonts/ufonts.com_dax-regular.eot?#iefix") format("embedded-opentype"), url("fonts/ufonts.com_dax-regular.woff2") format("woff2"), url("fonts/ufonts.com_dax-regular.woff") format("woff"), url("fonts/ufonts.com_dax-regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+html, body {
+    font-family: "dax-regularregular", sans-serif;
+    padding-top: 10px;
+}
+
+.panel-body .row {
+    margin: 0px;
+}
+
+.profile-image {
+    max-width: 100%;
+}
+
+.form-group label {
+    margin-bottom: 0px;
+    padding-top: 10px;
+}
+
+.form-control {
+    max-width: 100%;
+}
+
+.form-group .btn {
+    margin-top: 30px;
+    width: 100%;
+    max-width: 100%;
+}
+
+#file_upload, #file_save {
+    max-width:100%;
+    margin-top:20px;
+    width:100%;
+}
+
+.personal-information {
+    border-left: 1px solid rgb(221, 221, 221);
+}

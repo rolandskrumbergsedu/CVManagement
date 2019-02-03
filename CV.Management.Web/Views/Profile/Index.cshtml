@@ -4,5 +4,1500 @@
     Layout = "~/Views/Shared/_LegacyLayout.cshtml";
 }
 
-<h2>Index</h2>
+<header>
+    <div class="con">
+        <a href="http://dev.iconcept.lv/home" class="header_logo"><h1><img src="~/Content/Images/logo_2.png"></h1></a>
+        <ul class="header_lang">
+            <li><a class="active" href="#">ENG</a></li>
+            <li><a href="#">LAT</a></li>
+        </ul>
+        <a href="#" class="add">add eng cv version</a>
+        <a href="http://dev.iconcept.lv/cv/change_password/120" class="mail">test</a>
+        <a href="http://dev.iconcept.lv/login/logout" class="logout">Log out</a>
+    </div>
+</header>
 
+<form id="main" class="" action="http://dev.iconcept.lv/cv/add/" method="post" enctype="multipart/form-data">
+    <ul class="tabs con" id="tabsContainer">
+        <li class="">
+            <div class="tab_top color_1 mar_5">
+                <span class="tab_title">PERSONAL</span>
+                <span class="tab_prec">33%</span>
+                <span class="tab_act"></span>
+            </div>
+            <span class="preview" id="previewButton">Preview</span>
+            <div class="tab_cont">
+                <div class="upload_pic" style="display: block;">
+                    <em id="profile_picture_upload_button">Upload picture</em>
+                    <span class="guide">
+                        <span class="guide_top"></span>
+                        <span class="client">Upload picture</span>
+                    </span>
+                </div>
+                <input type="file" style="display:none;" name="profile_picture" id="profile_picture_input">
+
+                <div class="pic_upl" style="display: none;">
+                    <div class="col-md-4" style="display: inline-block;">
+                        <div id="upload-image" class="croppie-container"><div class="cr-boundary" aria-dropeffect="none" style="width: 250px; height: 280px;"><img class="cr-image" alt="preview" aria-grabbed="false" style="transform: translate3d(123.26px, 137.86px, 0px) scale(50); transform-origin: 1.74px 2.14px 0px;"><div class="cr-viewport cr-vp-square" tabindex="0" style="width: 170px; height: 210px;"></div><div class="cr-overlay" style="width: 3514.06px; height: 800px; top: 33px; left: 38px;"></div></div><div class="cr-slider-wrap"><input class="cr-slider" type="range" step="0.0001" aria-label="zoom" aria-valuenow="50"></div></div>
+                    </div>
+                    <div class="col-md-4 image_opts">
+                        <!-- <strong>Select Image:</strong> -->
+                        <br>
+                        <input type="file" id="images" style="display: none;">
+
+                        <a href="javascript:void(0)" style="margin-left: 47px;" class="cancel_image">Cancel</a>
+                        <br>
+                        <br>
+                        <a href="javascript:void(0)" class="bttn_1 choose_image">Choose image</a>
+                        <br>
+                        <a href="javascript:void(0)" class="bttn_1 cropped_image">Save image</a>
+                    </div>
+                    <div class="col-md-4 crop_preview" style="display: none;">
+                        <div id="upload-image-i"></div>
+                    </div>
+                </div>
+
+                <ul class="cont_1">
+                    <span class="input_wrap">
+                        <!-- <em>*</em> -->
+                        <span class="guide_wrap">
+                            <span class="guide" style="display: none;">
+                                <span class="guide_top"></span>
+                                <span class="client">City, country</span>
+                                <span class="must">Client must upload picture</span>
+                            </span>
+                            <input type="text" name="meta[personal][address]" value="" placeholder="City, country" class="input_1 ">
+                        </span>
+                    </span>
+                    <span class="input_wrap">
+                        <em>*</em>
+                        <span class="guide_wrap">
+                            <span class="guide" style="display: none;">
+                                <span class="guide_top"></span>
+                                <span class="client">Phone (mobile)</span>WTF?
+                                <span class="must">Client must upload picture</span>
+                            </span>
+
+                            <div>
+                                <input type="text" name="meta[personal][phone_code]" value="" maxlength="5" placeholder="+" class="input_1 required_field mask_phone_code " style="width: 20%; display: inline-block;">
+                                <input type="text" name="meta[personal][phone]" value="" placeholder="Phone (mobile)" class="input_1 required_field mask_phone " style="width: 78%; display: inline-block; float: right;" maxlength="19">
+                            </div>
+
+                        </span>
+                    </span>
+                    <span class="input_wrap">
+                        <em>*</em>
+                        <span class="guide_wrap">
+                            <span class="guide" style="display: none;">
+                                <span class="guide_top"></span>
+                                <span class="client">E-mail</span>
+                                <span class="must">Client must upload picture</span>
+                            </span>
+                            <input type="text" name="meta[personal][email]" value="test" placeholder="E-mail" class="input_1 ">
+                        </span>
+                    </span>
+                    <span class="input_wrap">
+                        <span class="guide_wrap">
+                            <span class="guide" style="display: none;">
+                                <span class="guide_top"></span>
+                                <span class="client">Skype name</span>
+                                <span class="must">Client must upload picture</span>
+                            </span>
+                            <input type="text" name="meta[personal][skype]" value="" placeholder="Skype name" class="input_1  ">
+                        </span>
+                    </span>
+                    <span class="input_wrap">
+                        <span class="guide_wrap">
+                            <span class="guide" style="display: none;">
+                                <span class="guide_top"></span>
+                                <span class="client">Project name</span>
+                                <span class="must">Client must upload picture</span>
+                            </span>
+                            <input type="text" name="meta[personal][project_name]" value="" placeholder="Project name" class="input_1 ">
+                        </span>
+                    </span>
+                </ul>
+                <ul class="cont_1">
+                    <span class="input_wrap">
+                        <em>*</em>
+                        <span class="guide_wrap">
+                            <span class="guide" style="display: none;">
+                                <span class="guide_top"></span>
+                                <span class="client">Name, Surname</span>
+                                <span class="must">Client must upload picture</span>
+                            </span>
+                            <input type="text" name="meta[personal][name]" value="Test Test" placeholder="Name, Surname" class="input_1 required_field ">
+                        </span>
+                    </span>
+                    <!-- 	<span class="guide_wrap">
+                            <span class="guide">
+                                <span class="guide_top"></span>
+                                <span class="client">Date of Birth</span>
+                                <span class="must">Client must upload picture</span>
+                            </span>
+                            <div class="ddd">
+                                <div class='input-group date' id="birthday_datepicker">
+                                    <input type="text" name="meta[personal][date_of_birth]" value="" placeholder="Date of Birth" class="input_1 select_1 " />
+                                    <span class="input-group-addon">
+                                        <span class="r"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </span> -->
+                    <!-- 	<span class="input_wrap">
+                            <span class="guide_wrap">
+                                 <span class="guide">
+                                    <span class="guide_top"></span>
+                                    <span class="client">Marital Status / Children</span>
+                                    <span class="must">Client must upload picture</span>
+                                </span>
+                                <input type="text" name="meta[personal][marital_status]" value="" placeholder="Marital Status / Children" class="input_1 "/>
+                            </span>
+                        </span> -->
+                    <span class="input_wrap">
+                        <span class="guide_wrap">
+                            <span class="guide" style="display: none;">
+                                <span class="guide_top"></span>
+                                <span class="client">LinkedIn profile link</span>
+                                <span class="must">Client must upload picture</span>
+                            </span>
+                            <input type="text" name="meta[personal][linkedid_profile]" value="" placeholder="LinkedIn profile link" class="input_1 ">
+                        </span>
+                    </span>
+                </ul>
+            </div>
+        </li>
+        <script>
+
+$image_crop = $('#upload-image').croppie({
+    enableExif: true,
+    viewport: {
+        width: 170,
+        height: 210,
+        type: 'square'
+    },
+    boundary: {
+        width: 250,
+        height: 280
+    }
+});
+$('#images').on('change', function () {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        $image_crop.croppie('bind', {
+            url: e.target.result
+        }).then(function(){
+            // console.log('jQuery bind complete');
+        });
+    }
+    reader.readAsDataURL(this.files[0]);
+});
+
+$('.cropped_image').on('click', function (ev) {
+	$image_crop.croppie('result', {
+		type: 'canvas',
+		size: 'viewport'
+	}).then(function (response) {
+		$.ajax({
+			// url: "/ajax/croppie_upload/NzM2ODUwNWM1NmRkOWU0Yjc2M3x8fHwxMjh8fHx8Njk3MzA5NWM1NmRkOWU0YjdlMA==",
+			url: "/ajax/croppie_upload/120/128",
+			type: "POST",
+			data: {"image":response},
+			success: function (data) {
+				$('.upload_pic').show();
+				$('.pic_upl').hide();
+				$("#profile_picture_upload_button").parent().css("background", "url('"+data+"') no-repeat center/cover");
+				$('#profile_picture_upload_button').text("Change picture");
+			}
+		});
+	});
+});
+
+
+$(".choose_image").click(function(){
+	 document.getElementById("images").click();
+});
+
+$("#profile_picture_upload_button").click(function(){
+	$('.upload_pic').hide();
+	$('.pic_upl').show();
+});
+
+$(".cancel_image").click(function(){
+	$('.pic_upl').hide();
+	$('.upload_pic').show();
+});
+
+	// $("#profile_picture_upload_button").click(function(){
+	// 	if($("#profile_picture_input").length == 0){
+	// 		inpHtmls = '<input type="file" style="display:none;" name="profile_picture" id="profile_picture_input" />';
+	// 		$(inpHtmls).insertAfter("#profile_picture_upload_button");
+	// 		$("#profile_picture_input").on('change', function(){
+	// 			files = event.target.files;
+	// 			var data = new FormData();
+	// 			var ale = false;
+	// 			var added = 0;
+	// 			$.each(files, function(key, value){
+	// 				data.append(key, value);
+	// 			});
+	// 			data.append('s', 'NzQ4ZmY1NWRiZmNkNTEwZTdmMDY0OTQwMWU4NjE5ZTg2YWM3ZDg2Yw==');
+	// 			data.append('uid', 'NjkyNzc3NWM1NmRkOWU0Yjg2OHx8fHwxMjB8fHx8MjQxNzAzNWM1NmRkOWU0YjhlMw==');
+	// 			data.append('action', 'upl');
+	// 			$.ajax({
+	// 				url: '/ajax/uploadProfilePicture/ODA0NDYzNWM1NmRkOWU0Yjk2OXx8fHwxMjh8fHx8NzQwMjgzNWM1NmRkOWU0YjllOQ==',
+	// 				type: 'POST',
+	// 				data: data,
+	// 				cache: false,
+	// 				processData: false, // Don't process the files
+	// 				contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+	// 				success: function(data, textStatus, jqXHR)
+	// 				{
+	// 					$("#profile_picture_upload_button").parent().css("background", "url('"+data+"') no-repeat center/cover");
+	// 				},
+	// 				error: function(jqXHR, textStatus, errorThrown)
+	// 				{
+	// 					//console.error(jqXHR)
+	// 				},
+	// 				complete:function(){
+	// 					//$("#uploadFileButton").removeClass("loading");
+	// 				}
+	// 			});
+	// 		})
+	// 	}
+	// 	openFileDialog("profile_picture_input");
+	// })
+	// $("#profile_picture_input").on('change', function(){
+	// 	files = event.target.files;
+	// 	var data = new FormData();
+	// 	var ale = false;
+	// 	var added = 0;
+	// 	$.each(files, function(key, value){
+	// 		data.append(key, value);
+	// 	});
+	// 	data.append('s', 'NzQ4ZmY1NWRiZmNkNTEwZTdmMDY0OTQwMWU4NjE5ZTg2YWM3ZDg2Yw==');
+	// 	data.append('uid', 'ODg1NDM1NWM1NmRkOWU0YmE3Mnx8fHwxMjB8fHx8OTI5OTM4NWM1NmRkOWU0YmFmMA==');
+	// 	data.append('action', 'upl');
+	// 	$.ajax({
+	// 		url: '/ajax/uploadProfilePicture/NTExNTQyNWM1NmRkOWU0YmI2M3x8fHwxMjh8fHx8NjAzMjYzNWM1NmRkOWU0YmJlMg==',
+	// 		type: 'POST',
+	// 		data: data,
+	// 		cache: false,
+	// 		processData: false, // Don't process the files
+	// 		contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+	// 		success: function(data, textStatus, jqXHR)
+	// 		{
+	// 			$("#profile_picture_upload_button").parent().css("background", "url('"+data+"') no-repeat center/cover");
+	// 		},
+	// 		error: function(jqXHR, textStatus, errorThrown)
+	// 		{
+	// 			//console.error(jqXHR)
+	// 		},
+	// 		complete:function(){
+	// 			//$("#uploadFileButton").removeClass("loading");
+	// 		}
+	// 	});
+	// })
+	$("#previewButton").click(function(){
+		$("#main").attr("target", "_blank").attr("action", "http://dev.iconcept.lv/cv/addPreview/").submit();
+		setTimeout(function(){
+			window.location.reload();
+		}, 5000)
+	});
+	$(".mask_phone_code").mask('+9999');
+	$(".mask_phone").mask('9999999999999999999');
+        </script>
+        <li class="closed">
+            <div class="tab_top color_2 mar_6">
+                <span class="tab_title">EDUCATION &amp; QUALIFICATIONS</span>
+                <span class="tab_prec">0%</span>
+                <span class="tab_act"></span>
+            </div>
+            <div class="tab_cont " style="display:none;">
+                <h2>Start with the most recent, please.</h2>
+                <ul class="cont_2" id="education_uls">
+                    <li>
+                        <div class="input_wrap">
+                            <span class="guide_wrap in_1">
+                                <span class="guide" style="display: none;">
+                                    <span class="guide_top"></span>
+                                    <span class="client">Period from</span>
+                                    <span class="must">Client must upload picture</span>
+                                </span>
+                                <div class="ddd">
+                                    <div class="input-group date ">
+                                        <input type="text" name="meta[education][period_from][0]" nam="meta[education][period_from]" value="" placeholder="From (yyyy)" class="input_1   size_1">
+                                    </div>
+                                </div>
+                            </span>
+                            <span class="sep_1"></span>
+                            <span class="guide_wrap in_1">
+                                <span class="guide" style="display: none;">
+                                    <span class="guide_top"></span>
+                                    <span class="client">Period to</span>
+                                    <span class="must">Client must upload picture</span>
+                                </span>
+                                <div class="ddd">
+                                    <div class="input-group date ">
+                                        <input type="text" name="meta[education][period_to][0]" nam="meta[education][period_to]" value="" placeholder="To (yyyy)" class="input_1   size_1">
+                                    </div>
+                                </div>
+                            </span>
+                        </div>
+                        <span class="input_wrap mar_1">
+                            <span class="guide_wrap">
+                                <span class="guide" style="display: none;">
+                                    <span class="guide_top"></span>
+                                    <span class="client">Name of institution / Country</span>
+                                    <span class="must">Client must upload picture</span>
+                                </span>
+
+                                <input type="text" name="meta[education][name_of_institution][0]" nam="meta[education][name_of_institution]" value="" placeholder="Name of institution / Country" class="input_1   size_2">
+                            </span>
+                        </span>
+                        <span class="input_wrap mar_1">
+                            <span class="guide_wrap">
+                                <span class="guide" style="display: none;">
+                                    <span class="guide_top"></span>
+                                    <span class="client">Speciality, degree</span>
+                                    <span class="must">Client must upload picture</span>
+                                </span>
+
+                                <input type="text" name="meta[education][speciality][0]" nam="meta[education][speciality]" value="" placeholder="Speciality, degree" class="input_1   size_2">
+                            </span>
+                        </span>
+
+                        <span class="remove"></span>
+
+                        <span class="arrows_up" onclick="education_up(this);"></span>
+                        <span class="arrows_down" onclick="education_down(this);"></span>
+
+                    </li>
+                    <a href="#" class="tab_more">Add more</a>
+                </ul>
+            </div>
+        </li>
+        <script>
+				$(document).ready(function(){
+					$("#education_uls .tab_more").click(function(e){
+						e.preventDefault();
+						var klons = $("#education_uls li").first().clone();
+						klons.find("input, textarea").val('');
+						klons.insertAfter($("#education_uls li").last());
+						liLen = $("#education_uls li").length;
+						klons.find("input, textarea").each(function(){
+							$(this).attr('name', $(this).attr("nam")+'['+(liLen-1)+']');
+						})
+						getTabPercentages();
+						$('.').datetimepicker({
+							viewMode: 'years',
+							format: 'mm.yyyy'
+						});
+						$('.').on("dp.change", getTabPercentages);
+						$("#tabsContainer > li").on("change keyup", 'input, select, textarea', getTabPercentages)
+					})
+
+					$("#education_uls").on('click', '.remove', function(e){
+						$(this).closest("li").remove();
+						$("#education_uls li").each(function(idx, val){
+							$(this).find("input, textarea").each(function(){
+								$(this).attr('name', $(this).attr("nam")+'['+idx+']');
+							})
+						})
+						getTabPercentages();
+						$('.').datetimepicker({
+							viewMode: 'years',
+							format: 'mm.yyyy'
+						});
+					})
+				})
+        </script>
+
+        <script type="text/javascript">
+
+			    function education_up(_this){
+			        var tag_li = $(_this).parent();
+			        var tag_ul = $(_this).parent().parent();
+			        var first_input = tag_li.find("input").eq(0);
+			        var input_name = tag_li.find("input").eq(0).prop("name");
+			        var number = input_name.replace("meta[education][period_from][", "").replace("]", "");
+			        console.log(number);
+			        if( number <= 0)return;
+			        var cur_li = tag_ul.find("li").eq(number);
+			        var str_cur_li = cur_li.html();
+			        var pre_li = tag_ul.find("li").eq(number - 1);
+			        var str_pre_li = pre_li.html();
+			        var strBuff = str_cur_li;
+			        cur_li.html(str_pre_li);
+			        pre_li.html(strBuff);
+			        $("#education_uls li").each(function(idx, val){
+			            $(this).find("input, textarea").each(function(){
+			                $(this).attr('name', $(this).attr("nam")+'['+idx+']');
+			            })
+			        })
+			        getTabPercentages();
+			    }
+			    function education_down(_this){
+			        var tag_li = $(_this).parent();
+			        var tag_ul = $(_this).parent().parent();
+			        var first_input = tag_li.find("input").eq(0);
+			        var input_name = tag_li.find("input").eq(0).prop("name");
+			        var number = input_name.replace("meta[education][period_from][", "").replace("]", "");
+			        console.log(number);
+			        if( number > tag_ul.find("li").length - 1)return;
+			        var cur_li = tag_ul.find("li").eq(number);
+			        var str_cur_li = cur_li.html();
+			        var nex_li = tag_ul.find("li").eq(number * 1 + 1);
+			        var str_pre_li = nex_li.html();
+			        var strBuff = str_cur_li;
+			        cur_li.html(str_pre_li);
+			        nex_li.html(strBuff);
+			        $("#education_uls li").each(function(idx, val){
+			            $(this).find("input, textarea").each(function(){
+			                $(this).attr('name', $(this).attr("nam")+'['+idx+']');
+			            })
+			        })
+			        getTabPercentages();
+			    }
+        </script>
+        <li class="closed">
+            <div class="tab_top color_3 mar_6">
+                <span class="tab_title">ADDITIONAL COURSES</span>
+                <span class="tab_prec">0%</span>
+                <span class="tab_act"></span>
+            </div>
+            <div class="tab_cont" style="display:none;">
+                <h2>Start with the most recent, please.</h2>
+                <ul class="cont_2" id="additional_courses_uls">
+                    <li>
+
+                        <div class="input_wrap">
+                            <span class="guide_wrap in_1">
+                                <span class="guide" style="display: none;">
+                                    <span class="guide_top"></span>
+                                    <span class="client">Period from</span>
+                                    <span class="must">Client must upload picture</span>
+                                </span>
+                                <div class="ddd">
+                                    <div class="input-group  ">
+                                        <input type="text" name="meta[additional_courses][period_from][0]" nam="meta[additional_courses][period_from]" value="" placeholder="Number of days/YYYY" class="input_1   size_2">
+                                    </div>
+                                </div>
+                            </span>
+                            <!-- <span class="sep_1"></span>
+                            <span class="guide_wrap in_1">
+                                <span class="guide">
+                                    <span class="guide_top"></span>
+                                    <span class="client">Period to</span>
+                                    <span class="must">Client must upload picture</span>
+                                </span>
+                                <div class="ddd">
+                                    <div class='input-group  ' >
+                                        <input type="text" name="meta[additional_courses][period_to][0]" nam="meta[additional_courses][period_to]" value="" placeholder="Number of days/To (mm.yyyy)" class="input_1   size_1" />
+                                    </div>
+                                </div>
+                            </span> -->
+                        </div>
+                        <span class="input_wrap mar_1">
+                            <span class="guide_wrap">
+                                <span class="guide" style="display: none;">
+                                    <span class="guide_top"></span>
+                                    <span class="client">Course Title, Certificate obtained</span>
+                                    <span class="must">Client must upload picture</span>
+                                </span>
+
+                                <input type="text" name="meta[additional_courses][course_title][0]" nam="meta[additional_courses][course_title]" value="" placeholder="Course Title, Certificate obtained" class="input_1   size_2">
+                            </span>
+                        </span>
+                        <span class="input_wrap mar_1">
+                            <span class="guide_wrap">
+                                <span class="guide" style="display: none;">
+                                    <span class="guide_top"></span>
+                                    <span class="client">Training company or trainer</span>
+                                    <span class="must">Client must upload picture</span>
+                                </span>
+
+                                <input type="text" name="meta[additional_courses][trainer][0]" nam="meta[additional_courses][trainer]" value="" placeholder="Training company or trainer" class="input_1   size_2">
+                            </span>
+                        </span>
+
+                        <span class="remove"></span>
+
+                        <span class="arrows_up" onclick="courses_up(this);"></span>
+                        <span class="arrows_down" onclick="courses_down(this);"></span>
+
+
+                    </li>
+                    <a href="#" class="tab_more">Add more</a>
+                </ul>
+            </div>
+        </li>
+
+        <script>
+	$(document).ready(function(){
+		$("#additional_courses_uls .tab_more").click(function(e){
+			e.preventDefault();
+			var klons = $("#additional_courses_uls li").first().clone();
+			klons.find("input, textarea").val('');
+			klons.insertAfter($("#additional_courses_uls li").last());
+			liLen = $("#additional_courses_uls li").length;
+			klons.find("input, textarea").each(function(){
+				$(this).attr('name', $(this).attr("nam")+'['+(liLen-1)+']');
+			})
+			getTabPercentages();
+			$('.datetimepickerOnThis').datetimepicker({
+				viewMode: 'years',
+				format: 'mm.yyyy'
+			});
+		})
+
+		$("#additional_courses_uls").on('click', '.remove', function(e){
+			$(this).closest("li").remove();
+			$("#additional_courses_uls li").each(function(idx, val){
+				$(this).find("input, textarea").each(function(){
+					$(this).attr('name', $(this).attr("nam")+'['+idx+']');
+				})
+			})
+			getTabPercentages();
+			$('.datetimepickerOnThis').datetimepicker({
+				viewMode: 'years',
+				format: 'mm.yyyy'
+			});
+		})
+	})
+        </script>
+
+        <script type="text/javascript">
+
+    function courses_up(_this){
+        var tag_li = $(_this).parent();
+        var tag_ul = $(_this).parent().parent();
+        var first_input = tag_li.find("input").eq(0);
+        var input_name = tag_li.find("input").eq(0).prop("name");
+        var number = input_name.replace("meta[additional_courses][period_from][", "").replace("]", "");
+        console.log(number);
+        if( number <= 0)return;
+        var cur_li = tag_ul.find("li").eq(number);
+        var str_cur_li = cur_li.html();
+        var pre_li = tag_ul.find("li").eq(number - 1);
+        var str_pre_li = pre_li.html();
+        var strBuff = str_cur_li;
+        cur_li.html(str_pre_li);
+        pre_li.html(strBuff);
+        $("#additional_courses_uls li").each(function(idx, val){
+            $(this).find("input, textarea").each(function(){
+                $(this).attr('name', $(this).attr("nam")+'['+idx+']');
+            })
+        })
+        getTabPercentages();
+    }
+    function courses_down(_this){
+        var tag_li = $(_this).parent();
+        var tag_ul = $(_this).parent().parent();
+        var first_input = tag_li.find("input").eq(0);
+        var input_name = tag_li.find("input").eq(0).prop("name");
+        var number = input_name.replace("meta[additional_courses][period_from][", "").replace("]", "");
+        console.log(number);
+        if( number > tag_ul.find("li").length - 1)return;
+        var cur_li = tag_ul.find("li").eq(number);
+        var str_cur_li = cur_li.html();
+        var nex_li = tag_ul.find("li").eq(number * 1 + 1);
+        var str_pre_li = nex_li.html();
+        var strBuff = str_cur_li;
+        cur_li.html(str_pre_li);
+        nex_li.html(strBuff);
+        $("#additional_courses_uls li").each(function(idx, val){
+            $(this).find("input, textarea").each(function(){
+                $(this).attr('name', $(this).attr("nam")+'['+idx+']');
+            })
+        })
+        getTabPercentages();
+    }
+        </script>
+        <li class="closed">
+            <div class="tab_top color_4 mar_6">
+                <span class="tab_title">Language</span>
+                <span class="tab_prec">0%</span>
+                <span class="tab_act"></span>
+            </div>
+            <div class="tab_cont " style="display:none;">
+                <ul class="cont_2" id="language_uls">
+                    <li>
+                        <div class="input_wrap">
+                            <span class="guide_wrap">
+                                <span class="guide" style="display: none;">
+                                    <span class="guide_top"></span>
+                                    <span class="client">Native language</span>
+                                    <span class="must">Client must upload picture</span>
+                                </span>
+
+                                <select name="meta[language][language][0]" nam="meta[language][language]" class="language_select input_1   select_1 size_1">
+                                    <option value="">Language</option>
+                                    <option value="Latvian">Latvian</option>
+                                    <option value="Lithuanian">Lithuanian</option>
+                                    <option value="Estonian">Estonian</option>
+                                    <option value="English">English</option>
+                                    <option value="Russian">Russian</option>
+                                    <option value="German">German</option>
+                                    <option value="French">French</option>
+                                    <option value="Spanish">Spanish</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                                <input style="display:none;" disabled="" type="text" name="meta[language][language][0]" nam="meta[language][language]" value="" placeholder="Language" class="input_1  language_select_input size_1">
+                            </span>
+                        </div>
+                        <div class="input_wrap mar_1">
+                            <span class="guide_wrap">
+                                <span class="guide" style="display: none;">
+                                    <span class="guide_top"></span>
+                                    <span class="client">Spoken</span>
+                                    <span class="must">Client must upload picture</span>
+                                </span>
+
+                                <select name="meta[language][spoken][0]" nam="meta[language][spoken]" class="check_language_selected input_1   select_1 size_1" data-shis="spoken">
+                                    <option value="">Spoken</option>
+                                    <option value="Basic">Basic</option>
+                                    <option value="Satisfactory">Satisfactory</option>
+                                    <option value="Good">Good</option>
+                                    <option value="Excellent">Excellent</option>
+                                    <option value="Native">Native</option>
+                                </select>
+                            </span>
+                        </div>
+                        <div class="input_wrap mar_1">
+                            <span class="guide_wrap">
+                                <span class="guide" style="display: none;">
+                                    <span class="guide_top"></span>
+                                    <span class="client">Written</span>
+                                    <span class="must">Client must upload picture</span>
+                                </span>
+
+                                <select name="meta[language][written][0]" nam="meta[language][written]" class="check_language_selected input_1   select_1 size_1" data-shis="written">
+                                    <option value="">Written</option>
+                                    <option value="Basic">Basic</option>
+                                    <option value="Satisfactory">Satisfactory</option>
+                                    <option value="Good">Good</option>
+                                    <option value="Excellent">Excellent</option>
+                                    <option value="Native">Native</option>
+                                </select>
+                            </span>
+                        </div>
+
+                        <span class="remove"></span>
+
+                        <span class="arrows_up" onclick="language_up(this);"></span>
+                        <span class="arrows_down" onclick="language_down(this);"></span>
+
+                    </li>
+                    <a href="#" class="tab_more">Add language</a>
+                </ul>
+            </div>
+        </li>
+        <script>
+	$(".tab_cont").on("change", ".language_select", function(){
+		if($(this).val() == 'Other'){
+			$(this).closest(".guide_wrap").find('.language_select_input').show().prop("disabled", false).val('');
+		}else{
+			$(this).closest(".guide_wrap").find('.language_select_input').hide().prop("disabled", true).val('');
+		}
+	})
+	$(document).ready(function(){
+
+		$("#language_uls .tab_more").click(function(e){
+			e.preventDefault();
+			var klons = $("#language_uls li").first().clone();
+			klons.find("input, textarea, select").val('');
+			klons.insertAfter($("#language_uls li").last());
+			liLen = $("#language_uls li").length;
+			klons.find("input, textarea, select").each(function(){
+				$(this).attr('name', $(this).attr("nam")+'['+(liLen-1)+']');
+			});
+			klons.find('.language_select_input').hide().prop("disabled", true).val('');
+			getTabPercentages();
+		});
+
+		$("#language_uls").on('click', '.remove', function(e){
+			$(this).closest("li").remove();
+			$("#language_uls li").each(function(idx, val){
+				$(this).find("input, textarea, select").each(function(){
+					$(this).attr('name', $(this).attr("nam")+'['+(idx)+']');
+				});
+			});
+			getTabPercentages();
+		});
+
+		$("#language_uls").on("change", '.check_language_selected', function(e){
+			if($(this).val() == 'Native'){
+				var shis = $(this).data("shis");
+				if(shis == 'written'){
+					$(this).closest("li").find('select[data-shis="spoken"]').val("Native");
+				}else{
+					$(this).closest("li").find('select[data-shis="written"]').val("Native");
+				}
+			}
+		});
+	})
+        </script>
+
+        <script type="text/javascript">
+
+    function language_up(_this){
+        var tag_li = $(_this).parent();
+        var tag_ul = $(_this).parent().parent();
+        var first_input = tag_li.find("select").eq(0);
+        var input_name = tag_li.find("select").eq(0).prop("name");
+        var number = input_name.replace("meta[language][language][", "").replace("]", "");
+        console.log(number);
+        if( number <= 0)return;
+        var cur_li = tag_ul.find("li").eq(number);
+        var str_cur_li = cur_li.html();
+        var pre_li = tag_ul.find("li").eq(number - 1);
+        var str_pre_li = pre_li.html();
+        var strBuff = str_cur_li;
+        cur_li.html(str_pre_li);
+        pre_li.html(strBuff);
+        $("#language_uls li").each(function(idx, val){
+            $(this).find("select, textarea").each(function(){
+                $(this).attr('name', $(this).attr("nam")+'['+idx+']');
+            })
+        })
+        getTabPercentages();
+    }
+    function language_down(_this){
+        var tag_li = $(_this).parent();
+        var tag_ul = $(_this).parent().parent();
+        var first_input = tag_li.find("select").eq(0);
+        var input_name = tag_li.find("select").eq(0).prop("name");
+        var number = input_name.replace("meta[language][language][", "").replace("]", "");
+        console.log(number);
+        if( number > tag_ul.find("li").length - 1)return;
+        var cur_li = tag_ul.find("li").eq(number);
+        var str_cur_li = cur_li.html();
+        var nex_li = tag_ul.find("li").eq(number * 1 + 1);
+        var str_pre_li = nex_li.html();
+        var strBuff = str_cur_li;
+        cur_li.html(str_pre_li);
+        nex_li.html(strBuff);
+        $("#language_uls li").each(function(idx, val){
+            $(this).find("select, textarea").each(function(){
+                $(this).attr('name', $(this).attr("nam")+'['+idx+']');
+            })
+        })
+        getTabPercentages();
+    }
+        </script>
+        <li class="closed">
+            <div class="tab_top color_5 mar_6">
+                <span class="tab_title">CAREER SUMMARY</span>
+                <span class="tab_prec">0%</span>
+                <span class="tab_act"></span>
+            </div>
+            <div class="tab_cont " style="display:none;">
+                <h2>Start with the most recent job experience, please.</h2>
+                <ul class="cont_2" id="career_summary_uls">
+                    <div class="mainListDiv">
+                        <li class="pad_2">
+                            <div class="input_wrap">
+                                <span class="guide_wrap">
+                                    <span class="guide" style="display: none;">
+                                        <span class="guide_top"></span>
+                                        <span class="client">Company name</span>
+                                        <span class="must">Client must upload picture</span>
+                                    </span>
+                                    <input type="text" name="meta[career_summary][career_company][0]" nam="meta[career_summary][career_company]" value="" placeholder="Company name" class="input_1   size_2" style="width:312px;">
+                                </span>
+                            </div>
+                            <div class="input_wrap mar_1">
+                                <span class="guide_wrap">
+                                    <span class="guide" style="display: none;">
+                                        <span class="guide_top"></span>
+                                        <span class="client">City, Country</span>
+                                        <span class="must">Client must upload picture</span>
+                                    </span>
+                                    <input type="text" name="meta[career_summary][career_country][0]" nam="meta[career_summary][career_country]" value="" placeholder="City, Country" class="input_1   size_2" style="width:312px;">
+                                </span>
+                            </div>
+                            <h3>Company information</h3>
+                            <div class="input_wrap">
+                                <span class="guide_wrap">
+                                    <span class="guide" style="display: none;">
+                                        <span class="guide_top"></span>
+                                        <span class="client">Parent company</span>
+                                        <span class="must">Client must upload picture</span>
+                                    </span>
+                                    <input type="text" name="meta[career_summary][company_parent][0]" nam="meta[career_summary][company_parent]" value="" placeholder="Parent company" class="input_1   size_2">
+                                </span>
+                            </div>
+                            <div class="input_wrap mar_1">
+                                <span class="guide_wrap">
+                                    <span class="guide" style="display: none;">
+                                        <span class="guide_top"></span>
+                                        <span class="client">Industry / business areas</span>
+                                        <span class="must">Client must upload picture</span>
+                                    </span>
+                                    <select name="meta[career_summary][company_industry][0]" nam="meta[career_summary][company_industry]" class="input_1 select_1 size_2 industry_select">
+                                        <option value="" disabled="" selected="">Industry / business areas</option>
+                                        <option value="Academic, Universities, Colleges, Schools">Academic, Universities, Colleges, Schools</option>
+                                        <option value="Automotive &amp; Industrial">Automotive &amp; Industrial</option>
+                                        <option value="Business Services">Business Services</option>
+                                        <option value="Construction / Engineering services / Infrastructure">Construction / Engineering services / Infrastructure</option>
+                                        <option value="Energy &amp; Utilities">Energy &amp; Utilities</option>
+                                        <option value="Financial Services / Insurance">Financial Services / Insurance</option>
+                                        <option value="FMCG / Consumer Electronics">FMCG / Consumer Electronics</option>
+                                        <option value="FMCG / Food &amp; Beverages">FMCG / Food &amp; Beverages</option>
+                                        <option value="Government &amp; Public Sector">Government &amp; Public Sector</option>
+                                        <option value="Hospitality / Foodservice">Hospitality / Foodservice</option>
+                                        <option value="Life Sciences/ Medicine &amp; Pharmacy">Life Sciences/ Medicine &amp; Pharmacy</option>
+                                        <option value="Logistics services / Distribution services / Supply chain sector">Logistics services / Distribution services / Supply chain sector</option>
+                                        <option value="Media / Entertainment">Media / Entertainment</option>
+                                        <option value="Natural Resources / Agriculture / Forestry / Oil &amp; Gas">Natural Resources / Agriculture / Forestry / Oil &amp; Gas</option>
+                                        <option value="Not-For-Profit">Not-For-Profit</option>
+                                        <option value="Professional Services / Audit / Legal Services / Training &amp; Development">Professional Services / Audit / Legal Services / Training &amp; Development</option>
+                                        <option value="Production">Production</option>
+                                        <option value="Property / Real estate / Facilities management">Property / Real estate / Facilities management</option>
+                                        <option value="Retail / Wholesale / Distributors">Retail / Wholesale / Distributors</option>
+                                        <option value="Technology &amp; Communication Services">Technology &amp; Communication Services</option>
+                                        <option value="Tourism / Hotels">Tourism / Hotels</option>
+                                        <option value="Transportation – passengers">Transportation – passengers</option>
+                                        <option value="Other (specify)">Other (specify)</option>
+                                    </select>
+                                </span>
+                            </div>
+                            <div class="input_wrap mar_1 industry_input_container">
+                                <span class="guide_wrap">
+                                    <span class="guide" style="display: none;">
+                                        <span class="guide_top"></span>
+                                        <span class="client">Industry / business area</span>
+                                    </span>
+                                    <input type="text" name="meta[career_summary][company_industry][0]" nam="meta[career_summary][company_industry]" value="" placeholder="Industry / business areas" class="input_1   size_2">
+                                </span>
+                            </div>
+                            <div class="input_wrap mar_2">
+                                <span class="guide_wrap">
+                                    <span class="guide" style="display: none;">
+                                        <span class="guide_top"></span>
+                                        <span class="client">Main products / services</span>
+                                        <span class="must">Client must upload picture</span>
+                                    </span>
+                                    <input type="text" name="meta[career_summary][company_services][0]" nam="meta[career_summary][company_services]" value="" placeholder="Main products / services" class="input_1   size_2">
+                                </span>
+                            </div>
+                            <div class="input_wrap mar_1 mar_2">
+                                <span class="guide_wrap">
+                                    <span class="guide" style="display: none;">
+                                        <span class="guide_top"></span>
+                                        <span class="client">Turnover</span>
+                                        <span class="must">Client must upload picture</span>
+                                    </span>
+                                    <input type="text" name="meta[career_summary][company_turnover][0]" nam="meta[career_summary][company_turnover]" value="" placeholder="Turnover (+ Currency, year)" class="input_1   size_2">
+                                </span>
+                            </div>
+                            <div class="input_wrap mar_1 mar_2">
+                                <span class="guide_wrap">
+                                    <span class="guide" style="display: none;">
+                                        <span class="guide_top"></span>
+                                        <span class="client">Number of employees</span>
+                                        <span class="must">Client must upload picture</span>
+                                    </span>
+                                    <input type="text" name="meta[career_summary][company_employees][0]" nam="meta[career_summary][company_employees]" value="" placeholder="Number of employees" class="input_1   size_2">
+                                </span>
+                            </div>
+                        </li>
+                        <li class="pad_3">
+                            <h3 class="mar_3">Position information</h3>
+                            <div class="task_container">
+                                <div class="tasks" style="padding-top:15px;">
+                                    <div class="input_wrap mar_4">
+                                        <span class="guide_wrap">
+                                            <span class="guide" style="display: none;">
+                                                <span class="guide_top"></span>
+                                                <span class="client">Position name</span>
+                                                <span class="must">Client must upload picture</span>
+                                            </span>
+                                            <input name="meta[career_summary][position_name][0][0]" nam="meta[career_summary][position_name]" type="text" placeholder="Position name" value="" class="input_1 required_field  size_2">
+                                        </span>
+                                    </div>
+                                    <div class="input_wrap mar_1 mar_4">
+                                        <span class="guide_wrap in_1">
+                                            <span class="guide" style="display: none;">
+                                                <span class="guide_top"></span>
+                                                <span class="client">Period from</span>
+                                                <span class="must">Client must upload picture</span>
+                                            </span>
+                                            <div class="ddd">
+                                                <div class="input-group date ">
+                                                    <em>*</em>
+                                                    <input type="text" name="meta[career_summary][position_period_from][0][0]" nam="meta[career_summary][position_period_from]" value="" placeholder="From (mm.yyyy)" class="input_1 required_field   size_2">
+                                                </div>
+                                            </div>
+                                        </span>
+                                        <span class="sep_1"></span>
+                                        <span class="guide_wrap in_1">
+                                            <span class="guide" style="display: none;">
+                                                <span class="guide_top"></span>
+                                                <span class="client">Period to</span>
+                                                <span class="must">Client must upload picture</span>
+                                            </span>
+                                            <div class="ddd">
+                                                <div class="input-group date ">
+                                                    <em>*</em>
+                                                    <input type="text" id="checkInput" name="meta[career_summary][position_period_to][0][0]" nam="meta[career_summary][position_period_to]" value="" placeholder="To (mm.yyyy)" class="input_1 required_field   size_2">
+                                                </div>
+                                            </div>
+                                        </span>
+                                    </div>
+                                    <em>*</em>
+                                    <span class="guide_wrap mar_4">
+                                        <span class="guide" style="display: none;">
+                                            <span class="guide_top"></span>
+                                            <span class="client">Key tasks and responsibilities</span>
+                                            <span class="must">Client must upload picture</span>
+                                        </span>
+                                        <textarea onkeyup="addEnter(this,event);" onfocus="if (this.value=='') this.value += '- '" name="meta[career_summary][tasks][0][0]" nam="meta[career_summary][tasks]" class="input_1 required_field  textarea_1 bulletList" placeholder="Key Tasks and responsibilities (Please write each in new line);
+•Task no 1;
+•Responsibility no 2;
+•Task no 3;
+•Etc." style="height: 100px;"></textarea>
+                                    </span>
+                                    <div class="input_wrap mar_4">
+                                        <span class="guide_wrap">
+                                            <span class="guide" style="display: none;">
+                                                <span class="guide_top"></span>
+                                                <span class="client">Reporting to (name and position)</span>
+                                                <span class="must">Client must upload picture</span>
+                                            </span>
+                                            <input name="meta[career_summary][report_to][0][0]" nam="meta[career_summary][report_to]" type="text" placeholder="Reporting to (name and position)" value="" class="input_1  size_2">
+                                        </span>
+                                    </div>
+
+                                    <span class="remove" style="top: inherit"></span>
+
+                                    <span class="arrows_up" onclick="career_up(this);"></span>
+                                    <span class="arrows_down" onclick="career_down(this);"></span>
+
+                                    <div class="input_wrap wid_1 mar_4">
+                                        <span class="guide_wrap">
+                                            <span class="guide" style="display: none;">
+                                                <span class="guide_top"></span>
+                                                <span class="client">Direct and indirect subordinates</span>
+                                                <span class="must">Client must upload picture</span>
+                                            </span>
+                                            <!-- <input name="meta[career_summary][subordinates][0][0]" nam="meta[career_summary][subordinates]" type="text" placeholder="Direct and indirect subordinates" value="" class="input_1  size_2"/> -->
+
+                                            <textarea name="meta[career_summary][subordinates][0][0]" nam="meta[career_summary][subordinates]" placeholder="Direct and indirect subordinates" class="input_1  textarea_1" style="height: 100px;"></textarea>
+                                        </span>
+                                    </div>
+
+                                    <div class="input_wrap wid_1">
+                                        <span class="guide_wrap mar_4">
+                                            <span class="guide" style="display: none;">
+                                                <span class="guide_top"></span>
+                                                <span class="client">Achievements</span>
+                                                <span class="must">Client must upload picture</span>
+                                            </span>
+                                            <textarea onkeyup="addEnter(this,event);" onfocus="if (this.value=='') this.value += '- '" name="meta[career_summary][achievements][0][0]" nam="meta[career_summary][achievements]" class="input_1   textarea_1" placeholder="Achievements" style="height: 100px;"></textarea>
+                                        </span>
+                                    </div>
+                                    <div class="input_wrap wid_1">
+                                        <span class="guide_wrap mar_4">
+                                            <span class="guide" style="display: none;">
+                                                <span class="guide_top"></span>
+                                                <span class="client">Reason for leaving</span>
+                                                <span class="must">Client must upload picture</span>
+                                            </span>
+
+                                            <!-- <input name="meta[career_summary][reason_for_leaving][0][0]" nam="meta[career_summary][reason_for_leaving]" type="text" class="input_1   size_2" placeholder="Reason for leaving" value="" /> -->
+
+                                            <textarea name="meta[career_summary][reason_for_leaving][0][0]" nam="meta[career_summary][reason_for_leaving]" placeholder="Reason for leaving or leave blank if you still work here" class="input_1  textarea_1" style="height: 100px;"></textarea>
+
+                                        </span>
+                                    </div>
+                                    <!-- <span class="remove" style="top: inherit"></span> -->
+                                </div>
+                                <a href="#" class="tab_more mar_4 task_add_more_button">Add Position</a>
+                            </div>
+                        </li>
+                        <span class="remove removeRow" style="top: inherit"></span>
+                    </div>
+                    <a href="#" class="tab_more mar_4">add work experience</a>
+                </ul>
+            </div>
+        </li>
+        <script>
+	$("#career_summary_uls").on('change', '.industry_select', function(e){
+		if($(this).val() == "Other (specify)"){
+			$(".industry_input_container .guide_wrap").css("visibility", '');
+			$(".industry_input_container input").prop("disabled", false);
+		}else{
+			$(".industry_input_container .guide_wrap").css("visibility", 'hidden');
+			$(".industry_input_container input").prop("disabled", true);
+		}
+	});
+	$("#career_summary_uls").on('click', '.task_container .tasks .remove', function(e){
+
+ 		var conf = confirm('Are you sure you want to delete?');
+
+        if (conf == true) {
+
+		taskCont = $(this).closest(".task_container");
+
+		tsk = taskCont.find(".tasks").length;
+
+		if(tsk > 1) {
+		$(this).closest(".tasks").remove();
+		liLen = taskCont.closest(".mainListDiv").index();
+
+		taskCont.find(".tasks").each(function(idx, val){
+			$(this).find("input, textarea, select").each(function(){
+				$(this).attr('name', $(this).attr("nam")+'['+(liLen)+']['+(idx)+']');
+			})
+		})
+		}
+		}
+		getTabPercentages();
+	})
+	$("#career_summary_uls").on('click', '.task_container .task_add_more_button', function(e){
+		e.preventDefault()
+		var klons = $(this).parent().find(".tasks").first().clone();
+		$(klons).insertAfter($(this).closest(".task_container").find(".tasks").last()).css("padding-top", '15px');
+		klons.find("input, textarea, select").val('')
+
+		liLen = $(this).closest(".mainListDiv").index();
+		tsk = $(this).closest(".task_container").find(".tasks").length;
+		klons.find("input, textarea, select").each(function(){
+			$(this).attr('name', $(this).attr("nam")+'['+(liLen)+']['+(tsk-1)+']');
+		})
+		getTabPercentages();
+		klons.find('.').datetimepicker({
+			viewMode: 'years',
+			format: 'mm.yyyy'
+		});
+	});
+
+	$("#career_summary_uls > .tab_more").click(function(e){
+		e.preventDefault();
+		var klons = $("#career_summary_uls > div").first().clone();
+		klons.find("input, textarea, select").val('');
+		klons.insertAfter($("#career_summary_uls > div").last());
+		liLen = $("#career_summary_uls > div").length;
+		klons.find(".tasks").slice(1).remove();
+		klons.find("input, textarea, select").each(function(){
+			if($(this).closest(".tasks").length == 0){
+				$(this).attr('name', $(this).attr("nam")+'['+(liLen-1)+']');
+			}else{
+				$(this).closest(".task_container").find(".tasks").each(function(idx, val){
+					$(this).find("input, textarea, select").each(function(){
+						$(this).attr('name', $(this).attr("nam")+'['+(liLen-1)+']['+(idx)+']');
+					})
+				})
+			}
+		})
+		getTabPercentages();
+		$('.').datetimepicker({
+			viewMode: 'years',
+			format: 'mm.yyyy'
+		});
+	})
+
+	$("#career_summary_uls").on('click', '.removeRow', function(e){
+
+		var conf = confirm('Are you sure you want to delete?');
+
+        if (conf == true) {
+
+       tabs = $('.cont_2').find(".mainListDiv").length;
+
+       if(tabs > 1) {
+
+		$(this).closest("div").remove();
+
+		$("#career_summary_uls > div").each(function(ind, val){
+			$(this).find("input, textarea, select").each(function(){
+				if($(this).closest(".tasks").length == 0){
+					$(this).attr('name', $(this).attr("nam")+'['+(ind)+']');
+				}else{
+					$(this).closest(".task_container").find(".tasks").each(function(idx, val){
+						$(this).attr('name', $(this).attr("nam")+'['+(ind)+']['+(idx)+']');
+					})
+				}
+			})
+		})
+
+	}
+
+	}
+		getTabPercentages();
+	});
+
+function addEnter(element,event) {
+
+	var keycode = (event.keyCode ? event.keyCode : event.which);
+  	if (keycode == '13') {
+    	element.value += '- ';
+  	}
+  	var txtval = element.value;
+  	if (txtval.substr(txtval.length - 1) == '\n') {
+    	element.value = txtval.substring(0, txtval.length - 1);
+  	}
+}
+
+
+
+		// $("form #checkInput").on("change keyup", function(){
+
+		// var val = $(this).val();
+
+		// 	setTimeout(function(){
+
+		// 	if(val.match(/^((0|1)\d{1}).((19|20)\d{2})/g)) {
+		// 		$("form #checkInput").css("border", '');
+		// 		console.log('match');
+		// 	} else {
+		// 		$("form #checkInput").css("border", '1px solid red');
+		// 	}
+
+		// }, 2000);
+
+		// });
+        </script>
+
+        <script type="text/javascript">
+
+    function career_up(_this){
+        var tag_li = $(_this).parent();
+        var tag_ul = $(_this).parent().parent();
+        var first_input = tag_li.find("input").eq(0);
+        var input_name = tag_li.find("input").eq(0).prop("name");
+        var number = input_name.replace("meta[career_summary][career_company][", "").replace("]", "");
+        console.log(number);
+        if( number <= 0)return;
+        var cur_li = tag_ul.find("li").eq(number);
+        var str_cur_li = cur_li.html();
+        var pre_li = tag_ul.find("li").eq(number - 1);
+        var str_pre_li = pre_li.html();
+        var strBuff = str_cur_li;
+        cur_li.html(str_pre_li);
+        pre_li.html(strBuff);
+        $("#language_uls li").each(function(idx, val){
+            $(this).find("input, textarea").each(function(){
+                $(this).attr('name', $(this).attr("nam")+'['+idx+']');
+            })
+        })
+        getTabPercentages();
+    }
+    function career_down(_this){
+        var tag_li = $(_this).parent();
+        var tag_ul = $(_this).parent().parent();
+        var first_input = tag_li.find("input").eq(0);
+        var input_name = tag_li.find("input").eq(0).prop("name");
+        var number = input_name.replace("meta[career_summary][career_company][", "").replace("]", "");
+        console.log(number);
+        if( number > tag_ul.find("li").length - 1)return;
+        var cur_li = tag_ul.find("li").eq(number);
+        var str_cur_li = cur_li.html();
+        var nex_li = tag_ul.find("li").eq(number * 1 + 1);
+        var str_pre_li = nex_li.html();
+        var strBuff = str_cur_li;
+        cur_li.html(str_pre_li);
+        nex_li.html(strBuff);
+        $("#language_uls li").each(function(idx, val){
+            $(this).find("input, textarea").each(function(){
+                $(this).attr('name', $(this).attr("nam")+'['+idx+']');
+            })
+        })
+        getTabPercentages();
+    }
+        </script>
+
+        <li class="closed">
+            <div class="tab_top color_6 mar_6">
+                <span class="tab_title">SOCIAL ACTIVITIES / memberships</span>
+                <span class="tab_prec">0%</span>
+                <span class="tab_act"></span>
+            </div>
+            <div class="tab_cont" style="display:none;">
+                <ul class="cont_2 bor_1" id="social_activities_uls">
+                    <li>
+                        <div class="input_wrap">
+                            <span class="guide_wrap in_1">
+                                <span class="guide" style="display: none;">
+                                    <span class="guide_top"></span>
+                                    <span class="client">Period from</span>
+                                    <span class="must">Client must upload picture</span>
+                                </span>
+                                <div class="ddd">
+                                    <div class="input-group ">
+                                        <input type="text" name="meta[social_activities][period_from][0]" nam="meta[social_activities][period_from]" value="" placeholder="From (mm.yyyy)" class="input_1   size_1">
+                                    </div>
+                                </div>
+                            </span>
+                            <span class="sep_1"></span>
+                            <span class="guide_wrap in_1">
+                                <span class="guide" style="display: none;">
+                                    <span class="guide_top"></span>
+                                    <span class="client">Period to</span>
+                                    <span class="must">Client must upload picture</span>
+                                </span>
+                                <div class="ddd">
+                                    <div class="input-group  ">
+                                        <input type="text" name="meta[social_activities][period_to][0]" nam="meta[social_activities][period_to]" value="" placeholder="To (mm.yyyy)" class="input_1   size_1">
+                                    </div>
+                                </div>
+                            </span>
+                        </div>
+                        <span class="guide_wrap mar_4">
+                            <span class="guide" style="display: none;">
+                                <span class="guide_top"></span>
+                                <span class="client">Organizational Membership</span>
+                                <span class="must">Client must upload picture</span>
+                            </span>
+                            <textarea class="input_1   textarea_1 mar_3" name="meta[social_activities][membership][0]" nam="meta[social_activities][membership]" placeholder="Organizational Membership" style="height: 100px;"></textarea>
+                        </span>
+
+                        <span class="remove"></span>
+
+                        <span class="arrows_up" onclick="social_up(this);"></span>
+                        <span class="arrows_down" onclick="social_down(this);"></span>
+
+                    </li>
+                    <a href="#" class="tab_more">Add more activities</a>
+                </ul>
+            </div>
+        </li>
+        <script>
+	$(document).ready(function(){
+		$("#social_activities_uls .tab_more").click(function(e){
+			e.preventDefault();
+			var klons = $("#social_activities_uls li").first().clone();
+			klons.find("input, textarea, select").val('');
+			klons.insertAfter($("#social_activities_uls li").last());
+			liLen = $("#social_activities_uls li").length;
+			klons.find("input, textarea, select").each(function(){
+				$(this).attr('name', $(this).attr("nam")+'['+(liLen-1)+']');
+			})
+			getTabPercentages();
+		})
+
+		$("#social_activities_uls").on('click', '.remove', function(e){
+			$(this).closest("li").remove();
+			$("#social_activities_uls li").each(function(idx, val){
+				$(this).find("input, textarea, select").each(function(){
+					$(this).attr('name', $(this).attr("nam")+'['+idx+']');
+				})
+			})
+			getTabPercentages();
+		})
+	})
+        </script>
+
+        <script type="text/javascript">
+
+			    function social_up(_this){
+			        var tag_li = $(_this).parent();
+			        var tag_ul = $(_this).parent().parent();
+			        var first_input = tag_li.find("input").eq(0);
+			        var input_name = tag_li.find("input").eq(0).prop("name");
+			        var number = input_name.replace("meta[social_activities][period_from][", "").replace("]", "");
+			        console.log(number);
+			        if( number <= 0)return;
+			        var cur_li = tag_ul.find("li").eq(number);
+			        var str_cur_li = cur_li.html();
+			        var pre_li = tag_ul.find("li").eq(number - 1);
+			        var str_pre_li = pre_li.html();
+			        var strBuff = str_cur_li;
+			        cur_li.html(str_pre_li);
+			        pre_li.html(strBuff);
+			        $("#social_activities_uls li").each(function(idx, val){
+			            $(this).find("input, textarea").each(function(){
+			                $(this).attr('name', $(this).attr("nam")+'['+idx+']');
+			            })
+			        })
+			        getTabPercentages();
+			    }
+			    function social_down(_this){
+			        var tag_li = $(_this).parent();
+			        var tag_ul = $(_this).parent().parent();
+			        var first_input = tag_li.find("input").eq(0);
+			        var input_name = tag_li.find("input").eq(0).prop("name");
+			        var number = input_name.replace("meta[social_activities][period_from][", "").replace("]", "");
+			        console.log(number);
+			        if( number > tag_ul.find("li").length - 1)return;
+			        var cur_li = tag_ul.find("li").eq(number);
+			        var str_cur_li = cur_li.html();
+			        var nex_li = tag_ul.find("li").eq(number * 1 + 1);
+			        var str_pre_li = nex_li.html();
+			        var strBuff = str_cur_li;
+			        cur_li.html(str_pre_li);
+			        nex_li.html(strBuff);
+			        $("#social_activities_uls li").each(function(idx, val){
+			            $(this).find("input, textarea").each(function(){
+			                $(this).attr('name', $(this).attr("nam")+'['+idx+']');
+			            })
+			        })
+			        getTabPercentages();
+			    }
+        </script>
+        <li class="closed">
+            <div class="tab_top color_7 mar_6">
+                <span class="tab_title">compensation</span>
+                <span class="tab_prec">0%</span>
+                <span class="tab_act"></span>
+            </div>
+            <div class="tab_cont" style="display:none;">
+                <ul class="cont_2">
+                    <li>
+                        <div class="input_wrap">
+                            <span class="guide_wrap">
+                                <span class="guide" style="display: none;">
+                                    <span class="guide_top"></span>
+                                    <span class="client">Current fixed salary ( Gross per month )</span>
+                                    <span class="must">You must update this</span>
+                                </span>
+                                <input type="text" name="meta[compensation][current_salary]" value="" placeholder="Current fixed salary ( Gross per month )" class="input_1   size_2">
+                            </span>
+                        </div>
+                        <div class="input_wrap mar_1">
+                            <span class="guide_wrap">
+                                <span class="guide" style="display: none;">
+                                    <span class="guide_top"></span>
+                                    <span class="client">Current bonuses ( Gross )</span>
+                                    <span class="must">You must update this</span>
+                                </span>
+                                <input type="text" name="meta[compensation][current_bonuses]" value="" placeholder="Current bonuses ( Gross )" class="input_1   size_2">
+                            </span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="input_wrap">
+                            <span class="guide_wrap">
+                                <span class="guide" style="display: none;">
+                                    <span class="guide_top"></span>
+                                    <span class="client">Salary request (Gross per month + currency)</span>
+                                    <span class="must">You must update this</span>
+                                </span>
+
+                                <input type="text" name="meta[compensation][salary_request]" value="" placeholder="Salary request (Gross per month + currency)" class="input_1   size_2">
+                            </span>
+                        </div>
+                        <div class="input_wrap mar_1">
+                            <span class="guide_wrap">
+                                <span class="guide" style="display: none;">
+                                    <span class="guide_top"></span>
+                                    <!-- <span class="client">Requested bonuses</span> -->
+                                    <span class="client">Please mark if monthly, queartely, annual bonus</span>
+                                    <span class="must">You must update this</span>
+                                </span>
+
+                                <input type="text" name="meta[compensation][requested_bonuses]" value="" placeholder="Requested bonuses" class="input_1   size_2">
+                            </span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="input_wrap mar_3 wid_1">
+                            <span class="guide_wrap mar_4">
+                                <span class="guide" style="display: none;">
+                                    <span class="guide_top"></span>
+                                    <span class="client">Please describe (company car, stock options etc.)</span>
+                                    <span class="must">You must update this</span>
+                                </span>
+                                <textarea class="input_1   textarea_1" name="meta[compensation][description]" placeholder="Please describe (company car, stock options etc.)" style="height: 100px;"></textarea>
+                            </span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li class="closed">
+            <div class="tab_top color_9 mar_6">
+                <span class="tab_title">Notice period</span>
+                <span class="tab_prec">0%</span>
+                <span class="tab_act"></span>
+            </div>
+            <div class="tab_cont " style="display:none;">
+                <ul class="cont_2">
+                    <li>
+                        <div class="input_wrap">
+                            <span class="guide_wrap">
+                                <span class="guide" style="display: none;">
+                                    <span class="guide_top"></span>
+                                    <span class="client">Transition time to be able to start with new employer</span>
+                                    <span class="must">Client must upload picture</span>
+                                </span>
+                                <input type="text" name="meta[notice_period][transition_time]" value="" placeholder="Transition time to be able to start with new employer" class="input_1   size_2" style="width: 360px">
+                            </span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li class="bor_2 closed">
+            <div class="tab_top color_8 mar_6">
+                <span class="tab_title">additional Comments</span>
+                <span class="tab_prec">0%</span>
+                <span class="tab_act"></span>
+            </div>
+            <div class="tab_cont" style="display:none;">
+                <ul class="cont_2 bor_1">
+                    <li>
+                        <span class="guide_wrap mar_4">
+                            <span class="guide" style="display: none;">
+                                <span class="guide_top"></span>
+                                <span class="client">Additional comments</span>
+                                <span class="must">Client must upload picture</span>
+                            </span>
+                            <textarea class="input_1   textarea_1" name="meta[additional_comments][comment]" placeholder="Additional comments" style="height: 100px;"></textarea>
+                        </span>
+                    </li>
+                </ul>
+                <ul id="additional_file_list"></ul>
+                <a href="#" class="tab_more" id="additional_files_click">Add files or certificate</a>
+                <input type="file" multiple="" id="additional_files_input" style="display:none;">
+            </div>
+        </li>
+        <script>
+	$("#additional_files_click").click(function(e){
+		e.preventDefault();
+		openFileDialog("additional_files_input");
+	});
+	$("#additional_files_input").on('change', function(){
+		files = event.target.files;
+		var data = new FormData();
+		var ale = false;
+		var added = 0;
+		$.each(files, function(key, value){
+			data.append(key, value);
+		});
+		data.append('s', 'NzQ4ZmY1NWRiZmNkNTEwZTdmMDY0OTQwMWU4NjE5ZTg2YWM3ZDg2Yw==');
+		data.append('uid', 'MTAzNjQzNWM1NmRkOWU0ZDYxMXx8fHwxMjB8fHx8NDAwOTA2NWM1NmRkOWU0ZDZhMA==');
+		data.append('action', 'upl');
+		$.ajax({
+			url: 'http://dev.iconcept.lv/ajax/uploadCommentFile/MzcxNzg5NWM1NmRkOWU0ZDczNnx8fHwxMjh8fHx8MzU1NTY3NWM1NmRkOWU0ZDdiNg==',
+			type: 'POST',
+			data: data,
+			cache: false,
+			processData: false, // Don't process the files
+			contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+			success: function(data, textStatus, jqXHR)
+			{
+				data = JSON.parse(data);
+				console.log(data);
+				$.each(data, function(key, val){
+					$("#additional_file_list").append('<li><a target="_blank" href="http://dev.iconcept.lv/download/file/'+val.path+'">'+val.name+'</a></li>')
+				})
+			},
+			error: function(jqXHR, textStatus, errorThrown)
+			{
+				//console.error(jqXHR)
+			},
+			complete:function(){
+				//$("#uploadFileButton").removeClass("loading");
+			}
+		});
+	})
+        </script>
+    </ul>
+    <input type="hidden" name="user_id" value="120">
+    <div class="con centered bttn_con">
+        <a href="#" class="bttn_1" id="save_finish_later">Save, i will finish later</a>
+        <a href="#" class="bttn_1" id="save_im_finished">Save, i have finished</a>
+    </div>
+</form>

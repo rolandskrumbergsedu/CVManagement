@@ -2001,11 +2001,11 @@ a {
 }
 
     .soc.fb {
-        background-image: url(img/fb.png);
+        background-image: url(../Images/fb.png);
     }
 
     .soc.in {
-        background-image: url(img/li.png);
+        background-image: url(../Images/li.png);
     }
 
     .soc:hover {
@@ -2082,7 +2082,7 @@ header {
         padding-left: 40px;
         font-size: 12px;
         color: #1a76bc;
-        background: url(img/add.png) no-repeat left center;
+        background: url(../Images/add.png) no-repeat left center;
         position: absolute;
         text-transform: uppercase;
         height: 24px;
@@ -2091,7 +2091,7 @@ header {
 
         header .add:hover {
             color: #231f20;
-            background-image: url(img/add_h.png);
+            background-image: url(../Images/add_h.png);
         }
 
     header .logout {
@@ -2108,13 +2108,13 @@ header {
         top: 50%;
         right: 0;
         transform: translate(0, -50%);
-        background: url(img/logaout.png) no-repeat top 13px center;
+        background: url(../Images/logaout.png) no-repeat top 13px center;
         text-indent: -2px;
     }
 
         header .logout:hover {
             color: #231f20;
-            background-image: url(img/logaout_h.png);
+            background-image: url(../Images/logaout_h.png);
         }
 
     header .mail {
@@ -2153,7 +2153,7 @@ main {
         }
 
             .tabs > li.closed .tab_act {
-                background-image: url(img/tab_close_h.png);
+                background-image: url(../Images/tab_close_h.png);
             }
 
             .tabs > li.closed .tab_cont {
@@ -2236,7 +2236,7 @@ main {
         }
 
         .tabs > li .tab_act {
-            background: url(img/tab_close.png) no-repeat center;
+            background: url(../Images/tab_close.png) no-repeat center;
             width: 24px;
             height: 24px;
             cursor: pointer;
@@ -2252,7 +2252,7 @@ main {
         }
 
             .tabs > li .tab_act:hover {
-                background-image: url(img/tab_close_h.png);
+                background-image: url(../Images/tab_close_h.png);
             }
 
     .tabs .preview {
@@ -2301,7 +2301,7 @@ main {
     .tabs .tab_top .comment {
         width: 22px;
         height: 22px;
-        background: url(img/comment.png) no-repeat center;
+        background: url(../Images/comment.png) no-repeat center;
         position: absolute;
         top: 50%;
         left: -43px;
@@ -2310,7 +2310,7 @@ main {
     }
 
         .tabs .tab_top .comment:hover, .tabs .tab_top .comment.active {
-            background-image: url(img/comment_h.png);
+            background-image: url(../Images/comment_h.png);
         }
 
     .tabs .tab_cont .upload_pic {
@@ -2321,7 +2321,7 @@ main {
         /*height: 190px;*/
         height: 210px;
         margin-left: 83px;
-        background: url(img/default_pic.png) no-repeat center/cover;
+        background: url(../Images/default_pic.png) no-repeat center/cover;
         position: relative;
     }
 
@@ -2336,13 +2336,13 @@ main {
             font-size: 14px;
             color: #1c74bb;
             text-align: center;
-            background: url(img/add.png) no-repeat top center;
+            background: url(../Images/add.png) no-repeat top center;
             cursor: pointer;
         }
 
             .tabs .tab_cont .upload_pic em:hover {
                 color: #231f20;
-                background-image: url(img/add_h.png);
+                background-image: url(../Images/add_h.png);
             }
 
     .tabs .tab_cont .cont_1 {
@@ -2384,7 +2384,7 @@ select {
     }
 
 .select_1 {
-    background: #f3f4f6 url(img/drop.png) no-repeat right 15px center;
+    background: #f3f4f6 url(../Images/drop.png) no-repeat right 15px center;
 }
 
 .input-group {
@@ -2458,23 +2458,23 @@ html .bootstrap-datetimepicker-widget table th {
 }
 
     html .bootstrap-datetimepicker-widget table th.prev {
-        background: transparent url(img/prev.png) no-repeat center !important;
+        background: transparent url(../Images/prev.png) no-repeat center !important;
         left: 72px;
         position: relative;
     }
 
         html .bootstrap-datetimepicker-widget table th.prev:hover {
-            background-image: url(img/prev_h.png) !important;
+            background-image: url(../Images/prev_h.png) !important;
         }
 
     html .bootstrap-datetimepicker-widget table th.next {
-        background: transparent url(img/next.png) no-repeat center !important;
+        background: transparent url(../Images/next.png) no-repeat center !important;
         right: 72px;
         position: relative;
     }
 
         html .bootstrap-datetimepicker-widget table th.next:hover {
-            background-image: url(img/next_h.png) !important;
+            background-image: url(../Images/next_h.png) !important;
         }
 
 html .bootstrap-datetimepicker-widget table td span {
@@ -2574,11 +2574,11 @@ html .bootstrap-datetimepicker-widget .datepicker-decades .decade {
     text-transform: uppercase;
     height: 24px;
     line-height: 24px;
-    background: url(img/add.png) no-repeat left center;
+    background: url(../Images/add.png) no-repeat left center;
 }
 
     .tab_more:hover {
-        background-image: url(img/add_h.png);
+        background-image: url(../Images/add_h.png);
         color: #231f20;
     }
 
@@ -2589,7 +2589,7 @@ html .bootstrap-datetimepicker-widget .datepicker-decades .decade {
 .arrows_up {
     width: 24px;
     height: 24px;
-    background: url(img/up.svg) no-repeat center;
+    background: url(../Images/up.svg) no-repeat center;
     display: inline-block;
     position: relative;
     top: 50%;
@@ -2600,7 +2600,7 @@ html .bootstrap-datetimepicker-widget .datepicker-decades .decade {
 .arrows_down {
     width: 24px;
     height: 24px;
-    background: url(img/down.svg) no-repeat center;
+    background: url(../Images/down.svg) no-repeat center;
     display: inline-block;
     position: relative;
     top: 50%;
@@ -2611,7 +2611,7 @@ html .bootstrap-datetimepicker-widget .datepicker-decades .decade {
 .remove {
     width: 24px;
     height: 24px;
-    background: url(img/remove.png) no-repeat center;
+    background: url(../Images/remove.png) no-repeat center;
     display: block;
     position: absolute;
     top: 50%;
@@ -2620,7 +2620,7 @@ html .bootstrap-datetimepicker-widget .datepicker-decades .decade {
     cursor: pointer;
 }
 /*.remove:hover {
-  background-image: url(img/add.png);
+  background-image: url(../Images/add.png);
 }*/
 
 .mar_2 {
@@ -2678,7 +2678,7 @@ html .bootstrap-datetimepicker-widget .datepicker-decades .decade {
     .comment_pop .comment_close {
         width: 12px;
         height: 12px;
-        background: url(img/close.png) no-repeat center;
+        background: url(../Images/close.png) no-repeat center;
         position: absolute;
         top: 10px;
         right: 10px;
@@ -2686,13 +2686,13 @@ html .bootstrap-datetimepicker-widget .datepicker-decades .decade {
     }
 
         .comment_pop .comment_close:hover {
-            background-image: url(img/close_h.png);
+            background-image: url(../Images/close_h.png);
         }
 
 .comment_title {
     display: block;
     padding-left: 22px;
-    background: url(img/dot.png) no-repeat left center;
+    background: url(../Images/dot.png) no-repeat left center;
     font-size: 12px;
     text-transform: uppercase;
     color: #df1c2c;
@@ -2724,7 +2724,7 @@ html .bootstrap-datetimepicker-widget .datepicker-decades .decade {
         width: 18px;
         height: 9px;
         display: block;
-        background: url(img/head_1.png) no-repeat center;
+        background: url(../Images/head_1.png) no-repeat center;
         position: absolute;
         top: -9px;
         left: 50%;
@@ -2755,7 +2755,7 @@ html .bootstrap-datetimepicker-widget .datepicker-decades .decade {
 .compl {
     width: 13px;
     height: 12px;
-    background: url(img/compl.png) no-repeat center;
+    background: url(../Images/compl.png) no-repeat center;
     display: inline-block;
     margin-right: 12px;
 }
@@ -2774,14 +2774,14 @@ html .bootstrap-datetimepicker-widget .datepicker-decades .decade {
     bottom: initial;
     padding-right: 24px;
     padding-left: 0px;
-    background: #b92145 url(img/bg_1.png) no-repeat left 5px center;
+    background: #b92145 url(../Images/bg_1.png) no-repeat left 5px center;
     cursor: pointer;
     top: -32px;
     display: none;
 }
 
     .admin .guide.selected {
-        background-image: url(img/bg_2.png);
+        background-image: url(../Images/bg_2.png);
     }
 
     .admin .guide .client {
@@ -2869,7 +2869,7 @@ html .bootstrap-datetimepicker-widget .datepicker-decades .decade {
     .comment_box .close_2 {
         width: 16px;
         height: 16px;
-        background: url(img/close_2.png) no-repeat center;
+        background: url(../Images/close_2.png) no-repeat center;
         display: block;
         position: absolute;
         top: 15px;
@@ -2878,7 +2878,7 @@ html .bootstrap-datetimepicker-widget .datepicker-decades .decade {
     }
 
         .comment_box .close_2:hover {
-            background-image: url(img/close_2_h.png);
+            background-image: url(../Images/close_2_h.png);
         }
 
 html, body {
@@ -2938,14 +2938,14 @@ html, body {
             color: #1a76bc;
             font-size: 12px;
             text-transform: uppercase;
-            background: url(img/search_1.png) no-repeat left center;
+            background: url(../Images/search_1.png) no-repeat left center;
             height: 16px;
             line-height: 16px;
         }
 
             .table_con .top_form .search_1:hover {
                 color: #4d4d4d;
-                background-image: url(img/search_1_h.png);
+                background-image: url(../Images/search_1_h.png);
             }
 
         .table_con .top_form .export_1 {
@@ -2953,7 +2953,7 @@ html, body {
             top: 14px;
             position: relative;
             padding-right: 30px;
-            background: url(img/export.png) no-repeat right center;
+            background: url(../Images/export.png) no-repeat right center;
             color: #1b75bc;
             font-size: 12px;
             height: 14px;
@@ -2962,7 +2962,7 @@ html, body {
 
             .table_con .top_form .export_1:hover {
                 color: #4d4d4d;
-                background-image: url(img/export_h.png);
+                background-image: url(../Images/export_h.png);
             }
 
 .table_1 tr {
@@ -3045,20 +3045,20 @@ html, body {
             width: 18px;
             height: 18px;
             display: inline-block;
-            background: url(img/check.png) no-repeat center;
+            background: url(../Images/check.png) no-repeat center;
             cursor: pointer;
             position: relative;
             top: 3px;
         }
 
             .table_1 tr td .check:hover, .table_1 tr td .check.active {
-                background-image: url(img/check_h.png);
+                background-image: url(../Images/check_h.png);
             }
 
         .table_1 tr td .info {
             width: 14px;
             height: 14px;
-            background: url(img/info.png) no-repeat center;
+            background: url(../Images/info.png) no-repeat center;
             cursor: pointer;
             position: relative;
             top: 3px;
@@ -3066,13 +3066,13 @@ html, body {
         }
 
             .table_1 tr td .info:hover, .table_1 tr td .info.active {
-                background-image: url(img/info_h.png);
+                background-image: url(../Images/info_h.png);
             }
 
         .table_1 tr td .history {
             width: 14px;
             height: 14px;
-            background: url(img/history.png) no-repeat center;
+            background: url(../Images/history.png) no-repeat center;
             cursor: pointer;
             position: relative;
             top: 3px;
@@ -3080,13 +3080,13 @@ html, body {
         }
 
             .table_1 tr td .history:hover, .table_1 tr td .history.active {
-                background-image: url(img/history_h.png);
+                background-image: url(../Images/history_h.png);
             }
 
         .table_1 tr td .edit {
             width: 14px;
             height: 14px;
-            background: url(img/edit.png) no-repeat center;
+            background: url(../Images/edit.png) no-repeat center;
             cursor: pointer;
             position: relative;
             top: 3px;
@@ -3094,13 +3094,13 @@ html, body {
         }
 
             .table_1 tr td .edit:hover, .table_1 tr td .edit.active {
-                background-image: url(img/edit_h.png);
+                background-image: url(../Images/edit_h.png);
             }
 
         .table_1 tr td .print {
             width: 14px;
             height: 14px;
-            background: url(img/print.png) no-repeat center;
+            background: url(../Images/print.png) no-repeat center;
             cursor: pointer;
             position: relative;
             top: 3px;
@@ -3108,7 +3108,7 @@ html, body {
         }
 
             .table_1 tr td .print:hover, .table_1 tr td .print.active {
-                background-image: url(img/print_h.png);
+                background-image: url(../Images/print_h.png);
             }
 
 .box_1 {
@@ -3142,27 +3142,27 @@ html, body {
         }
 
         .box_1 a.pdf {
-            background-image: url(img/pdf.png);
+            background-image: url(../Images/pdf.png);
         }
 
             .box_1 a.pdf:hover {
-                background-image: url(img/pdf_h.png);
+                background-image: url(../Images/pdf_h.png);
             }
 
         .box_1 a.docx {
-            background-image: url(img/docs.png);
+            background-image: url(../Images/docs.png);
         }
 
             .box_1 a.docx:hover {
-                background-image: url(img/docs_h.png);
+                background-image: url(../Images/docs_h.png);
             }
 
         .box_1 a.pptx {
-            background-image: url(img/pptx.png);
+            background-image: url(../Images/pptx.png);
         }
 
             .box_1 a.pptx:hover {
-                background-image: url(img/pptx_h.png);
+                background-image: url(../Images/pptx_h.png);
             }
 
         .box_1 a:last-child {
@@ -3219,7 +3219,7 @@ html, body {
     }
 
         .info_box .close:hover {
-            background-image: url(img/close_h.png);
+            background-image: url(../Images/close_h.png);
         }
 
 .his_title {
@@ -3248,7 +3248,7 @@ html, body {
         .table_2 td .arrow {
             width: 24px;
             height: 14px;
-            background: url(img/arrow.png) no-repeat center;
+            background: url(../Images/arrow.png) no-repeat center;
             display: block;
         }
 
@@ -3289,7 +3289,7 @@ html, body {
     cursor: pointer;
     width: 20px;
     height: 20px;
-    background: url(img/pop_close.png) no-repeat center;
+    background: url(../Images/pop_close.png) no-repeat center;
     text-align: center;
     line-height: 20px;
     -webkit-transition: all 0.3s ease-in-out;

@@ -24,39 +24,40 @@ namespace CV.Management.Web
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/main.css"));
 
-            bundles.Add(new StyleBundle("~/legacy/style").Include(
+            bundles.Add(new StyleBundle("~/legacy/css/style").Include(
                       "~/Content/Legacy/style.css"));
 
-            bundles.Add(new StyleBundle("~/legacy/croppie").Include(
+            bundles.Add(new StyleBundle("~/legacy/css/croppie").Include(
                       "~/Content/Legacy/croppie.css"));
 
-            bundles.Add(new StyleBundle("~/legacy/bootstrap-datepicker").Include(
+            bundles.Add(new StyleBundle("~/legacy/css/bootstrap-datepicker").Include(
                       "~/Content/Legacy/bootstrap-datetimepicker.min.css"));
 
-            bundles.Add(new ScriptBundle("~/legacy/jquery").Include(
+            bundles.Add(new ScriptBundle("~/legacy/js/jquery").Include(
                 "~/Content/Legacy/js/vendor/jquery.min.js"));
 
-            bundles.Add(new ScriptBundle("~/legacy/moment").Include(
+            bundles.Add(new ScriptBundle("~/legacy/js/moment").Include(
                 "~/Content/Legacy/js/vendor/moment.js"));
 
-            bundles.Add(new ScriptBundle("~/legacy/bootstrap").Include(
+            bundles.Add(new ScriptBundle("~/legacy/js/bootstrap").Include(
                 "~/Content/Legacy/js/vendor/bootstrap.min.js"));
 
-            bundles.Add(new ScriptBundle("~/legacy/bootstrap-datepicker").Include(
+            bundles.Add(new ScriptBundle("~/legacy/js/bootstrap-datepicker").Include(
                "~/Content/Legacy/js/vendor/bootstrap-datetimepicker.min.js"));
 
-            bundles.Add(new ScriptBundle("~/legacy/jquery-scrollbar").Include(
+            bundles.Add(new ScriptBundle("~/legacy/js/jquery-scrollbar").Include(
                "~/Content/Legacy/js/vendor/jquery.mCustomScrollbar.concat.min.js"));
 
-            bundles.Add(new ScriptBundle("~/legacy/jquery-mask").Include(
+            bundles.Add(new ScriptBundle("~/legacy/js/jquery-mask").Include(
                "~/Content/Legacy/js/jquery.mask.js"));
 
-            bundles.Add(new ScriptBundle("~/legacy/autosize").Include(
+            bundles.Add(new ScriptBundle("~/legacy/js/autosize").Include(
                "~/Content/Legacy/js/autosize.js"));
 
-            bundles.Add(new ScriptBundle("~/legacy/croppie").Include(
+            bundles.Add(new ScriptBundle("~/legacy/js/croppie").Include(
                "~/Content/Legacy/js/croppie.js"));
         }
     }
