@@ -1,0 +1,252 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>@ViewBag.Title</title>
+
+    @Styles.Render("~/legacy/style")
+    @Styles.Render("~/legacy/croppie")
+    @Scripts.Render("~/legacy/jquery")
+    @Scripts.Render("~/legacy/moment")
+    @Scripts.Render("~/legacy/bootstrap")
+    @Scripts.Render("~/legacy/bootstrap-datepicker")
+    @Styles.Render("~/legacy/bootstrap-datepicker")
+    @Scripts.Render("~/legacy/jquery-scrollbar")
+
+    @Scripts.Render("~/legacy/jquery-mask")
+    @Scripts.Render("~/legacy/autosize")
+    @Scripts.Render("~/legacy/croppie")
+
+    <script>
+		function number_format (number, decimals, decPoint, thousandsSep) {
+
+			number = (number + '').replace(/[^0-9+\-Ee.]/g, '')
+			var n = !isFinite(+number) ? 0 : +number
+			var prec = !isFinite(+decimals) ? 0 : Math.abs(decimals)
+			var sep = (typeof thousandsSep === 'undefined') ? ',' : thousandsSep
+			var dec = (typeof decPoint === 'undefined') ? '.' : decPoint
+			var s = ''
+
+			var toFixedFix = function (n, prec) {
+				var k = Math.pow(10, prec)
+				return '' + (Math.round(n * k) / k).toFixed(prec)
+			}
+
+			// todo: for IE parseFloat(0.55).toFixed(0) = 0;
+			s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.')
+			if (s[0].length > 3) {
+				s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep)
+			}
+			if ((s[1] || '').length < prec) {
+				s[1] = s[1] || ''
+				s[1] += new Array(prec - s[1].length + 1).join('0')
+			}
+
+			return s.join(dec)
+		}
+    </script>
+
+</head>
+<body>
+
+    @RenderBody()
+
+    <script type="text/javascript">
+        function openFileDialog(elemId) {
+            var elem = document.getElementById(elemId);
+            if (elem && document.createEvent) {
+                var evt = document.createEvent("MouseEvents");
+                evt.initEvent("click", true, false);
+                elem.dispatchEvent(evt);
+            }
+        }
+        function getTabPercentages() {
+            $(".guide_wrap > .guide").hide();
+            $("#tabsContainer > li").each(function () {
+                ttl = $(this).find("input, select, textarea").length;
+                filled = 0;
+                $(this).find("input, select, textarea").each(function () {
+                    if ($(this).val() != '') {
+                        filled++;
+                    }
+                })
+                $(this).find(".tab_prec").text(getPercentForTab(filled, ttl) + "%")
+            })
+        }
+        function getPercentForTab(filled, total) {
+            return number_format(((filled / total) * 100), 0, '', '');
+        }
+
+
+        $(document).ready(function () {
+
+            $('textarea').each(function () {
+                var height = $('<div style="display:none; white-space:pre" id="my-hidden-div"></div>')
+                    .html($(this).val())
+                    .appendTo('body')
+                    .height();
+
+                $(this).css('height', (height + 100) + 'px');
+
+                $('#my-hidden-div').remove();
+
+            });
+
+            $("textarea").keyup(function (e) {
+                while ($(this).outerHeight() < this.scrollHeight + parseFloat($(this).css("borderTopWidth")) + parseFloat($(this).css("borderBottomWidth"))) {
+                    $(this).height($(this).height() + 1);
+                };
+            });
+
+            // autosize(document.querySelectorAll('textarea'));
+            // function getTabPercentages(){
+            // 	$(".guide_wrap > .guide").hide();
+            // 	$("#tabsContainer > li").each(function(){
+            // 		ttl = $(this).find('input[type!="file"], select, textarea').length;
+            // 		filled = 0;
+            // 		$(this).find("input, select, textarea").each(function(){
+            // 			if($(this).val() != ''){
+            // 				filled++;
+            // 			}
+            // 		})
+            // 		$(this).find(".tab_prec").text(getPercentForTab(filled, ttl) + "%")
+            // 	})
+            // }
+            function getTabPercentages() {
+                $(".guide_wrap > .guide").hide();
+                $("#tabsContainer > li").each(function () {
+                    ttl = $(this).find('select, textarea, input').filter(function () {
+                        if ($(this).css('display') != 'none')
+                            return $(this);
+                    }).length;
+
+                    filled = 0;
+                    $(this).find('input[type!="file"], input[type!="hidden"], input,select, textarea').filter(function () {
+                        if ($(this).css('display') != 'none')
+                            return $(this);
+                    }).each(function () {
+                        if ($(this).val() != '' && $(this).val() != null) {
+                            filled++;
+                        }
+                    })
+
+                    $(this).find(".tab_prec").text(getPercentForTab(filled, ttl) + "%")
+                })
+            }
+            function getPercentForTab(filled, total) {
+                return number_format(((filled / total) * 100), 0, '', '');
+            }
+            $("#tabsContainer > li").on("change keyup", 'input, select, textarea', getTabPercentages)
+            $('.datetimepickerOnThis').on("dp.change", getTabPercentages);
+            getTabPercentages();
+            $("form .required_field").on("change keyup", function () {
+                if ($(this).val() == '') {
+                    $(this).css("border", '1px solid red');
+                } else {
+                    $(this).css("border", '');
+                }
+            })
+            $("#save_im_finished").click(function (e) {
+                e.preventDefault();
+                var err = false;
+
+                $(this).closest("form").find(".required_field").each(function () {
+                    if ($(this).val() == '') {
+                        err = true;
+                        $(this).css("border", '1px solid red');
+                        // $(this).parent().closest('li').removeClass('closed');
+                        // $(this).parent(".closed").removeClass('closed');
+
+                        $(this).closest('.closed').removeClass('closed');
+
+                        $(this).closest('.tab_cont').show();
+                    }
+                });
+                if (err === false) {
+                    $(this).closest("form").submit();
+                } else {
+                    alert("Please fill out all the nesesary areas marked with * (red asterisk) to finish.");
+                }
+            });
+            $("#save_finish_later").click(function (e) {
+                e.preventDefault();
+                $(this).closest("form").submit();
+            });
+
+            $('.datetimepickerOnThis').datetimepicker({
+                viewMode: 'years',
+                format: 'MM.YYYY'
+            });
+            $('#birthday_datepicker').datetimepicker({
+                viewMode: 'years',
+                format: 'DD.MM.YYYY'
+            });
+            $(".tab_top").click(function () {
+                if ($(this).parent().hasClass("closed")) {
+                    $(this).parent().removeClass("closed");
+                    $(this).parent().find(".tab_cont").slideDown('slow');
+                } else {
+                    $(this).parent().addClass("closed");
+                    $(this).parent().find(".tab_cont").slideUp('slow');
+                }
+            });
+
+
+            $(".input_1, .ddd").mouseover(function () {
+                $(this).parent().find(".guide").show();
+            });
+            $(".input_1, .ddd").mouseleave(function () {
+                $(this).parent().find(".guide").hide();
+            });
+            $(".input_1").blur(function () {
+                $(this).closest(".guide_wrap").find(".guide").hide();
+            })
+            $(".comment").click(function () {
+                $(this).addClass("active");
+                $(this).parent().find(".comment_pop").show();
+            });
+            $(".comment_close").click(function () {
+                $(this).parent().hide();
+                $(this).parent().parent().find(".comment").removeClass("active");
+            });
+        });
+        (function ($) {
+            $(window).load(function () {
+                $(".content").mCustomScrollbar({
+
+                    axis: "y",
+                    autoDraggerLength: false
+                });
+            });
+        })(jQuery);
+
+    </script>
+
+    <div id="notificationOverlay" style="display:none;"></div>
+    <div id="notificationContainer" style="display:none;">
+        <a id="notificationClose"></a>
+        <div id="notificationContents">
+            <p></p>
+        </div>
+    </div>
+    <script>
+        $("#notificationClose, #notificationOverlay").click(function () {
+            $("#notificationOverlay, #notificationContainer").fadeOut(function () {
+                $("#notificationContents").html("");
+            });
+        });
+
+        $(document).ready(function () {
+            if ($("#notificationOverlay").is(":visible")) {
+                setTimeout(function () {
+                    $("#notificationOverlay, #notificationContainer").fadeOut(500);
+                    $("#notificationContents").html("");
+                }, 3000);
+            }
+        });
+    </script>
+
+</body>
+</html>
