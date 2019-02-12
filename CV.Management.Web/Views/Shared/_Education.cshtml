@@ -7,54 +7,58 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.AntiForgeryToken()
 
-        <div class="col-md-2">
-            <div class="form-group">
-                <div class="row">
-                    @Html.LabelFor(model => model.FromYear, new { @class = "control-label col-md-12" })
-                    <div class="col-md-12">
-                        @Html.TextBoxFor(model => model.FromYear, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.FromYear)
+        foreach (var item in Model.Education)
+        {
+            <div class="col-md-2">
+                <div class="form-group">
+                    <div class="row">
+                        @Html.LabelFor(model => item.FromYear, new { @class = "control-label col-md-12" })
+                        <div class="col-md-12">
+                            @Html.TextBoxFor(model => item.FromYear, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => item.FromYear)
+                        </div>
                     </div>
-                </div>
 
+                </div>
             </div>
-        </div>
-        <div class="col-md-2">
-            <div class="form-group">
-                <div class="row">
-                    @Html.LabelFor(model => model.ToYear, new { @class = "control-label col-md-12" })
-                    <div class="col-md-12">
-                        @Html.TextBoxFor(model => model.ToYear, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.ToYear)
+            <div class="col-md-2">
+                <div class="form-group">
+                    <div class="row">
+                        @Html.LabelFor(model => item.ToYear, new { @class = "control-label col-md-12" })
+                        <div class="col-md-12">
+                            @Html.TextBoxFor(model => item.ToYear, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => item.ToYear)
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                <div class="row">
-                    @Html.LabelFor(model => model.Institution, new { @class = "control-label col-md-12" })
-                    <div class="col-md-12">
-                        @Html.TextBoxFor(model => model.Institution, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.Institution)
+            <div class="col-md-4">
+                <div class="form-group">
+                    <div class="row">
+                        @Html.LabelFor(model => item.Institution, new { @class = "control-label col-md-12" })
+                        <div class="col-md-12">
+                            @Html.TextBoxFor(model => item.Institution, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => item.Institution)
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                <div class="row">
-                    @Html.LabelFor(model => model.Degree, new { @class = "control-label col-md-12" })
-                    <div class="col-md-12">
-                        @Html.TextBoxFor(model => model.Degree, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.Degree)
+            <div class="col-md-4">
+                <div class="form-group">
+                    <div class="row">
+                        @Html.LabelFor(model => item.Degree, new { @class = "control-label col-md-12" })
+                        <div class="col-md-12">
+                            @Html.TextBoxFor(model => item.Degree, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => item.Degree)
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+
+        }
 
         <div class="col-md-12 text-center">
-            <img id="education_add" src="~/Content/Images/add.png"/>
+            <img id="education_add" src="~/Content/Images/add.png" />
         </div>
 
         <div class="col-md-12">

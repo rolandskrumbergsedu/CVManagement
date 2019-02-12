@@ -3,9 +3,12 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.Google;
 using Owin;
 using CV.Management.Web.Models;
+using Owin.Security.Providers.LinkedIn;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Security.Claims;
 
 namespace CV.Management.Web
 {
@@ -44,6 +47,42 @@ namespace CV.Management.Web
             // Once you check this option, your second step of verification during the login process will be remembered on the device where you logged in from.
             // This is similar to the RememberMe option when you log in.
             app.UseTwoFactorRememberBrowserCookie(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
+
+            var linkedinOptions = new LinkedInAuthenticationOptions
+            {
+                ClientId = "",
+                ClientSecret = "",
+                Provider = new LinkedInAuthenticationProvider()
+                {
+                    OnAuthenticated = (context) =>
+                    {
+                        foreach (var x in context.User)
+                        {
+                            var claimType = string.Format("urn:linkedin:{0}", x.Key);
+                            string claimValue = x.Value.ToString();
+                            if (!context.Identity.HasClaim(claim => claim.Value == claimValue))
+                                context.Identity.AddClaim(new Claim(claimType, claimValue));
+                        }
+
+                        return Task.FromResult(0);
+                    }
+                }
+            };
+
+            List<string> profileFieldsToGet = new List<string>()
+            {
+                "location",
+                "positions",
+                "picture-url",
+                "public-profile-url"
+            };
+
+            foreach (var field in profileFieldsToGet)
+            {
+                linkedinOptions.ProfileFields.Add(field);
+            }
+
+            app.UseLinkedInAuthentication(linkedinOptions);
 
             // Uncomment the following lines to enable logging in with third party login providers
             //app.UseMicrosoftAccountAuthentication(
