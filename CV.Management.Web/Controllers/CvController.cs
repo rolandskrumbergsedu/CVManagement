@@ -9,9 +9,9 @@ using System.Web.Mvc;
 
 namespace CV.Management.Web.Controllers
 {
-    public class HomeController : Controller
+    public class CvController : Controller
     {
-        public ActionResult Index(string language)
+        public ActionResult Profile(string language)
         {
             if (language == "lv")
             {
@@ -23,20 +23,6 @@ namespace CV.Management.Web.Controllers
                 Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en");
                 Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
             }
-            
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
 
             return View();
         }

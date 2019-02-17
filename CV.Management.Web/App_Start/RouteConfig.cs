@@ -15,8 +15,14 @@ namespace CV.Management.Web
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                url: "{controller}/{action}",
+                defaults: new { controller = "Cv", action = "Profile" }
+            );
+
+            routes.MapRoute(
+                name: "Language",
+                url: "{controller}/{action}/{language}",
+                defaults: new { controller = "Cv", action = "Profile", language = UrlParameter.Optional }
             );
         }
     }
