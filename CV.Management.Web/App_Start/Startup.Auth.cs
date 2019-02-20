@@ -50,8 +50,8 @@ namespace CV.Management.Web
 
             var linkedinOptions = new LinkedInAuthenticationOptions
             {
-                ClientId = "",
-                ClientSecret = "",
+                ClientId = "86zbv01ytcpbom",
+                ClientSecret = "jyQmCJ6yy2OD1Tu2",
                 Provider = new LinkedInAuthenticationProvider()
                 {
                     OnAuthenticated = (context) =>

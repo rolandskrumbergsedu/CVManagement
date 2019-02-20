@@ -38,7 +38,6 @@
         <div id="collapse2" class="panel-collapse collapse">
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-sm-12">
                         @Html.Partial("_Education", new EducationViewModel
                    {
                        Education = new List<EducationItem>()
@@ -61,7 +60,6 @@
                            }
                        }
                    })
-                    </div>
                 </div>
             </div>
         </div>
@@ -76,7 +74,19 @@
         </div>
         <div id="collapse3" class="panel-collapse collapse">
             <div class="panel-body">
-                @Html.Partial("_AdditionalCourses")
+                @Html.Partial("_AdditionalCourses", new AdditionalCoursesViewModel
+           {
+               Courses = new List<Course>
+               {
+                   new Course
+                   {
+                       CourseName = "Succesful investing through IPO",
+                       NumberOfDays = 4,
+                       Trainer = "Edward Dubinsky",
+                       Year = 2018
+                   }
+               }
+           })
             </div>
         </div>
     </div>
@@ -90,7 +100,18 @@
         </div>
         <div id="collapse4" class="panel-collapse collapse">
             <div class="panel-body">
-                @Html.Partial("_Language")
+                @Html.Partial("_Language", new LanguageViewModel
+           {
+               Languages = new List<Language>
+               {
+                   new Language
+                   {
+                       LanguageName = LanguageEnum.Latvian,
+                       SpokenLevel = LevelEnum.Native,
+                       WrittenLevel = LevelEnum.Native
+                   }
+               }
+           })
             </div>
         </div>
     </div>
@@ -104,10 +125,25 @@
         </div>
         <div id="collapse5" class="panel-collapse collapse">
             <div class="panel-body">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                commodo consequat.
+                @Html.Partial("_CareerSummary", new CareerSummaryViewModel
+           {
+               Companies = new List<Company>
+               {
+                   new Company
+                   {
+                       City = "TEst",
+                       Industry = Industry.Academic,
+                       Positions = new List<Position>
+                       {
+                           new Position
+                           {
+                               Name = ""
+                           }
+                       }
+                   },
+
+               }
+           })
             </div>
         </div>
     </div>
@@ -121,10 +157,19 @@
         </div>
         <div id="collapse6" class="panel-collapse collapse">
             <div class="panel-body">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                commodo consequat.
+                @Html.Partial("_Memberships", new MembershipViewModel
+           {
+               Memberships = new List<CV.Management.Web.Models.Membership>
+               {
+                   new CV.Management.Web.Models.Membership
+                   {
+                       FromTime = 1999,
+                       ToTime = 2016,
+                       Description = "Some activity"
+                   },
+
+               }
+           })
             </div>
         </div>
     </div>
@@ -138,10 +183,7 @@
         </div>
         <div id="collapse7" class="panel-collapse collapse">
             <div class="panel-body">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                commodo consequat.
+                @Html.Partial("_Compensation")
             </div>
         </div>
     </div>
@@ -155,10 +197,7 @@
         </div>
         <div id="collapse8" class="panel-collapse collapse">
             <div class="panel-body">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                commodo consequat.
+                @Html.Partial("_NoticePeriod")
             </div>
         </div>
     </div>
@@ -172,10 +211,7 @@
         </div>
         <div id="collapse9" class="panel-collapse collapse">
             <div class="panel-body">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                commodo consequat.
+                @Html.Partial("_AdditionalComments")
             </div>
         </div>
     </div>

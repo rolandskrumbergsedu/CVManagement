@@ -1,0 +1,54 @@
+﻿@model CV.Management.Web.Models.MembershipViewModel
+
+<div class="row">
+
+    @using (Html.BeginForm("Membership", "Home", FormMethod.Post))
+    {
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.AntiForgeryToken()
+
+        foreach (var item in Model.Memberships)
+        {
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        @Html.LabelFor(model => item.FromTime, new { @class = "control-label" })
+                        @Html.TextBoxFor(model => item.FromTime, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => item.FromTime)
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        @Html.LabelFor(model => item.ToTime, new { @class = "control-label" })
+                        @Html.TextBoxFor(model => item.ToTime, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => item.ToTime)
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        @Html.LabelFor(model => item.Description, new { @class = "control-label" })
+                        @Html.TextAreaFor(model => item.Description, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => item.Description)
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <p><img id="position_add" src="~/Content/Images/add.png" /> ADD MEMBERSHIP</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group text-right">
+                    <input type="submit" value="Save" class="btn btn-primary float-right" />
+                </div>
+            </div>
+        </div>
+    }
+
+</div>

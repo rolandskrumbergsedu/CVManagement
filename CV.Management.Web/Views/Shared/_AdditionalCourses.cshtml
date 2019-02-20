@@ -7,62 +7,51 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.AntiForgeryToken()
 
-        <div class="col-md-2">
-            <div class="form-group">
-                <div class="row">
-                    @Html.LabelFor(model => model.NumberOfDays, new { @class = "control-label col-md-12" })
-                    <div class="col-md-12">
-                        @Html.TextBoxFor(model => model.NumberOfDays, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.NumberOfDays)
-                    </div>
-                </div>
+        foreach (var item in Model.Courses)
+        {
 
-            </div>
-        </div>
-        <div class="col-md-2">
-            <div class="form-group">
-                <div class="row">
-                    @Html.LabelFor(model => model.Year, new { @class = "control-label col-md-12" })
-                    <div class="col-md-12">
-                        @Html.TextBoxFor(model => model.Year, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.Year)
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                <div class="row">
-                    @Html.LabelFor(model => model.Course, new { @class = "control-label col-md-12" })
-                    <div class="col-md-12">
-                        @Html.TextBoxFor(model => model.Course, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.Course)
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                <div class="row">
-                    @Html.LabelFor(model => model.Trainer, new { @class = "control-label col-md-12" })
-                    <div class="col-md-12">
-                        @Html.TextBoxFor(model => model.Trainer, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.Trainer)
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <div class="form-group">
+                    @Html.LabelFor(model => item.NumberOfDays, new { @class = "control-label" })
+                    @Html.TextBoxFor(model => item.NumberOfDays, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => item.NumberOfDays)
 
-        <div class="col-md-12 text-center">
-            <img id="additional_courses_add" src="~/Content/Images/add.png" />
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    @Html.LabelFor(model => item.Year, new { @class = "control-label" })
+                    @Html.TextBoxFor(model => item.Year, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => item.Year)
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => item.CourseName, new { @class = "control-label" })
+                    @Html.TextBoxFor(model => item.CourseName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => item.CourseName)
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => item.Trainer, new { @class = "control-label" })
+                    @Html.TextBoxFor(model => item.Trainer, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => item.Trainer)
+                </div>
+            </div>
         </div>
+        }
 
-        <div class="col-md-12">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group text-right">
-                        <input type="submit" value="Save" class="btn btn-primary float-right" />
-                    </div>
+        <div class="row">
+            <div class="col-md-12 text-center add-button">
+                <p><img id="position_add" src="~/Content/Images/add.png" /> ADD COURSE</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group text-right">
+                    <input type="submit" value="Save" class="btn btn-primary float-right" />
                 </div>
             </div>
         </div>

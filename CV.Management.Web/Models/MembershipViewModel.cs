@@ -1,0 +1,19 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace CV.Management.Web.Models
+{
+    public class MembershipViewModel
+    {
+        public List<Membership> Memberships { get; set; }
+    }
+
+    public class Membership
+    {
+        public int FromTime { get; set; }
+        public int ToTime { get; set; }
+        public string Description { get; set; }
+    }
+}

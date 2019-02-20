@@ -8,51 +8,43 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.AntiForgeryToken()
 
-        <div class="col-md-3">
-            <div class="form-group">
-                <div class="row">
-                    @Html.LabelFor(model => model.Language, new { @class = "control-label col-md-12" })
-                    <div class="col-md-12">
-                        @Html.DropDownListFor(model => model.Language, new SelectList(Enum.GetValues(typeof(LanguageEnum))), "Language", new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.Language)
-                    </div>
-                </div>
+        foreach (var item in Model.Languages)
+        {
 
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group">
-                <div class="row">
-                    @Html.LabelFor(model => model.SpokenLevel, new { @class = "control-label col-md-12" })
-                    <div class="col-md-12">
-                        @Html.DropDownListFor(model => model.SpokenLevel, new SelectList(Enum.GetValues(typeof(LevelEnum))), "Spoken level", new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.SpokenLevel)
-                    </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => item.LanguageName, new { @class = "control-label" })
+                    @Html.DropDownListFor(model => item.LanguageName, new SelectList(Enum.GetValues(typeof(LanguageEnum))), "Language", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => item.LanguageName)
                 </div>
             </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group">
-                <div class="row">
-                    @Html.LabelFor(model => model.WrittenLevel, new { @class = "control-label col-md-12" })
-                    <div class="col-md-12">
-                        @Html.DropDownListFor(model => model.WrittenLevel, new SelectList(Enum.GetValues(typeof(LevelEnum))), "Written level", new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.WrittenLevel)
-                    </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => item.SpokenLevel, new { @class = "control-label" })
+                    @Html.DropDownListFor(model => item.SpokenLevel, new SelectList(Enum.GetValues(typeof(LevelEnum))), "Spoken level", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => item.SpokenLevel)
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => item.WrittenLevel, new { @class = "control-label" })
+                    @Html.DropDownListFor(model => item.WrittenLevel, new SelectList(Enum.GetValues(typeof(LevelEnum))), "Written level", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => item.WrittenLevel)
                 </div>
             </div>
         </div>
 
-        <div class="col-md-12 text-center">
-            <img id="additional_courses_add" src="~/Content/Images/add.png" />
+        }
+        <div class="row">
+            <div class="col-md-12 text-center add-button">
+                <p><img id="position_add" src="~/Content/Images/add.png" /> ADD LANGUAGE</p>
+            </div>
         </div>
-
-        <div class="col-md-12">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group text-right">
-                        <input type="submit" value="Save" class="btn btn-primary float-right" />
-                    </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group text-right">
+                    <input type="submit" value="Save" class="btn btn-primary float-right" />
                 </div>
             </div>
         </div>

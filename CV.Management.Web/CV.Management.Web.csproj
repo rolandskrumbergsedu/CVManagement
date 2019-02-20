@@ -191,18 +191,22 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CvController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="DbContexts\ProfileInformationDbContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AdditionalCommentsViewModel.cs" />
     <Compile Include="Models\AdditionalCoursesViewModel.cs" />
+    <Compile Include="Models\CareerSummaryViewModel.cs" />
+    <Compile Include="Models\CompensationViewModel.cs" />
     <Compile Include="Models\EducationViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LanguageViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MembershipViewModel.cs" />
+    <Compile Include="Models\NoticePeriodViewModel.cs" />
     <Compile Include="Models\PersonalInformationViewModel.cs" />
     <Compile Include="Models\ProfilePicture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -316,6 +320,7 @@
     <Content Include="Content\fonts\ufonts.com_dax-regular.ttf" />
     <Content Include="Content\fonts\ufonts.com_dax-regular.woff" />
     <Content Include="Content\fonts\ufonts.com_dax-regular.woff2" />
+    <None Include="Properties\PublishProfiles\cv-management-app - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -369,6 +374,11 @@
     <Content Include="Views\Shared\_AdditionalCourses.cshtml" />
     <Content Include="Views\Shared\_Language.cshtml" />
     <Content Include="Views\Cv\Profile.cshtml" />
+    <Content Include="Views\Shared\_CareerSummary.cshtml" />
+    <Content Include="Views\Shared\_Memberships.cshtml" />
+    <Content Include="Views\Shared\_Compensation.cshtml" />
+    <Content Include="Views\Shared\_NoticePeriod.cshtml" />
+    <Content Include="Views\Shared\_AdditionalComments.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
