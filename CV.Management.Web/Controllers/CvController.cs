@@ -37,13 +37,85 @@ namespace CV.Management.Web.Controllers
                 file.SaveAs(path);
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Profile");
         }
 
         [HttpPost]
         public ActionResult PersonalInformation(PersonalInformationViewModel personal)
         {
-            return RedirectToAction("Index");
+            // TO DO: Save in DB
+            var linkToRedirect = "/cv/profile/" + GetCurrentLanguage();
+            return Redirect(linkToRedirect);
+            //return RedirectToAction("Profile", "Cv", new { language = "lv" });
+        }
+
+        [HttpPost]
+        public ActionResult Education(EducationViewModel personal)
+        {
+            // TO DO: Save in DB
+
+            return RedirectToAction("Profile");
+        }
+
+        [HttpPost]
+        public ActionResult AdditionalCourses(AdditionalCoursesViewModel personal)
+        {
+            // TO DO: Save in DB
+
+            return RedirectToAction("Profile");
+        }
+
+        [HttpPost]
+        public ActionResult Language(LanguageViewModel personal)
+        {
+            // TO DO: Save in DB
+
+            return RedirectToAction("Profile");
+        }
+
+        [HttpPost]
+        public ActionResult CareerSummary(CareerSummaryViewModel personal)
+        {
+            // TO DO: Save in DB
+
+            return RedirectToAction("Profile");
+        }
+
+        [HttpPost]
+        public ActionResult Memberships(MembershipViewModel personal)
+        {
+            // TO DO: Save in DB
+
+            return RedirectToAction("Profile");
+        }
+
+        [HttpPost]
+        public ActionResult Compensation(CompensationViewModel personal)
+        {
+            // TO DO: Save in DB
+
+            return RedirectToAction("Profile");
+        }
+
+        [HttpPost]
+        public ActionResult NoticePeriod(NoticePeriodViewModel personal)
+        {
+            // TO DO: Save in DB
+
+            return RedirectToAction("Profile");
+        }
+
+        [HttpPost]
+        public ActionResult AdditionalComments(AdditionalCommentsViewModel personal)
+        {
+            // TO DO: Save in DB
+
+            return RedirectToAction("Profile");
+        }
+
+        private string GetCurrentLanguage()
+        {
+            return Thread.CurrentThread.CurrentCulture.Name.Substring(0, 2);
         }
     }
 }

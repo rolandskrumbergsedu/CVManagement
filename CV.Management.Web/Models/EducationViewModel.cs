@@ -6,6 +6,11 @@ namespace CV.Management.Web.Models
     public class EducationViewModel
     {
         public List<EducationItem> Education { get; set; }
+
+        public EducationViewModel()
+        {
+            Education = new List<EducationItem>();
+        }
     }
 
     public class EducationItem

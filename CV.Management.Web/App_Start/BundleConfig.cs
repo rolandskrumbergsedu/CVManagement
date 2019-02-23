@@ -59,6 +59,9 @@ namespace CV.Management.Web
 
             bundles.Add(new ScriptBundle("~/legacy/js/croppie").Include(
                "~/Content/Legacy/js/croppie.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/app").Include(
+                "~/Scripts/app.js"));
         }
     }
 }
