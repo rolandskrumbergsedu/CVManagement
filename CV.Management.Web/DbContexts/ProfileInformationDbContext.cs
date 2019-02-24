@@ -1,4 +1,5 @@
 ﻿using CV.Management.Web.Models;
+using CV.Management.Web.Models.Database;
 using System.Data.Entity;
 
 namespace CV.Management.Web.DbContexts
@@ -10,6 +11,7 @@ namespace CV.Management.Web.DbContexts
         {
         }
 
-        public DbSet<ProfilePicture> ProfilePictures { get; set; }
+        public DbSet<Profile> Profiles { get; set; }
+
     }
 }

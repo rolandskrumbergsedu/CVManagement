@@ -19,7 +19,7 @@ namespace CV.Management.Web.Controllers
                 Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("lv");
             }
             else
-            {
+            { 
                 Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en");
                 Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
             }
@@ -44,9 +44,8 @@ namespace CV.Management.Web.Controllers
         public ActionResult PersonalInformation(PersonalInformationViewModel personal)
         {
             // TO DO: Save in DB
-            var linkToRedirect = "/cv/profile/" + GetCurrentLanguage();
-            return Redirect(linkToRedirect);
-            //return RedirectToAction("Profile", "Cv", new { language = "lv" });
+
+            return RedirectToAction("Profile");
         }
 
         [HttpPost]

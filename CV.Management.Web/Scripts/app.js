@@ -1,5 +1,51 @@
 ﻿$(document).ready(function () {
 
+    function updateEducationFieldNumbers() {
+
+        var formName = "Education";
+        var fromYearFieldName = "FromYear";
+        var toYearFieldName = "ToYear";
+        var institutionFieldName = "Institution";
+        var degreeFieldName = "Degree";
+
+        $(".education_row").each(function (index) {
+
+            $(this).find(".education-from-year-label").attr("for", formName + "_" + index + "__" + fromYearFieldName);
+            $(this).find(".education-from-year-input").attr({
+                "id": formName + "_" + index + "__" + fromYearFieldName,
+                "name": formName + "[" + index + "]." + fromYearFieldName
+            });
+            $(this).find(".education-from-year-label").attr("data-valmsg-for", formName + "[" + index + "]." + fromYearFieldName);
+
+            $(this).find(".education-to-year-label").attr("for", formName + "_" + index + "__" + toYearFieldName);
+            $(this).find(".education-to-year-input").attr({
+                "id": formName + "_" + index + "__" + toYearFieldName,
+                "name": formName + "[" + index + "]." + toYearFieldName
+            });
+            $(this).find(".education-to-year-label").attr("data-valmsg-for", formName + "[" + index + "]." + toYearFieldName);
+
+            $(this).find(".education-institution-label").attr("for", formName + "_" + index + "__" + institutionFieldName);
+            $(this).find(".education-institution-input").attr({
+                "id": formName + "_" + index + "__" + institutionFieldName,
+                "name": formName + "[" + index + "]." + institutionFieldName
+            });
+            $(this).find(".education-institution-label").attr("data-valmsg-for", formName + "[" + index + "]." + institutionFieldName);
+
+            $(this).find(".education-degree-label").attr("for", formName + "_" + index + "__" + degreeFieldName);
+            $(this).find(".education-degree-input").attr({
+                "id": formName + "_" + index + "__" + degreeFieldName,
+                "name": formName + "[" + index + "]." + degreeFieldName
+            });
+            $(this).find(".education-degree-label").attr("data-valmsg-for", formName + "[" + index + "]." + degreeFieldName);
+
+        });
+    }
+    function removeEducation() {
+            $(this).closest('div[class^="education_row"]').remove();
+
+            updateEducationFieldNumbers();
+    }
+
     $("#education_add").click(function () {
         var existingEducationRowCount = $(".education_row").length;
         var lastEducationRow = $(".education_row").last();
@@ -43,6 +89,10 @@
         });
         newRow.find(".education-degree-label").attr("data-valmsg-for", formName + "[" + existingEducationRowCount + "]." + degreeFieldName);
 
+        newRow.find(".education-remove").click(removeEducation);
+
         $("#education_container").append(newRow);
     });
+
+    $(".education-remove").click(removeEducation);
 });

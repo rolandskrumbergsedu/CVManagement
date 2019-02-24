@@ -192,6 +192,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CvController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\WordDocumentController.cs" />
     <Compile Include="DbContexts\ProfileInformationDbContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -201,6 +202,7 @@
     <Compile Include="Models\AdditionalCoursesViewModel.cs" />
     <Compile Include="Models\CareerSummaryViewModel.cs" />
     <Compile Include="Models\CompensationViewModel.cs" />
+    <Compile Include="Models\Database\Profile.cs" />
     <Compile Include="Models\EducationViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LanguageViewModel.cs" />
@@ -208,7 +210,6 @@
     <Compile Include="Models\MembershipViewModel.cs" />
     <Compile Include="Models\NoticePeriodViewModel.cs" />
     <Compile Include="Models\PersonalInformationViewModel.cs" />
-    <Compile Include="Models\ProfilePicture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -407,6 +408,12 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CV.Management.Generation.Word\CV.Management.Generation.Word.csproj">
+      <Project>{45bc72cd-8b31-4c78-a8db-6df458c9e266}</Project>
+      <Name>CV.Management.Generation.Word</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
