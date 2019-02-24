@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
 
 namespace CV.Management.Web.Models.Database
 {
@@ -19,5 +16,18 @@ namespace CV.Management.Web.Models.Database
         public string Phone { get; set; }
         public string Skype { get; set; }
         public string Project { get; set; }
+        public string CurrentSalary { get; set; }
+        public string CurrentBonuses { get; set; }
+        public string SalaryRequest { get; set; }
+        public string BonusRequest { get; set; }
+        public string AdditionalBonuses { get; set; }
+        public string NoticePeriod { get; set; }
+        public string Comments { get; set; }
+
+        public virtual ICollection<Education> Educations { get; set; }
+        public virtual ICollection<AdditionalCourse> AdditionalCourses { get; set; }
+        public virtual ICollection<Language> Languages { get; set; }
+        public virtual ICollection<Company> Companies { get; set; }
+        public virtual ICollection<Membership> Memberships { get; set; }
     }
 }

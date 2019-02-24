@@ -9,9 +9,15 @@ namespace CV.Management.Web.DbContexts
         public ProfileInformationDbContext()
             : base("DefaultConnection")
         {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ProfileInformationDbContext, Migrations.Configuration>("DefaultConnection"));
         }
 
         public DbSet<Profile> Profiles { get; set; }
-
+        public DbSet<Company> Companies { get; set; }
+        public DbSet<Education> Educations { get; set; }
+        public DbSet<Language> Languages { get; set; }
+        public DbSet<Membership> Memberships { get; set; }
+        public DbSet<Position> Positions { get; set; }
+        public DbSet<AdditionalCourse> AdditionalCourses { get; set; }
     }
 }

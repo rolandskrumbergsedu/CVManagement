@@ -1,4 +1,5 @@
 ﻿@using CV.Management.Web.Models;
+@model CV.Management.Web.Models.ProfileViewModel
 @{
     ViewBag.Title = "Profile";
 }
@@ -18,10 +19,10 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-sm-3">
-                        @Html.Partial("_FileUpload")
+                        @Html.Partial("_FileUpload", Model.FileUploadViewModel)
                     </div>
                     <div class="col-sm-9 personal-information">
-                        @Html.Partial("_PersonalInformation")
+                        @Html.Partial("_PersonalInformation", Model.PersonalInformationViewModel)
                     </div>
                 </div>
             </div>
@@ -38,28 +39,7 @@
         <div id="collapse2" class="panel-collapse collapse">
             <div class="panel-body">
                 <div class="row">
-                        @Html.Partial("_Education", new EducationViewModel
-                   {
-                       Education = new List<EducationItem>()
-                       {
-                           new EducationItem
-                           {
-                               Degree = "Master of Business Administration",
-                               FromYear = 1999,
-                               ToYear = 2001,
-                               Institution = "University of Latvia"
-
-                           },
-                           new EducationItem
-                           {
-                               Degree = "Master of Law",
-                               FromYear = 1994,
-                               ToYear = 2000,
-                               Institution = "University of Latvia"
-
-                           }
-                       }
-                   })
+                    @Html.Partial("_Education", Model.EducationViewModel)
                 </div>
             </div>
         </div>
@@ -74,19 +54,7 @@
         </div>
         <div id="collapse3" class="panel-collapse collapse">
             <div class="panel-body">
-                @Html.Partial("_AdditionalCourses", new AdditionalCoursesViewModel
-           {
-               Courses = new List<Course>
-               {
-                   new Course
-                   {
-                       CourseName = "Succesful investing through IPO",
-                       NumberOfDays = 4,
-                       Trainer = "Edward Dubinsky",
-                       Year = 2018
-                   }
-               }
-           })
+                @Html.Partial("_AdditionalCourses", Model.AdditionalCoursesViewModel)
             </div>
         </div>
     </div>
@@ -100,18 +68,7 @@
         </div>
         <div id="collapse4" class="panel-collapse collapse">
             <div class="panel-body">
-                @Html.Partial("_Language", new LanguageViewModel
-           {
-               Languages = new List<Language>
-               {
-                   new Language
-                   {
-                       LanguageName = LanguageEnum.Latvian,
-                       SpokenLevel = LevelEnum.Native,
-                       WrittenLevel = LevelEnum.Native
-                   }
-               }
-           })
+                @Html.Partial("_Language", Model.LanguageViewModel)
             </div>
         </div>
     </div>
@@ -125,25 +82,7 @@
         </div>
         <div id="collapse5" class="panel-collapse collapse">
             <div class="panel-body">
-                @Html.Partial("_CareerSummary", new CareerSummaryViewModel
-           {
-               Companies = new List<Company>
-               {
-                   new Company
-                   {
-                       City = "TEst",
-                       Industry = Industry.Academic,
-                       Positions = new List<Position>
-                       {
-                           new Position
-                           {
-                               Name = ""
-                           }
-                       }
-                   },
-
-               }
-           })
+                @Html.Partial("_CareerSummary", Model.CareerSummaryViewModel)
             </div>
         </div>
     </div>
@@ -157,19 +96,7 @@
         </div>
         <div id="collapse6" class="panel-collapse collapse">
             <div class="panel-body">
-                @Html.Partial("_Memberships", new MembershipViewModel
-           {
-               Memberships = new List<CV.Management.Web.Models.Membership>
-               {
-                   new CV.Management.Web.Models.Membership
-                   {
-                       FromTime = 1999,
-                       ToTime = 2016,
-                       Description = "Some activity"
-                   },
-
-               }
-           })
+                @Html.Partial("_Memberships", Model.MembershipViewModel)
             </div>
         </div>
     </div>
@@ -183,7 +110,7 @@
         </div>
         <div id="collapse7" class="panel-collapse collapse">
             <div class="panel-body">
-                @Html.Partial("_Compensation")
+                @Html.Partial("_Compensation", Model.CompensationViewModel)
             </div>
         </div>
     </div>
@@ -197,7 +124,7 @@
         </div>
         <div id="collapse8" class="panel-collapse collapse">
             <div class="panel-body">
-                @Html.Partial("_NoticePeriod")
+                @Html.Partial("_NoticePeriod", Model.NoticePeriodViewModel)
             </div>
         </div>
     </div>
@@ -211,7 +138,7 @@
         </div>
         <div id="collapse9" class="panel-collapse collapse">
             <div class="panel-body">
-                @Html.Partial("_AdditionalComments")
+                @Html.Partial("_AdditionalComments", Model.AdditionalCommentsViewModel)
             </div>
         </div>
     </div>

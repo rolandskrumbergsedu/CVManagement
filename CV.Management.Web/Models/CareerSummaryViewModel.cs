@@ -8,28 +8,28 @@ namespace CV.Management.Web.Models
 {
     public class CareerSummaryViewModel
     {
-        public List<Company> Companies { get; set; }
+        public List<CompanyItem> Companies { get; set; }
     }
 
-    public class Company
+    public class CompanyItem
     {
         public string Name { get; set; }
         public string City { get; set; }
         public string ParentCompanyName { get; set; }
         public string MainProductions { get; set; }
-        public Industry Industry { get; set; }
-        public int Turnover { get; set; }
+        public Industry? Industry { get; set; }
+        public int? Turnover { get; set; }
         public string OtherIndustry { get; set; }
-        public int NumberOfEmployess { get; set; }
+        public int? NumberOfEmployess { get; set; }
 
-        public List<Position> Positions { get; set; }
+        public List<PositionItem> Positions { get; set; }
     }
 
-    public class Position
+    public class PositionItem
     {
         public string Name { get; set; }
-        public string FromTime { get; set; }
-        public string ToTime { get; set; }
+        public int? FromTime { get; set; }
+        public int? ToTime { get; set; }
         public string KeyTasks { get; set; }
         public string ReportingTo { get; set; }
         public string DirectSubordinates { get; set; }

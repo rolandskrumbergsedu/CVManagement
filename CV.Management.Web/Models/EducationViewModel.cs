@@ -16,9 +16,9 @@ namespace CV.Management.Web.Models
     public class EducationItem
     {
         [Required]
-        public int FromYear { get; set; }
+        public int? FromYear { get; set; }
         [Required]
-        public int ToYear { get; set; }
+        public int? ToYear { get; set; }
         [Required]
         public string Institution { get; set; }
         [Required]

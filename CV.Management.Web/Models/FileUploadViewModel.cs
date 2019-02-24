@@ -5,8 +5,8 @@ using System.Web;
 
 namespace CV.Management.Web.Models
 {
-    public class NoticePeriodViewModel
+    public class FileUploadViewModel
     {
-        public string NoticePeriod { get; set; }
+        public string ImageSrc { get; set; }
     }
 }

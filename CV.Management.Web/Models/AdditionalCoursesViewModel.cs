@@ -12,8 +12,8 @@ namespace CV.Management.Web.Models
 
     public class Course
     {
-        public int NumberOfDays { get; set; }
-        public int Year { get; set; }
+        public int? NumberOfDays { get; set; }
+        public int? Year { get; set; }
         public string CourseName { get; set; }
         public string Trainer { get; set; }
     }

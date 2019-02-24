@@ -1,16 +1,22 @@
-﻿
+﻿@model CV.Management.Web.Models.FileUploadViewModel
+
 <div class="row text-center">
-    <img src="~/Content/Images/default_pic.png" class="profile-image" class="img-rounded"/>
+    @if (!string.IsNullOrEmpty(Model.ImageSrc)) {
+        <img src="Model.ImageSrc" class="profile-image img-rounded"/>
+    }
+    else {
+        <img src="~/Content/Images/default_pic.png" class="img-rounded" />
+    }
 </div>
 
 <div class="row">
-    @using (Html.BeginForm("Upload", "Cv", FormMethod.Post, new { enctype = "multipart/form-data"}))
+    @using (Html.BeginForm("Upload", "Cv", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
-    <div class="col-md-12">
-        <input id="file_upload" type="file" name="file" class="btn btn-default" />
-    </div>
-    <div class="col-md-12">
-        <input id="file_save" type="submit" name="Submit" id="Submit" value="Upload" class="btn btn-primary" />
-    </div>
+        <div class="col-md-12">
+            <input id="file_upload" type="file" name="file" class="btn btn-default" />
+        </div>
+        <div class="col-md-12">
+            <input id="file_save" type="submit" name="Submit" id="Submit" value="Upload" class="btn btn-primary" />
+        </div>
     }
 </div>

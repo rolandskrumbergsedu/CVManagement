@@ -7,13 +7,13 @@ namespace CV.Management.Web.Models
 {
     public class MembershipViewModel
     {
-        public List<Membership> Memberships { get; set; }
+        public List<MembershipItem> Memberships { get; set; }
     }
 
-    public class Membership
+    public class MembershipItem
     {
-        public int FromTime { get; set; }
-        public int ToTime { get; set; }
+        public int? FromTime { get; set; }
+        public int? ToTime { get; set; }
         public string Description { get; set; }
     }
 }

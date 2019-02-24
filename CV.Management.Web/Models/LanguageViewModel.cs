@@ -7,14 +7,14 @@ namespace CV.Management.Web.Models
 {
     public class LanguageViewModel
     {
-        public List<Language> Languages { get; set; }
+        public List<LanguageItem> Languages { get; set; }
     }
 
-    public class Language
+    public class LanguageItem
     {
-        public LanguageEnum LanguageName { get; set; }
-        public LevelEnum SpokenLevel { get; set; }
-        public LevelEnum WrittenLevel { get; set; }
+        public LanguageEnum? LanguageName { get; set; }
+        public LevelEnum? SpokenLevel { get; set; }
+        public LevelEnum? WrittenLevel { get; set; }
     }
 
     public enum LevelEnum

@@ -197,19 +197,36 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902240958441_Initial.cs" />
+    <Compile Include="Migrations\201902240958441_Initial.Designer.cs">
+      <DependentUpon>201902240958441_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902242218517_FullDb.cs" />
+    <Compile Include="Migrations\201902242218517_FullDb.Designer.cs">
+      <DependentUpon>201902242218517_FullDb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdditionalCommentsViewModel.cs" />
     <Compile Include="Models\AdditionalCoursesViewModel.cs" />
     <Compile Include="Models\CareerSummaryViewModel.cs" />
     <Compile Include="Models\CompensationViewModel.cs" />
+    <Compile Include="Models\Database\AdditionalCourse.cs" />
+    <Compile Include="Models\Database\Company.cs" />
+    <Compile Include="Models\Database\Education.cs" />
+    <Compile Include="Models\Database\Language.cs" />
+    <Compile Include="Models\Database\Membership.cs" />
+    <Compile Include="Models\Database\Position.cs" />
     <Compile Include="Models\Database\Profile.cs" />
     <Compile Include="Models\EducationViewModel.cs" />
+    <Compile Include="Models\FileUploadViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LanguageViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MembershipViewModel.cs" />
     <Compile Include="Models\NoticePeriodViewModel.cs" />
     <Compile Include="Models\PersonalInformationViewModel.cs" />
+    <Compile Include="Models\ProfileViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -400,6 +417,12 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Migrations\201902240958441_Initial.resx">
+      <DependentUpon>201902240958441_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902242218517_FullDb.resx">
+      <DependentUpon>201902242218517_FullDb.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources.lv.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.lv.Designer.cs</LastGenOutput>
