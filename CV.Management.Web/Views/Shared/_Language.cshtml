@@ -17,21 +17,21 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 @Html.LabelFor(model => model.Languages[i].LanguageName, new { @class = "language-name-label control-label" })
-                                @Html.EnumDropDownListFor(model => model.Languages[i].LanguageName, "Language", new { @class = "language-name-label form-control" })
+                                @Html.EnumDropDownListFor(model => model.Languages[i].LanguageName, "Language", new { @class = "language-name-select form-control" })
                                 @Html.ValidationMessageFor(model => model.Languages[i].LanguageName, "", new { @class = "language-name-validation" })
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 @Html.LabelFor(model => model.Languages[i].SpokenLevel, new { @class = "language-spoken-label control-label" })
-                                @Html.EnumDropDownListFor(model => model.Languages[i].SpokenLevel, "Spoken level", new { @class = "language-spoken-label form-control" })
+                                @Html.EnumDropDownListFor(model => model.Languages[i].SpokenLevel, "Spoken level", new { @class = "language-spoken-select form-control" })
                                 @Html.ValidationMessageFor(model => model.Languages[i].SpokenLevel, "", new { @class = "language-spoken-validation" })
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 @Html.LabelFor(model => model.Languages[i].WrittenLevel, new { @class = "language-written-label control-label" })
-                                @Html.EnumDropDownListFor(model => model.Languages[i].WrittenLevel, "Written level", new { @class = "language-written-label form-control" })
+                                @Html.EnumDropDownListFor(model => model.Languages[i].WrittenLevel, "Written level", new { @class = "language-written-select form-control" })
                                 @Html.ValidationMessageFor(model => model.Languages[i].WrittenLevel, "", new { @class = "language-written-validation" })
                             </div>
                         </div>
@@ -46,7 +46,7 @@
 
         <div class="row">
             <div class="col-md-12 text-center add-button">
-                <p><img id="position_add" src="~/Content/Images/add.png" /> ADD LANGUAGE</p>
+                <p><img id="language_add" src="~/Content/Images/add.png" /> ADD LANGUAGE</p>
             </div>
         </div>
         <div class="row">

@@ -152,10 +152,7 @@ namespace CV.Management.Web.Controllers
                 {
                     if (userProfile.AdditionalCourses != null)
                     {
-                        foreach (var item in userProfile.AdditionalCourses)
-                        {
-                            db.Entry(item).State = System.Data.Entity.EntityState.Deleted;
-                        }
+                        userProfile.AdditionalCourses.ToList().ForEach(x => db.Entry(x).State = System.Data.Entity.EntityState.Deleted);
 
                         foreach (var item in personal.Courses)
                         {
@@ -261,12 +258,10 @@ namespace CV.Management.Web.Controllers
                 {
                     if (userProfile.Companies != null)
                     {
-                        foreach (var item in userProfile.Companies)
+                        var companies = userProfile.Companies.ToList();
+                        foreach (var item in companies)
                         {
-                            foreach (var position in item.Positions)
-                            {
-                                db.Entry(position).State = System.Data.Entity.EntityState.Deleted;
-                            }
+                            item.Positions.ToList().ForEach(x => db.Entry(x).State = System.Data.Entity.EntityState.Deleted);
 
                             db.Entry(item).State = System.Data.Entity.EntityState.Deleted;
                         }
@@ -367,10 +362,7 @@ namespace CV.Management.Web.Controllers
                 {
                     if (userProfile.Memberships != null)
                     {
-                        foreach (var item in userProfile.Memberships)
-                        {
-                            db.Entry(item).State = System.Data.Entity.EntityState.Deleted;
-                        }
+                        userProfile.Memberships.ToList().ForEach(x => db.Entry(x).State = System.Data.Entity.EntityState.Deleted);
 
                         foreach (var item in personal.Memberships)
                         {
