@@ -98,10 +98,7 @@ namespace CV.Management.Web.Controllers
                 {
                     if (userProfile.Educations != null)
                     {
-                        foreach (var educationItem in userProfile.Educations)
-                        {
-                            db.Entry(educationItem).State = System.Data.Entity.EntityState.Deleted;
-                        }
+                        userProfile.Educations.ToList().ForEach(x => db.Entry(x).State = System.Data.Entity.EntityState.Deleted);
                     }
 
                     foreach (var educationItem in personal.Education)
@@ -212,10 +209,7 @@ namespace CV.Management.Web.Controllers
                 {
                     if (userProfile.Languages != null)
                     {
-                        foreach (var item in userProfile.Languages)
-                        {
-                            db.Entry(item).State = System.Data.Entity.EntityState.Deleted;
-                        }
+                        userProfile.Languages.ToList().ForEach(x => db.Entry(x).State = System.Data.Entity.EntityState.Deleted);
 
                         foreach (var item in personal.Languages)
                         {

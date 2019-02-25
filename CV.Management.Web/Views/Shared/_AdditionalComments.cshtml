@@ -2,7 +2,7 @@
 
 <div class="row">
 
-    @using (Html.BeginForm("NoticePeriod", "Cv", FormMethod.Post))
+    @using (Html.BeginForm("AdditionalComments", "Cv", FormMethod.Post))
     {
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.AntiForgeryToken()
