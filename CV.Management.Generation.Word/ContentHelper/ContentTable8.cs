@@ -6,7 +6,7 @@ namespace CV.Management.Generation.Word.ContentHelper
     public static class ContentTable8
     {
         // Creates an Table instance and adds its children.
-        public static Table GenerateTable()
+        public static Table GenerateTable(GenerationData data)
         {
             Table table1 = new Table();
 
@@ -123,6 +123,20 @@ namespace CV.Management.Generation.Word.ContentHelper
             tableRow1.Append(tableRowProperties1);
             tableRow1.Append(tableCell1);
 
+            table1.Append(tableProperties1);
+            table1.Append(tableGrid1);
+            table1.Append(tableRow1);
+
+            foreach (var activity in data.SocialActivites)
+            {
+                table1.Append(CreateMembershipRow(activity));
+            }
+
+            return table1;
+        }
+
+        private static TableRow CreateMembershipRow(SocialActivity data)
+        {
             TableRow tableRow2 = new TableRow() { RsidTableRowAddition = "009B2C1D", RsidTableRowProperties = "009E39C2", ParagraphId = "533821CC", TextId = "77777777" };
 
             TableCell tableCell2 = new TableCell();
@@ -155,7 +169,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties3.Append(fontSize3);
             runProperties3.Append(fontSizeComplexScript3);
             Text text3 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text3.Text = " 2011 - 2016 ";
+            text3.Text = $" {data.StartingYear} - {data.EndingYear} ";
 
             run3.Append(runProperties3);
             run3.Append(text3);
@@ -212,7 +226,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties4.Append(fontSize5);
             runProperties4.Append(fontSizeComplexScript5);
             Text text4 = new Text();
-            text4.Text = "Travel Tour Leader:";
+            text4.Text = data.Description;
 
             run4.Append(runProperties4);
             run4.Append(text4);
@@ -220,81 +234,13 @@ namespace CV.Management.Generation.Word.ContentHelper
             paragraph3.Append(paragraphProperties1);
             paragraph3.Append(run4);
 
-            Paragraph paragraph4 = new Paragraph() { RsidParagraphAddition = "009E39C2", RsidParagraphProperties = "009E39C2", RsidRunAdditionDefault = "009E39C2", ParagraphId = "6641EB68", TextId = "77777777" };
-
-            ParagraphProperties paragraphProperties2 = new ParagraphProperties();
-            SpacingBetweenLines spacingBetweenLines2 = new SpacingBetweenLines() { After = "0", Line = "240", LineRule = LineSpacingRuleValues.Auto };
-            Indentation indentation2 = new Indentation() { Left = "271", Hanging = "127" };
-
-            ParagraphMarkRunProperties paragraphMarkRunProperties2 = new ParagraphMarkRunProperties();
-            FontSize fontSize6 = new FontSize() { Val = "21" };
-            FontSizeComplexScript fontSizeComplexScript6 = new FontSizeComplexScript() { Val = "21" };
-
-            paragraphMarkRunProperties2.Append(fontSize6);
-            paragraphMarkRunProperties2.Append(fontSizeComplexScript6);
-
-            paragraphProperties2.Append(spacingBetweenLines2);
-            paragraphProperties2.Append(indentation2);
-            paragraphProperties2.Append(paragraphMarkRunProperties2);
-
-            Run run5 = new Run();
-
-            RunProperties runProperties5 = new RunProperties();
-            FontSize fontSize7 = new FontSize() { Val = "21" };
-            FontSizeComplexScript fontSizeComplexScript7 = new FontSizeComplexScript() { Val = "21" };
-
-            runProperties5.Append(fontSize7);
-            runProperties5.Append(fontSizeComplexScript7);
-            Text text5 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text5.Text = "- Organized and led personal growth focused tour groups to India; ";
-
-            run5.Append(runProperties5);
-            run5.Append(text5);
-
-            paragraph4.Append(paragraphProperties2);
-            paragraph4.Append(run5);
-
-            Paragraph paragraph5 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidParagraphProperties = "009E39C2", RsidRunAdditionDefault = "009E39C2", ParagraphId = "76165E9A", TextId = "09F0CF60" };
-
-            ParagraphProperties paragraphProperties3 = new ParagraphProperties();
-            SpacingBetweenLines spacingBetweenLines3 = new SpacingBetweenLines() { After = "0", Line = "240", LineRule = LineSpacingRuleValues.Auto };
-            Indentation indentation3 = new Indentation() { Left = "271", Hanging = "127" };
-
-            paragraphProperties3.Append(spacingBetweenLines3);
-            paragraphProperties3.Append(indentation3);
-
-            Run run6 = new Run();
-
-            RunProperties runProperties6 = new RunProperties();
-            FontSize fontSize8 = new FontSize() { Val = "21" };
-            FontSizeComplexScript fontSizeComplexScript8 = new FontSizeComplexScript() { Val = "21" };
-
-            runProperties6.Append(fontSize8);
-            runProperties6.Append(fontSizeComplexScript8);
-            Text text6 = new Text();
-            text6.Text = "- Acted as a liaison between European individuals and Asian spiritual guides";
-
-            run6.Append(runProperties6);
-            run6.Append(text6);
-
-            paragraph5.Append(paragraphProperties3);
-            paragraph5.Append(run6);
-
             tableCell3.Append(tableCellProperties3);
             tableCell3.Append(paragraph3);
-            tableCell3.Append(paragraph4);
-            tableCell3.Append(paragraph5);
 
             tableRow2.Append(tableCell2);
             tableRow2.Append(tableCell3);
 
-            table1.Append(tableProperties1);
-            table1.Append(tableGrid1);
-            table1.Append(tableRow1);
-            table1.Append(tableRow2);
-            return table1;
+            return tableRow2;
         }
-
-
     }
 }

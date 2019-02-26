@@ -31,15 +31,15 @@ namespace CV.Management.Generation.Word.Helpers
             body1.Append(ContentParagraph9.GenerateParagraph());
             body1.Append(ContentParagraph10.GenerateParagraph());
             body1.Append(ContentParagraph11.GenerateParagraph());
-            body1.Append(ContentTable7.GenerateTable());
+            body1.Append(ContentTable7.GenerateTable(data)); // Career summary
             body1.Append(ContentParagraph12.GenerateParagraph());
-            body1.Append(ContentTable8.GenerateTable());
+            body1.Append(ContentTable8.GenerateTable(data)); // Memberships
             body1.Append(ContentParagraph13.GenerateParagraph());
-            body1.Append(ContentTable9.GenerateTable());
+            body1.Append(ContentTable9.GenerateTable(data)); // Compensation
             body1.Append(ContentParagraph14.GenerateParagraph());
-            body1.Append(ContentTable10.GenerateTable());
+            body1.Append(ContentTable10.GenerateTable(data)); // Transition time
             body1.Append(ContentParagraph15.GenerateParagraph());
-            body1.Append(ContentTable11.GenerateTable());
+            body1.Append(ContentTable11.GenerateTable(data)); // Additional comments
             body1.Append(ContentParagraph16.GenerateParagraph());
             body1.Append(ContentParagraph17.GenerateParagraph());
             body1.Append(sectionProperties1);

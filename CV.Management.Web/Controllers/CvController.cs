@@ -498,7 +498,8 @@ namespace CV.Management.Web.Controllers
 
         private string GetCurrentUsername()
         {
-            return HttpContext.IsDebuggingEnabled ? "rolands.krumbergs@outlook.com" : User.Identity.Name;
+            return "rolands.krumbergs@outlook.com";
+            //return HttpContext.IsDebuggingEnabled ? "rolands.krumbergs@outlook.com" : User.Identity.Name;
         }
 
         private ProfileViewModel GetCurrentUserProfileViewModel()

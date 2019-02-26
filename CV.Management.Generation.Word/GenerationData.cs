@@ -9,7 +9,7 @@ namespace CV.Management.Generation.Word
         public PersonalInformation Personal { get; set; }
         public List<EducationItem> Education { get; set; }
         public List<AdditionalCoursesItem> AdditionalCourses { get; set; }
-        public LanguageProficiencyInformation LanguageProficiency { get; set; }
+        public List<LanguageItem> Languages { get; set; }
         public List<CareerSummaryItem> CareerSummary { get; set; }
         public List<SocialActivity> SocialActivites { get; set; }
         public string Compensation { get; set; }
@@ -22,6 +22,7 @@ namespace CV.Management.Generation.Word
         public int StartingYear { get; set; }
         public int EndingYear { get; set; }
         public string Role { get; set; }
+        public string Description { get; set; }
         public List<string> Tasks { get; set; }
     }
 
@@ -46,13 +47,12 @@ namespace CV.Management.Generation.Word
 
     public class PersonalInformation
     {
-        public string Name { get; set; }
-        public string Surname { get; set; }
         public string Address { get; set; }
         public string Mobile { get; set; }
         public string Email { get; set; }
         public string Skype { get; set; }
         public string LinkedIn { get; set; }
+        public string FullName { get; set; }
     }
 
     public class EducationItem
@@ -71,17 +71,11 @@ namespace CV.Management.Generation.Word
         public string Instructor { get; set; }
     }
 
-    public class LanguageProficiencyInformation
+    public class LanguageItem
     {
-        public LanguageProficiencyItem Spoken { get; set; }
-        public LanguageProficiencyItem Written { get; set; }
-    }
-
-    public class LanguageProficiencyItem
-    {
-        public int Latvian { get; set; }
-        public int Russian { get; set; }
-        public int English { get; set; }
+        public string LanguageName { get; set; }
+        public int SpokenLevel { get; set; }
+        public int WrittenLevel { get; set; }
     }
 
     public class CareerSummaryItem
@@ -89,7 +83,11 @@ namespace CV.Management.Generation.Word
         public int StartingYear { get; set; }
         public int EndingYear { get; set; }
         public string Company { get; set; }
-        public List<string> CompanyInformation { get; set; }
+        public string Industry { get; set; }
+        public string Services { get; set; }
+        public string Turnover { get; set; }
+        public string NumberOfEmployees { get; set; }
+        public string ParentCompany { get; set; }
         public RoleInformation Role { get; set; }
         public List<string> Tasks { get; set; }
         public string ReportingTo { get; set; }

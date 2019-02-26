@@ -205,7 +205,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties4.Append(fontSize4);
             runProperties4.Append(fontSizeComplexScript4);
             Text text4 = new Text();
-            text4.Text = data.Personal.Name + " " + data.Personal.Surname;
+            text4.Text = data.Personal.FullName;
 
             run4.Append(runProperties4);
             run4.Append(text4);

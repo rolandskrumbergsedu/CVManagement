@@ -6,7 +6,7 @@ namespace CV.Management.Generation.Word.ContentHelper
     public static class ContentTable10
     {
         // Creates an Table instance and adds its children.
-        public static Table GenerateTable()
+        public static Table GenerateTable(GenerationData data)
         {
             Table table1 = new Table();
 
@@ -201,7 +201,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties4.Append(fontSize4);
             runProperties4.Append(fontSizeComplexScript4);
             Text text4 = new Text();
-            text4.Text = "1-3 months";
+            text4.Text = data.TransitionTime;
 
             run4.Append(runProperties4);
             run4.Append(text4);

@@ -6,7 +6,7 @@ namespace CV.Management.Generation.Word.ContentHelper
     public static class ContentTable9
     {
         // Creates an Table instance and adds its children.
-        public static Table GenerateTable()
+        public static Table GenerateTable(GenerationData data)
         {
             Table table1 = new Table();
 
@@ -123,93 +123,6 @@ namespace CV.Management.Generation.Word.ContentHelper
             tableRow1.Append(tableRowProperties1);
             tableRow1.Append(tableCell1);
 
-            TableRow tableRow2 = new TableRow() { RsidTableRowAddition = "009B2C1D", RsidTableRowProperties = "009E39C2", ParagraphId = "48C22992", TextId = "77777777" };
-
-            TableCell tableCell2 = new TableCell();
-
-            TableCellProperties tableCellProperties2 = new TableCellProperties();
-            TableCellWidth tableCellWidth2 = new TableCellWidth() { Width = "2552", Type = TableWidthUnitValues.Dxa };
-
-            TableCellBorders tableCellBorders2 = new TableCellBorders();
-            TopBorder topBorder3 = new TopBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
-            LeftBorder leftBorder3 = new LeftBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
-            BottomBorder bottomBorder3 = new BottomBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
-            RightBorder rightBorder3 = new RightBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
-
-            tableCellBorders2.Append(topBorder3);
-            tableCellBorders2.Append(leftBorder3);
-            tableCellBorders2.Append(bottomBorder3);
-            tableCellBorders2.Append(rightBorder3);
-
-            tableCellProperties2.Append(tableCellWidth2);
-            tableCellProperties2.Append(tableCellBorders2);
-
-            Paragraph paragraph2 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidRunAdditionDefault = "009E39C2", ParagraphId = "34C84734", TextId = "77777777" };
-
-            Run run3 = new Run();
-
-            RunProperties runProperties3 = new RunProperties();
-            FontSize fontSize3 = new FontSize() { Val = "22" };
-            FontSizeComplexScript fontSizeComplexScript3 = new FontSizeComplexScript() { Val = "22" };
-
-            runProperties3.Append(fontSize3);
-            runProperties3.Append(fontSizeComplexScript3);
-            Text text3 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text3.Text = "  ";
-
-            run3.Append(runProperties3);
-            run3.Append(text3);
-
-            paragraph2.Append(run3);
-
-            tableCell2.Append(tableCellProperties2);
-            tableCell2.Append(paragraph2);
-
-            TableCell tableCell3 = new TableCell();
-
-            TableCellProperties tableCellProperties3 = new TableCellProperties();
-            TableCellWidth tableCellWidth3 = new TableCellWidth() { Width = "6379", Type = TableWidthUnitValues.Dxa };
-            GridSpan gridSpan2 = new GridSpan() { Val = 2 };
-
-            TableCellBorders tableCellBorders3 = new TableCellBorders();
-            TopBorder topBorder4 = new TopBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
-            LeftBorder leftBorder4 = new LeftBorder() { Val = BorderValues.Single, Color = "000000", Size = (UInt32Value)1U, Space = (UInt32Value)0U };
-            BottomBorder bottomBorder4 = new BottomBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
-            RightBorder rightBorder4 = new RightBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
-
-            tableCellBorders3.Append(topBorder4);
-            tableCellBorders3.Append(leftBorder4);
-            tableCellBorders3.Append(bottomBorder4);
-            tableCellBorders3.Append(rightBorder4);
-
-            tableCellProperties3.Append(tableCellWidth3);
-            tableCellProperties3.Append(gridSpan2);
-            tableCellProperties3.Append(tableCellBorders3);
-
-            Paragraph paragraph3 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidRunAdditionDefault = "009E39C2", ParagraphId = "02607055", TextId = "77777777" };
-
-            Run run4 = new Run();
-
-            RunProperties runProperties4 = new RunProperties();
-            FontSize fontSize4 = new FontSize() { Val = "22" };
-            FontSizeComplexScript fontSizeComplexScript4 = new FontSizeComplexScript() { Val = "22" };
-
-            runProperties4.Append(fontSize4);
-            runProperties4.Append(fontSizeComplexScript4);
-            Text text4 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text4.Text = "    ";
-
-            run4.Append(runProperties4);
-            run4.Append(text4);
-
-            paragraph3.Append(run4);
-
-            tableCell3.Append(tableCellProperties3);
-            tableCell3.Append(paragraph3);
-
-            tableRow2.Append(tableCell2);
-            tableRow2.Append(tableCell3);
-
             TableRow tableRow3 = new TableRow() { RsidTableRowAddition = "009B2C1D", RsidTableRowProperties = "009E39C2", ParagraphId = "735CF69D", TextId = "77777777" };
 
             TableCell tableCell4 = new TableCell();
@@ -291,7 +204,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties6.Append(fontSize6);
             runProperties6.Append(fontSizeComplexScript6);
             Text text6 = new Text();
-            text6.Text = "Full investment executive remuneration package which includes base salary, short-term incentive/long-term incentive plan, relocation costs (if needed) including a car, full insurance package, travel costs, paid expenses, etc.";
+            text6.Text = data.Compensation;
 
             run6.Append(runProperties6);
             run6.Append(text6);
@@ -308,7 +221,6 @@ namespace CV.Management.Generation.Word.ContentHelper
             table1.Append(tableProperties1);
             table1.Append(tableGrid1);
             table1.Append(tableRow1);
-            table1.Append(tableRow2);
             table1.Append(tableRow3);
             return table1;
         }

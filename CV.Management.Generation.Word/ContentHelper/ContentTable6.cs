@@ -4,6 +4,8 @@ using Wp = DocumentFormat.OpenXml.Drawing.Wordprocessing;
 using A = DocumentFormat.OpenXml.Drawing;
 using Pic = DocumentFormat.OpenXml.Drawing.Pictures;
 using A14 = DocumentFormat.OpenXml.Office2010.Drawing;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace CV.Management.Generation.Word.ContentHelper
 {
@@ -73,144 +75,59 @@ namespace CV.Management.Generation.Word.ContentHelper
             tableGrid1.Append(gridColumn11);
 
             //
+            var languages = data.Languages.OrderByDescending(x => x.SpokenLevel + x.WrittenLevel);
+            var tableRows = new List<TableRow>();
 
-            TableRow tableRow3 = new TableRow() { RsidTableRowAddition = "009B2C1D", ParagraphId = "37671891", TextId = "77777777" };
+            foreach (var languageItem in languages)
+            {
+                var tableRow = new TableRow() { RsidTableRowAddition = "009B2C1D", ParagraphId = "37671891", TextId = "77777777" };
 
-            TableCell tableCell5 = GenerateLanguageHeadlineCell("Latvian");
+                TableCell tableCell5 = GenerateLanguageHeadlineCell(languageItem.LanguageName);
 
-            // Level 1
-            TableCell tableCell6 = data.LanguageProficiency.Spoken.Latvian >= 1 ? GenerateFilledCell(true, false) : GenerateNotFilledCell(true, false);
+                // Level 1
+                TableCell tableCell6 = languageItem.SpokenLevel >= 1 ? GenerateFilledCell(true, false) : GenerateNotFilledCell(true, false);
 
-            // Level 2
-            TableCell tableCell7 = data.LanguageProficiency.Spoken.Latvian >= 2 ? GenerateFilledCell(false, false) : GenerateNotFilledCell(false, false);
+                // Level 2
+                TableCell tableCell7 = languageItem.SpokenLevel >= 2 ? GenerateFilledCell(false, false) : GenerateNotFilledCell(false, false);
 
-            // Level 3
-            TableCell tableCell8 = data.LanguageProficiency.Spoken.Latvian >= 3 ? GenerateFilledCell(false, false) : GenerateNotFilledCell(false, false);
+                // Level 3
+                TableCell tableCell8 = languageItem.SpokenLevel >= 3 ? GenerateFilledCell(false, false) : GenerateNotFilledCell(false, false);
 
-            // Level 4
-            TableCell tableCell9 = data.LanguageProficiency.Spoken.Latvian >= 4 ? GenerateFilledCell(false, false) : GenerateNotFilledCell(false, false);
+                // Level 4
+                TableCell tableCell9 = languageItem.SpokenLevel >= 4 ? GenerateFilledCell(false, false) : GenerateNotFilledCell(false, false);
 
-            // Level 5
-            TableCell tableCell10 = data.LanguageProficiency.Spoken.Latvian >= 5 ? GenerateFilledCell(false, true) : GenerateNotFilledCell(false, true);
+                // Level 5
+                TableCell tableCell10 = languageItem.SpokenLevel >= 5 ? GenerateFilledCell(false, true) : GenerateNotFilledCell(false, true);
 
-            // Level 1
-            TableCell tableCell11 = data.LanguageProficiency.Written.Latvian >= 1 ? GenerateFilledCell(true, false) : GenerateNotFilledCell(true, false);
+                // Level 1
+                TableCell tableCell11 = languageItem.WrittenLevel >= 1 ? GenerateFilledCell(true, false) : GenerateNotFilledCell(true, false);
 
-            // Level 2
-            TableCell tableCell12 = data.LanguageProficiency.Written.Latvian >= 2 ? GenerateFilledCell(false, false) : GenerateNotFilledCell(false, false);
+                // Level 2
+                TableCell tableCell12 = languageItem.WrittenLevel >= 2 ? GenerateFilledCell(false, false) : GenerateNotFilledCell(false, false);
 
-            // Level 3
-            TableCell tableCell13 = data.LanguageProficiency.Written.Latvian >= 3 ? GenerateFilledCell(false, false) : GenerateNotFilledCell(false, false);
+                // Level 3
+                TableCell tableCell13 = languageItem.WrittenLevel >= 3 ? GenerateFilledCell(false, false) : GenerateNotFilledCell(false, false);
 
-            // Level 4
-            TableCell tableCell14 = data.LanguageProficiency.Written.Latvian >= 4 ? GenerateFilledCell(false, false) : GenerateNotFilledCell(false, false);
+                // Level 4
+                TableCell tableCell14 = languageItem.WrittenLevel >= 4 ? GenerateFilledCell(false, false) : GenerateNotFilledCell(false, false);
 
-            // Level 5
-            TableCell tableCell15 = data.LanguageProficiency.Written.Latvian >= 5 ? GenerateFilledCell(false, true) : GenerateNotFilledCell(false, true);
+                // Level 5
+                TableCell tableCell15 = languageItem.WrittenLevel >= 5 ? GenerateFilledCell(false, true) : GenerateNotFilledCell(false, true);
 
-            tableRow3.Append(tableCell5);
-            tableRow3.Append(tableCell6);
-            tableRow3.Append(tableCell7);
-            tableRow3.Append(tableCell8);
-            tableRow3.Append(tableCell9);
-            tableRow3.Append(tableCell10);
-            tableRow3.Append(tableCell11);
-            tableRow3.Append(tableCell12);
-            tableRow3.Append(tableCell13);
-            tableRow3.Append(tableCell14);
-            tableRow3.Append(tableCell15);
+                tableRow.Append(tableCell5);
+                tableRow.Append(tableCell6);
+                tableRow.Append(tableCell7);
+                tableRow.Append(tableCell8);
+                tableRow.Append(tableCell9);
+                tableRow.Append(tableCell10);
+                tableRow.Append(tableCell11);
+                tableRow.Append(tableCell12);
+                tableRow.Append(tableCell13);
+                tableRow.Append(tableCell14);
+                tableRow.Append(tableCell15);
 
-            TableRow tableRow4 = new TableRow() { RsidTableRowAddition = "009B2C1D", ParagraphId = "3F5DBF51", TextId = "77777777" };
-
-            TableCell tableCell16 = GenerateLanguageHeadlineCell("Russian");
-
-            // Level 1
-            TableCell tableCell17 = data.LanguageProficiency.Spoken.Russian >= 1 ? GenerateFilledCell(true, false) : GenerateNotFilledCell(true, false);
-
-            // Level 2
-            TableCell tableCell18 = data.LanguageProficiency.Spoken.Russian >= 2 ? GenerateFilledCell(false, false) : GenerateNotFilledCell(false, false);
-
-            // Level 3 
-            TableCell tableCell19 = data.LanguageProficiency.Spoken.Russian >= 3 ? GenerateFilledCell(false, false) : GenerateNotFilledCell(false, false);
-
-            // Level 4 
-            TableCell tableCell20 = data.LanguageProficiency.Spoken.Russian >= 4 ? GenerateFilledCell(false, false) : GenerateNotFilledCell(false, false);
-
-            // Level 5
-            TableCell tableCell21 = data.LanguageProficiency.Spoken.Russian >= 5 ? GenerateFilledCell(false, true) : GenerateNotFilledCell(false, true);
-
-            // Level 1
-            TableCell tableCell22 = data.LanguageProficiency.Written.Russian >= 1 ? GenerateFilledCell(true, false) : GenerateNotFilledCell(true, false);
-
-            // Level 2
-            TableCell tableCell23 = data.LanguageProficiency.Written.Russian >= 2 ? GenerateFilledCell(false, false) : GenerateNotFilledCell(false, false);
-
-            // Level 3
-            TableCell tableCell24 = data.LanguageProficiency.Written.Russian >= 3 ? GenerateFilledCell(false, false) : GenerateNotFilledCell(false, false);
-
-            // Level 4
-            TableCell tableCell25 = data.LanguageProficiency.Written.Russian >= 4 ? GenerateFilledCell(false, false) : GenerateNotFilledCell(false, false);
-
-            // Level 5
-            TableCell tableCell26 = data.LanguageProficiency.Written.Russian >= 5 ? GenerateNotFilledCell(true, false) : GenerateNotFilledCell(false, true);
-
-            tableRow4.Append(tableCell16);
-            tableRow4.Append(tableCell17);
-            tableRow4.Append(tableCell18);
-            tableRow4.Append(tableCell19);
-            tableRow4.Append(tableCell20);
-            tableRow4.Append(tableCell21);
-            tableRow4.Append(tableCell22);
-            tableRow4.Append(tableCell23);
-            tableRow4.Append(tableCell24);
-            tableRow4.Append(tableCell25);
-            tableRow4.Append(tableCell26);
-
-            TableRow tableRow5 = new TableRow() { RsidTableRowAddition = "009B2C1D", ParagraphId = "576AEFBD", TextId = "77777777" };
-
-            TableCell tableCell27 = GenerateLanguageHeadlineCell("English");
-
-            // Level 1
-            TableCell tableCell28 = data.LanguageProficiency.Spoken.English >= 1 ? GenerateFilledCell(true, false) : GenerateNotFilledCell(true, false);
-
-            // Level 2
-            TableCell tableCell29 = data.LanguageProficiency.Spoken.English >= 2 ? GenerateFilledCell(false, false) : GenerateNotFilledCell(false, false);
-
-            // Level 3
-            TableCell tableCell30 = data.LanguageProficiency.Spoken.English >= 3 ? GenerateFilledCell(false, false) : GenerateNotFilledCell(false, false);
-
-            // Level 4
-            TableCell tableCell31 = data.LanguageProficiency.Spoken.English >= 4 ? GenerateFilledCell(false, false) : GenerateNotFilledCell(false, false);
-
-            // Level 5
-            TableCell tableCell32 = data.LanguageProficiency.Spoken.English >= 5 ? GenerateNotFilledCell(true, false) : GenerateNotFilledCell(false, true);
-
-            // Level 1
-            TableCell tableCell33 = data.LanguageProficiency.Written.English >= 1 ? GenerateFilledCell(true, false) : GenerateNotFilledCell(true, false);
-
-            // Level 2
-            TableCell tableCell34 = data.LanguageProficiency.Written.English >= 2 ? GenerateFilledCell(false, false) : GenerateNotFilledCell(false, false);
-
-            // Level 3
-            TableCell tableCell35 = data.LanguageProficiency.Written.English >= 3 ? GenerateFilledCell(false, false) : GenerateNotFilledCell(false, false);
-
-            // Level 4
-            TableCell tableCell36 = data.LanguageProficiency.Written.English >= 4 ? GenerateFilledCell(false, false) : GenerateNotFilledCell(false, false);
-
-            // Level 5
-            TableCell tableCell37 = data.LanguageProficiency.Written.English >= 5 ? GenerateNotFilledCell(true, false) : GenerateNotFilledCell(false, true);
-
-            tableRow5.Append(tableCell27);
-            tableRow5.Append(tableCell28);
-            tableRow5.Append(tableCell29);
-            tableRow5.Append(tableCell30);
-            tableRow5.Append(tableCell31);
-            tableRow5.Append(tableCell32);
-            tableRow5.Append(tableCell33);
-            tableRow5.Append(tableCell34);
-            tableRow5.Append(tableCell35);
-            tableRow5.Append(tableCell36);
-            tableRow5.Append(tableCell37);
+                tableRows.Add(tableRow);
+            }
 
             table1.Append(tableProperties1);
             table1.Append(tableGrid1);
@@ -218,12 +135,9 @@ namespace CV.Management.Generation.Word.ContentHelper
             table1.Append(GenerateHeadlineRow());
             table1.Append(GenerateSubheadlineRow());
 
-            table1.Append(tableRow3);
-            table1.Append(tableRow4);
-            table1.Append(tableRow5);
+            tableRows.ForEach(x => table1.Append(x));
 
             table1.Append(GenerateProficiencyLevelRow());
-
 
             return table1;
         }
