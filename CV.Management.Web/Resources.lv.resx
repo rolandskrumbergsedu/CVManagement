@@ -117,7 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="String1" xml:space="preserve">
-    <value>Latvian</value>
+  <data name="Address" xml:space="preserve">
+    <value>Adrese</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>E-pasts</value>
+  </data>
+  <data name="FullName" xml:space="preserve">
+    <value>Vārds, uzvārds</value>
+  </data>
+  <data name="LinkedInLink" xml:space="preserve">
+    <value>LinkedIn hipersaite</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Telefona numurs</value>
+  </data>
+  <data name="Project" xml:space="preserve">
+    <value>Projekts</value>
+  </data>
+  <data name="Skype" xml:space="preserve">
+    <value>Skype lietotājvārds</value>
   </data>
 </root>
