@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CV.Management.Generation.Word.Tests
@@ -42,8 +43,7 @@ namespace CV.Management.Generation.Word.Tests
                 },
                 Personal = new PersonalInformation
                 {
-                    Name = "Rolands",
-                    Surname = "Krumbergs",
+                    FullName = "Rolands Krumbergs",
                     Mobile = "+371 222222222",
                     Email = "spam@rolands.lv",
                     Address = "Neteiksu iela 22, Rīga, LV-0000",
@@ -112,22 +112,22 @@ namespace CV.Management.Generation.Word.Tests
                         Instructor = "Radislav Gandapas"
                     }
                 },
-                LanguageProficiency = new LanguageProficiencyInformation
+                Languages = new List<LanguageItem>
                 {
-                    Spoken = new LanguageProficiencyItem
+                    new LanguageItem
                     {
-                        English = 4,
-                        Latvian = 5,
-                        Russian = 4
+                        LanguageName = "Latvian",
+                        SpokenLevel = 2,
+                        WrittenLevel = 3
                     },
-                    Written = new LanguageProficiencyItem
+                    new LanguageItem
                     {
-                        English = 4,
-                        Latvian = 5,
-                        Russian = 4
+                        LanguageName = "English",
+                        SpokenLevel = 4,
+                        WrittenLevel = 3
                     }
                 },
-                CareerSummary = new System.Collections.Generic.List<CareerSummaryItem>
+                CareerSummary = new List<CareerSummaryItem>
                 {
                     new CareerSummaryItem
                     {
@@ -141,14 +141,11 @@ namespace CV.Management.Generation.Word.Tests
                             StartingYear = 2018,
                             EndingYear = 0
                         },
-                        CompanyInformation = new System.Collections.Generic.List<string>
-                        {
-                            "Industry: Natural Resources / Agriculture / Forestry / Oil & Gas",
-                            "Services: Commodities export company",
-                            "Turnover: Turnover 2018 (F) - EUR 2,2 M",
-                            "Number of employees: 2"
-                        },
-                        Tasks = new System.Collections.Generic.List<string>
+                        Industry = "Natural Resources / Agriculture / Forestry / Oil & Gas",
+                        Services = "Commodities export company",
+                        Turnover = "Turnover 2018 (F) - EUR 2,2 M",
+                        NumberOfEmployees = "2",
+                        Tasks = new List<string>
                         {
                             "Advisor on natural resource acquisition deals",
                             "Consulting on global commodity trends",
@@ -167,13 +164,10 @@ namespace CV.Management.Generation.Word.Tests
                             StartingYear = 2017,
                             EndingYear = 0
                         },
-                        CompanyInformation = new System.Collections.Generic.List<string>
-                        {
-                            "Industry: Financial Services / Insurance",
-                            "Services: Investment management and advisory",
-                            "Number of employees: 1"
-                        },
-                        Tasks = new System.Collections.Generic.List<string>
+                        Industry = "Financial Services / Insurance",
+                        Services = "Investment management and advisory",
+                        NumberOfEmployees = "1",
+                        Tasks = new List<string>
                         {
                             "Investment management and advisory (including public and direct real estate)",
                             "Self owned enterprise executing personal investment deals. Currently involved in 10 investment / finance projects. Approximate asset value at the end of 2018 EUR 1M",
@@ -192,13 +186,10 @@ namespace CV.Management.Generation.Word.Tests
                             StartingYear = 2012,
                             EndingYear = 0
                         },
-                        CompanyInformation = new System.Collections.Generic.List<string>
-                        {
-                            "Industry: Natural Resources / Agriculture / Forestry / Oil & Gas",
-                            "Services: Investment company",
-                            "Number of employees: 2"
-                        },
-                        Tasks = new System.Collections.Generic.List<string>
+                        Industry = "Natural Resources / Agriculture / Forestry / Oil & Gas",
+                        Services = "Investment company",
+                        NumberOfEmployees = "2",
+                        Tasks = new List<string>
                         {
                             "Investment management in Ukrainian agricultural sector. Company asset value of EUR 1.5M",
                             "Indirect shareholder, 33% (through Cyprus entities), of two Ukrainian agroholdings BioAgro and LatAgro. At the end of 2018, expected consolidated asset value of both holdings companies is projected to be EUR 200M, consolidated sales value of EUR 100M. EBITD EUR 45M. Total number of daughter companies approx. 30"
@@ -216,12 +207,9 @@ namespace CV.Management.Generation.Word.Tests
                             StartingYear = 2013,
                             EndingYear = 2016
                         },
-                        CompanyInformation = new System.Collections.Generic.List<string>
-                        {
-                            "Industry: Financial Services / Insurance",
-                            "Services: Global corporate finance advisory and alternative investment consulting",
-                            "Number of employees: 10"
-                        },
+                        Industry = "Financial Services / Insurance",
+                        Services = "Global corporate finance advisory and alternative investment consulting",
+                        NumberOfEmployees = "10",
                         Tasks = new System.Collections.Generic.List<string>
                         {
                             "Investment advisory on deal sourcing and structuring regarding opportunities in former Soviet Union countries, particular focus on real estate and private equity",
@@ -246,14 +234,11 @@ namespace CV.Management.Generation.Word.Tests
                             StartingYear = 2007,
                             EndingYear = 2012
                         },
-                        CompanyInformation = new System.Collections.Generic.List<string>
-                        {
-                            "Industry: Natural Resources / Agriculture / Forestry / Oil & Gas",
-                            "Services: One of the world's largest agricultural business investment funds exceeding $1.2B assets under management and controlling over 600,000 ha of farmland",
-                            "Turnover: Expected Net Profit for 2018: over USD 100M",
-                            "Number of employees: ~ 15"
-                        },
-                        Tasks = new System.Collections.Generic.List<string>
+                        Industry = "Natural Resources / Agriculture / Forestry / Oil & Gas",
+                        Services = "One of the world's largest agricultural business investment funds exceeding $1.2B assets under management and controlling over 600,000 ha of farmland",
+                        NumberOfEmployees = "~ 15",
+                        Turnover = "Expected Net Profit for 2018: over USD 100M",
+                        Tasks = new List<string>
                         {
                             "Development of investment strategies and policy for the development of agricultural investment holdings formation in Ukraine and Kazakhstan",
                             "Investment and financial management planning, organization and implementation, selection and management of top level employees",
@@ -274,14 +259,11 @@ namespace CV.Management.Generation.Word.Tests
                             StartingYear = 1996,
                             EndingYear = 2012
                         },
-                        CompanyInformation = new System.Collections.Generic.List<string>
-                        {
-                            "Parent company: NCH CAPITAL",
-                            "Industry: Financial Services / Insurance",
-                            "Services: Investment fund",
-                            "Number of employees: ~ 10"
-                        },
-                        Tasks = new System.Collections.Generic.List<string>
+                        ParentCompany = "NCH CAPITAL",
+                        Industry = "Financial Services / Insurance",
+                        Services = "Investment fund",
+                        NumberOfEmployees = "~ 10",
+                        Tasks = new List<string>
                         {
                             "Investment distribution of more than USD 350M through the capital and real estate investments in the Baltic region for one of the largest and most experienced Western investors in the former Soviet Union a US based investment fund New Century Holdings (more than 20 sub funds) with over $5 billion assets under management",
                             "Managed potential public, direct equity and real estate investment objects due diligence, managing of research projects, financial and investment risk analysis and related evaluation",
@@ -294,14 +276,14 @@ namespace CV.Management.Generation.Word.Tests
                         ReasonForLeaving = "Fund was fully invested, and no new funds would be opened"
                     }
                 },
-                SocialActivites = new System.Collections.Generic.List<SocialActivity>
+                SocialActivites = new List<SocialActivity>
                 {
                     new SocialActivity
                     {
                         StartingYear = 2011,
                         EndingYear = 2016,
                         Role = "Travel Tour Leader",
-                        Tasks = new System.Collections.Generic.List<string>
+                        Tasks = new List<string>
                         {
                             "Organized and led personal growth focused tour groups to India",
                             "Acted as a liaison between European individuals and Asian spiritual guides"

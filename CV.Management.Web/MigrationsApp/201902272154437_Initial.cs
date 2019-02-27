@@ -1,9 +1,9 @@
-namespace CV.Management.Web.Migrations
+namespace CV.Management.Web.MigrationsApp
 {
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class FullDb : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
@@ -21,6 +21,30 @@ namespace CV.Management.Web.Migrations
                 .PrimaryKey(t => t.AdditionalCourseId)
                 .ForeignKey("dbo.Profiles", t => t.Profile_ProfileId)
                 .Index(t => t.Profile_ProfileId);
+            
+            CreateTable(
+                "dbo.Profiles",
+                c => new
+                    {
+                        ProfileId = c.Int(nullable: false, identity: true),
+                        Username = c.String(),
+                        Picture = c.Binary(),
+                        FullName = c.String(),
+                        LinkedInLink = c.String(),
+                        Address = c.String(),
+                        Email = c.String(),
+                        Phone = c.String(),
+                        Skype = c.String(),
+                        Project = c.String(),
+                        CurrentSalary = c.String(),
+                        CurrentBonuses = c.String(),
+                        SalaryRequest = c.String(),
+                        BonusRequest = c.String(),
+                        AdditionalBonuses = c.String(),
+                        NoticePeriod = c.String(),
+                        Comments = c.String(),
+                    })
+                .PrimaryKey(t => t.ProfileId);
             
             CreateTable(
                 "dbo.Companies",
@@ -61,6 +85,21 @@ namespace CV.Management.Web.Migrations
                 .Index(t => t.Company_CompanyId);
             
             CreateTable(
+                "dbo.Educations",
+                c => new
+                    {
+                        EducationId = c.Int(nullable: false, identity: true),
+                        FromYear = c.Int(),
+                        ToYear = c.Int(),
+                        Institution = c.String(),
+                        Degree = c.String(),
+                        Profile_ProfileId = c.Int(),
+                    })
+                .PrimaryKey(t => t.EducationId)
+                .ForeignKey("dbo.Profiles", t => t.Profile_ProfileId)
+                .Index(t => t.Profile_ProfileId);
+            
+            CreateTable(
                 "dbo.Languages",
                 c => new
                     {
@@ -88,38 +127,28 @@ namespace CV.Management.Web.Migrations
                 .ForeignKey("dbo.Profiles", t => t.Profile_ProfileId)
                 .Index(t => t.Profile_ProfileId);
             
-            AddColumn("dbo.Profiles", "CurrentSalary", c => c.String());
-            AddColumn("dbo.Profiles", "CurrentBonuses", c => c.String());
-            AddColumn("dbo.Profiles", "SalaryRequest", c => c.String());
-            AddColumn("dbo.Profiles", "BonusRequest", c => c.String());
-            AddColumn("dbo.Profiles", "AdditionalBonuses", c => c.String());
-            AddColumn("dbo.Profiles", "NoticePeriod", c => c.String());
-            AddColumn("dbo.Profiles", "Comments", c => c.String());
         }
         
         public override void Down()
         {
             DropForeignKey("dbo.Memberships", "Profile_ProfileId", "dbo.Profiles");
             DropForeignKey("dbo.Languages", "Profile_ProfileId", "dbo.Profiles");
+            DropForeignKey("dbo.Educations", "Profile_ProfileId", "dbo.Profiles");
             DropForeignKey("dbo.Companies", "Profile_ProfileId", "dbo.Profiles");
             DropForeignKey("dbo.Positions", "Company_CompanyId", "dbo.Companies");
             DropForeignKey("dbo.AdditionalCourses", "Profile_ProfileId", "dbo.Profiles");
             DropIndex("dbo.Memberships", new[] { "Profile_ProfileId" });
             DropIndex("dbo.Languages", new[] { "Profile_ProfileId" });
+            DropIndex("dbo.Educations", new[] { "Profile_ProfileId" });
             DropIndex("dbo.Positions", new[] { "Company_CompanyId" });
             DropIndex("dbo.Companies", new[] { "Profile_ProfileId" });
             DropIndex("dbo.AdditionalCourses", new[] { "Profile_ProfileId" });
-            DropColumn("dbo.Profiles", "Comments");
-            DropColumn("dbo.Profiles", "NoticePeriod");
-            DropColumn("dbo.Profiles", "AdditionalBonuses");
-            DropColumn("dbo.Profiles", "BonusRequest");
-            DropColumn("dbo.Profiles", "SalaryRequest");
-            DropColumn("dbo.Profiles", "CurrentBonuses");
-            DropColumn("dbo.Profiles", "CurrentSalary");
             DropTable("dbo.Memberships");
             DropTable("dbo.Languages");
+            DropTable("dbo.Educations");
             DropTable("dbo.Positions");
             DropTable("dbo.Companies");
+            DropTable("dbo.Profiles");
             DropTable("dbo.AdditionalCourses");
         }
     }
