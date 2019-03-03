@@ -17,8 +17,8 @@ namespace CV.Management.Web.Models
     {
         [Required]
         public int? FromYear { get; set; }
-        [Required]
         public int? ToYear { get; set; }
+        public bool Now { get; set; }
         [Required]
         public string Institution { get; set; }
         [Required]

@@ -14,6 +14,7 @@ namespace CV.Management.Web.Models
     {
         public int? FromTime { get; set; }
         public int? ToTime { get; set; }
+        public bool Now { get; set; }
         public string Description { get; set; }
     }
 }

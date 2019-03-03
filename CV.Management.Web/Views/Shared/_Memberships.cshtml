@@ -25,6 +25,10 @@
                                 @Html.LabelFor(model => model.Memberships[i].ToTime, new { @class = "membership-to-time-label control-label" })
                                 @Html.TextBoxFor(model => model.Memberships[i].ToTime, new { @class = "membership-to-time-input form-control" })
                                 @Html.ValidationMessageFor(model => model.Memberships[i].ToTime, "", new { @class = "membership-to-time-validation" })
+                                <div class="checkbox">
+                                    @Html.CheckBoxFor(model => model.Memberships[i].Now, new { @class = "membership-now-input" })
+                                    @Html.LabelFor(model => model.Memberships[i].Now, new { @class = "membership-now-label control-label" })
+                                </div>
                             </div>
                         </div>
                     </div>

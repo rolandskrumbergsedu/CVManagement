@@ -13,59 +13,74 @@
             @for (var i = 0; i < Model.Companies.Count; i++)
             {
                 <div class="company_row row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h5>COMPANY #<span>1</span></h5>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-md-11">
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    @Html.LabelFor(model => Model.Companies[i].Name, new { @class = "control-label" })
-                                    @Html.TextBoxFor(model => Model.Companies[i].Name, new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => Model.Companies[i].Name)
+                                    @Html.LabelFor(model => Model.Companies[i].Name, new { @class = "company-name-label control-label" })
+                                    @Html.TextBoxFor(model => Model.Companies[i].Name, new { @class = "company-name-input form-control" })
+                                    @Html.ValidationMessageFor(model => Model.Companies[i].Name, "", new { @class = "company-name-validation" })
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    @Html.LabelFor(model => Model.Companies[i].City, new { @class = "control-label" })
-                                    @Html.TextBoxFor(model => Model.Companies[i].City, new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => Model.Companies[i].City)
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    @Html.LabelFor(model => Model.Companies[i].ParentCompanyName, new { @class = "control-label" })
-                                    @Html.TextBoxFor(model => Model.Companies[i].ParentCompanyName, new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => Model.Companies[i].ParentCompanyName)
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    @Html.LabelFor(m => Model.Companies[i].Industry)
-                                    @Html.EnumDropDownListFor(model => Model.Companies[i].Industry, "Please, select industry", new { @class = "form-control" })
+                                    @Html.LabelFor(model => Model.Companies[i].City, new { @class = "company-city-label control-label" })
+                                    @Html.TextBoxFor(model => Model.Companies[i].City, new { @class = "company-city-input form-control" })
+                                    @Html.ValidationMessageFor(model => Model.Companies[i].City, "", new { @class = "company-city-validation" })
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    @Html.LabelFor(model => Model.Companies[i].MainProductions, new { @class = "control-label" })
-                                    @Html.TextBoxFor(model => Model.Companies[i].MainProductions, new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => Model.Companies[i].MainProductions)
+                                    @Html.LabelFor(model => Model.Companies[i].ParentCompanyName, new { @class = "company-parent-company-label control-label" })
+                                    @Html.TextBoxFor(model => Model.Companies[i].ParentCompanyName, new { @class = "company-parent-company-input form-control" })
+                                    @Html.ValidationMessageFor(model => Model.Companies[i].ParentCompanyName, "", new { @class = "company-parent-company-validation" })
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => Model.Companies[i].Industry, new { @class = "company-industry-label" })
+                                    @Html.EnumDropDownListFor(model => Model.Companies[i].Industry, "Please, select industry", new { @class = "company-industry-select form-control" })
+                                    @Html.ValidationMessageFor(model => model.Companies[i].Industry, "", new { @class = "company-industry-validation" })
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => Model.Companies[i].OtherIndustry, new { @class = "company-other-industry-label control-label" })
+                                    @Html.TextBoxFor(model => Model.Companies[i].OtherIndustry, new { @class = "company-other-industry-input form-control" })
+                                    @Html.ValidationMessageFor(model => Model.Companies[i].OtherIndustry, "", new { @class = "company-other-industry-validation" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => Model.Companies[i].MainProductions, new { @class = "company-productions-label control-label" })
+                                    @Html.TextBoxFor(model => Model.Companies[i].MainProductions, new { @class = "company-productions-input form-control" })
+                                    @Html.ValidationMessageFor(model => Model.Companies[i].MainProductions, "", new { @class = "company-productions-validation" })
                                 </div>
                             </div>
 
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    @Html.LabelFor(model => Model.Companies[i].Turnover, new { @class = "control-label" })
-                                    @Html.TextBoxFor(model => Model.Companies[i].Turnover, new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => Model.Companies[i].Turnover)
+                                    @Html.LabelFor(model => Model.Companies[i].Turnover, new { @class = "company-turnover-label control-label" })
+                                    @Html.TextBoxFor(model => Model.Companies[i].Turnover, new { @class = "company-turnover-input form-control" })
+                                    @Html.ValidationMessageFor(model => Model.Companies[i].Turnover, "", new { @class = "company-turnover-validation" })
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    @Html.LabelFor(model => Model.Companies[i].NumberOfEmployess, new { @class = "control-label" })
-                                    @Html.TextBoxFor(model => Model.Companies[i].NumberOfEmployess, new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => Model.Companies[i].NumberOfEmployess)
+                                    @Html.LabelFor(model => Model.Companies[i].NumberOfEmployess, new { @class = "company-employees-label control-label" })
+                                    @Html.TextBoxFor(model => Model.Companies[i].NumberOfEmployess, new { @class = "company-employees-input form-control" })
+                                    @Html.ValidationMessageFor(model => Model.Companies[i].NumberOfEmployess, "", new { @class = "company-employees-validation" })
                                 </div>
                             </div>
                         </div>
@@ -73,99 +88,100 @@
                     <div class="col-md-1">
                         <img class="remove-button company-remove" src="~/Content/Images/remove.png" />
                     </div>
-                </div>
+                    <div class="positions_container">
+                        @for (var j = 0; j < Model.Companies[i].Positions.Count; j++)
+                        {
+                            <div class="position_row row">
+                                <div class="col-md-11 col-md-offset-1">
+                                    <h5>POSITION #<span>1</span></h5>
+                                </div>
+                                <div class="col-md-11">
+                                    <div class="row">
+                                        <div class="col-md-5 col-md-offset-1 left-border left-control">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => Model.Companies[i].Positions[j].Name, new { @class = "position-name-label control-label" })
+                                                @Html.TextBoxFor(model => Model.Companies[i].Positions[j].Name, new { @class = "position-name-input form-control" })
+                                                @Html.ValidationMessageFor(model => Model.Companies[i].Positions[j].Name, "", new { @class = "position-name-validation" })
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => Model.Companies[i].Positions[j].FromTime, new { @class = "position-from-time-label control-label" })
+                                                @Html.TextBoxFor(model => Model.Companies[i].Positions[j].FromTime, new { @class = "position-from-time-input form-control" })
+                                                @Html.ValidationMessageFor(model => Model.Companies[i].Positions[j].FromTime, "", new { @class = "position-from-time-validation" })
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => Model.Companies[i].Positions[j].ToTime, new { @class = "position-to-time-label control-label" })
+                                                @Html.TextBoxFor(model => Model.Companies[i].Positions[j].ToTime, new { @class = "position-to-time-input form-control" })
+                                                @Html.ValidationMessageFor(model => Model.Companies[i].Positions[j].ToTime, "", new { @class = "position-to-time-validation" })
+                                                <div class="checkbox">
+                                                    @Html.CheckBoxFor(model => Model.Companies[i].Positions[j].Now, new { @class = "career-position-now-input" })
+                                                    @Html.LabelFor(model => Model.Companies[i].Positions[j].Now, new { @class = "career-position-now-label control-label" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-11 col-md-offset-1 left-border">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => Model.Companies[i].Positions[j].KeyTasks, new { @class = "position-key-tasks-label control-label" })
+                                                @Html.TextAreaFor(model => Model.Companies[i].Positions[j].KeyTasks, new { @class = "position-key-tasks-input form-control" })
+                                                @Html.ValidationMessageFor(model => Model.Companies[i].Positions[j].KeyTasks, "", new { @class = "position-key-tasks-validation" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 col-md-offset-1 left-border">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => Model.Companies[i].Positions[j].ReportingTo, new { @class = "position-reporting-to-label control-label" })
+                                                @Html.TextBoxFor(model => Model.Companies[i].Positions[j].ReportingTo, new { @class = "position-reporting-to-input form-control" })
+                                                @Html.ValidationMessageFor(model => Model.Companies[i].Positions[j].ReportingTo, "", new { @class = "position-reporting-to-validation" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-11 col-md-offset-1 left-border">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => Model.Companies[i].Positions[j].DirectSubordinates, new { @class = "position-subordinates-label control-label" })
+                                                @Html.TextAreaFor(model => Model.Companies[i].Positions[j].DirectSubordinates, new { @class = "position-subordinates-input form-control" })
+                                                @Html.ValidationMessageFor(model => Model.Companies[i].Positions[j].DirectSubordinates, "", new { @class = "position-subordinates-validation" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-11 col-md-offset-1 left-border">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => Model.Companies[i].Positions[j].Achievements, new { @class = "position-achievements-label control-label" })
+                                                @Html.TextAreaFor(model => Model.Companies[i].Positions[j].Achievements, new { @class = "position-achievements-input form-control" })
+                                                @Html.ValidationMessageFor(model => Model.Companies[i].Positions[j].Achievements, "", new { @class = "position-achievements-validation" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-11 col-md-offset-1 left-border">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => Model.Companies[i].Positions[j].ReasonForLeaving, new { @class = "position-reason-label control-label" })
+                                                @Html.TextAreaFor(model => Model.Companies[i].Positions[j].ReasonForLeaving, new { @class = "position-reason-input form-control" })
+                                                @Html.ValidationMessageFor(model => Model.Companies[i].Positions[j].ReasonForLeaving, "", new { @class = "position-reason-validation" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                    <img class="remove-button position-remove" src="~/Content/Images/remove.png" />
+                                </div>
+                            </div>
+                        }
 
-                <div id="positions_container">
+                    </div>
                     <div class="row">
-                        <div class="col-md-4 col-md-offset-1">
-                            <h4>POSITIONS</h4>
+                        <div class="col-md-offset-1 col-md-10 text-center">
+                            <p><img class="position_add" src="~/Content/Images/add.png" /> ADD POSITION</p>
                         </div>
                     </div>
-                    @for (var j = 0; j < Model.Companies[i].Positions.Count; j++)
-                    {
-                        <div class="position_row row">
-                            <div class="col-md-11">
-                                <div class="row">
-                                    <div class="col-md-5 col-md-offset-1 left-border">
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => Model.Companies[i].Positions[j].Name, new { @class = "control-label" })
-                                            @Html.TextBoxFor(model => Model.Companies[i].Positions[j].Name, new { @class = "form-control" })
-                                            @Html.ValidationMessageFor(model => Model.Companies[i].Positions[j].Name)
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => Model.Companies[i].Positions[j].FromTime, new { @class = "control-label" })
-                                            @Html.TextBoxFor(model => Model.Companies[i].Positions[j].FromTime, new { @class = "form-control" })
-                                            @Html.ValidationMessageFor(model => Model.Companies[i].Positions[j].FromTime)
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => Model.Companies[i].Positions[j].ToTime, new { @class = "control-label" })
-                                            @Html.TextBoxFor(model => Model.Companies[i].Positions[j].ToTime, new { @class = "form-control" })
-                                            @Html.ValidationMessageFor(model => Model.Companies[i].Positions[j].ToTime)
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-11 col-md-offset-1 left-border">
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => Model.Companies[i].Positions[j].KeyTasks, new { @class = "control-label" })
-                                            @Html.TextAreaFor(model => Model.Companies[i].Positions[j].KeyTasks, new { @class = "form-control" })
-                                            @Html.ValidationMessageFor(model => Model.Companies[i].Positions[j].KeyTasks)
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4 col-md-offset-1 left-border">
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => Model.Companies[i].Positions[j].ReportingTo, new { @class = "control-label" })
-                                            @Html.TextBoxFor(model => Model.Companies[i].Positions[j].ReportingTo, new { @class = "form-control" })
-                                            @Html.ValidationMessageFor(model => Model.Companies[i].Positions[j].ReportingTo)
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-11 col-md-offset-1 left-border">
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => Model.Companies[i].Positions[j].DirectSubordinates, new { @class = "control-label" })
-                                            @Html.TextAreaFor(model => Model.Companies[i].Positions[j].DirectSubordinates, new { @class = "form-control" })
-                                            @Html.ValidationMessageFor(model => Model.Companies[i].Positions[j].DirectSubordinates)
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-11 col-md-offset-1 left-border">
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => Model.Companies[i].Positions[j].Achievements, new { @class = "control-label" })
-                                            @Html.TextAreaFor(model => Model.Companies[i].Positions[j].Achievements, new { @class = "form-control" })
-                                            @Html.ValidationMessageFor(model => Model.Companies[i].Positions[j].Achievements)
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-11 col-md-offset-1 left-border">
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => Model.Companies[i].Positions[j].ReasonForLeaving, new { @class = "control-label" })
-                                            @Html.TextAreaFor(model => Model.Companies[i].Positions[j].ReasonForLeaving, new { @class = "form-control" })
-                                            @Html.ValidationMessageFor(model => Model.Companies[i].Positions[j].ReasonForLeaving)
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-1">
-                                <img class="remove-button position-remove" src="~/Content/Images/remove.png" />
-                            </div>
-                        </div>
-                    }
-                    <div class="row">
-                            <div class="col-md-offset-1 col-md-10 text-center">
-                                <p><img id="position_add" src="~/Content/Images/add.png" /> ADD POSITION</p>
-                            </div>
-                    </div>
                 </div>
-
             }
         </div>
 

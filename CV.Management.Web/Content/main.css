@@ -85,3 +85,19 @@ html, body {
 .remove-button {
     padding-top: 34px;
 }
+
+.education-now-input, .career-position-now-input, .membership-now-input {
+    margin-left: 0px !important;
+}
+
+.education-now-label, .career-position-now-label, .membership-now-label {
+    padding-top: 0px !important;
+}
+
+.checkbox {
+    margin-top: 5px;
+}
+
+.left-control {
+    height: 104px;
+}
