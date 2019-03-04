@@ -86,11 +86,11 @@ html, body {
     padding-top: 34px;
 }
 
-.education-now-input, .career-position-now-input, .membership-now-input {
+.education-now-input, .career-position-now-input, .membership-now-input, .remember-input {
     margin-left: 0px !important;
 }
 
-.education-now-label, .career-position-now-label, .membership-now-label {
+.education-now-label, .career-position-now-label, .membership-now-label, .remember-label {
     padding-top: 0px !important;
 }
 
@@ -100,4 +100,32 @@ html, body {
 
 .left-control {
     height: 104px;
+}
+
+.line {
+    display: block;
+    margin-top: 31px;
+    background: linear-gradient(#ebecee, #ebecee) no-repeat center/100% 1px;
+}
+
+    .line em {
+        text-transform: uppercase;
+        font-size: 14px;
+        color: #bcbcbc;
+        display: table;
+        margin: 0 auto;
+        padding: 0 25px;
+        background-color: white;
+    }
+
+.external-login-list {
+    text-align: center;
+    padding-top: 30px;
+}
+
+.login-image {
+    display: block;
+    margin: 0 auto;
+    padding-top: 20px;
+    padding-bottom: 40px;
 }
