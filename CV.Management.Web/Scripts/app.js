@@ -280,7 +280,7 @@
         var toTimeFieldName = "ToTime";
         var descriptionFieldName = "Description";
 
-        $(".education_row").each(function (index) {
+        $(".membership_row").each(function (index) {
 
             $(this).find(".membership-from-time-label").attr("for", formName + "_" + index + "__" + fromTimeFieldName);
             $(this).find(".membership-from-time-input").attr({
@@ -354,35 +354,155 @@
 
     function updateCompanyFieldNumbers() {
 
-        var formName = "Memberships";
-        var fromTimeFieldName = "FromTime";
-        var toTimeFieldName = "ToTime";
-        var descriptionFieldName = "Description";
+        var companyFormName = "Companies";
+        var companyNameFieldName = "Name";
+        var companyCityFieldName = "City";
+        var companyParentCompanyFieldName = "ParentCompanyName";
+        var companyIndustryFieldName = "Industry";
+        var companyOtherIndustryFieldName = "OtherIndustry";
+        var companyMainProductionsFieldName = "MainProductions";
+        var companyTurnoverFieldName = "Turnover";
+        var companyEmployeesFieldName = "NumberOfEmployees";
+        var positionFormName = "Positions";
+        var positionNameFieldName = "Name";
+        var positionFromTimeFieldName = "FromTime";
+        var positionToTimeFieldName = "ToTime";
+        var positionNowFieldName = "Now";
+        var positionKeyTasks = "KeyTasks";
+        var positionReportingToFieldName = "ReportingTo";
+        var positionDirectSubordinatesFieldName = "DirectSubordinates";
+        var positionAchievementsFieldName = "Achievements";
+        var positionReasonForLeavingFieldName = "ReasonForLeaving";
 
-        $(".company_row").each(function (index) {
+        $(".company_row").each(function (companyIndex) {
 
-            $(this).find(".membership-from-time-label").attr("for", formName + "_" + index + "__" + fromTimeFieldName);
-            $(this).find(".membership-from-time-input").attr({
-                "id": formName + "_" + index + "__" + fromTimeFieldName,
-                "name": formName + "[" + index + "]." + fromTimeFieldName
+            $(this).find(".company-number").text(companyIndex + 1);
+
+            $(this).find(".company-name-label").attr("for", companyFormName + "_" + companyIndex + "__" + companyNameFieldName);
+            $(this).find(".company-name-input").attr({
+                "id": companyFormName + "_" + companyIndex + "__" + companyNameFieldName,
+                "name": companyFormName + "[" + companyIndex + "]." + companyNameFieldName
             });
-            $(this).find(".membership-from-time-validation").attr("data-valmsg-for", formName + "[" + index + "]." + fromTimeFieldName);
+            $(this).find(".company-name-validation").attr("data-valmsg-for", companyFormName + "[" + companyIndex + "]." + companyNameFieldName);
 
-            $(this).find(".membership-to-time-label").attr("for", formName + "_" + index + "__" + toTimeFieldName);
-            $(this).find(".membership-to-time-input").attr({
-                "id": formName + "_" + index + "__" + toTimeFieldName,
-                "name": formName + "[" + index + "]." + toTimeFieldName
+            $(this).find(".company-city-label").attr("for", companyFormName + "_" + companyIndex + "__" + companyCityFieldName);
+            $(this).find(".company-city-input").attr({
+                "id": companyFormName + "_" + companyIndex + "__" + companyCityFieldName,
+                "name": companyFormName + "[" + companyIndex + "]." + companyCityFieldName
             });
-            $(this).find(".membership-to-time-validation").attr("data-valmsg-for", formName + "[" + index + "]." + toTimeFieldName);
+            $(this).find(".company-city-validation").attr("data-valmsg-for", companyFormName + "[" + companyIndex + "]." + companyCityFieldName);
 
-            $(this).find(".membership-description-label").attr("for", formName + "_" + index + "__" + descriptionFieldName);
-            $(this).find(".membership-description-input").attr({
-                "id": formName + "_" + index + "__" + descriptionFieldName,
-                "name": formName + "[" + index + "]." + descriptionFieldName
+            $(this).find(".company-parent-company-label").attr("for", companyFormName + "_" + companyIndex + "__" + companyParentCompanyFieldName);
+            $(this).find(".company-parent-company-input").attr({
+                "id": companyFormName + "_" + companyIndex + "__" + companyParentCompanyFieldName,
+                "name": companyFormName + "[" + companyIndex + "]." + companyParentCompanyFieldName
             });
-            $(this).find(".membership-description-validation").attr("data-valmsg-for", formName + "[" + index + "]." + descriptionFieldName);
+            $(this).find(".company-parent-company-validation").attr("data-valmsg-for", companyFormName + "[" + companyIndex + "]." + companyParentCompanyFieldName);
 
+            $(this).find(".company-industry-label").attr("for", companyFormName + "_" + companyIndex + "__" + companyIndustryFieldName);
+            $(this).find(".company-industry-select").attr({
+                "id": companyFormName + "_" + companyIndex + "__" + companyIndustryFieldName,
+                "name": companyFormName + "[" + companyIndex + "]." + companyIndustryFieldName
+            });
+            $(this).find(".company-industry-validation").attr("data-valmsg-for", companyFormName + "[" + companyIndex + "]." + companyIndustryFieldName);
+
+            $(this).find(".company-other-industry-label").attr("for", companyFormName + "_" + companyIndex + "__" + companyOtherIndustryFieldName);
+            $(this).find(".company-other-industry-input").attr({
+                "id": companyFormName + "_" + companyIndex + "__" + companyOtherIndustryFieldName,
+                "name": companyFormName + "[" + companyIndex + "]." + companyOtherIndustryFieldName
+            });
+            $(this).find(".company-other-industry-validation").attr("data-valmsg-for", companyFormName + "[" + companyIndex + "]." + companyOtherIndustryFieldName);
+
+            $(this).find(".company-productions-label").attr("for", companyFormName + "_" + companyIndex + "__" + companyMainProductionsFieldName);
+            $(this).find(".company-productions-input").attr({
+                "id": companyFormName + "_" + companyIndex + "__" + companyMainProductionsFieldName,
+                "name": companyFormName + "[" + companyIndex + "]." + companyMainProductionsFieldName
+            });
+            $(this).find(".company-productions-validation").attr("data-valmsg-for", companyFormName + "[" + companyIndex + "]." + companyMainProductionsFieldName);
+
+            $(this).find(".company-turnover-label").attr("for", companyFormName + "_" + companyIndex + "__" + companyTurnoverFieldName);
+            $(this).find(".company-turnover-input").attr({
+                "id": companyFormName + "_" + companyIndex + "__" + companyTurnoverFieldName,
+                "name": companyFormName + "[" + companyIndex + "]." + companyTurnoverFieldName
+            });
+            $(this).find(".company-turnover-validation").attr("data-valmsg-for", companyFormName + "[" + companyIndex + "]." + companyTurnoverFieldName);
+
+            $(this).find(".company-employees-label").attr("for", companyFormName + "_" + companyIndex + "__" + companyEmployeesFieldName);
+            $(this).find(".company-employees-input").attr({
+                "id": companyFormName + "_" + companyIndex + "__" + companyEmployeesFieldName,
+                "name": companyFormName + "[" + companyIndex + "]." + companyEmployeesFieldName
+            });
+            $(this).find(".company-employees-validation").attr("data-valmsg-for", companyFormName + "[" + companyIndex + "]." + companyEmployeesFieldName);
+
+            $(this).find(".position_row").each(function (positionIndex) {
+
+                $(this).find(".position-number").text(positionIndex + 1);
+
+                $(this).find(".position-name-label").attr("for", companyFormName + "_" + companyIndex + "__" + positionFormName + "_" + positionIndex + "__" + positionNameFieldName);
+                $(this).find(".position-name-input").attr({
+                    "id": companyFormName + "_" + companyIndex + "__" + positionFormName + "_" + positionIndex + "__" + positionNameFieldName,
+                    "name": companyFormName + "[" + companyIndex + "]." + positionFormName + "[" + positionIndex + "]." + positionNameFieldName
+                });
+                $(this).find(".position-name-validation").attr("data-valmsg-for", companyFormName + "[" + companyIndex + "]." + positionFormName + "[" + positionIndex + "]." + positionNameFieldName);
+
+                $(this).find(".position-from-time-label").attr("for", companyFormName + "_" + companyIndex + "__" + positionFormName + "_" + positionIndex + "__" + positionFromTimeFieldName);
+                $(this).find(".position-from-time-input").attr({
+                    "id": companyFormName + "_" + companyIndex + "__" + positionFormName + "_" + positionIndex + "__" + positionFromTimeFieldName,
+                    "name": companyFormName + "[" + companyIndex + "]." + positionFormName + "[" + positionIndex + "]." + positionFromTimeFieldName
+                });
+                $(this).find(".position-from-time-validation").attr("data-valmsg-for", companyFormName + "[" + companyIndex + "]." + positionFormName + "[" + positionIndex + "]." + positionFromTimeFieldName);
+
+                $(this).find(".position-to-time-label").attr("for", companyFormName + "_" + companyIndex + "__" + positionFormName + "_" + positionIndex + "__" + positionToTimeFieldName);
+                $(this).find(".position-to-time-input").attr({
+                    "id": companyFormName + "_" + companyIndex + "__" + positionFormName + "_" + positionIndex + "__" + positionToTimeFieldName,
+                    "name": companyFormName + "[" + companyIndex + "]." + positionFormName + "[" + positionIndex + "]." + positionToTimeFieldName
+                });
+                $(this).find(".position-to-time-validation").attr("data-valmsg-for", companyFormName + "[" + companyIndex + "]." + positionFormName + "[" + positionIndex + "]." + positionToTimeFieldName);
+
+                $(this).find(".career-position-now-label").attr("for", companyFormName + "_" + companyIndex + "__" + positionFormName + "_" + positionIndex + "__" + positionNowFieldName);
+                $(this).find(".career-position-now-input").attr({
+                    "id": companyFormName + "_" + companyIndex + "__" + positionFormName + "_" + positionIndex + "__" + positionNowFieldName,
+                    "name": companyFormName + "[" + companyIndex + "]." + positionFormName + "[" + positionIndex + "]." + positionNowFieldName
+                });
+
+                $(this).find(".position-key-tasks-label").attr("for", companyFormName + "_" + companyIndex + "__" + positionFormName + "_" + positionIndex + "__" + positionKeyTasks);
+                $(this).find(".position-key-tasks-input").attr({
+                    "id": companyFormName + "_" + companyIndex + "__" + positionFormName + "_" + positionIndex + "__" + positionKeyTasks,
+                    "name": companyFormName + "[" + companyIndex + "]." + positionFormName + "[" + positionIndex + "]." + positionKeyTasks
+                });
+                $(this).find(".position-key-tasks-validation").attr("data-valmsg-for", companyFormName + "[" + companyIndex + "]." + positionFormName + "[" + positionIndex + "]." + positionKeyTasks);
+
+                $(this).find(".position-reporting-to-label").attr("for", companyFormName + "_" + companyIndex + "__" + positionFormName + "_" + positionIndex + "__" + positionReportingToFieldName);
+                $(this).find(".position-reporting-to-input").attr({
+                    "id": companyFormName + "_" + companyIndex + "__" + positionFormName + "_" + positionIndex + "__" + positionReportingToFieldName,
+                    "name": companyFormName + "[" + companyIndex + "]." + positionFormName + "[" + positionIndex + "]." + positionReportingToFieldName
+                });
+                $(this).find(".position-reporting-to-validation").attr("data-valmsg-for", companyFormName + "[" + companyIndex + "]." + positionFormName + "[" + positionIndex + "]." + positionReportingToFieldName);
+
+                $(this).find(".position-subordinates-label").attr("for", companyFormName + "_" + companyIndex + "__" + positionFormName + "_" + positionIndex + "__" + positionDirectSubordinatesFieldName);
+                $(this).find(".position-subordinates-input").attr({
+                    "id": companyFormName + "_" + companyIndex + "__" + positionFormName + "_" + positionIndex + "__" + positionDirectSubordinatesFieldName,
+                    "name": companyFormName + "[" + companyIndex + "]." + positionFormName + "[" + positionIndex + "]." + positionDirectSubordinatesFieldName
+                });
+                $(this).find(".position-subordinates-validation").attr("data-valmsg-for", companyFormName + "[" + companyIndex + "]." + positionFormName + "[" + positionIndex + "]." + positionDirectSubordinatesFieldName);
+
+                $(this).find(".position-achievements-label").attr("for", companyFormName + "_" + companyIndex + "__" + positionFormName + "_" + positionIndex + "__" + positionAchievementsFieldName);
+                $(this).find(".position-achievements-input").attr({
+                    "id": companyFormName + "_" + companyIndex + "__" + positionFormName + "_" + positionIndex + "__" + positionAchievementsFieldName,
+                    "name": companyFormName + "[" + companyIndex + "]." + positionFormName + "[" + positionIndex + "]." + positionAchievementsFieldName
+                });
+                $(this).find(".position-achievements-validation").attr("data-valmsg-for", companyFormName + "[" + companyIndex + "]." + positionFormName + "[" + positionIndex + "]." + positionAchievementsFieldName);
+
+                $(this).find(".position-reason-label").attr("for", companyFormName + "_" + companyIndex + "__" + positionFormName + "_" + positionIndex + "__" + positionReasonForLeavingFieldName);
+                $(this).find(".position-reason-input").attr({
+                    "id": companyFormName + "_" + companyIndex + "__" + positionFormName + "_" + positionIndex + "__" + positionReasonForLeavingFieldName,
+                    "name": companyFormName + "[" + companyIndex + "]." + positionFormName + "[" + positionIndex + "]." + positionReasonForLeavingFieldName
+                });
+                $(this).find(".position-reason-validation").attr("data-valmsg-for", companyFormName + "[" + companyIndex + "]." + positionFormName + "[" + positionIndex + "]." + positionReasonForLeavingFieldName);
+
+            });
         });
+
     }
     function removeCompany() {
         $(this).closest('div[class^="company_row"]').remove();
@@ -568,95 +688,45 @@
     }
 
     function addPosition() {
-        var existingPositionRowCount = $(".position_row").length;
         var lastPositionRow = $(".position_row").last();
         var newRow = lastPositionRow.clone();
 
-        var companyFormName = "Companies";
-        var positionFormName = "Positions";
-        var positionNameFieldName = "Name";
-        var positionFromTimeFieldName = "FromTime";
-        var positionToTimeFieldName = "ToTime";
-        var positionNowFieldName = "Now";
-        var positionKeyTasks = "KeyTasks";
-        var positionReportingToFieldName = "ReportingTo";
-        var positionDirectSubordinatesFieldName = "DirectSubordinates";
-        var positionAchievementsFieldName = "Achievements";
-        var positionReasonForLeavingFieldName = "ReasonForLeaving";
+        var currentNumber = parseInt(newRow.find(".position-number").text());
 
-        newRow.find(".position-name-label").attr("for", companyFormName + "_" + existingPositionRowCount + "__" + positionFormName + "_0__" + positionNameFieldName);
+        newRow.find(".position-number").text(currentNumber + 1);
+
         newRow.find(".position-name-input").attr({
-            "id": companyFormName + "_" + existingPositionRowCount + "__" + positionFormName + "_0__" + positionNameFieldName,
-            "name": companyFormName + "[" + existingPositionRowCount + "]." + positionFormName + "[0]." + positionNameFieldName,
             "value": null
         });
-        newRow.find(".position-name-validation").attr("data-valmsg-for", companyFormName + "[" + existingPositionRowCount + "]." + positionFormName + "[0]." + positionNameFieldName);
 
-        newRow.find(".position-from-time-label").attr("for", companyFormName + "_" + existingPositionRowCount + "__" + positionFormName + "_0__" + positionFromTimeFieldName);
         newRow.find(".position-from-time-input").attr({
-            "id": companyFormName + "_" + existingPositionRowCount + "__" + positionFormName + "_0__" + positionFromTimeFieldName,
-            "name": companyFormName + "[" + existingPositionRowCount + "]." + positionFormName + "[0]." + positionFromTimeFieldName,
             "value": null
         });
-        newRow.find(".position-from-time-validation").attr("data-valmsg-for", companyFormName + "[" + existingPositionRowCount + "]." + positionFormName + "[0]." + positionFromTimeFieldName);
 
-        newRow.find(".position-to-time-label").attr("for", companyFormName + "_" + existingPositionRowCount + "__" + positionFormName + "_0__" + positionToTimeFieldName);
         newRow.find(".position-to-time-input").attr({
-            "id": companyFormName + "_" + existingPositionRowCount + "__" + positionFormName + "_0__" + positionToTimeFieldName,
-            "name": companyFormName + "[" + existingPositionRowCount + "]." + positionFormName + "[0]." + positionToTimeFieldName,
             "value": null
         });
-        newRow.find(".position-to-time-validation").attr("data-valmsg-for", companyFormName + "[" + existingPositionRowCount + "]." + positionFormName + "[0]." + positionToTimeFieldName);
 
-        newRow.find(".career-position-now-label").attr("for", companyFormName + "_" + existingPositionRowCount + "__" + positionFormName + "_0__" + positionNowFieldName);
         newRow.find(".career-position-now-input").attr({
-            "id": companyFormName + "_" + existingPositionRowCount + "__" + positionFormName + "_0__" + positionNowFieldName,
-            "name": companyFormName + "[" + existingPositionRowCount + "]." + positionFormName + "[0]." + positionNowFieldName,
             "value": null
         });
-
-        newRow.find(".position-key-tasks-label").attr("for", companyFormName + "_" + existingPositionRowCount + "__" + positionFormName + "_0__" + positionKeyTasks);
-        newRow.find(".position-key-tasks-input").attr({
-            "id": companyFormName + "_" + existingPositionRowCount + "__" + positionFormName + "_0__" + positionKeyTasks,
-            "name": companyFormName + "[" + existingPositionRowCount + "]." + positionFormName + "[0]." + positionKeyTasks,
-            "value": null
-        });
-        newRow.find(".position-key-tasks-validation").attr("data-valmsg-for", companyFormName + "[" + existingPositionRowCount + "]." + positionFormName + "[0]." + positionKeyTasks);
-
-        newRow.find(".position-reporting-to-label").attr("for", companyFormName + "_" + existingPositionRowCount + "__" + positionFormName + "_0__" + positionReportingToFieldName);
+        
+        newRow.find(".position-key-tasks-input").val(null);
+        
         newRow.find(".position-reporting-to-input").attr({
-            "id": companyFormName + "_" + existingPositionRowCount + "__" + positionFormName + "_0__" + positionReportingToFieldName,
-            "name": companyFormName + "[" + existingPositionRowCount + "]." + positionFormName + "[0]." + positionReportingToFieldName,
             "value": null
         });
-        newRow.find(".position-reporting-to-validation").attr("data-valmsg-for", companyFormName + "[" + existingPositionRowCount + "]." + positionFormName + "[0]." + positionReportingToFieldName);
 
-        newRow.find(".position-subordinates-label").attr("for", companyFormName + "_" + existingPositionRowCount + "__" + positionFormName + "_0__" + positionDirectSubordinatesFieldName);
-        newRow.find(".position-subordinates-input").attr({
-            "id": companyFormName + "_" + existingPositionRowCount + "__" + positionFormName + "_0__" + positionDirectSubordinatesFieldName,
-            "name": companyFormName + "[" + existingPositionRowCount + "]." + positionFormName + "[0]." + positionDirectSubordinatesFieldName
-        });
         newRow.find(".position-subordinates-input").val(null);
-        newRow.find(".position-subordinates-validation").attr("data-valmsg-for", companyFormName + "[" + existingPositionRowCount + "]." + positionFormName + "[0]." + positionDirectSubordinatesFieldName);
 
-        newRow.find(".position-achievements-label").attr("for", companyFormName + "_" + existingPositionRowCount + "__" + positionFormName + "_0__" + positionAchievementsFieldName);
-        newRow.find(".position-achievements-input").attr({
-            "id": companyFormName + "_" + existingPositionRowCount + "__" + positionFormName + "_0__" + positionAchievementsFieldName,
-            "name": companyFormName + "[" + existingPositionRowCount + "]." + positionFormName + "[0]." + positionAchievementsFieldName
-        });
         newRow.find(".position-achievements-input").val(null);
-        newRow.find(".position-achievements-validation").attr("data-valmsg-for", companyFormName + "[" + existingPositionRowCount + "]." + positionFormName + "[0]." + positionAchievementsFieldName);
 
-        newRow.find(".position-reason-label").attr("for", companyFormName + "_" + existingPositionRowCount + "__" + positionFormName + "_0__" + positionReasonForLeavingFieldName);
-        newRow.find(".position-reason-input").attr({
-            "id": companyFormName + "_" + existingPositionRowCount + "__" + positionFormName + "_0__" + positionReasonForLeavingFieldName,
-            "name": companyFormName + "[" + existingPositionRowCount + "]." + positionFormName + "[0]." + positionReasonForLeavingFieldName
-        });
         newRow.find(".position-reason-input").val(null);
-        newRow.find(".position-reason-validation").attr("data-valmsg-for", companyFormName + "[" + existingPositionRowCount + "]." + positionFormName + "[0]." + positionReasonForLeavingFieldName);
 
         newRow.find(".position-remove").click(removePosition);
         $(this).closest('div[class^="company_row"]').find(".positions_container").append(newRow);
+
+        updateCompanyFieldNumbers();
     }
 
     $(".position_add").click(addPosition);
