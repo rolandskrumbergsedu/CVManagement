@@ -1,6 +1,7 @@
 ﻿using DocumentFormat.OpenXml.Wordprocessing;
 using DocumentFormat.OpenXml;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CV.Management.Generation.Word.ContentHelper
 {
@@ -126,13 +127,31 @@ namespace CV.Management.Generation.Word.ContentHelper
             {
                 table1.Append(CreateCompanySubheadingRow(data.CareerSummary[i]));
                 table1.Append(CreateCompanyInformationRow(data.CareerSummary[i]));
-                table1.Append(CreateRoleInformationRow(data.CareerSummary[i]));
-                table1.Append(CreateTaskInformationRow(data.CareerSummary[i]));
-                table1.Append(CreateReportingToRow(data.CareerSummary[i]));
 
-                if (!string.IsNullOrEmpty(data.CareerSummary[i].ReasonForLeaving))
+                for (int j = 0; j < data.CareerSummary[i].Roles.Count; j++)
                 {
-                    table1.Append(CreateReasonForLeavingRow(data.CareerSummary[i]));
+                    table1.Append(CreateRoleInformationRow(data.CareerSummary[i].Roles[j]));
+                    table1.Append(CreateTaskInformationRow(data.CareerSummary[i].Roles[j]));
+
+                    if (!string.IsNullOrEmpty(data.CareerSummary[i].Roles[j].ReportingTo))
+                    {
+                        table1.Append(CreateReportingToRow(data.CareerSummary[i].Roles[j]));
+                    }
+
+                    if (!string.IsNullOrEmpty(data.CareerSummary[i].Roles[j].Subordinates))
+                    {
+                        table1.Append(CreateSubordinatesRow(data.CareerSummary[i].Roles[j]));
+                    }
+
+                    if (!string.IsNullOrEmpty(data.CareerSummary[i].Roles[j].Achievements))
+                    {
+                        table1.Append(CreateAchievementsRow(data.CareerSummary[i].Roles[j]));
+                    }
+
+                    if (!string.IsNullOrEmpty(data.CareerSummary[i].Roles[j].ReasonForLeaving))
+                    {
+                        table1.Append(CreateReasonForLeavingRow(data.CareerSummary[i].Roles[j]));
+                    }
                 }
 
                 if (i != data.CareerSummary.Count - 1)
@@ -192,7 +211,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties3.Append(fontSize3);
             runProperties3.Append(fontSizeComplexScript3);
             Text text3 = new Text();
-            text3.Text = $"{data.StartingYear} - {data.EndingYear}";
+            text3.Text = $"{GetCompanyStartingTime(data)} - {GetCompanyEndingTime(data)}";
 
             run3.Append(runProperties3);
             run3.Append(text3);
@@ -349,6 +368,12 @@ namespace CV.Management.Generation.Word.ContentHelper
             tableCell5.Append(tableCellProperties5);
             tableCell5.Append(paragraph5);
 
+            if (!string.IsNullOrEmpty(data.City))
+            {
+                var paragraph10 = CreateCompanyInformationParagraph("City", data.City);
+                tableCell5.Append(paragraph10);
+            }
+
             if (!string.IsNullOrEmpty(data.ParentCompany))
             {
                 var paragraph10 = CreateCompanyInformationParagraph("Parent company", data.ParentCompany);
@@ -386,7 +411,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             return tableRow3;
         }
 
-        private static TableRow CreateRoleInformationRow(CareerSummaryItem data)
+        private static TableRow CreateRoleInformationRow(RoleInformation data)
         {
             TableRow tableRow4 = new TableRow() { RsidTableRowAddition = "009B2C1D", RsidTableRowProperties = "009E39C2", ParagraphId = "418DF43A", TextId = "77777777" };
 
@@ -442,7 +467,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             Paragraph paragraph11 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidRunAdditionDefault = "009E39C2", ParagraphId = "49F7C6AF", TextId = "77777777" };
 
             ParagraphProperties paragraphProperties8 = new ParagraphProperties();
-            SpacingBetweenLines spacingBetweenLines8 = new SpacingBetweenLines() { Before = "150", After = "100", Line = "240", LineRule = LineSpacingRuleValues.Auto };
+            SpacingBetweenLines spacingBetweenLines8 = new SpacingBetweenLines() { Before = "200", After = "100", Line = "240", LineRule = LineSpacingRuleValues.Auto };
             Indentation indentation7 = new Indentation() { Left = "144" };
 
             paragraphProperties8.Append(spacingBetweenLines8);
@@ -459,7 +484,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties19.Append(fontSize19);
             runProperties19.Append(fontSizeComplexScript19);
             Text text19 = new Text();
-            text19.Text = data.Role.Role.ToUpper();
+            text19.Text = data.Role.ToUpper();
 
             run19.Append(runProperties19);
             run19.Append(text19);
@@ -492,7 +517,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             return tableRow4;
         }
 
-        private static TableRow CreateTaskInformationRow(CareerSummaryItem data)
+        private static TableRow CreateTaskInformationRow(RoleInformation data)
         {
             TableRow tableRow5 = new TableRow() { RsidTableRowAddition = "009B2C1D", RsidTableRowProperties = "009E39C2", ParagraphId = "7B3ACA60", TextId = "77777777" };
 
@@ -575,8 +600,6 @@ namespace CV.Management.Generation.Word.ContentHelper
 
             var taskInformationParagraphs = new List<Paragraph>();
 
-            foreach (var task in data.Tasks)
-            {
                 Paragraph paragraph14 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidParagraphProperties = "009E39C2", RsidRunAdditionDefault = "009E39C2", ParagraphId = "0477A132", TextId = "77777777" };
 
                 ParagraphProperties paragraphProperties10 = new ParagraphProperties();
@@ -595,7 +618,7 @@ namespace CV.Management.Generation.Word.ContentHelper
                 runProperties26.Append(fontSize26);
                 runProperties26.Append(fontSizeComplexScript26);
                 Text text26 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-                text26.Text = $"{task};";
+                text26.Text = $"{data.Tasks};";
 
                 run26.Append(runProperties26);
                 run26.Append(text26);
@@ -613,7 +636,6 @@ namespace CV.Management.Generation.Word.ContentHelper
                 paragraph14.Append(run26);
 
                 taskInformationParagraphs.Add(paragraph14);
-            }
 
             tableCell9.Append(tableCellProperties9);
             tableCell9.Append(paragraph13);
@@ -627,7 +649,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             return tableRow5;
         }
 
-        private static TableRow CreateReportingToRow(CareerSummaryItem data)
+        private static TableRow CreateReportingToRow(RoleInformation data)
         {
             TableRow tableRow6 = new TableRow() { RsidTableRowAddition = "009B2C1D", RsidTableRowProperties = "009E39C2", ParagraphId = "5D5C1C0F", TextId = "77777777" };
 
@@ -700,13 +722,28 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties33.Append(fontSize33);
             runProperties33.Append(fontSizeComplexScript33);
             Text text33 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text33.Text = $"Reporting to: {data.ReportingTo}";
+            text33.Text = "Reporting to: ";
 
             run33.Append(runProperties33);
             run33.Append(text33);
 
+            Run run148 = new Run();
+
+            RunProperties runProperties148 = new RunProperties();
+            FontSize fontSize148 = new FontSize() { Val = "22" };
+            FontSizeComplexScript fontSizeComplexScript148 = new FontSizeComplexScript() { Val = "22" };
+
+            runProperties148.Append(fontSize148);
+            runProperties148.Append(fontSizeComplexScript148);
+            Text text148 = new Text();
+            text148.Text = data.ReportingTo;
+
+            run148.Append(runProperties148);
+            run148.Append(text148);
+
             paragraph18.Append(paragraphProperties13);
             paragraph18.Append(run33);
+            paragraph18.Append(run148);
 
             tableCell11.Append(tableCellProperties11);
             tableCell11.Append(paragraph18);
@@ -718,7 +755,219 @@ namespace CV.Management.Generation.Word.ContentHelper
             return tableRow6;
         }
 
-        private static TableRow CreateReasonForLeavingRow(CareerSummaryItem data)
+        private static TableRow CreateSubordinatesRow(RoleInformation data)
+        {
+            TableRow tableRow6 = new TableRow() { RsidTableRowAddition = "009B2C1D", RsidTableRowProperties = "009E39C2", ParagraphId = "5D5C1C0F", TextId = "77777777" };
+
+            TableRowProperties tableRowProperties5 = new TableRowProperties();
+            GridAfter gridAfter5 = new GridAfter() { Val = 1 };
+            WidthAfterTableRow widthAfterTableRow5 = new WidthAfterTableRow() { Width = "360", Type = TableWidthUnitValues.Dxa };
+
+            tableRowProperties5.Append(gridAfter5);
+            tableRowProperties5.Append(widthAfterTableRow5);
+
+            TableCell tableCell10 = new TableCell();
+
+            TableCellProperties tableCellProperties10 = new TableCellProperties();
+            TableCellWidth tableCellWidth10 = new TableCellWidth() { Width = "2550", Type = TableWidthUnitValues.Dxa };
+
+            TableCellBorders tableCellBorders10 = new TableCellBorders();
+            TopBorder topBorder11 = new TopBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
+            LeftBorder leftBorder11 = new LeftBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
+            BottomBorder bottomBorder11 = new BottomBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
+            RightBorder rightBorder11 = new RightBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
+
+            tableCellBorders10.Append(topBorder11);
+            tableCellBorders10.Append(leftBorder11);
+            tableCellBorders10.Append(bottomBorder11);
+            tableCellBorders10.Append(rightBorder11);
+
+            tableCellProperties10.Append(tableCellWidth10);
+            tableCellProperties10.Append(tableCellBorders10);
+            Paragraph paragraph17 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidRunAdditionDefault = "009B2C1D", ParagraphId = "1972B01A", TextId = "77777777" };
+
+            tableCell10.Append(tableCellProperties10);
+            tableCell10.Append(paragraph17);
+
+            TableCell tableCell11 = new TableCell();
+
+            TableCellProperties tableCellProperties11 = new TableCellProperties();
+            TableCellWidth tableCellWidth11 = new TableCellWidth() { Width = "6000", Type = TableWidthUnitValues.Dxa };
+
+            TableCellBorders tableCellBorders11 = new TableCellBorders();
+            TopBorder topBorder12 = new TopBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
+            LeftBorder leftBorder12 = new LeftBorder() { Val = BorderValues.Single, Color = "000000", Size = (UInt32Value)1U, Space = (UInt32Value)0U };
+            BottomBorder bottomBorder12 = new BottomBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
+            RightBorder rightBorder12 = new RightBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
+
+            tableCellBorders11.Append(topBorder12);
+            tableCellBorders11.Append(leftBorder12);
+            tableCellBorders11.Append(bottomBorder12);
+            tableCellBorders11.Append(rightBorder12);
+
+            tableCellProperties11.Append(tableCellWidth11);
+            tableCellProperties11.Append(tableCellBorders11);
+
+            Paragraph paragraph18 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidRunAdditionDefault = "009E39C2", ParagraphId = "5FDA8639", TextId = "2ABBA17A" };
+
+            ParagraphProperties paragraphProperties13 = new ParagraphProperties();
+            SpacingBetweenLines spacingBetweenLines13 = new SpacingBetweenLines() { Before = "150", After = "100", Line = "240", LineRule = LineSpacingRuleValues.Auto };
+            Indentation indentation12 = new Indentation() { Left = "144" };
+
+            paragraphProperties13.Append(spacingBetweenLines13);
+            paragraphProperties13.Append(indentation12);
+
+            Run run33 = new Run();
+
+            RunProperties runProperties33 = new RunProperties();
+            Bold bold7 = new Bold();
+            FontSize fontSize33 = new FontSize() { Val = "22" };
+            FontSizeComplexScript fontSizeComplexScript33 = new FontSizeComplexScript() { Val = "22" };
+
+            runProperties33.Append(bold7);
+            runProperties33.Append(fontSize33);
+            runProperties33.Append(fontSizeComplexScript33);
+            Text text33 = new Text() { Space = SpaceProcessingModeValues.Preserve };
+            text33.Text = "Subordinates: ";
+
+            run33.Append(runProperties33);
+            run33.Append(text33);
+
+            Run run148 = new Run();
+
+            RunProperties runProperties148 = new RunProperties();
+            FontSize fontSize148 = new FontSize() { Val = "22" };
+            FontSizeComplexScript fontSizeComplexScript148 = new FontSizeComplexScript() { Val = "22" };
+
+            runProperties148.Append(fontSize148);
+            runProperties148.Append(fontSizeComplexScript148);
+            Text text148 = new Text();
+            text148.Text = data.Subordinates;
+
+            run148.Append(runProperties148);
+            run148.Append(text148);
+
+            paragraph18.Append(paragraphProperties13);
+            paragraph18.Append(run33);
+            paragraph18.Append(run148);
+
+            tableCell11.Append(tableCellProperties11);
+            tableCell11.Append(paragraph18);
+
+            tableRow6.Append(tableRowProperties5);
+            tableRow6.Append(tableCell10);
+            tableRow6.Append(tableCell11);
+
+            return tableRow6;
+        }
+
+        private static TableRow CreateAchievementsRow(RoleInformation data)
+        {
+            TableRow tableRow6 = new TableRow() { RsidTableRowAddition = "009B2C1D", RsidTableRowProperties = "009E39C2", ParagraphId = "5D5C1C0F", TextId = "77777777" };
+
+            TableRowProperties tableRowProperties5 = new TableRowProperties();
+            GridAfter gridAfter5 = new GridAfter() { Val = 1 };
+            WidthAfterTableRow widthAfterTableRow5 = new WidthAfterTableRow() { Width = "360", Type = TableWidthUnitValues.Dxa };
+
+            tableRowProperties5.Append(gridAfter5);
+            tableRowProperties5.Append(widthAfterTableRow5);
+
+            TableCell tableCell10 = new TableCell();
+
+            TableCellProperties tableCellProperties10 = new TableCellProperties();
+            TableCellWidth tableCellWidth10 = new TableCellWidth() { Width = "2550", Type = TableWidthUnitValues.Dxa };
+
+            TableCellBorders tableCellBorders10 = new TableCellBorders();
+            TopBorder topBorder11 = new TopBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
+            LeftBorder leftBorder11 = new LeftBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
+            BottomBorder bottomBorder11 = new BottomBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
+            RightBorder rightBorder11 = new RightBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
+
+            tableCellBorders10.Append(topBorder11);
+            tableCellBorders10.Append(leftBorder11);
+            tableCellBorders10.Append(bottomBorder11);
+            tableCellBorders10.Append(rightBorder11);
+
+            tableCellProperties10.Append(tableCellWidth10);
+            tableCellProperties10.Append(tableCellBorders10);
+            Paragraph paragraph17 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidRunAdditionDefault = "009B2C1D", ParagraphId = "1972B01A", TextId = "77777777" };
+
+            tableCell10.Append(tableCellProperties10);
+            tableCell10.Append(paragraph17);
+
+            TableCell tableCell11 = new TableCell();
+
+            TableCellProperties tableCellProperties11 = new TableCellProperties();
+            TableCellWidth tableCellWidth11 = new TableCellWidth() { Width = "6000", Type = TableWidthUnitValues.Dxa };
+
+            TableCellBorders tableCellBorders11 = new TableCellBorders();
+            TopBorder topBorder12 = new TopBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
+            LeftBorder leftBorder12 = new LeftBorder() { Val = BorderValues.Single, Color = "000000", Size = (UInt32Value)1U, Space = (UInt32Value)0U };
+            BottomBorder bottomBorder12 = new BottomBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
+            RightBorder rightBorder12 = new RightBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
+
+            tableCellBorders11.Append(topBorder12);
+            tableCellBorders11.Append(leftBorder12);
+            tableCellBorders11.Append(bottomBorder12);
+            tableCellBorders11.Append(rightBorder12);
+
+            tableCellProperties11.Append(tableCellWidth11);
+            tableCellProperties11.Append(tableCellBorders11);
+
+            Paragraph paragraph18 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidRunAdditionDefault = "009E39C2", ParagraphId = "5FDA8639", TextId = "2ABBA17A" };
+
+            ParagraphProperties paragraphProperties13 = new ParagraphProperties();
+            SpacingBetweenLines spacingBetweenLines13 = new SpacingBetweenLines() { Before = "150", After = "100", Line = "240", LineRule = LineSpacingRuleValues.Auto };
+            Indentation indentation12 = new Indentation() { Left = "144" };
+
+            paragraphProperties13.Append(spacingBetweenLines13);
+            paragraphProperties13.Append(indentation12);
+
+            Run run33 = new Run();
+
+            RunProperties runProperties33 = new RunProperties();
+            Bold bold7 = new Bold();
+            FontSize fontSize33 = new FontSize() { Val = "22" };
+            FontSizeComplexScript fontSizeComplexScript33 = new FontSizeComplexScript() { Val = "22" };
+
+            runProperties33.Append(bold7);
+            runProperties33.Append(fontSize33);
+            runProperties33.Append(fontSizeComplexScript33);
+            Text text33 = new Text() { Space = SpaceProcessingModeValues.Preserve };
+            text33.Text = "Achievements: ";
+
+            run33.Append(runProperties33);
+            run33.Append(text33);
+
+            Run run148 = new Run();
+
+            RunProperties runProperties148 = new RunProperties();
+            FontSize fontSize148 = new FontSize() { Val = "22" };
+            FontSizeComplexScript fontSizeComplexScript148 = new FontSizeComplexScript() { Val = "22" };
+
+            runProperties148.Append(fontSize148);
+            runProperties148.Append(fontSizeComplexScript148);
+            Text text148 = new Text();
+            text148.Text = data.Achievements;
+
+            run148.Append(runProperties148);
+            run148.Append(text148);
+
+            paragraph18.Append(paragraphProperties13);
+            paragraph18.Append(run33);
+            paragraph18.Append(run148);
+
+            tableCell11.Append(tableCellProperties11);
+            tableCell11.Append(paragraph18);
+
+            tableRow6.Append(tableRowProperties5);
+            tableRow6.Append(tableCell10);
+            tableRow6.Append(tableCell11);
+
+            return tableRow6;
+        }
+
+        private static TableRow CreateReasonForLeavingRow(RoleInformation data)
         {
             TableRow tableRow25 = new TableRow() { RsidTableRowAddition = "009B2C1D", RsidTableRowProperties = "009E39C2", ParagraphId = "18133863", TextId = "77777777" };
 
@@ -996,6 +1245,27 @@ namespace CV.Management.Generation.Word.ContentHelper
             paragraph6.Append(run9);
 
             return paragraph6;
+        }
+
+        private static string GetCompanyStartingTime(CareerSummaryItem data)
+        {
+            var minTime = data.Roles.Min(x => x.StartingYear).ToString();
+
+            return minTime;
+        }
+
+        private static string GetCompanyEndingTime(CareerSummaryItem data)
+        {
+            var role = data.Roles.FirstOrDefault(x => x.Now == true);
+
+            if (role != null)
+            {
+                return "present";
+            }
+
+            var maxTime = data.Roles.Max(x => x.StartingYear).ToString();
+
+            return maxTime;
         }
     }
 }

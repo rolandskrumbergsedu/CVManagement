@@ -107,28 +107,13 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties1.Append(bold2);
             runProperties1.Append(fontSize2);
             Text text1 = new Text();
-            text1.Text = data.TitleArea.Company;
+            text1.Text = data.TitleArea.Project;
 
             run1.Append(runProperties1);
             run1.Append(text1);
 
-            Run run2 = new Run() { RsidRunAddition = "009E39C2" };
-
-            RunProperties runProperties2 = new RunProperties();
-            Bold bold3 = new Bold();
-            FontSize fontSize3 = new FontSize() { Val = "28" };
-
-            runProperties2.Append(bold3);
-            runProperties2.Append(fontSize3);
-            Text text2 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text2.Text = " – " + data.TitleArea.Role;
-
-            run2.Append(runProperties2);
-            run2.Append(text2);
-
             paragraph3.Append(paragraphProperties2);
             paragraph3.Append(run1);
-            paragraph3.Append(run2);
 
             Paragraph paragraph4 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidRunAdditionDefault = "009E39C2", ParagraphId = "01FC911A", TextId = "77777777" };
 

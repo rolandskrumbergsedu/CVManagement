@@ -12,9 +12,18 @@ namespace CV.Management.Generation.Word
         public List<LanguageItem> Languages { get; set; }
         public List<CareerSummaryItem> CareerSummary { get; set; }
         public List<SocialActivity> SocialActivites { get; set; }
-        public string Compensation { get; set; }
+        public CompensationItem Compensation { get; set; }
         public string TransitionTime { get; set; }
         public string AdditionalComments { get; set; }
+    }
+
+    public class CompensationItem
+    {
+        public string CurrentSalary { get; set; }
+        public string CurrentBonuses { get; set; }
+        public string SalaryRequest { get; set; }
+        public string BonusRequest { get; set; }
+        public string AdditionalBonuses { get; set; }
     }
 
     public class SocialActivity
@@ -31,8 +40,7 @@ namespace CV.Management.Generation.Word
         public string Title { get; set; }
         public string Name { get; set; }
         public string Date { get; set; }
-        public string Company { get; set; }
-        public string Role { get; set; }
+        public string Project { get; set; }
     }
 
     public class DocumentProperties
@@ -80,24 +88,26 @@ namespace CV.Management.Generation.Word
 
     public class CareerSummaryItem
     {
-        public int StartingYear { get; set; }
-        public int EndingYear { get; set; }
         public string Company { get; set; }
+        public string City { get; set; }
         public string Industry { get; set; }
         public string Services { get; set; }
         public string Turnover { get; set; }
         public string NumberOfEmployees { get; set; }
         public string ParentCompany { get; set; }
-        public RoleInformation Role { get; set; }
-        public List<string> Tasks { get; set; }
-        public string ReportingTo { get; set; }
-        public string ReasonForLeaving { get; set; }
+        public List<RoleInformation> Roles { get; set; }
     }
 
     public class RoleInformation
     {
         public int StartingYear { get; set; }
         public int EndingYear { get; set; }
+        public bool Now { get; set; }
         public string Role { get; set; }
+        public string Tasks { get; set; }
+        public string ReportingTo { get; set; }
+        public string Subordinates { get; set; }
+        public string Achievements { get; set; }
+        public string ReasonForLeaving { get; set; }
     }
 }

@@ -100,22 +100,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             run1.Append(runProperties1);
             run1.Append(text1);
 
-            Run run2 = new Run();
-
-            RunProperties runProperties2 = new RunProperties();
-            FontSize fontSize2 = new FontSize() { Val = "22" };
-            FontSizeComplexScript fontSizeComplexScript2 = new FontSizeComplexScript() { Val = "22" };
-
-            runProperties2.Append(fontSize2);
-            runProperties2.Append(fontSizeComplexScript2);
-            Text text2 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text2.Text = "   ";
-
-            run2.Append(runProperties2);
-            run2.Append(text2);
-
             paragraph1.Append(run1);
-            paragraph1.Append(run2);
 
             tableCell1.Append(tableCellProperties1);
             tableCell1.Append(paragraph1);

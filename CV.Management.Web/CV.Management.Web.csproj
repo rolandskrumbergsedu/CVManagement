@@ -201,6 +201,10 @@
     <Compile Include="MigrationsApp\201902272154437_Initial.Designer.cs">
       <DependentUpon>201902272154437_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="MigrationsApp\201903052038597_ProfileChanges.cs" />
+    <Compile Include="MigrationsApp\201903052038597_ProfileChanges.Designer.cs">
+      <DependentUpon>201903052038597_ProfileChanges.cs</DependentUpon>
+    </Compile>
     <Compile Include="MigrationsApp\Configuration.cs" />
     <Compile Include="Migrations\201902272154540_Initial.cs" />
     <Compile Include="Migrations\201902272154540_Initial.Designer.cs">
@@ -420,6 +424,9 @@
   <ItemGroup>
     <EmbeddedResource Include="MigrationsApp\201902272154437_Initial.resx">
       <DependentUpon>201902272154437_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MigrationsApp\201903052038597_ProfileChanges.resx">
+      <DependentUpon>201903052038597_ProfileChanges.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902272154540_Initial.resx">
       <DependentUpon>201902272154540_Initial.cs</DependentUpon>

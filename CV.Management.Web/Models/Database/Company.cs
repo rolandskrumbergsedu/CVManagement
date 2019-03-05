@@ -12,9 +12,9 @@ namespace CV.Management.Web.Models.Database
         public string ParentCompanyName { get; set; }
         public string MainProductions { get; set; }
         public Industry? Industry { get; set; }
-        public int? Turnover { get; set; }
+        public string Turnover { get; set; }
         public string OtherIndustry { get; set; }
-        public int? NumberOfEmployess { get; set; }
+        public string NumberOfEmployess { get; set; }
 
         public virtual Profile Profile { get; set; }
         public virtual ICollection<Position> Positions { get; set; }

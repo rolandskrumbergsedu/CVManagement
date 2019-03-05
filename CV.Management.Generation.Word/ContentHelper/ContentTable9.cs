@@ -100,22 +100,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             run1.Append(runProperties1);
             run1.Append(text1);
 
-            Run run2 = new Run();
-
-            RunProperties runProperties2 = new RunProperties();
-            FontSize fontSize2 = new FontSize() { Val = "22" };
-            FontSizeComplexScript fontSizeComplexScript2 = new FontSizeComplexScript() { Val = "22" };
-
-            runProperties2.Append(fontSize2);
-            runProperties2.Append(fontSizeComplexScript2);
-            Text text2 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text2.Text = "   ";
-
-            run2.Append(runProperties2);
-            run2.Append(text2);
-
             paragraph1.Append(run1);
-            paragraph1.Append(run2);
 
             tableCell1.Append(tableCellProperties1);
             tableCell1.Append(paragraph1);
@@ -123,6 +108,36 @@ namespace CV.Management.Generation.Word.ContentHelper
             tableRow1.Append(tableRowProperties1);
             tableRow1.Append(tableCell1);
 
+            table1.Append(tableProperties1);
+            table1.Append(tableGrid1);
+            table1.Append(tableRow1);
+
+            if (!string.IsNullOrEmpty(data.Compensation.CurrentSalary))
+            {
+                table1.Append(CreateItemRow("Current salary (gross)", data.Compensation.CurrentSalary));
+            }
+            if (!string.IsNullOrEmpty(data.Compensation.CurrentBonuses))
+            {
+                table1.Append(CreateItemRow("Current bonuses", data.Compensation.CurrentBonuses));
+            }
+            if (!string.IsNullOrEmpty(data.Compensation.SalaryRequest))
+            {
+                table1.Append(CreateItemRow("Requested salary (gross)", data.Compensation.SalaryRequest));
+            }
+            if (!string.IsNullOrEmpty(data.Compensation.BonusRequest))
+            {
+                table1.Append(CreateItemRow("Requested bonuses", data.Compensation.BonusRequest));
+            }
+            if (!string.IsNullOrEmpty(data.Compensation.AdditionalBonuses))
+            {
+                table1.Append(CreateItemRow("Additional bonuses", data.Compensation.AdditionalBonuses));
+            }
+
+            return table1;
+        }
+
+        private static TableRow CreateItemRow(string label, string value)
+        {
             TableRow tableRow3 = new TableRow() { RsidTableRowAddition = "009B2C1D", RsidTableRowProperties = "009E39C2", ParagraphId = "735CF69D", TextId = "77777777" };
 
             TableCell tableCell4 = new TableCell();
@@ -155,7 +170,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties5.Append(fontSize5);
             runProperties5.Append(fontSizeComplexScript5);
             Text text5 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text5.Text = "Description: ";
+            text5.Text = $"{label}: ";
 
             run5.Append(runProperties5);
             run5.Append(text5);
@@ -204,7 +219,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties6.Append(fontSize6);
             runProperties6.Append(fontSizeComplexScript6);
             Text text6 = new Text();
-            text6.Text = data.Compensation;
+            text6.Text = value;
 
             run6.Append(runProperties6);
             run6.Append(text6);
@@ -218,13 +233,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             tableRow3.Append(tableCell4);
             tableRow3.Append(tableCell5);
 
-            table1.Append(tableProperties1);
-            table1.Append(tableGrid1);
-            table1.Append(tableRow1);
-            table1.Append(tableRow3);
-            return table1;
+            return tableRow3;
         }
-
-
     }
 }
