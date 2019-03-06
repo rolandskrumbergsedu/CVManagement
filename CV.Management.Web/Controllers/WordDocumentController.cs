@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Web;
 using System.Web.Http;
 
@@ -158,7 +159,7 @@ namespace CV.Management.Web.Controllers
                     Role = y.Name,
                     StartingYear = y.FromTime.HasValue ? y.FromTime.Value : 0,
                     Subordinates = y.DirectSubordinates,
-                    Tasks = y.KeyTasks
+                    Tasks = y.KeyTasks.Select(z => z.Name).ToList()
                 }).ToList()
 
             }).ToList();
@@ -193,6 +194,18 @@ namespace CV.Management.Web.Controllers
                 TransitionTime = profile.NoticePeriod,
                 AdditionalComments = profile.Comments
             };
+        }
+
+        public string GetKeyTasks(List<KeyTask> tasks)
+        {
+            var sb = new StringBuilder();
+
+            foreach (var task in tasks)
+            {
+                sb.Append("- " + task.Name + "\r\n");
+            }
+
+            return sb.ToString();
         }
     }
 }

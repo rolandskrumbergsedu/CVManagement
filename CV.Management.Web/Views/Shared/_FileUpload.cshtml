@@ -2,7 +2,7 @@
 
 <div class="row text-center">
     @if (!string.IsNullOrEmpty(Model.ImageSrc)) {
-        <img src="Model.ImageSrc" class="profile-image img-rounded"/>
+        <img src="@Model.ImageSrc" class="profile-image img-rounded"/>
     }
     else {
         <img src="~/Content/Images/default_pic.png" class="img-rounded" />

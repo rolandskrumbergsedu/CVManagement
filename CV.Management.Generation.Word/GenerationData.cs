@@ -104,7 +104,7 @@ namespace CV.Management.Generation.Word
         public int EndingYear { get; set; }
         public bool Now { get; set; }
         public string Role { get; set; }
-        public string Tasks { get; set; }
+        public List<string> Tasks { get; set; }
         public string ReportingTo { get; set; }
         public string Subordinates { get; set; }
         public string Achievements { get; set; }

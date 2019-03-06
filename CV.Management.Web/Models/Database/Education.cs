@@ -8,6 +8,7 @@ namespace CV.Management.Web.Models.Database
         public int EducationId { get; set; }
         public int? FromYear { get; set; }
         public int? ToYear { get; set; }
+        public bool Now { get; set; }
         public string Institution { get; set; }
         public string Degree { get; set; }
 

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Web;
 using System.Web.Mvc;
@@ -39,9 +40,31 @@ namespace CV.Management.Web.Controllers
         {
             if (file != null && file.ContentLength > 0)
             {
-                var fileName = Path.GetFileName(file.FileName);
-                var path = Path.Combine(Server.MapPath("~/Images/"), fileName);
-                file.SaveAs(path);
+                var ms = new MemoryStream();
+                file.InputStream.CopyTo(ms);
+
+                using (var db = new ProfileInformationDbContext())
+                {
+                    var username = GetCurrentUsername();
+                    var userProfile = db.Profiles.FirstOrDefault(x => x.Username == username);
+
+                    if (userProfile != null)
+                    {
+                        userProfile.PictureContent = Convert.ToBase64String(ms.ToArray());
+                        userProfile.PictureType = file.ContentType;
+                    }
+                    else
+                    {
+                        db.Profiles.Add(new Profile
+                        {
+                            Username = GetCurrentUsername(),
+                            PictureContent = Convert.ToBase64String(ms.ToArray()),
+                            PictureType = file.ContentType
+                        });
+                    }
+
+                    db.SaveChanges();
+                }
             }
 
             return RedirectToAction("Profile");
@@ -108,7 +131,8 @@ namespace CV.Management.Web.Controllers
                             Degree = educationItem.Degree,
                             FromYear = educationItem.FromYear,
                             Institution = educationItem.Institution,
-                            ToYear = educationItem.ToYear
+                            ToYear = educationItem.ToYear,
+                            Now = educationItem.Now
                         });
                     }
                 }
@@ -127,7 +151,8 @@ namespace CV.Management.Web.Controllers
                             Degree = educationItem.Degree,
                             FromYear = educationItem.FromYear,
                             Institution = educationItem.Institution,
-                            ToYear = educationItem.ToYear
+                            ToYear = educationItem.ToYear,
+                            Now = educationItem.Now
                         });
                     }
 
@@ -288,11 +313,12 @@ namespace CV.Management.Web.Controllers
                                     Achievements = position.Achievements,
                                     DirectSubordinates = position.DirectSubordinates,
                                     FromTime = position.FromTime,
-                                    KeyTasks = position.KeyTasks,
+                                    KeyTasks = GetKeyTasks(position.KeyTasks),
                                     Name = position.Name,
                                     ReasonForLeaving = position.ReasonForLeaving,
                                     ReportingTo = position.ReportingTo,
-                                    ToTime = position.ToTime
+                                    ToTime = position.ToTime,
+                                    Now = position.Now
                                 });
                             }
 
@@ -330,11 +356,12 @@ namespace CV.Management.Web.Controllers
                                 Achievements = position.Achievements,
                                 DirectSubordinates = position.DirectSubordinates,
                                 FromTime = position.FromTime,
-                                KeyTasks = position.KeyTasks,
+                                KeyTasks = GetKeyTasks(position.KeyTasks),
                                 Name = position.Name,
                                 ReasonForLeaving = position.ReasonForLeaving,
                                 ReportingTo = position.ReportingTo,
-                                ToTime = position.ToTime
+                                ToTime = position.ToTime,
+                                Now = position.Now
                             });
                         }
 
@@ -370,7 +397,8 @@ namespace CV.Management.Web.Controllers
                             {
                                 Description = item.Description,
                                 FromTime = item.FromTime,
-                                ToTime = item.ToTime
+                                ToTime = item.ToTime,
+                                Now = item.Now
                             });
                         }
                     }
@@ -389,7 +417,8 @@ namespace CV.Management.Web.Controllers
                         {
                             Description = item.Description,
                             FromTime = item.FromTime,
-                            ToTime = item.ToTime
+                            ToTime = item.ToTime,
+                            Now = item.Now
                         });
                     }
 
@@ -534,7 +563,7 @@ namespace CV.Management.Web.Controllers
         {
             return new FileUploadViewModel
             {
-                ImageSrc = profile.Picture != null ? $"data:image/png;base64,{Convert.ToBase64String(profile.Picture)}" : string.Empty
+                ImageSrc = !string.IsNullOrEmpty(profile.PictureContent) ? $"data:{profile.PictureType};base64,{profile.PictureContent}" : string.Empty
             };
         }
 
@@ -558,14 +587,15 @@ namespace CV.Management.Web.Controllers
             {
                 return new EducationViewModel
                 {
-                    Education = new System.Collections.Generic.List<EducationItem>
+                    Education = new List<EducationItem>
                     {
                         new EducationItem
                         {
                             Degree = string.Empty,
                             FromYear = null,
                             Institution = string.Empty,
-                            ToYear = null
+                            ToYear = null,
+                            Now = false
                         }
                     }
                 };
@@ -584,7 +614,8 @@ namespace CV.Management.Web.Controllers
                         Degree = string.Empty,
                         FromYear = null,
                         Institution = string.Empty,
-                        ToYear = null
+                        ToYear = null,
+                        Now = false
                     });
                 }
                 else
@@ -596,7 +627,8 @@ namespace CV.Management.Web.Controllers
                             Degree = educationItem.Degree,
                             FromYear = educationItem.FromYear,
                             Institution = educationItem.Institution,
-                            ToYear = educationItem.ToYear
+                            ToYear = educationItem.ToYear,
+                            Now = educationItem.Now
                         });
                     }
                 }
@@ -764,7 +796,8 @@ namespace CV.Management.Web.Controllers
                                 Name = string.Empty,
                                 ReasonForLeaving = string.Empty,
                                 ReportingTo = string.Empty,
-                                ToTime = null
+                                ToTime = null,
+                                Now = false
                             }
                         }
                     };
@@ -795,11 +828,12 @@ namespace CV.Management.Web.Controllers
                                 Achievements = position.Achievements,
                                 DirectSubordinates = position.DirectSubordinates,
                                 FromTime = position.FromTime,
-                                KeyTasks = position.KeyTasks,
+                                KeyTasks = GetKeyTasks(position.KeyTasks.ToList()),
                                 Name = position.Name,
                                 ReasonForLeaving = position.ReasonForLeaving,
                                 ReportingTo = position.ReportingTo,
-                                ToTime = position.ToTime
+                                ToTime = position.ToTime,
+                                Now = position.Now
                             });
                         }
 
@@ -822,7 +856,8 @@ namespace CV.Management.Web.Controllers
                         {
                             Description = string.Empty,
                             FromTime = null,
-                            ToTime = null
+                            ToTime = null,
+                            Now = false
                         }
                     }
                 };
@@ -840,7 +875,8 @@ namespace CV.Management.Web.Controllers
                     {
                         Description = string.Empty,
                         FromTime = null,
-                        ToTime = null
+                        ToTime = null,
+                        Now = false
                     });
                 }
                 else
@@ -851,7 +887,8 @@ namespace CV.Management.Web.Controllers
                         {
                             Description = membership.Description,
                             FromTime = membership.FromTime,
-                            ToTime = membership.ToTime
+                            ToTime = membership.ToTime,
+                            Now = membership.Now
                         });
                     }
                 }
@@ -1006,5 +1043,48 @@ namespace CV.Management.Web.Controllers
             };
         }
 
+        private List<KeyTask> GetKeyTasks(string tasks)
+        {
+            if (string.IsNullOrEmpty(tasks))
+            {
+                return null;
+            }
+
+            var taskList = tasks.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+            var result = new List<KeyTask>();
+
+            foreach (var item in taskList)
+            {
+                var itemToAdd = item;
+                if (itemToAdd.StartsWith("-"))
+                {
+                    itemToAdd = itemToAdd.Substring(1);
+                }
+
+                if (itemToAdd.StartsWith(""))
+                {
+                    itemToAdd = itemToAdd.Substring(1);
+                }
+
+                result.Add(new KeyTask
+                {
+                    Name = itemToAdd
+                });
+            }
+
+            return result;
+        }
+
+        public string GetKeyTasks(List<KeyTask> tasks)
+        {
+            var sb = new StringBuilder();
+
+            foreach (var task in tasks)
+            {
+                sb.Append("- " + task.Name + "\r\n");
+            }
+
+            return sb.ToString();
+        }
     }
 }

@@ -205,6 +205,18 @@
     <Compile Include="MigrationsApp\201903052038597_ProfileChanges.Designer.cs">
       <DependentUpon>201903052038597_ProfileChanges.cs</DependentUpon>
     </Compile>
+    <Compile Include="MigrationsApp\201903062103571_KeyTasksTable.cs" />
+    <Compile Include="MigrationsApp\201903062103571_KeyTasksTable.Designer.cs">
+      <DependentUpon>201903062103571_KeyTasksTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MigrationsApp\201903062128184_PcitureContentType.cs" />
+    <Compile Include="MigrationsApp\201903062128184_PcitureContentType.Designer.cs">
+      <DependentUpon>201903062128184_PcitureContentType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MigrationsApp\201903062142153_NowColumns.cs" />
+    <Compile Include="MigrationsApp\201903062142153_NowColumns.Designer.cs">
+      <DependentUpon>201903062142153_NowColumns.cs</DependentUpon>
+    </Compile>
     <Compile Include="MigrationsApp\Configuration.cs" />
     <Compile Include="Migrations\201902272154540_Initial.cs" />
     <Compile Include="Migrations\201902272154540_Initial.Designer.cs">
@@ -219,10 +231,12 @@
     <Compile Include="Models\Database\AdditionalCourse.cs" />
     <Compile Include="Models\Database\Company.cs" />
     <Compile Include="Models\Database\Education.cs" />
+    <Compile Include="Models\Database\KeyTask.cs" />
     <Compile Include="Models\Database\Language.cs" />
     <Compile Include="Models\Database\Membership.cs" />
     <Compile Include="Models\Database\Position.cs" />
     <Compile Include="Models\Database\Profile.cs" />
+    <Compile Include="Models\Database\ProfileImage.cs" />
     <Compile Include="Models\EducationViewModel.cs" />
     <Compile Include="Models\FileUploadViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -427,6 +441,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MigrationsApp\201903052038597_ProfileChanges.resx">
       <DependentUpon>201903052038597_ProfileChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MigrationsApp\201903062103571_KeyTasksTable.resx">
+      <DependentUpon>201903062103571_KeyTasksTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MigrationsApp\201903062128184_PcitureContentType.resx">
+      <DependentUpon>201903062128184_PcitureContentType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MigrationsApp\201903062142153_NowColumns.resx">
+      <DependentUpon>201903062142153_NowColumns.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902272154540_Initial.resx">
       <DependentUpon>201902272154540_Initial.cs</DependentUpon>

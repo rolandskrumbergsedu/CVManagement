@@ -8,7 +8,8 @@ namespace CV.Management.Web.Models.Database
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ProfileId { get; set; }
         public string Username { get; set; }
-        public byte[] Picture { get; set; }
+        public string PictureContent { get; set; }
+        public string PictureType { get; set; }
         public string FullName { get; set; }
         public string LinkedInLink { get; set; }
         public string Address { get; set; }

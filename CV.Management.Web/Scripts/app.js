@@ -1,5 +1,65 @@
 ﻿$(document).ready(function () {
 
+    $('.education-now-input').each(function () {
+        var formGroup = $(this).closest('div[class^="form-group"]');
+        if (this.checked) {
+            formGroup.find(".education-to-year-input").attr("disabled", "true");
+        } else {
+            formGroup.find(".education-to-year-input").removeAttr("disabled");
+        }
+    });
+
+    $('.membership-now-input').each(function () {
+        var formGroup = $(this).closest('div[class^="form-group"]');
+        if (this.checked) {
+            formGroup.find(".membership-to-time-input").attr("disabled", "true");
+        } else {
+            formGroup.find(".membership-to-time-input").removeAttr("disabled");
+        }
+
+    });
+
+    $('.career-position-now-input').each(function () {
+        var formGroup = $(this).closest('div[class^="form-group"]');
+        if (this.checked) {
+            formGroup.find(".position-to-time-input").attr("disabled", "true");
+        } else {
+            formGroup.find(".position-to-time-input").removeAttr("disabled");
+        }
+    });
+
+    $('.education-now-input').change(function () {
+        var formGroup = $(this).closest('div[class^="form-group"]');
+        if (this.checked) {
+            formGroup.find(".education-to-year-input").attr("disabled", "true");
+            formGroup.find(".education-to-year-input").attr("value", "");
+        } else {
+            formGroup.find(".education-to-year-input").removeAttr("disabled");
+        }
+        
+    });
+
+    $('.membership-now-input').change(function () {
+        var formGroup = $(this).closest('div[class^="form-group"]');
+        if (this.checked) {
+            formGroup.find(".membership-to-time-input").attr("disabled", "true");
+            formGroup.find(".membership-to-time-input").attr("value", "");
+        } else {
+            formGroup.find(".membership-to-time-input").removeAttr("disabled");
+        }
+
+    });
+
+    $('.career-position-now-input').change(function () {
+        var formGroup = $(this).closest('div[class^="form-group"]');
+        if (this.checked) {
+            formGroup.find(".position-to-time-input").attr("disabled", "true");
+            formGroup.find(".position-to-time-input").attr("value", "");
+        } else {
+            formGroup.find(".position-to-time-input").removeAttr("disabled");
+        }
+    });
+
     function updateEducationFieldNumbers() {
 
         var formName = "Education";

@@ -38,8 +38,7 @@ namespace CV.Management.Generation.Word.Tests
                     Date = "December 2018",
                     Name = "Rolands Krumbergs",
                     Title = "Confidential candidate CV",
-                    Company = "SIA Awesome company",
-                    Role = "CEO"
+                    Project = "SIA Awesome company"
                 },
                 Personal = new PersonalInformation
                 {
@@ -140,7 +139,7 @@ namespace CV.Management.Generation.Word.Tests
                                 Role = "FINANCIAL ADVISER",
                                 StartingYear = 2018,
                                 Now = true,
-                                Tasks = "Advisor on natural resource acquisition deals. Consulting on global commodity trends. Forging relationships with foreign business partners"
+                                Tasks = new List<string> { "Advisor on natural resource acquisition deals.  ", "Consulting on global commodity trends.", "Forging relationships with foreign business partners" }
                             }
 
                         },
@@ -161,7 +160,7 @@ namespace CV.Management.Generation.Word.Tests
                             EndingYear = 2018,
                             ReportingTo = "Mr. Asdfg",
                             Role = "INVESTMENT MANAGER",
-                            Tasks = "Investment management and advisory (including public and direct real estate). Self owned enterprise executing personal investment deals. Currently involved in 10 investment / finance projects. Approximate asset value at the end of 2018 EUR 1M. 2017: Servicing of EUR 300M sell side mandate from key participants in the Latvian pharmaceutical sector for a 100% exit to UK/Polish equity investment fund"
+                            Tasks = new List<string> { "Investment management and advisory (including public and direct real estate).", "Self owned enterprise executing personal investment deals.", "Currently involved in 10 investment / finance projects.", "Approximate asset value at the end of 2018 EUR 1M. 2017: Servicing of EUR 300M sell side mandate from key participants in the Latvian pharmaceutical sector for a 100% exit to UK/Polish equity investment fund" }
                             }
                         },
                         Industry = "Financial Services / Insurance",
@@ -183,7 +182,10 @@ namespace CV.Management.Generation.Word.Tests
                         }
                     }
                 },
-                Compensation = "Full investment executive remuneration package which includes base salary, short-term incentive/long-term incentive plan, relocation costs (if needed) including a car, full insurance package, travel costs, paid expenses, etc.",
+                Compensation = new CompensationItem
+                {
+                    AdditionalBonuses = "Full investment executive remuneration package which includes base salary, short-term incentive/long-term incentive plan, relocation costs (if needed) including a car, full insurance package, travel costs, paid expenses, etc."
+                },
                 TransitionTime = "1-3 months",
                 AdditionalComments = "Former council, board member or representative in several companies, including - Council member of NASDAQ Riga (former Riga Stock Exchange)."
             };
