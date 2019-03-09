@@ -37,7 +37,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 @Html.LabelFor(model => model.Memberships[i].Description, new { @class = "membership-description-label control-label" })
-                                @Html.TextAreaFor(model => model.Memberships[i].Description, new { @class = "membership-description-input form-control" })
+                                @Html.TextAreaFor(model => model.Memberships[i].Description, new { @class = "membership-description-input form-control", @rows = 5 })
                                 @Html.ValidationMessageFor(model => model.Memberships[i].Description, "", new { @class = "membership-description-validation" })
                             </div>
                         </div>
@@ -52,14 +52,14 @@
 
         <div class="row">
             <div class="col-md-12 text-center">
-                <p><img id="membership_add" src="~/Content/Images/add.png" /> ADD MEMBERSHIP</p>
+                <p class="uppercase"><img id="membership_add" src="~/Content/Images/add.png" /> @Resources.AddMembership</p>
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group text-right">
-                    <input type="submit" value="Save" class="btn btn-primary float-right" />
+                    <input type="submit" value="@Resources.Save" class="btn btn-primary float-right" />
                 </div>
             </div>
         </div>

@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace CV.Management.Web.Models
 {
@@ -13,13 +10,21 @@ namespace CV.Management.Web.Models
 
     public class CompanyItem
     {
+        [Display(Name = "CompanyName", ResourceType = typeof(Resources))]
         public string Name { get; set; }
+        [Display(Name = "City", ResourceType = typeof(Resources))]
         public string City { get; set; }
+        [Display(Name = "ParentCompanyName", ResourceType = typeof(Resources))]
         public string ParentCompanyName { get; set; }
+        [Display(Name = "MainProductions", ResourceType = typeof(Resources))]
         public string MainProductions { get; set; }
+        [Display(Name = "Industry", ResourceType = typeof(Resources))]
         public Industry? Industry { get; set; }
+        [Display(Name = "Turnover", ResourceType = typeof(Resources))]
         public string Turnover { get; set; }
+        [Display(Name = "OtherIndustry", ResourceType = typeof(Resources))]
         public string OtherIndustry { get; set; }
+        [Display(Name = "NumberOfEmployess", ResourceType = typeof(Resources))]
         public string NumberOfEmployess { get; set; }
 
         public List<PositionItem> Positions { get; set; }
@@ -27,14 +32,26 @@ namespace CV.Management.Web.Models
 
     public class PositionItem
     {
+        [Required]
+        [Display(Name = "PositionName", ResourceType = typeof(Resources))]
         public string Name { get; set; }
+        [Required]
+        [Display(Name = "FromTime", ResourceType = typeof(Resources))]
         public int? FromTime { get; set; }
+        [Required]
+        [Display(Name = "ToTime", ResourceType = typeof(Resources))]
         public int? ToTime { get; set; }
+        [Display(Name = "Now", ResourceType = typeof(Resources))]
         public bool Now { get; set; }
+        [Display(Name = "KeyTasks", ResourceType = typeof(Resources))]
         public string KeyTasks { get; set; }
+        [Display(Name = "ReportingTo", ResourceType = typeof(Resources))]
         public string ReportingTo { get; set; }
+        [Display(Name = "DirectSubordinates", ResourceType = typeof(Resources))]
         public string DirectSubordinates { get; set; }
+        [Display(Name = "Achievements", ResourceType = typeof(Resources))]
         public string Achievements { get; set; }
+        [Display(Name = "ReasonForLeaving", ResourceType = typeof(Resources))]
         public string ReasonForLeaving { get; set; }
     }
 

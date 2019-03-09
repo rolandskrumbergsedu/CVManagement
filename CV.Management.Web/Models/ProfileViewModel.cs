@@ -12,5 +12,7 @@
         public CompensationViewModel CompensationViewModel { get; set; }
         public NoticePeriodViewModel NoticePeriodViewModel { get; set; }
         public AdditionalCommentsViewModel AdditionalCommentsViewModel { get; set; }
+        public AdditionalFilesViewModel AdditionalFilesViewModel { get; set; }
+        public AddAdditionalFileUploadViewModel AddAdditionalFileUploadViewModel { get; set; }
     }
 }

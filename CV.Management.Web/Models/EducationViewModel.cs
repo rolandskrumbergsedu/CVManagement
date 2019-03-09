@@ -15,13 +15,15 @@ namespace CV.Management.Web.Models
 
     public class EducationItem
     {
-        [Required]
+        [Display(Name = "FromYear", ResourceType = typeof(Resources))]
         public int? FromYear { get; set; }
+        [Display(Name = "ToYear", ResourceType = typeof(Resources))]
         public int? ToYear { get; set; }
+        [Display(Name = "Now", ResourceType = typeof(Resources))]
         public bool Now { get; set; }
-        [Required]
+        [Display(Name = "Institution", ResourceType = typeof(Resources))]
         public string Institution { get; set; }
-        [Required]
+        [Display(Name = "Degree", ResourceType = typeof(Resources))]
         public string Degree { get; set; }
     }
 }

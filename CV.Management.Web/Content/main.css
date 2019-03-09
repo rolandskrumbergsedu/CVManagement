@@ -129,3 +129,11 @@ html, body {
     padding-top: 20px;
     padding-bottom: 40px;
 }
+
+.additional-files-label {
+    font-weight: bold;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}

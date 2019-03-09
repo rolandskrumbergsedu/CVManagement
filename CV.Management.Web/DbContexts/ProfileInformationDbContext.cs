@@ -19,5 +19,6 @@ namespace CV.Management.Web.DbContexts
         public DbSet<Membership> Memberships { get; set; }
         public DbSet<Position> Positions { get; set; }
         public DbSet<AdditionalCourse> AdditionalCourses { get; set; }
+        public DbSet<AdditionalFile> AdditionalFiles { get; set; }
     }
 }

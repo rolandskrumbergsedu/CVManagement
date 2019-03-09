@@ -1,18 +1,15 @@
-﻿@using CV.Management.Web.Models;
-@model CV.Management.Web.Models.ProfileViewModel
+﻿@model CV.Management.Web.Models.ProfileViewModel
 @{
-    ViewBag.Title = "Profile";
+    ViewBag.Title = @Resources.Profile;
 }
 
 @*https://stackoverflow.com/questions/38281010/asp-net-mvc-multiple-forms-in-single-strongly-typed-view-and-validate-using-data*@
 
 <div class="panel-group" id="accordion">
     <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-                    PERSONAL
-                </a>
+        <div class="panel-heading" data-toggle="collapse" data-target="#collapse1">
+            <h4 class="panel-title uppercase">
+                @Resources.Personal
             </h4>
         </div>
         <div id="collapse1" class="panel-collapse collapse in">
@@ -29,11 +26,9 @@
         </div>
     </div>
     <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-                    EDUCATION & QUALIFICATIONS
-                </a>
+        <div class="panel-heading" data-toggle="collapse" data-target="#collapse2">
+            <h4 class="panel-title uppercase">
+                    @Resources.Education
             </h4>
         </div>
         <div id="collapse2" class="panel-collapse collapse">
@@ -45,11 +40,9 @@
         </div>
     </div>
     <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-                    ADDITIONAL COURSES
-                </a>
+        <div class="panel-heading" data-toggle="collapse" data-target="#collapse3">
+            <h4 class="panel-title uppercase">
+                @Resources.Courses
             </h4>
         </div>
         <div id="collapse3" class="panel-collapse collapse">
@@ -59,11 +52,9 @@
         </div>
     </div>
     <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
-                    LANGUAGE
-                </a>
+        <div class="panel-heading" data-toggle="collapse" data-target="#collapse4">
+            <h4 class="panel-title uppercase">
+                @Resources.Language
             </h4>
         </div>
         <div id="collapse4" class="panel-collapse collapse">
@@ -73,11 +64,9 @@
         </div>
     </div>
     <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">
-                    CAREER SUMMARY
-                </a>
+        <div class="panel-heading" data-toggle="collapse" data-target="#collapse5">
+            <h4 class="panel-title uppercase">
+                @Resources.CareerSummary
             </h4>
         </div>
         <div id="collapse5" class="panel-collapse collapse">
@@ -87,11 +76,9 @@
         </div>
     </div>
     <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse6">
-                    SOCIAL ACTIVITIES / MEMBERSHIPS
-                </a>
+        <div class="panel-heading" data-toggle="collapse" data-target="#collapse6">
+            <h4 class="panel-title uppercase">
+                @Resources.Memberships
             </h4>
         </div>
         <div id="collapse6" class="panel-collapse collapse">
@@ -101,11 +88,9 @@
         </div>
     </div>
     <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse7">
-                    COMPENSATION
-                </a>
+        <div class="panel-heading" data-toggle="collapse" data-target="#collapse7">
+            <h4 class="panel-title uppercase">
+                @Resources.Compensation
             </h4>
         </div>
         <div id="collapse7" class="panel-collapse collapse">
@@ -115,11 +100,9 @@
         </div>
     </div>
     <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse8">
-                    NOTICE PERIOD
-                </a>
+        <div class="panel-heading" data-toggle="collapse" data-target="#collapse8">
+            <h4 class="panel-title uppercase">
+                @Resources.NoticePeriodLabel
             </h4>
         </div>
         <div id="collapse8" class="panel-collapse collapse">
@@ -129,16 +112,16 @@
         </div>
     </div>
     <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse9">
-                    ADDITIONAL COMMENTS
-                </a>
+        <div class="panel-heading" data-toggle="collapse" data-target="#collapse9">
+            <h4 class="panel-title uppercase">
+                @Resources.AdditionalComments
             </h4>
         </div>
         <div id="collapse9" class="panel-collapse collapse">
             <div class="panel-body">
                 @Html.Partial("_AdditionalComments", Model.AdditionalCommentsViewModel)
+                @Html.Partial("_AdditionalFiles", Model.AdditionalFilesViewModel)
+                @Html.Partial("_AddAdditionalFile")
             </div>
         </div>
     </div>

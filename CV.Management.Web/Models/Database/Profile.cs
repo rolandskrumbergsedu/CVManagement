@@ -30,5 +30,6 @@ namespace CV.Management.Web.Models.Database
         public virtual ICollection<Language> Languages { get; set; }
         public virtual ICollection<Company> Companies { get; set; }
         public virtual ICollection<Membership> Memberships { get; set; }
+        public virtual ICollection<AdditionalFile> AdditionalFiles { get; set; }
     }
 }

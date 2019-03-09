@@ -45,7 +45,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     @Html.LabelFor(model => Model.AdditionalBonuses, new { @class = "control-label" })
-                    @Html.TextAreaFor(model => Model.AdditionalBonuses, new { @class = "form-control" })
+                    @Html.TextAreaFor(model => Model.AdditionalBonuses, new { @class = "form-control", @rows = 5 })
                     @Html.ValidationMessageFor(model => Model.AdditionalBonuses)
                 </div>
             </div>
@@ -54,7 +54,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group text-right">
-                    <input type="submit" value="Save" class="btn btn-primary float-right" />
+                    <input type="submit" value="@Resources.Save" class="btn btn-primary float-right" />
                 </div>
             </div>
         </div>

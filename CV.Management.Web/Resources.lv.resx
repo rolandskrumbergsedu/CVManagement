@@ -117,25 +117,202 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Achievements" xml:space="preserve">
+    <value>Sasniegumi</value>
+  </data>
+  <data name="AddCompany" xml:space="preserve">
+    <value>Pievienot uzņēmumu</value>
+  </data>
+  <data name="AddCourse" xml:space="preserve">
+    <value>Pievienot kursu</value>
+  </data>
+  <data name="AddEducation" xml:space="preserve">
+    <value>Pievienot izglītību</value>
+  </data>
+  <data name="AdditionalBonuses" xml:space="preserve">
+    <value>Papildus bonusi (uzņēmuma auto, uzņēmuma daļas, u.c.)</value>
+  </data>
+  <data name="AdditionalComments" xml:space="preserve">
+    <value>Papildus komentāri</value>
+  </data>
+  <data name="AddLanguage" xml:space="preserve">
+    <value>Pievienot valodu</value>
+  </data>
+  <data name="AddMembership" xml:space="preserve">
+    <value>Pievienot</value>
+  </data>
+  <data name="AddPosition" xml:space="preserve">
+    <value>Pievienot amatu</value>
+  </data>
   <data name="Address" xml:space="preserve">
     <value>Adrese</value>
+  </data>
+  <data name="BonusRequest" xml:space="preserve">
+    <value>Pieprasītie bonusi</value>
+  </data>
+  <data name="CareerSummary" xml:space="preserve">
+    <value>Karjeras pārskats</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>Pilsēta, valsts</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>Papildus komentāri</value>
+  </data>
+  <data name="Company" xml:space="preserve">
+    <value>Uzņēmums</value>
+  </data>
+  <data name="CompanyInformation" xml:space="preserve">
+    <value>Informācija par uzņēmumu</value>
+  </data>
+  <data name="CompanyName" xml:space="preserve">
+    <value>Uzņēmuma nosaukums</value>
+  </data>
+  <data name="Compensation" xml:space="preserve">
+    <value>Atalgojums</value>
+  </data>
+  <data name="CourseName" xml:space="preserve">
+    <value>Kursa nosaukums, iegūtais sertifikāts</value>
+  </data>
+  <data name="Courses" xml:space="preserve">
+    <value>Papildus kursi</value>
+  </data>
+  <data name="CurrentBonuses" xml:space="preserve">
+    <value>Šobrīd saņemtie bonusi (gross)</value>
+  </data>
+  <data name="CurrentSalary" xml:space="preserve">
+    <value>Šobrīd fiksētais atalgojums (gross mēnesī)</value>
+  </data>
+  <data name="Degree" xml:space="preserve">
+    <value>Specialitāte, grāds</value>
+  </data>
+  <data name="DirectSubordinates" xml:space="preserve">
+    <value>Tiešie un netiešie padotie</value>
+  </data>
+  <data name="Education" xml:space="preserve">
+    <value>Izglītība &amp; kvalifikācijas</value>
   </data>
   <data name="Email" xml:space="preserve">
     <value>E-pasts</value>
   </data>
+  <data name="FromTime" xml:space="preserve">
+    <value>No (mm.gggg)</value>
+  </data>
+  <data name="FromYear" xml:space="preserve">
+    <value>Periods no (gggg)</value>
+  </data>
   <data name="FullName" xml:space="preserve">
     <value>Vārds, uzvārds</value>
+  </data>
+  <data name="Hello" xml:space="preserve">
+    <value>Sveiks/a</value>
+  </data>
+  <data name="Industry" xml:space="preserve">
+    <value>Industrija / biznesa joma</value>
+  </data>
+  <data name="Institution" xml:space="preserve">
+    <value>Iestāde, valsts</value>
+  </data>
+  <data name="KeyTasks" xml:space="preserve">
+    <value>Galvenie pienākumi (rakstiet katru atsevišķā rindā)</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Valodu zināšanas</value>
+  </data>
+  <data name="LanguageName" xml:space="preserve">
+    <value>Valoda</value>
   </data>
   <data name="LinkedInLink" xml:space="preserve">
     <value>LinkedIn hipersaite</value>
   </data>
+  <data name="LogIn" xml:space="preserve">
+    <value>Pieslēgties</value>
+  </data>
+  <data name="MainProductions" xml:space="preserve">
+    <value>Galvenie produkti un servisi</value>
+  </data>
+  <data name="MembershipDescription" xml:space="preserve">
+    <value>Organizatoriskā piederība</value>
+  </data>
+  <data name="Memberships" xml:space="preserve">
+    <value>Sociālās aktivitātes &amp; dalība organizācijās</value>
+  </data>
+  <data name="NoticePeriod" xml:space="preserve">
+    <value>Pārejas laiks, lai sāktu strādāt pie jaunā darba devēja</value>
+  </data>
+  <data name="NoticePeriodLabel" xml:space="preserve">
+    <value>Pārejas laiks</value>
+  </data>
+  <data name="Now" xml:space="preserve">
+    <value>Tagad</value>
+  </data>
+  <data name="NumberOfDays" xml:space="preserve">
+    <value>Dienu skaits</value>
+  </data>
+  <data name="NumberOfEmployess" xml:space="preserve">
+    <value>Darbinieku skaits</value>
+  </data>
+  <data name="ParentCompanyName" xml:space="preserve">
+    <value>Mātes uzņēmuma nosaukums</value>
+  </data>
+  <data name="Personal" xml:space="preserve">
+    <value>Personas informācija</value>
+  </data>
   <data name="Phone" xml:space="preserve">
     <value>Telefona numurs</value>
+  </data>
+  <data name="Position" xml:space="preserve">
+    <value>Amats</value>
+  </data>
+  <data name="PositionName" xml:space="preserve">
+    <value>Amata nosaukums</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profils</value>
   </data>
   <data name="Project" xml:space="preserve">
     <value>Projekts</value>
   </data>
+  <data name="ReasonForLeaving" xml:space="preserve">
+    <value>Aiziešanas iemesls (izlaidiet, ja strādājat turpat)</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Reģistrēties</value>
+  </data>
+  <data name="ReportingTo" xml:space="preserve">
+    <value>Tiešais vadītājs (vārds, uzvārds, amats)</value>
+  </data>
+  <data name="SalaryRequest" xml:space="preserve">
+    <value>Pieprasītais atalgojums (gross mēnesī, valūta)</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Saglabāt</value>
+  </data>
   <data name="Skype" xml:space="preserve">
     <value>Skype lietotājvārds</value>
+  </data>
+  <data name="SpokenLevel" xml:space="preserve">
+    <value>Runas līmenis</value>
+  </data>
+  <data name="ToTime" xml:space="preserve">
+    <value>Līdz (mm.gggg)</value>
+  </data>
+  <data name="ToYear" xml:space="preserve">
+    <value>Periods līdz (gggg)</value>
+  </data>
+  <data name="Trainer" xml:space="preserve">
+    <value>Apmācību vadītājs</value>
+  </data>
+  <data name="Turnover" xml:space="preserve">
+    <value>Apgrozījums (+valūta, gads)</value>
+  </data>
+  <data name="Upload" xml:space="preserve">
+    <value>Augšupielādēt</value>
+  </data>
+  <data name="WrittenLevel" xml:space="preserve">
+    <value>Rakstības līmenis</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>Gads</value>
   </data>
 </root>

@@ -71,6 +71,65 @@ namespace CV.Management.Web.Controllers
         }
 
         [HttpPost]
+        public ActionResult AdditionalFiles(IEnumerable<HttpPostedFileBase> files)
+        {
+            if (files != null && files.Count() > 0)
+            {
+                var allFilesToAdd = new List<AdditionalFile>();
+
+                foreach (var file in files)
+                {
+                    if (file != null && file.ContentLength > 0)
+                    {
+                        var ms = new MemoryStream();
+                        file.InputStream.CopyTo(ms);
+
+                        var additionalFile = new AdditionalFile
+                        {
+                            FileContent = Convert.ToBase64String(ms.ToArray()),
+                            FileName = file.FileName,
+                            FileType = file.ContentType
+                        };
+
+                        allFilesToAdd.Add(additionalFile);
+                    }
+                }
+
+                using (var db = new ProfileInformationDbContext())
+                {
+                    var username = GetCurrentUsername();
+                    var userProfile = db.Profiles.FirstOrDefault(x => x.Username == username);
+
+                    if (userProfile != null)
+                    {
+                        if (userProfile.AdditionalFiles == null)
+                        {
+                            userProfile.AdditionalFiles = allFilesToAdd;
+                        }
+                        else
+                        {
+                            foreach (var additionalFile in allFilesToAdd)
+                            {
+                                userProfile.AdditionalFiles.Add(additionalFile);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        db.Profiles.Add(new Profile
+                        {
+                            AdditionalFiles = allFilesToAdd
+                        });
+                    }
+
+                    db.SaveChanges();
+                }
+            }
+
+            return RedirectToAction("Profile");
+        }
+
+        [HttpPost]
         public ActionResult PersonalInformation(PersonalInformationViewModel personal)
         {
             using (var db = new ProfileInformationDbContext())
@@ -300,7 +359,7 @@ namespace CV.Management.Web.Controllers
                                 MainProductions = item.MainProductions,
                                 Name = item.Name,
                                 NumberOfEmployess = item.NumberOfEmployess,
-                                OtherIndustry = item.OtherIndustry,
+                                OtherIndustry = item.Industry != Industry.Other ? item.OtherIndustry : null,
                                 ParentCompanyName = item.ParentCompanyName,
                                 Turnover = item.Turnover,
                                 Positions = new List<Position>()
@@ -343,7 +402,7 @@ namespace CV.Management.Web.Controllers
                             MainProductions = item.MainProductions,
                             Name = item.Name,
                             NumberOfEmployess = item.NumberOfEmployess,
-                            OtherIndustry = item.OtherIndustry,
+                            OtherIndustry = item.Industry != Industry.Other ? item.OtherIndustry : null,
                             ParentCompanyName = item.ParentCompanyName,
                             Turnover = item.Turnover,
                             Positions = new List<Position>()
@@ -554,7 +613,30 @@ namespace CV.Management.Web.Controllers
                     MembershipViewModel = CreateMembershipViewModel(profile),
                     CompensationViewModel = CreateCompensationViewModel(profile),
                     NoticePeriodViewModel = CreateNoticePeriodViewModel(profile),
-                    AdditionalCommentsViewModel = CreateAdditionalCommentsViewModel(profile)
+                    AdditionalCommentsViewModel = CreateAdditionalCommentsViewModel(profile),
+                    AdditionalFilesViewModel = CreateAdditionalFilesViewModel(profile)
+                };
+            }
+        }
+
+        private AdditionalFilesViewModel CreateAdditionalFilesViewModel(Profile profile)
+        {
+            if (profile.AdditionalFiles == null)
+            {
+                return new AdditionalFilesViewModel
+                {
+                    Files = new List<AdditionalFileItem>()
+                };
+            }
+            else
+            {
+                return new AdditionalFilesViewModel
+                {
+                    Files = profile.AdditionalFiles.Select(x => new AdditionalFileItem
+                    {
+                        AdditionalFileId = x.AdditionalFileId,
+                        FileName = x.FileName
+                    }).ToList()
                 };
             }
         }

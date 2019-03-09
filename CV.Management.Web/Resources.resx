@@ -117,25 +117,205 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Achievements" xml:space="preserve">
+    <value>Achievements</value>
+  </data>
+  <data name="AddCompany" xml:space="preserve">
+    <value>Add company</value>
+  </data>
+  <data name="AddCourse" xml:space="preserve">
+    <value>Add course</value>
+  </data>
+  <data name="AddEducation" xml:space="preserve">
+    <value>Add education</value>
+  </data>
+  <data name="AdditionalBonuses" xml:space="preserve">
+    <value>Additional bonuses (company car, stock options, etc.)</value>
+  </data>
+  <data name="AdditionalComments" xml:space="preserve">
+    <value>Additional comments</value>
+  </data>
+  <data name="AddLanguage" xml:space="preserve">
+    <value>Add language</value>
+  </data>
+  <data name="AddMembership" xml:space="preserve">
+    <value>Add membership</value>
+  </data>
+  <data name="AddPosition" xml:space="preserve">
+    <value>Add position</value>
+  </data>
   <data name="Address" xml:space="preserve">
     <value>Address</value>
+  </data>
+  <data name="BonusRequest" xml:space="preserve">
+    <value>Requested bonuses</value>
+  </data>
+  <data name="CareerSummary" xml:space="preserve">
+    <value>Career summary</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>City, country</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>Additional comments</value>
+  </data>
+  <data name="Company" xml:space="preserve">
+    <value>Company</value>
+  </data>
+  <data name="CompanyInformation" xml:space="preserve">
+    <value>Company information</value>
+  </data>
+  <data name="CompanyName" xml:space="preserve">
+    <value>Company name</value>
+  </data>
+  <data name="Compensation" xml:space="preserve">
+    <value>Compensation</value>
+  </data>
+  <data name="CourseName" xml:space="preserve">
+    <value>Course name, certificate obtained</value>
+  </data>
+  <data name="Courses" xml:space="preserve">
+    <value>Additional courses</value>
+  </data>
+  <data name="CurrentBonuses" xml:space="preserve">
+    <value>Current bonuses (gross)</value>
+  </data>
+  <data name="CurrentSalary" xml:space="preserve">
+    <value>Current fixed salary (gross per month)</value>
+  </data>
+  <data name="Degree" xml:space="preserve">
+    <value>Speciality, degree</value>
+  </data>
+  <data name="DirectSubordinates" xml:space="preserve">
+    <value>Direct and indirect subordinates</value>
+  </data>
+  <data name="Education" xml:space="preserve">
+    <value>Education &amp; qualifications</value>
   </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
   </data>
+  <data name="FromTime" xml:space="preserve">
+    <value>From (mm.yyyy)</value>
+  </data>
+  <data name="FromYear" xml:space="preserve">
+    <value>Period from (yyyy)</value>
+  </data>
   <data name="FullName" xml:space="preserve">
     <value>Full name</value>
+  </data>
+  <data name="Hello" xml:space="preserve">
+    <value>Hello</value>
+  </data>
+  <data name="Industry" xml:space="preserve">
+    <value>Industry / business area</value>
+  </data>
+  <data name="Institution" xml:space="preserve">
+    <value>Name of institution / country</value>
+  </data>
+  <data name="KeyTasks" xml:space="preserve">
+    <value>Key tasks and responsibilities (write each in new line)</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="LanguageName" xml:space="preserve">
+    <value>Language</value>
   </data>
   <data name="LinkedInLink" xml:space="preserve">
     <value>LinkedIn link</value>
   </data>
+  <data name="LogIn" xml:space="preserve">
+    <value>Log in</value>
+  </data>
+  <data name="MainProductions" xml:space="preserve">
+    <value>Main products / services</value>
+  </data>
+  <data name="MembershipDescription" xml:space="preserve">
+    <value>Organizational membership</value>
+  </data>
+  <data name="Memberships" xml:space="preserve">
+    <value>Social activities &amp; memberships</value>
+  </data>
+  <data name="NoticePeriod" xml:space="preserve">
+    <value>Transition time to be able to start with new employer</value>
+  </data>
+  <data name="NoticePeriodLabel" xml:space="preserve">
+    <value>Notice period</value>
+  </data>
+  <data name="Now" xml:space="preserve">
+    <value>Now</value>
+  </data>
+  <data name="NumberOfDays" xml:space="preserve">
+    <value>Number of days</value>
+  </data>
+  <data name="NumberOfEmployess" xml:space="preserve">
+    <value>Number of employees</value>
+  </data>
+  <data name="OtherIndustry" xml:space="preserve">
+    <value>Industry / business area</value>
+  </data>
+  <data name="ParentCompanyName" xml:space="preserve">
+    <value>Parent company name</value>
+  </data>
+  <data name="Personal" xml:space="preserve">
+    <value>Personal</value>
+  </data>
   <data name="Phone" xml:space="preserve">
     <value>Phone</value>
+  </data>
+  <data name="Position" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="PositionName" xml:space="preserve">
+    <value>Position name</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profile</value>
   </data>
   <data name="Project" xml:space="preserve">
     <value>Project</value>
   </data>
+  <data name="ReasonForLeaving" xml:space="preserve">
+    <value>Reason for leaving (leave blank if you still work there)</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="ReportingTo" xml:space="preserve">
+    <value>Reporting to (name and position)</value>
+  </data>
+  <data name="SalaryRequest" xml:space="preserve">
+    <value>Salary request (gross per month, currency)</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
   <data name="Skype" xml:space="preserve">
     <value>Skype</value>
+  </data>
+  <data name="SpokenLevel" xml:space="preserve">
+    <value>Spoken</value>
+  </data>
+  <data name="ToTime" xml:space="preserve">
+    <value>To (mm.yyyy)</value>
+  </data>
+  <data name="ToYear" xml:space="preserve">
+    <value>Period to (yyyy)</value>
+  </data>
+  <data name="Trainer" xml:space="preserve">
+    <value>Training company, trainer</value>
+  </data>
+  <data name="Turnover" xml:space="preserve">
+    <value>Turnover (+currency, year)</value>
+  </data>
+  <data name="Upload" xml:space="preserve">
+    <value>Upload</value>
+  </data>
+  <data name="WrittenLevel" xml:space="preserve">
+    <value>Written</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>Year</value>
   </data>
 </root>

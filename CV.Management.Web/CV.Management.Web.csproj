@@ -191,6 +191,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CvController.cs" />
+    <Compile Include="Controllers\FileDeletionController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\WordDocumentController.cs" />
     <Compile Include="DbContexts\ProfileInformationDbContext.cs" />
@@ -217,6 +218,10 @@
     <Compile Include="MigrationsApp\201903062142153_NowColumns.Designer.cs">
       <DependentUpon>201903062142153_NowColumns.cs</DependentUpon>
     </Compile>
+    <Compile Include="MigrationsApp\201903091707076_AdditionalFiles.cs" />
+    <Compile Include="MigrationsApp\201903091707076_AdditionalFiles.Designer.cs">
+      <DependentUpon>201903091707076_AdditionalFiles.cs</DependentUpon>
+    </Compile>
     <Compile Include="MigrationsApp\Configuration.cs" />
     <Compile Include="Migrations\201902272154540_Initial.cs" />
     <Compile Include="Migrations\201902272154540_Initial.Designer.cs">
@@ -224,11 +229,14 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AddAdditionalFileUploadViewModel.cs" />
     <Compile Include="Models\AdditionalCommentsViewModel.cs" />
     <Compile Include="Models\AdditionalCoursesViewModel.cs" />
+    <Compile Include="Models\AdditionalFilesViewModel.cs" />
     <Compile Include="Models\CareerSummaryViewModel.cs" />
     <Compile Include="Models\CompensationViewModel.cs" />
     <Compile Include="Models\Database\AdditionalCourse.cs" />
+    <Compile Include="Models\Database\AdditionalFile.cs" />
     <Compile Include="Models\Database\Company.cs" />
     <Compile Include="Models\Database\Education.cs" />
     <Compile Include="Models\Database\KeyTask.cs" />
@@ -417,6 +425,8 @@
     <Content Include="Views\Shared\_Compensation.cshtml" />
     <Content Include="Views\Shared\_NoticePeriod.cshtml" />
     <Content Include="Views\Shared\_AdditionalComments.cshtml" />
+    <Content Include="Views\Shared\_AdditionalFiles.cshtml" />
+    <Content Include="Views\Shared\_AddAdditionalFile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -450,6 +460,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MigrationsApp\201903062142153_NowColumns.resx">
       <DependentUpon>201903062142153_NowColumns.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MigrationsApp\201903091707076_AdditionalFiles.resx">
+      <DependentUpon>201903091707076_AdditionalFiles.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902272154540_Initial.resx">
       <DependentUpon>201902272154540_Initial.cs</DependentUpon>

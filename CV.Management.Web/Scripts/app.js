@@ -1,5 +1,20 @@
 ﻿$(document).ready(function () {
 
+    $('.remove-image').click(function () {
+        var row = $(this).closest('tr');
+        var hiddenInput = row.find("input");
+        var hiddenInputValue = hiddenInput.attr("value");
+
+        $.get(window.location.origin + "/api/delete/" + hiddenInputValue, function (data) {
+
+            row.remove();
+
+        }).fail(function () {
+            alert("Error deleting file!");
+        });
+
+    });
+
     $('.education-now-input').each(function () {
         var formGroup = $(this).closest('div[class^="form-group"]');
         if (this.checked) {
@@ -53,11 +68,37 @@
     $('.career-position-now-input').change(function () {
         var formGroup = $(this).closest('div[class^="form-group"]');
         if (this.checked) {
+            formGroup.find(".position-to-time-input").attr("value", null);
             formGroup.find(".position-to-time-input").attr("disabled", "true");
-            formGroup.find(".position-to-time-input").attr("value", "");
         } else {
             formGroup.find(".position-to-time-input").removeAttr("disabled");
         }
+    });
+
+    $('.company-industry-select').each(function () {
+
+        var row = $(this).closest('div[class^="row"]');
+
+        if (this.value !== "22") {
+            row.find(".company-other-industry-input").attr("value", null);
+            row.find(".company-other-industry-input").attr("disabled", "true");
+        } else {
+            row.find(".company-other-industry-input").removeAttr("disabled");
+        }
+
+    });
+
+    $('.company-industry-select').change(function () {
+
+        var row = $(this).closest('div[class^="row"]');
+
+        if (this.value !== "22") {
+            row.find(".company-other-industry-input").attr("disabled", "true");
+            row.find(".company-other-industry-input").attr("value", "");
+        } else {
+            row.find(".company-other-industry-input").removeAttr("disabled");
+        }
+
     });
 
     function updateEducationFieldNumbers() {

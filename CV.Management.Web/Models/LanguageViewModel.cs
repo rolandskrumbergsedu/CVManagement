@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace CV.Management.Web.Models
 {
@@ -12,8 +10,11 @@ namespace CV.Management.Web.Models
 
     public class LanguageItem
     {
+        [Display(Name = "LanguageName", ResourceType = typeof(Resources))]
         public LanguageEnum? LanguageName { get; set; }
+        [Display(Name = "SpokenLevel", ResourceType = typeof(Resources))]
         public LevelEnum? SpokenLevel { get; set; }
+        [Display(Name = "WrittenLevel", ResourceType = typeof(Resources))]
         public LevelEnum? WrittenLevel { get; set; }
     }
 

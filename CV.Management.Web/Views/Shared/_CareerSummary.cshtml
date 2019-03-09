@@ -7,7 +7,7 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.AntiForgeryToken()
 
-        <h4>COMPANY INFORMATION</h4>
+        <h4 class="uppercase">@Resources.CompanyInformation</h4>
 
         <div id="companies_container">
             @for (var i = 0; i < Model.Companies.Count; i++)
@@ -16,7 +16,7 @@
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-12">
-                                <h5>COMPANY #<span class="company-number">@(i + 1)</span></h5>
+                                <h5 class="uppercase">@Resources.Company #<span class="company-number">@(i + 1)</span></h5>
                             </div>
                         </div>
                     </div>
@@ -93,7 +93,7 @@
                         {
                             <div class="position_row row">
                                 <div class="col-md-11 col-md-offset-1">
-                                    <h5>POSITION #<span class="position-number">@(j + 1)</span></h5>
+                                    <h5>@Resources.Position #<span class="position-number">@(j + 1)</span></h5>
                                 </div>
                                 <div class="col-md-11">
                                     <div class="row">
@@ -127,7 +127,7 @@
                                         <div class="col-md-11 col-md-offset-1 left-border">
                                             <div class="form-group">
                                                 @Html.LabelFor(model => Model.Companies[i].Positions[j].KeyTasks, new { @class = "position-key-tasks-label control-label" })
-                                                @Html.TextAreaFor(model => Model.Companies[i].Positions[j].KeyTasks, new { @class = "position-key-tasks-input form-control" })
+                                                @Html.TextAreaFor(model => Model.Companies[i].Positions[j].KeyTasks, new { @class = "position-key-tasks-input form-control", @rows = 5 })
                                                 @Html.ValidationMessageFor(model => Model.Companies[i].Positions[j].KeyTasks, "", new { @class = "position-key-tasks-validation" })
                                             </div>
                                         </div>
@@ -145,7 +145,7 @@
                                         <div class="col-md-11 col-md-offset-1 left-border">
                                             <div class="form-group">
                                                 @Html.LabelFor(model => Model.Companies[i].Positions[j].DirectSubordinates, new { @class = "position-subordinates-label control-label" })
-                                                @Html.TextAreaFor(model => Model.Companies[i].Positions[j].DirectSubordinates, new { @class = "position-subordinates-input form-control" })
+                                                @Html.TextAreaFor(model => Model.Companies[i].Positions[j].DirectSubordinates, new { @class = "position-subordinates-input form-control", @rows = 5 })
                                                 @Html.ValidationMessageFor(model => Model.Companies[i].Positions[j].DirectSubordinates, "", new { @class = "position-subordinates-validation" })
                                             </div>
                                         </div>
@@ -154,7 +154,7 @@
                                         <div class="col-md-11 col-md-offset-1 left-border">
                                             <div class="form-group">
                                                 @Html.LabelFor(model => Model.Companies[i].Positions[j].Achievements, new { @class = "position-achievements-label control-label" })
-                                                @Html.TextAreaFor(model => Model.Companies[i].Positions[j].Achievements, new { @class = "position-achievements-input form-control" })
+                                                @Html.TextAreaFor(model => Model.Companies[i].Positions[j].Achievements, new { @class = "position-achievements-input form-control", @rows = 5 })
                                                 @Html.ValidationMessageFor(model => Model.Companies[i].Positions[j].Achievements, "", new { @class = "position-achievements-validation" })
                                             </div>
                                         </div>
@@ -163,7 +163,7 @@
                                         <div class="col-md-11 col-md-offset-1 left-border">
                                             <div class="form-group">
                                                 @Html.LabelFor(model => Model.Companies[i].Positions[j].ReasonForLeaving, new { @class = "position-reason-label control-label" })
-                                                @Html.TextAreaFor(model => Model.Companies[i].Positions[j].ReasonForLeaving, new { @class = "position-reason-input form-control" })
+                                                @Html.TextAreaFor(model => Model.Companies[i].Positions[j].ReasonForLeaving, new { @class = "position-reason-input form-control", @rows = 5 })
                                                 @Html.ValidationMessageFor(model => Model.Companies[i].Positions[j].ReasonForLeaving, "", new { @class = "position-reason-validation" })
                                             </div>
                                         </div>
@@ -178,7 +178,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-offset-1 col-md-10 text-center">
-                            <p><img class="position_add" src="~/Content/Images/add.png" /> ADD POSITION</p>
+                            <p class="uppercase"><img class="position_add" src="~/Content/Images/add.png" /> @Resources.AddPosition</p>
                         </div>
                     </div>
                 </div>
@@ -186,13 +186,13 @@
         </div>
 
         <div class="col-md-12 text-center add-button">
-            <p><img id="career_summary_add" src="~/Content/Images/add.png" /> ADD COMPANY</p>
+            <p class="uppercase"><img id="career_summary_add" src="~/Content/Images/add.png" /> @Resources.AddCompany</p>
         </div>
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group text-right">
-                        <input type="submit" value="Save" class="btn btn-primary float-right" />
+                        <input type="submit" value="@Resources.Save" class="btn btn-primary float-right" />
                     </div>
                 </div>
             </div>
