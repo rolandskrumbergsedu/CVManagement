@@ -315,4 +315,7 @@
   <data name="Year" xml:space="preserve">
     <value>Gads</value>
   </data>
+  <data name="AdditionalCommentsPlaceholder" xml:space="preserve">
+    <value>Papildus komentāri</value>
+  </data>
 </root>

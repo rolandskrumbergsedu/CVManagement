@@ -345,7 +345,13 @@ namespace CV.Management.Web.Controllers
                         var companies = userProfile.Companies.ToList();
                         foreach (var item in companies)
                         {
-                            item.Positions.ToList().ForEach(x => db.Entry(x).State = System.Data.Entity.EntityState.Deleted);
+                            var positions = item.Positions.ToList();
+
+                            foreach (var position in positions)
+                            {
+                                position.KeyTasks.ToList().ForEach(x => db.Entry(x).State = System.Data.Entity.EntityState.Deleted);
+                                db.Entry(position).State = System.Data.Entity.EntityState.Deleted;
+                            }
 
                             db.Entry(item).State = System.Data.Entity.EntityState.Deleted;
                         }

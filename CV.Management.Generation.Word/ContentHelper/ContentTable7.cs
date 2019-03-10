@@ -498,7 +498,8 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties20.Append(fontSize20);
             runProperties20.Append(fontSizeComplexScript20);
             Text text20 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text20.Text = $" ({data.StartingYear} - {data.EndingYear})";
+            var endingYear = data.EndingYear.HasValue ? data.EndingYear.ToString() : "present";
+            text20.Text = $" ({data.StartingYear} - {endingYear})";
 
             run20.Append(runProperties20);
             run20.Append(text20);
@@ -600,6 +601,8 @@ namespace CV.Management.Generation.Word.ContentHelper
 
             var taskInformationParagraphs = new List<Paragraph>();
 
+            foreach (var task in data.Tasks)
+            {
                 Paragraph paragraph14 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidParagraphProperties = "009E39C2", RsidRunAdditionDefault = "009E39C2", ParagraphId = "0477A132", TextId = "77777777" };
 
                 ParagraphProperties paragraphProperties10 = new ParagraphProperties();
@@ -618,7 +621,7 @@ namespace CV.Management.Generation.Word.ContentHelper
                 runProperties26.Append(fontSize26);
                 runProperties26.Append(fontSizeComplexScript26);
                 Text text26 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-                text26.Text = $"{data.Tasks};";
+                text26.Text = $"{task};";
 
                 run26.Append(runProperties26);
                 run26.Append(text26);
@@ -636,7 +639,8 @@ namespace CV.Management.Generation.Word.ContentHelper
                 paragraph14.Append(run26);
 
                 taskInformationParagraphs.Add(paragraph14);
-
+            }
+            
             tableCell9.Append(tableCellProperties9);
             tableCell9.Append(paragraph13);
 
@@ -1263,7 +1267,7 @@ namespace CV.Management.Generation.Word.ContentHelper
                 return "present";
             }
 
-            var maxTime = data.Roles.Max(x => x.StartingYear).ToString();
+            var maxTime = data.Roles.Max(x => x.EndingYear).ToString();
 
             return maxTime;
         }

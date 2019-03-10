@@ -115,6 +115,15 @@ namespace CV.Management.Web {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Additional comments.
+        /// </summary>
+        public static string AdditionalCommentsPlaceholder {
+            get {
+                return ResourceManager.GetString("AdditionalCommentsPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add language.
         /// </summary>
         public static string AddLanguage {

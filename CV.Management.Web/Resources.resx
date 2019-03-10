@@ -318,4 +318,7 @@
   <data name="Year" xml:space="preserve">
     <value>Year</value>
   </data>
+  <data name="AdditionalCommentsPlaceholder" xml:space="preserve">
+    <value>Additional comments</value>
+  </data>
 </root>
