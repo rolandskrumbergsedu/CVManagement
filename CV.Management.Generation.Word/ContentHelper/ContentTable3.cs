@@ -16,8 +16,9 @@ namespace CV.Management.Generation.Word.ContentHelper
             Table table1 = new Table();
 
             TableProperties tableProperties1 = new TableProperties();
+            TablePositionProperties tablePositionProperties1 = new TablePositionProperties() { LeftFromText = 180, RightFromText = 180, VerticalAnchor = VerticalAnchorValues.Text, TablePositionY = 1 };
+            TableOverlap tableOverlap1 = new TableOverlap() { Val = TableOverlapValues.Never };
             TableWidth tableWidth1 = new TableWidth() { Width = "0", Type = TableWidthUnitValues.Auto };
-            TableIndentation tableIndentation1 = new TableIndentation() { Width = 10, Type = TableWidthUnitValues.Dxa };
 
             TableBorders tableBorders1 = new TableBorders();
             TopBorder topBorder1 = new TopBorder() { Val = BorderValues.Single, Color = "000000", Size = (UInt32Value)10U, Space = (UInt32Value)0U };
@@ -42,22 +43,23 @@ namespace CV.Management.Generation.Word.ContentHelper
             tableCellMarginDefault1.Append(tableCellRightMargin1);
             TableLook tableLook1 = new TableLook() { Val = "0000", FirstRow = false, LastRow = false, FirstColumn = false, LastColumn = false, NoHorizontalBand = false, NoVerticalBand = false };
 
+            tableProperties1.Append(tablePositionProperties1);
+            tableProperties1.Append(tableOverlap1);
             tableProperties1.Append(tableWidth1);
-            tableProperties1.Append(tableIndentation1);
             tableProperties1.Append(tableBorders1);
             tableProperties1.Append(tableCellMarginDefault1);
             tableProperties1.Append(tableLook1);
 
             TableGrid tableGrid1 = new TableGrid();
             GridColumn gridColumn1 = new GridColumn() { Width = "2550" };
-            GridColumn gridColumn2 = new GridColumn() { Width = "3450" };
+            GridColumn gridColumn2 = new GridColumn() { Width = "3506" };
             GridColumn gridColumn3 = new GridColumn() { Width = "800" };
 
             tableGrid1.Append(gridColumn1);
             tableGrid1.Append(gridColumn2);
             tableGrid1.Append(gridColumn3);
 
-            TableRow tableRow1 = new TableRow() { RsidTableRowAddition = "009B2C1D", ParagraphId = "2270864E", TextId = "77777777" };
+            TableRow tableRow1 = new TableRow() { RsidTableRowAddition = "009B2C1D", RsidTableRowProperties = "00B96314", ParagraphId = "2270864E", TextId = "77777777" };
 
             TableRowProperties tableRowProperties1 = new TableRowProperties();
             GridAfter gridAfter1 = new GridAfter() { Val = 2 };
@@ -85,7 +87,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             tableCellProperties1.Append(tableCellWidth1);
             tableCellProperties1.Append(tableCellBorders1);
 
-            Paragraph paragraph1 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidRunAdditionDefault = "009E39C2", ParagraphId = "1995C9EF", TextId = "77777777" };
+            Paragraph paragraph1 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidParagraphProperties = "00B96314", RsidRunAdditionDefault = "009E39C2", ParagraphId = "1995C9EF", TextId = "77777777" };
 
             Run run1 = new Run();
 
@@ -126,7 +128,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             tableRow1.Append(tableRowProperties1);
             tableRow1.Append(tableCell1);
 
-            TableRow tableRow2 = new TableRow() { RsidTableRowAddition = "009B2C1D", ParagraphId = "0470BACE", TextId = "77777777" };
+            TableRow tableRow2 = new TableRow() { RsidTableRowAddition = "009B2C1D", RsidTableRowProperties = "00B96314", ParagraphId = "0470BACE", TextId = "77777777" };
 
             TableCell tableCell2 = new TableCell();
 
@@ -147,7 +149,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             tableCellProperties2.Append(tableCellWidth2);
             tableCellProperties2.Append(tableCellBorders2);
 
-            Paragraph paragraph2 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidRunAdditionDefault = "009E39C2", ParagraphId = "51DD25D1", TextId = "77777777" };
+            Paragraph paragraph2 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidParagraphProperties = "00B96314", RsidRunAdditionDefault = "009E39C2", ParagraphId = "51DD25D1", TextId = "77777777" };
 
             Run run3 = new Run();
 
@@ -187,7 +189,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             tableCellProperties3.Append(tableCellWidth3);
             tableCellProperties3.Append(tableCellBorders3);
 
-            Paragraph paragraph3 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidRunAdditionDefault = "0007641E", ParagraphId = "2C00A7B5", TextId = "55FBEA10" };
+            Paragraph paragraph3 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidParagraphProperties = "00B96314", RsidRunAdditionDefault = "0007641E", ParagraphId = "2C00A7B5", TextId = "55FBEA10" };
 
             ParagraphProperties paragraphProperties1 = new ParagraphProperties();
             SpacingBetweenLines spacingBetweenLines1 = new SpacingBetweenLines() { After = "0", Line = "240", LineRule = LineSpacingRuleValues.Auto };
@@ -216,49 +218,34 @@ namespace CV.Management.Generation.Word.ContentHelper
             tableCell3.Append(tableCellProperties3);
             tableCell3.Append(paragraph3);
 
-            //TableCell tableCell4 = new TableCell();
+            TableCell tableCell4 = new TableCell();
 
-            //TableCellProperties tableCellProperties4 = new TableCellProperties();
-            //TableCellWidth tableCellWidth4 = new TableCellWidth() { Width = "800", Type = TableWidthUnitValues.Dxa };
+            TableCellProperties tableCellProperties4 = new TableCellProperties();
+            TableCellWidth tableCellWidth4 = new TableCellWidth() { Width = "800", Type = TableWidthUnitValues.Dxa };
 
-            //TableCellBorders tableCellBorders4 = new TableCellBorders();
-            //TopBorder topBorder5 = new TopBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
-            //LeftBorder leftBorder5 = new LeftBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
-            //BottomBorder bottomBorder5 = new BottomBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
-            //RightBorder rightBorder5 = new RightBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
+            TableCellBorders tableCellBorders4 = new TableCellBorders();
+            TopBorder topBorder5 = new TopBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
+            LeftBorder leftBorder5 = new LeftBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
+            BottomBorder bottomBorder5 = new BottomBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
+            RightBorder rightBorder5 = new RightBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
 
-            //tableCellBorders4.Append(topBorder5);
-            //tableCellBorders4.Append(leftBorder5);
-            //tableCellBorders4.Append(bottomBorder5);
-            //tableCellBorders4.Append(rightBorder5);
+            tableCellBorders4.Append(topBorder5);
+            tableCellBorders4.Append(leftBorder5);
+            tableCellBorders4.Append(bottomBorder5);
+            tableCellBorders4.Append(rightBorder5);
 
-            //tableCellProperties4.Append(tableCellWidth4);
-            //tableCellProperties4.Append(tableCellBorders4);
+            tableCellProperties4.Append(tableCellWidth4);
+            tableCellProperties4.Append(tableCellBorders4);
+            Paragraph paragraph4 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidParagraphProperties = "00B96314", RsidRunAdditionDefault = "009B2C1D", ParagraphId = "302E89FF", TextId = "5C9FF2B7" };
 
-            //Paragraph paragraph4 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidRunAdditionDefault = "0007641E", ParagraphId = "302E89FF", TextId = "3481D71C" };
-
-            //Run run5 = new Run();
-
-            //RunProperties runProperties5 = new RunProperties();
-            //NoProof noProof1 = new NoProof();
-
-            //runProperties5.Append(noProof1);
-            //Text text5 = new Text();
-            //text5.Text = "x";
-
-            //run5.Append(runProperties5);
-            //run5.Append(text5);
-
-            //paragraph4.Append(run5);
-
-            //tableCell4.Append(tableCellProperties4);
-            //tableCell4.Append(paragraph4);
+            tableCell4.Append(tableCellProperties4);
+            tableCell4.Append(paragraph4);
 
             tableRow2.Append(tableCell2);
             tableRow2.Append(tableCell3);
-            //tableRow2.Append(tableCell4);
+            tableRow2.Append(tableCell4);
 
-            TableRow tableRow3 = new TableRow() { RsidTableRowAddition = "009B2C1D", ParagraphId = "28972EE0", TextId = "77777777" };
+            TableRow tableRow3 = new TableRow() { RsidTableRowAddition = "009B2C1D", RsidTableRowProperties = "00B96314", ParagraphId = "28972EE0", TextId = "77777777" };
 
             TableRowProperties tableRowProperties2 = new TableRowProperties();
             GridAfter gridAfter2 = new GridAfter() { Val = 1 };
@@ -286,23 +273,23 @@ namespace CV.Management.Generation.Word.ContentHelper
             tableCellProperties5.Append(tableCellWidth5);
             tableCellProperties5.Append(tableCellBorders5);
 
-            Paragraph paragraph5 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidRunAdditionDefault = "009E39C2", ParagraphId = "73BB2908", TextId = "77777777" };
+            Paragraph paragraph5 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidParagraphProperties = "00B96314", RsidRunAdditionDefault = "009E39C2", ParagraphId = "73BB2908", TextId = "77777777" };
 
-            Run run6 = new Run();
+            Run run5 = new Run();
 
-            RunProperties runProperties6 = new RunProperties();
+            RunProperties runProperties5 = new RunProperties();
             FontSize fontSize5 = new FontSize() { Val = "22" };
             FontSizeComplexScript fontSizeComplexScript5 = new FontSizeComplexScript() { Val = "22" };
 
-            runProperties6.Append(fontSize5);
-            runProperties6.Append(fontSizeComplexScript5);
-            Text text6 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text6.Text = "Address: ";
+            runProperties5.Append(fontSize5);
+            runProperties5.Append(fontSizeComplexScript5);
+            Text text5 = new Text() { Space = SpaceProcessingModeValues.Preserve };
+            text5.Text = "Address: ";
 
-            run6.Append(runProperties6);
-            run6.Append(text6);
+            run5.Append(runProperties5);
+            run5.Append(text5);
 
-            paragraph5.Append(run6);
+            paragraph5.Append(run5);
 
             tableCell5.Append(tableCellProperties5);
             tableCell5.Append(paragraph5);
@@ -326,7 +313,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             tableCellProperties6.Append(tableCellWidth6);
             tableCellProperties6.Append(tableCellBorders6);
 
-            Paragraph paragraph6 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidRunAdditionDefault = "009E39C2", ParagraphId = "6E21FA96", TextId = "77777777" };
+            Paragraph paragraph6 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidParagraphProperties = "00B96314", RsidRunAdditionDefault = "009E39C2", ParagraphId = "6E21FA96", TextId = "77777777" };
 
             ParagraphProperties paragraphProperties2 = new ParagraphProperties();
             SpacingBetweenLines spacingBetweenLines2 = new SpacingBetweenLines() { After = "0", Line = "240", LineRule = LineSpacingRuleValues.Auto };
@@ -335,22 +322,22 @@ namespace CV.Management.Generation.Word.ContentHelper
             paragraphProperties2.Append(spacingBetweenLines2);
             paragraphProperties2.Append(indentation2);
 
-            Run run7 = new Run();
+            Run run6 = new Run();
 
-            RunProperties runProperties7 = new RunProperties();
+            RunProperties runProperties6 = new RunProperties();
             FontSize fontSize6 = new FontSize() { Val = "21" };
             FontSizeComplexScript fontSizeComplexScript6 = new FontSizeComplexScript() { Val = "21" };
 
-            runProperties7.Append(fontSize6);
-            runProperties7.Append(fontSizeComplexScript6);
-            Text text7 = new Text();
-            text7.Text = data.Personal.Address;
+            runProperties6.Append(fontSize6);
+            runProperties6.Append(fontSizeComplexScript6);
+            Text text6 = new Text();
+            text6.Text = data.Personal.Address;
 
-            run7.Append(runProperties7);
-            run7.Append(text7);
+            run6.Append(runProperties6);
+            run6.Append(text6);
 
             paragraph6.Append(paragraphProperties2);
-            paragraph6.Append(run7);
+            paragraph6.Append(run6);
 
             tableCell6.Append(tableCellProperties6);
             tableCell6.Append(paragraph6);
@@ -359,7 +346,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             tableRow3.Append(tableCell5);
             tableRow3.Append(tableCell6);
 
-            TableRow tableRow4 = new TableRow() { RsidTableRowAddition = "009B2C1D", ParagraphId = "31648444", TextId = "77777777" };
+            TableRow tableRow4 = new TableRow() { RsidTableRowAddition = "009B2C1D", RsidTableRowProperties = "00B96314", ParagraphId = "31648444", TextId = "77777777" };
 
             TableRowProperties tableRowProperties3 = new TableRowProperties();
             GridAfter gridAfter3 = new GridAfter() { Val = 1 };
@@ -387,23 +374,23 @@ namespace CV.Management.Generation.Word.ContentHelper
             tableCellProperties7.Append(tableCellWidth7);
             tableCellProperties7.Append(tableCellBorders7);
 
-            Paragraph paragraph7 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidRunAdditionDefault = "009E39C2", ParagraphId = "4AEE0DE2", TextId = "77777777" };
+            Paragraph paragraph7 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidParagraphProperties = "00B96314", RsidRunAdditionDefault = "009E39C2", ParagraphId = "4AEE0DE2", TextId = "77777777" };
 
-            Run run8 = new Run();
+            Run run7 = new Run();
 
-            RunProperties runProperties8 = new RunProperties();
+            RunProperties runProperties7 = new RunProperties();
             FontSize fontSize7 = new FontSize() { Val = "22" };
             FontSizeComplexScript fontSizeComplexScript7 = new FontSizeComplexScript() { Val = "22" };
 
-            runProperties8.Append(fontSize7);
-            runProperties8.Append(fontSizeComplexScript7);
-            Text text8 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text8.Text = "Mobile: ";
+            runProperties7.Append(fontSize7);
+            runProperties7.Append(fontSizeComplexScript7);
+            Text text7 = new Text() { Space = SpaceProcessingModeValues.Preserve };
+            text7.Text = "Mobile: ";
 
-            run8.Append(runProperties8);
-            run8.Append(text8);
+            run7.Append(runProperties7);
+            run7.Append(text7);
 
-            paragraph7.Append(run8);
+            paragraph7.Append(run7);
 
             tableCell7.Append(tableCellProperties7);
             tableCell7.Append(paragraph7);
@@ -427,7 +414,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             tableCellProperties8.Append(tableCellWidth8);
             tableCellProperties8.Append(tableCellBorders8);
 
-            Paragraph paragraph8 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidRunAdditionDefault = "009E39C2", ParagraphId = "29976E05", TextId = "370AA65E" };
+            Paragraph paragraph8 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidParagraphProperties = "00B96314", RsidRunAdditionDefault = "009E39C2", ParagraphId = "29976E05", TextId = "370AA65E" };
 
             ParagraphProperties paragraphProperties3 = new ParagraphProperties();
             SpacingBetweenLines spacingBetweenLines3 = new SpacingBetweenLines() { After = "0", Line = "240", LineRule = LineSpacingRuleValues.Auto };
@@ -436,37 +423,22 @@ namespace CV.Management.Generation.Word.ContentHelper
             paragraphProperties3.Append(spacingBetweenLines3);
             paragraphProperties3.Append(indentation3);
 
-            Run run9 = new Run();
+            Run run8 = new Run();
 
-            RunProperties runProperties9 = new RunProperties();
+            RunProperties runProperties8 = new RunProperties();
             FontSize fontSize8 = new FontSize() { Val = "21" };
             FontSizeComplexScript fontSizeComplexScript8 = new FontSizeComplexScript() { Val = "21" };
 
-            runProperties9.Append(fontSize8);
-            runProperties9.Append(fontSizeComplexScript8);
-            Text text9 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text9.Text = data.Personal.Mobile;
+            runProperties8.Append(fontSize8);
+            runProperties8.Append(fontSizeComplexScript8);
+            Text text8 = new Text();
+            text8.Text = data.Personal.Mobile;
 
-            run9.Append(runProperties9);
-            run9.Append(text9);
-
-            Run run10 = new Run() { RsidRunAddition = "0007641E" };
-
-            RunProperties runProperties10 = new RunProperties();
-            FontSize fontSize9 = new FontSize() { Val = "21" };
-            FontSizeComplexScript fontSizeComplexScript9 = new FontSizeComplexScript() { Val = "21" };
-
-            runProperties10.Append(fontSize9);
-            runProperties10.Append(fontSizeComplexScript9);
-            Text text10 = new Text();
-            text10.Text = "22222";
-
-            run10.Append(runProperties10);
-            run10.Append(text10);
+            run8.Append(runProperties8);
+            run8.Append(text8);
 
             paragraph8.Append(paragraphProperties3);
-            paragraph8.Append(run9);
-            paragraph8.Append(run10);
+            paragraph8.Append(run8);
 
             tableCell8.Append(tableCellProperties8);
             tableCell8.Append(paragraph8);
@@ -475,7 +447,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             tableRow4.Append(tableCell7);
             tableRow4.Append(tableCell8);
 
-            TableRow tableRow5 = new TableRow() { RsidTableRowAddition = "009B2C1D", ParagraphId = "2F87AB23", TextId = "77777777" };
+            TableRow tableRow5 = new TableRow() { RsidTableRowAddition = "009B2C1D", RsidTableRowProperties = "00B96314", ParagraphId = "2F87AB23", TextId = "77777777" };
 
             TableRowProperties tableRowProperties4 = new TableRowProperties();
             GridAfter gridAfter4 = new GridAfter() { Val = 1 };
@@ -503,23 +475,23 @@ namespace CV.Management.Generation.Word.ContentHelper
             tableCellProperties9.Append(tableCellWidth9);
             tableCellProperties9.Append(tableCellBorders9);
 
-            Paragraph paragraph9 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidRunAdditionDefault = "009E39C2", ParagraphId = "7833055C", TextId = "77777777" };
+            Paragraph paragraph9 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidParagraphProperties = "00B96314", RsidRunAdditionDefault = "009E39C2", ParagraphId = "7833055C", TextId = "77777777" };
 
-            Run run11 = new Run();
+            Run run9 = new Run();
 
-            RunProperties runProperties11 = new RunProperties();
-            FontSize fontSize10 = new FontSize() { Val = "22" };
-            FontSizeComplexScript fontSizeComplexScript10 = new FontSizeComplexScript() { Val = "22" };
+            RunProperties runProperties9 = new RunProperties();
+            FontSize fontSize9 = new FontSize() { Val = "22" };
+            FontSizeComplexScript fontSizeComplexScript9 = new FontSizeComplexScript() { Val = "22" };
 
-            runProperties11.Append(fontSize10);
-            runProperties11.Append(fontSizeComplexScript10);
-            Text text11 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text11.Text = "E-mail: ";
+            runProperties9.Append(fontSize9);
+            runProperties9.Append(fontSizeComplexScript9);
+            Text text9 = new Text() { Space = SpaceProcessingModeValues.Preserve };
+            text9.Text = "E-mail: ";
 
-            run11.Append(runProperties11);
-            run11.Append(text11);
+            run9.Append(runProperties9);
+            run9.Append(text9);
 
-            paragraph9.Append(run11);
+            paragraph9.Append(run9);
 
             tableCell9.Append(tableCellProperties9);
             tableCell9.Append(paragraph9);
@@ -543,7 +515,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             tableCellProperties10.Append(tableCellWidth10);
             tableCellProperties10.Append(tableCellBorders10);
 
-            Paragraph paragraph10 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidRunAdditionDefault = "0007641E", ParagraphId = "58618066", TextId = "100C819A" };
+            Paragraph paragraph10 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidParagraphProperties = "00B96314", RsidRunAdditionDefault = "0007641E", ParagraphId = "58618066", TextId = "100C819A" };
 
             ParagraphProperties paragraphProperties4 = new ParagraphProperties();
             SpacingBetweenLines spacingBetweenLines4 = new SpacingBetweenLines() { After = "0", Line = "240", LineRule = LineSpacingRuleValues.Auto };
@@ -552,37 +524,22 @@ namespace CV.Management.Generation.Word.ContentHelper
             paragraphProperties4.Append(spacingBetweenLines4);
             paragraphProperties4.Append(indentation4);
 
-            //Run run12 = new Run();
+            Run run10 = new Run();
 
-            //RunProperties runProperties12 = new RunProperties();
-            //FontSize fontSize11 = new FontSize() { Val = "21" };
-            //FontSizeComplexScript fontSizeComplexScript11 = new FontSizeComplexScript() { Val = "21" };
+            RunProperties runProperties10 = new RunProperties();
+            FontSize fontSize10 = new FontSize() { Val = "21" };
+            FontSizeComplexScript fontSizeComplexScript10 = new FontSizeComplexScript() { Val = "21" };
 
-            //runProperties12.Append(fontSize11);
-            //runProperties12.Append(fontSizeComplexScript11);
-            //Text text12 = new Text();
-            //text12.Text = data.Personal.Email;
+            runProperties10.Append(fontSize10);
+            runProperties10.Append(fontSizeComplexScript10);
+            Text text10 = new Text();
+            text10.Text = data.Personal.Email;
 
-            //run12.Append(runProperties12);
-            //run12.Append(text12);
-
-            Run run13 = new Run() { RsidRunAddition = "009E39C2" };
-
-            RunProperties runProperties13 = new RunProperties();
-            FontSize fontSize12 = new FontSize() { Val = "21" };
-            FontSizeComplexScript fontSizeComplexScript12 = new FontSizeComplexScript() { Val = "21" };
-
-            runProperties13.Append(fontSize12);
-            runProperties13.Append(fontSizeComplexScript12);
-            Text text13 = new Text();
-            text13.Text = data.Personal.Email;
-
-            run13.Append(runProperties13);
-            run13.Append(text13);
+            run10.Append(runProperties10);
+            run10.Append(text10);
 
             paragraph10.Append(paragraphProperties4);
-            //paragraph10.Append(run12);
-            paragraph10.Append(run13);
+            paragraph10.Append(run10);
 
             tableCell10.Append(tableCellProperties10);
             tableCell10.Append(paragraph10);
@@ -591,7 +548,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             tableRow5.Append(tableCell9);
             tableRow5.Append(tableCell10);
 
-            TableRow tableRow6 = new TableRow() { RsidTableRowAddition = "009B2C1D", ParagraphId = "249FC862", TextId = "77777777" };
+            TableRow tableRow6 = new TableRow() { RsidTableRowAddition = "009B2C1D", RsidTableRowProperties = "00B96314", ParagraphId = "249FC862", TextId = "77777777" };
 
             TableRowProperties tableRowProperties5 = new TableRowProperties();
             GridAfter gridAfter5 = new GridAfter() { Val = 1 };
@@ -619,23 +576,23 @@ namespace CV.Management.Generation.Word.ContentHelper
             tableCellProperties11.Append(tableCellWidth11);
             tableCellProperties11.Append(tableCellBorders11);
 
-            Paragraph paragraph11 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidRunAdditionDefault = "009E39C2", ParagraphId = "02BD2EA4", TextId = "77777777" };
+            Paragraph paragraph11 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidParagraphProperties = "00B96314", RsidRunAdditionDefault = "009E39C2", ParagraphId = "02BD2EA4", TextId = "77777777" };
 
-            Run run14 = new Run();
+            Run run11 = new Run();
 
-            RunProperties runProperties14 = new RunProperties();
-            FontSize fontSize13 = new FontSize() { Val = "22" };
-            FontSizeComplexScript fontSizeComplexScript13 = new FontSizeComplexScript() { Val = "22" };
+            RunProperties runProperties11 = new RunProperties();
+            FontSize fontSize11 = new FontSize() { Val = "22" };
+            FontSizeComplexScript fontSizeComplexScript11 = new FontSizeComplexScript() { Val = "22" };
 
-            runProperties14.Append(fontSize13);
-            runProperties14.Append(fontSizeComplexScript13);
-            Text text14 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text14.Text = "Skype: ";
+            runProperties11.Append(fontSize11);
+            runProperties11.Append(fontSizeComplexScript11);
+            Text text11 = new Text() { Space = SpaceProcessingModeValues.Preserve };
+            text11.Text = "Skype: ";
 
-            run14.Append(runProperties14);
-            run14.Append(text14);
+            run11.Append(runProperties11);
+            run11.Append(text11);
 
-            paragraph11.Append(run14);
+            paragraph11.Append(run11);
 
             tableCell11.Append(tableCellProperties11);
             tableCell11.Append(paragraph11);
@@ -659,7 +616,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             tableCellProperties12.Append(tableCellWidth12);
             tableCellProperties12.Append(tableCellBorders12);
 
-            Paragraph paragraph12 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidRunAdditionDefault = "009E39C2", ParagraphId = "2EB303A6", TextId = "0997E51B" };
+            Paragraph paragraph12 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidParagraphProperties = "00B96314", RsidRunAdditionDefault = "009E39C2", ParagraphId = "2EB303A6", TextId = "302F4569" };
 
             ParagraphProperties paragraphProperties5 = new ParagraphProperties();
             SpacingBetweenLines spacingBetweenLines5 = new SpacingBetweenLines() { After = "0", Line = "240", LineRule = LineSpacingRuleValues.Auto };
@@ -667,72 +624,27 @@ namespace CV.Management.Generation.Word.ContentHelper
 
             paragraphProperties5.Append(spacingBetweenLines5);
             paragraphProperties5.Append(indentation5);
+            ProofError proofError1 = new ProofError() { Type = ProofingErrorValues.SpellStart };
 
-            //Run run15 = new Run();
+            Run run12 = new Run();
 
-            //RunProperties runProperties15 = new RunProperties();
-            //FontSize fontSize14 = new FontSize() { Val = "22" };
-            //FontSizeComplexScript fontSizeComplexScript14 = new FontSizeComplexScript() { Val = "22" };
+            RunProperties runProperties12 = new RunProperties();
+            FontSize fontSize12 = new FontSize() { Val = "22" };
+            FontSizeComplexScript fontSizeComplexScript12 = new FontSizeComplexScript() { Val = "22" };
 
-            //runProperties15.Append(fontSize14);
-            //runProperties15.Append(fontSizeComplexScript14);
-            //Text text15 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            //text15.Text = " ";
+            runProperties12.Append(fontSize12);
+            runProperties12.Append(fontSizeComplexScript12);
+            Text text12 = new Text();
+            text12.Text = data.Personal.Skype;
 
-            //run15.Append(runProperties15);
-            //run15.Append(text15);
-            //ProofError proofError1 = new ProofError() { Type = ProofingErrorValues.SpellStart };
-
-            //Run run16 = new Run();
-
-            //RunProperties runProperties16 = new RunProperties();
-            //FontSize fontSize15 = new FontSize() { Val = "22" };
-            //FontSizeComplexScript fontSizeComplexScript15 = new FontSizeComplexScript() { Val = "22" };
-
-            //runProperties16.Append(fontSize15);
-            //runProperties16.Append(fontSizeComplexScript15);
-            //Text text16 = new Text();
-            //text16.Text = "a";
-
-            //run16.Append(runProperties16);
-            //run16.Append(text16);
-
-            Run run17 = new Run() { RsidRunAddition = "0007641E" };
-
-            RunProperties runProperties17 = new RunProperties();
-            FontSize fontSize16 = new FontSize() { Val = "22" };
-            FontSizeComplexScript fontSizeComplexScript16 = new FontSizeComplexScript() { Val = "22" };
-
-            runProperties17.Append(fontSize16);
-            runProperties17.Append(fontSizeComplexScript16);
-            Text text17 = new Text();
-            text17.Text = data.Personal.Skype;
-
-            run17.Append(runProperties17);
-            run17.Append(text17);
-            //ProofError proofError2 = new ProofError() { Type = ProofingErrorValues.SpellEnd };
-
-            Run run18 = new Run();
-
-            RunProperties runProperties18 = new RunProperties();
-            FontSize fontSize17 = new FontSize() { Val = "22" };
-            FontSizeComplexScript fontSizeComplexScript17 = new FontSizeComplexScript() { Val = "22" };
-
-            runProperties18.Append(fontSize17);
-            runProperties18.Append(fontSizeComplexScript17);
-            Text text18 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text18.Text = " ";
-
-            run18.Append(runProperties18);
-            run18.Append(text18);
+            run12.Append(runProperties12);
+            run12.Append(text12);
+            ProofError proofError2 = new ProofError() { Type = ProofingErrorValues.SpellEnd };
 
             paragraph12.Append(paragraphProperties5);
-            //paragraph12.Append(run15);
-            //paragraph12.Append(proofError1);
-            //paragraph12.Append(run16);
-            paragraph12.Append(run17);
-            //paragraph12.Append(proofError2);
-            paragraph12.Append(run18);
+            paragraph12.Append(proofError1);
+            paragraph12.Append(run12);
+            paragraph12.Append(proofError2);
 
             tableCell12.Append(tableCellProperties12);
             tableCell12.Append(paragraph12);
@@ -741,7 +653,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             tableRow6.Append(tableCell11);
             tableRow6.Append(tableCell12);
 
-            TableRow tableRow7 = new TableRow() { RsidTableRowAddition = "009B2C1D", ParagraphId = "7015B121", TextId = "77777777" };
+            TableRow tableRow7 = new TableRow() { RsidTableRowAddition = "009B2C1D", RsidTableRowProperties = "00B96314", ParagraphId = "7015B121", TextId = "77777777" };
 
             TableRowProperties tableRowProperties6 = new TableRowProperties();
             GridAfter gridAfter6 = new GridAfter() { Val = 1 };
@@ -769,23 +681,23 @@ namespace CV.Management.Generation.Word.ContentHelper
             tableCellProperties13.Append(tableCellWidth13);
             tableCellProperties13.Append(tableCellBorders13);
 
-            Paragraph paragraph13 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidRunAdditionDefault = "009E39C2", ParagraphId = "20D71040", TextId = "77777777" };
+            Paragraph paragraph13 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidParagraphProperties = "00B96314", RsidRunAdditionDefault = "009E39C2", ParagraphId = "20D71040", TextId = "77777777" };
 
-            Run run19 = new Run();
+            Run run13 = new Run();
 
-            RunProperties runProperties19 = new RunProperties();
-            FontSize fontSize18 = new FontSize() { Val = "22" };
-            FontSizeComplexScript fontSizeComplexScript18 = new FontSizeComplexScript() { Val = "22" };
+            RunProperties runProperties13 = new RunProperties();
+            FontSize fontSize13 = new FontSize() { Val = "22" };
+            FontSizeComplexScript fontSizeComplexScript13 = new FontSizeComplexScript() { Val = "22" };
 
-            runProperties19.Append(fontSize18);
-            runProperties19.Append(fontSizeComplexScript18);
-            Text text19 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text19.Text = "LinkedIn profile link: ";
+            runProperties13.Append(fontSize13);
+            runProperties13.Append(fontSizeComplexScript13);
+            Text text13 = new Text() { Space = SpaceProcessingModeValues.Preserve };
+            text13.Text = "LinkedIn profile link: ";
 
-            run19.Append(runProperties19);
-            run19.Append(text19);
+            run13.Append(runProperties13);
+            run13.Append(text13);
 
-            paragraph13.Append(run19);
+            paragraph13.Append(run13);
 
             tableCell13.Append(tableCellProperties13);
             tableCell13.Append(paragraph13);
@@ -809,18 +721,37 @@ namespace CV.Management.Generation.Word.ContentHelper
             tableCellProperties14.Append(tableCellWidth14);
             tableCellProperties14.Append(tableCellBorders14);
 
-            Paragraph paragraph14 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidRunAdditionDefault = "009E39C2", ParagraphId = "42C08E08", TextId = "4F1577CF" };
+            Paragraph paragraph14 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidParagraphProperties = "00B96314", RsidRunAdditionDefault = "00926AE3", ParagraphId = "42C08E08", TextId = "2D83B123" };
 
-            Run run20 = new Run();
+            ParagraphProperties paragraphProperties6 = new ParagraphProperties();
+            Indentation indentation6 = new Indentation() { Left = "136" };
 
-            RunProperties runProperties20 = new RunProperties();
-            NoProof noProof2 = new NoProof();
+            paragraphProperties6.Append(indentation6);
 
-            runProperties20.Append(noProof2);
+            Run run14 = new Run() { RsidRunProperties = "00926AE3" };
+
+            RunProperties runProperties14 = new RunProperties();
+            FontSize fontSize14 = new FontSize() { Val = "21" };
+            FontSizeComplexScript fontSizeComplexScript14 = new FontSizeComplexScript() { Val = "21" };
+
+            runProperties14.Append(fontSize14);
+            runProperties14.Append(fontSizeComplexScript14);
+            Text text14 = new Text();
+            text14.Text = data.Personal.LinkedIn;
+
+            run14.Append(runProperties14);
+            run14.Append(text14);
+
+            Run run15 = new Run() { RsidRunAddition = "009E39C2" };
+
+            RunProperties runProperties15 = new RunProperties();
+            NoProof noProof1 = new NoProof();
+
+            runProperties15.Append(noProof1);
 
             Drawing drawing1 = new Drawing();
 
-            Wp.Anchor anchor1 = new Wp.Anchor() { DistanceFromTop = (UInt32Value)0U, DistanceFromBottom = (UInt32Value)0U, DistanceFromLeft = (UInt32Value)114300U, DistanceFromRight = (UInt32Value)114300U, SimplePos = false, RelativeHeight = (UInt32Value)251658240U, BehindDoc = false, Locked = false, LayoutInCell = true, AllowOverlap = true, EditId = "2E1DFA3B", AnchorId = "21CD7C2D" };
+            Wp.Anchor anchor1 = new Wp.Anchor() { DistanceFromTop = (UInt32Value)0U, DistanceFromBottom = (UInt32Value)0U, DistanceFromLeft = (UInt32Value)114300U, DistanceFromRight = (UInt32Value)114300U, SimplePos = false, RelativeHeight = (UInt32Value)251658240U, BehindDoc = false, Locked = false, LayoutInCell = true, AllowOverlap = true, EditId = "6856C880", AnchorId = "21CD7C2D" };
             Wp.SimplePosition simplePosition1 = new Wp.SimplePosition() { X = 0L, Y = 0L };
 
             Wp.HorizontalPosition horizontalPosition1 = new Wp.HorizontalPosition() { RelativeFrom = Wp.HorizontalRelativePositionValues.Margin };
@@ -867,7 +798,7 @@ namespace CV.Management.Generation.Word.ContentHelper
 
             Pic.BlipFill blipFill1 = new Pic.BlipFill();
 
-            A.Blip blip1 = new A.Blip() { Embed = "rId10", CompressionState = A.BlipCompressionValues.Print };
+            A.Blip blip1 = new A.Blip() { Embed = "rId11", CompressionState = A.BlipCompressionValues.Print };
 
             A.BlipExtensionList blipExtensionList1 = new A.BlipExtensionList();
 
@@ -945,26 +876,12 @@ namespace CV.Management.Generation.Word.ContentHelper
 
             drawing1.Append(anchor1);
 
-            run20.Append(runProperties20);
-            run20.Append(drawing1);
+            run15.Append(runProperties15);
+            //run15.Append(drawing1);
 
-            paragraph14.Append(run20);
-
-            Run run21 = new Run() { RsidRunAddition = "0007641E" };
-
-            RunProperties runProperties21 = new RunProperties();
-            FontSize fontSize21 = new FontSize() { Val = "22" };
-            FontSizeComplexScript fontSizeComplexScript21 = new FontSizeComplexScript() { Val = "22" };
-
-            runProperties21.Append(fontSize21);
-            runProperties21.Append(fontSizeComplexScript21);
-            Text text21 = new Text();
-            text21.Text = data.Personal.LinkedIn;
-
-            run21.Append(runProperties21);
-            run21.Append(text21);
-
-            paragraph14.Append(run21);
+            paragraph14.Append(paragraphProperties6);
+            paragraph14.Append(run14);
+            paragraph14.Append(run15);
 
             tableCell14.Append(tableCellProperties14);
             tableCell14.Append(paragraph14);
@@ -983,6 +900,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             table1.Append(tableRow6);
             table1.Append(tableRow7);
             return table1;
+
         }
 
 

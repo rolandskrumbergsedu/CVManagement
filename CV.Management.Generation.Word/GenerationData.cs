@@ -28,8 +28,8 @@ namespace CV.Management.Generation.Word
 
     public class SocialActivity
     {
-        public int StartingYear { get; set; }
-        public int EndingYear { get; set; }
+        public int? StartingYear { get; set; }
+        public int? EndingYear { get; set; }
         public string Role { get; set; }
         public string Description { get; set; }
         public List<string> Tasks { get; set; }
@@ -61,20 +61,22 @@ namespace CV.Management.Generation.Word
         public string Skype { get; set; }
         public string LinkedIn { get; set; }
         public string FullName { get; set; }
+        public string ProfilePictureContent { get; set; }
+        public string ProfilePictureType { get; set; }
     }
 
     public class EducationItem
     {
-        public int StartingYear { get; set; }
-        public int EndingYear { get; set; }
+        public int? StartingYear { get; set; }
+        public int? EndingYear { get; set; }
         public string University { get; set; }
         public string Degree { get; set; }
     }
 
     public class AdditionalCoursesItem
     {
-        public int AmountOfDays { get; set; }
-        public int Year { get; set; }
+        public int? AmountOfDays { get; set; }
+        public int? Year { get; set; }
         public string CourseName { get; set; }
         public string Instructor { get; set; }
     }
@@ -100,9 +102,9 @@ namespace CV.Management.Generation.Word
 
     public class RoleInformation
     {
-        public int StartingYear { get; set; }
-        public int EndingYear { get; set; }
-        public bool Now { get; set; }
+        public int? StartingYear { get; set; }
+        public int? EndingYear { get; set; }
+        public bool? Now { get; set; }
         public string Role { get; set; }
         public List<string> Tasks { get; set; }
         public string ReportingTo { get; set; }

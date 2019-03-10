@@ -264,9 +264,17 @@ namespace CV.Management.Generation.Word.ContentHelper
             return tableRow2;
         }
 
-        private static string GetDay(int amountOfDays)
+        private static string GetDay(int? amountOfDays)
         {
-            return amountOfDays > 1 ? "days" : "day";
+            if (amountOfDays.HasValue)
+            {
+                return amountOfDays > 1 ? "days" : "day";
+            }
+            else
+            {
+                return string.Empty;
+            }
+
         }
     }
 }

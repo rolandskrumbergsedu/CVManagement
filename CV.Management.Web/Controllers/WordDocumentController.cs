@@ -36,7 +36,7 @@ namespace CV.Management.Web.Controllers
             }
             catch (Exception ex)
             {
-                return Request.CreateResponse(HttpStatusCode.Gone);
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
 
@@ -114,20 +114,22 @@ namespace CV.Management.Web.Controllers
                 Email = profile.Email,
                 Address = profile.Address,
                 Skype = profile.Skype,
-                LinkedIn = profile.LinkedInLink
+                LinkedIn = profile.LinkedInLink,
+                ProfilePictureContent = profile.PictureContent,
+                ProfilePictureType = profile.PictureType
             };
 
             var education = profile.Educations.Select(x => new EducationItem
             {
                 Degree = x.Degree,
-                EndingYear = x.ToYear.Value,
-                StartingYear = x.FromYear.Value,
+                EndingYear = x.ToYear,
+                StartingYear = x.FromYear,
                 University = x.Institution
             }).ToList();
 
             var courses = profile.AdditionalCourses.Select(x => new AdditionalCoursesItem
             {
-                AmountOfDays = x.NumberOfDays.Value,
+                AmountOfDays = x.NumberOfDays,
                 CourseName = x.CourseName,
                 Instructor = x.Trainer,
                 Year = x.Year.Value
@@ -152,12 +154,12 @@ namespace CV.Management.Web.Controllers
                 Roles = x.Positions.Select(y => new RoleInformation
                 {
                     Achievements = y.Achievements,
-                    EndingYear = y.ToTime.HasValue ? y.ToTime.Value : 0,
+                    EndingYear = y.ToTime,
                     Now = y.Now,
                     ReasonForLeaving = y.ReasonForLeaving,
                     ReportingTo = y.ReportingTo,
                     Role = y.Name,
-                    StartingYear = y.FromTime.HasValue ? y.FromTime.Value : 0,
+                    StartingYear = y.FromTime,
                     Subordinates = y.DirectSubordinates,
                     Tasks = y.KeyTasks.Select(z => z.Name).ToList()
                 }).ToList()
@@ -166,8 +168,8 @@ namespace CV.Management.Web.Controllers
 
             var activities = profile.Memberships.Select(x => new SocialActivity
             {
-                StartingYear = x.FromTime.HasValue ? x.FromTime.Value : 0,
-                EndingYear = x.ToTime.HasValue ? x.ToTime.Value : 0,
+                StartingYear = x.FromTime,
+                EndingYear = x.ToTime,
                 Description = x.Description
             }).ToList();
 
