@@ -9,6 +9,12 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using CV.Management.Web.Models;
+using System.Collections.Generic;
+using CV.Management.Web.Models.Database;
+using CV.Management.Web.DbContexts;
+using Newtonsoft.Json.Linq;
+using System.Net;
+using System.IO;
 
 namespace CV.Management.Web.Controllers
 {
@@ -155,6 +161,9 @@ namespace CV.Management.Web.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    var identity = (ClaimsIdentity)User.Identity;
+                    IEnumerable<Claim> claims = identity.Claims;
+
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
@@ -372,6 +381,7 @@ namespace CV.Management.Web.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
+
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Name = model.Name, Surname = model.Surname };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
@@ -380,6 +390,11 @@ namespace CV.Management.Web.Controllers
                     if (result.Succeeded)
                     {
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                        var claims = info.ExternalIdentity.Claims;
+                        var profilePictureClaim = claims.FirstOrDefault(x => x.Type == "urn:linkedin:profilePicture")?.Value;
+                        CreateProfile(model.Name, model.Surname, model.Email, profilePictureClaim);
+
                         return RedirectToLocal(returnUrl);
                     }
                 }
@@ -485,6 +500,88 @@ namespace CV.Management.Web.Controllers
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
             }
         }
+
+        private void CreateProfile(string name, string surname, string email, string profilePictureClaim)
+        {
+            var profilePicture = JObject.Parse(profilePictureClaim);
+            var elements = profilePicture.SelectTokens("$.displayImage~.elements[*]").ToList();
+            ImageDownloadResponse pictureContent = null;
+
+            foreach (var element in elements)
+            {
+                var artifact = element.SelectToken("$.artifact").Value<string>();
+                if (artifact.Contains("shrink_400_400"))
+                {
+                    var identifier = element.SelectTokens("$.identifiers[*]").First();
+                    var linkToPicture = identifier.SelectToken("$.identifier").Value<string>();
+
+                    pictureContent = DownloadRemoteImageFile(linkToPicture);
+                    break;
+                }
+            }
+
+            using (var db = new ProfileInformationDbContext())
+            {
+                var profile = db.Profiles.FirstOrDefault(x => x.Email == email);
+
+                if (profile != null)
+                {
+                    profile.FullName = $"{name} {surname}";
+                    profile.PictureContent = pictureContent.ImageContent;
+                    profile.PictureType = pictureContent.ImageContentType;
+                }
+                else
+                {
+                    profile = new Profile
+                    {
+                        FullName = $"{name} {surname}",
+                        Email = email
+                    };
+
+                    if (pictureContent != null)
+                    {
+                        profile.PictureContent = pictureContent.ImageContent;
+                        profile.PictureType = pictureContent.ImageContentType;
+                    }
+
+                    db.Profiles.Add(profile);
+                }
+                
+                db.SaveChanges();
+            }
+        }
+
+        private static ImageDownloadResponse DownloadRemoteImageFile(string uri)
+        {
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+
+            if ((response.StatusCode == HttpStatusCode.OK ||
+                response.StatusCode == HttpStatusCode.Moved ||
+                response.StatusCode == HttpStatusCode.Redirect) &&
+                response.ContentType.StartsWith("image", StringComparison.OrdinalIgnoreCase))
+            {
+                using (Stream inputStream = response.GetResponseStream())
+                {
+                    var ms = new MemoryStream();
+                    inputStream.CopyTo(ms);
+
+                    return new ImageDownloadResponse
+                    {
+                        ImageContent = Convert.ToBase64String(ms.ToArray()),
+                        ImageContentType = response.ContentType
+                    };
+                }
+            }
+
+            return null;
+        }
         #endregion
+    }
+
+    public class ImageDownloadResponse
+    {
+        public string ImageContent { get; set; }
+        public string ImageContentType { get; set; }
     }
 }

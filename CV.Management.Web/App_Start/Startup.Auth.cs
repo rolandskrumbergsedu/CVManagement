@@ -74,7 +74,11 @@ namespace CV.Management.Web
                 "location",
                 "positions",
                 "picture-url",
-                "public-profile-url"
+                "public-profile-url",
+                "location",
+                "industry",
+                "specialties",
+                "positions"
             };
 
             foreach (var field in profileFieldsToGet)
