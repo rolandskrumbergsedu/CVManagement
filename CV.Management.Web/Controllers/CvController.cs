@@ -12,6 +12,7 @@ using System.Web.Mvc;
 
 namespace CV.Management.Web.Controllers
 {
+    [Authorize]
     public class CvController : Controller
     {
         public ActionResult Profile(string language)
@@ -592,8 +593,7 @@ namespace CV.Management.Web.Controllers
 
         private string GetCurrentUsername()
         {
-            return "rolands.krumbergs@outlook.com";
-            //return HttpContext.IsDebuggingEnabled ? "rolands.krumbergs@outlook.com" : User.Identity.Name;
+            return User.Identity.Name;
         }
 
         private ProfileViewModel GetCurrentUserProfileViewModel()
@@ -610,6 +610,7 @@ namespace CV.Management.Web.Controllers
 
                 return new ProfileViewModel
                 {
+                    Name = profile.FullName,
                     FileUploadViewModel = CreateFileUploadViewModel(profile),
                     PersonalInformationViewModel = CreatePersonalInformationViewModel(profile),
                     EducationViewModel = CreateEducationViewModel(profile),

@@ -12,7 +12,7 @@ using System.Web.Http;
 
 namespace CV.Management.Web.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class WordDocumentController : ApiController
     {
         [HttpGet]
@@ -44,8 +44,7 @@ namespace CV.Management.Web.Controllers
         {
             using(var db = new ProfileInformationDbContext())
             {
-                var userName = "rolands.krumbergs@outlook.com";
-               // var userName = User.Identity.Name;
+                var userName = User.Identity.Name;
                 var profile = db.Profiles.FirstOrDefault(x => x.Username == userName);
 
                 return DataFromProfile(profile);

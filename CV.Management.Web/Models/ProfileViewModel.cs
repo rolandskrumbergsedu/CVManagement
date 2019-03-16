@@ -1,6 +1,6 @@
 ﻿namespace CV.Management.Web.Models
 {
-    public class ProfileViewModel
+    public class ProfileViewModel : ViewModelBase
     {
         public FileUploadViewModel FileUploadViewModel { get; set; }
         public PersonalInformationViewModel PersonalInformationViewModel { get; set; }

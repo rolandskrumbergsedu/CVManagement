@@ -1,0 +1,41 @@
+﻿@model CV.Management.Web.Models.AdminOverviewViewModel
+@{
+    ViewBag.Title = "Profiles";
+    Layout = "_AdminLayout.cshtml";
+}
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-12">
+            <h5>Profiles</h5>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Full name</th>
+                        <th>Username</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @for (var i = 0; i < Model.Profiles.Count; i++)
+                    {
+                    <tr>
+                        <td>@Model.Profiles[i].FullName</td>
+                        <td>@Model.Profiles[i].Username</td>
+                        <td></td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
