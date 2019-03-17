@@ -194,6 +194,7 @@
     <Compile Include="Controllers\CvController.cs" />
     <Compile Include="Controllers\FileDeletionController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PowerPointDocumentController.cs" />
     <Compile Include="Controllers\WordDocumentController.cs" />
     <Compile Include="DbContexts\ProfileInformationDbContext.cs" />
     <Compile Include="Global.asax.cs">
@@ -484,6 +485,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CV.Management.Generation.Ppt\CV.Management.Generation.Ppt.csproj">
+      <Project>{9ab7a74a-ea8f-4d64-be23-7624905c92b9}</Project>
+      <Name>CV.Management.Generation.Ppt</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CV.Management.Generation.Word\CV.Management.Generation.Word.csproj">
       <Project>{45bc72cd-8b31-4c78-a8db-6df458c9e266}</Project>
       <Name>CV.Management.Generation.Word</Name>
