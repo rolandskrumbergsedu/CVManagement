@@ -418,7 +418,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Shared\_LegacyLayout.cshtml" />
-    <Content Include="Views\Profile\Renewed.cshtml" />
     <Content Include="Views\Shared\_FileUpload.cshtml" />
     <Content Include="Views\Shared\_PersonalInformation.cshtml" />
     <Content Include="Views\Shared\_Education.cshtml" />
