@@ -91,8 +91,106 @@ namespace CV.Management.Web.Controllers
                 Date = GetCurrentDate(),
                 FullName = profile.FullName,
                 Email = profile.Email,
-                Phone = profile.Phone
+                Phone = profile.Phone,
+                PictureContent = profile.PictureContent,
+                PictureType = profile.PictureType,
+                Education = GetEducationItems(profile.Educations),
+                Languages = GetLanguageItems(profile.Languages),
+                Motivation = GetMotivationItems(profile),
+                Experience = GetExperienceItems(profile.Companies)
             };
+        }
+
+        private static List<EducationItem> GetEducationItems(ICollection<Education> educations)
+        {
+            return educations.Select(x => new EducationItem
+            {
+                Degree = x.Degree,
+                EndYear = x.ToYear.HasValue ? x.ToYear.Value.ToString() : "Currently studying",
+                University = x.Institution
+            }).ToList();
+        }
+
+        private static List<LanguageItem> GetLanguageItems(ICollection<Language> languages)
+        {
+            var result = new List<LanguageItem>();
+
+            foreach (var language in languages)
+            {
+                if ((int)language.SpokenLevel < (int)language.WrittenLevel)
+                {
+                    result.Add(new LanguageItem
+                    {
+                        LanguageLevel = language.SpokenLevel.ToString(),
+                        LanguageName = language.LanguageName.ToString()
+                    });
+                }
+                else
+                {
+                    result.Add(new LanguageItem
+                    {
+                        LanguageLevel = language.WrittenLevel.ToString(),
+                        LanguageName = language.LanguageName.ToString()
+                    });
+                }
+            }
+
+            return result;
+        }
+
+        private static List<MotivationItem> GetMotivationItems(Profile profile)
+        {
+            var result = new List<MotivationItem>();
+
+            if (!string.IsNullOrEmpty(profile.SalaryRequest))
+            {
+                result.Add(new MotivationItem
+                {
+                    Label = "Remuneration",
+                    Content = profile.SalaryRequest
+                });
+            }
+
+            if(!string.IsNullOrEmpty(profile.BonusRequest))
+            {
+                result.Add(new MotivationItem
+                {
+                    Label = "Requested bonuses",
+                    Content = profile.BonusRequest
+                });
+            }
+
+            if (!string.IsNullOrEmpty(profile.AdditionalBonuses))
+            {
+                result.Add(new MotivationItem
+                {
+                    Label = "Additional bonuses",
+                    Content = profile.AdditionalBonuses
+                });
+            }
+
+            return result;
+        }
+
+        private static List<ExperienceItem> GetExperienceItems(ICollection<Company> companies)
+        {
+            var result = new List<ExperienceItem>();
+
+            foreach (var company in companies)
+            {
+                foreach (var position in company.Positions)
+                {
+                    result.Add(new ExperienceItem
+                    {
+                        Company = company.Name,
+                        Position = position.Name,
+                        StartingYear = position.FromTime.HasValue ? position.FromTime.Value.ToString() : string.Empty,
+                        EndingYear = position.Now ? "present" : position.ToTime.HasValue ? position.ToTime.Value.ToString() : string.Empty
+                    });
+                }
+            }
+
+            return result;
         }
     }
 }
