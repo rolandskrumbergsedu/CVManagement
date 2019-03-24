@@ -17,8 +17,11 @@ namespace CV.Management.Web.Controllers
         {
             using (var db = new ProfileInformationDbContext())
             {
+                var currentUsername = User.Identity.Name;
+                var profile = db.Profiles.FirstOrDefault(x => x.Username == currentUsername);
+
                 var profiles = db.Profiles.ToList();
-                var viewmodel = ProfilesToViewModel(profiles);
+                var viewmodel = ProfilesToViewModel(profile.FullName, profiles);
 
 
                 return View(viewmodel);
@@ -26,10 +29,11 @@ namespace CV.Management.Web.Controllers
 
         }
 
-        private AdminOverviewViewModel ProfilesToViewModel(List<Profile> profiles)
+        private AdminOverviewViewModel ProfilesToViewModel(string name, List<Profile> profiles)
         {
             return new AdminOverviewViewModel
             {
+                Name = name,
                 Profiles = profiles.Select(x => new ProfileAdminViewModel
                 {
                     FullName = x.FullName,

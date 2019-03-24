@@ -5,7 +5,7 @@ using System.Web;
 
 namespace CV.Management.Web.Models
 {
-    public class AdminOverviewViewModel
+    public class AdminOverviewViewModel : ViewModelBase
     {
         public List<ProfileAdminViewModel> Profiles { get; set; }
     }

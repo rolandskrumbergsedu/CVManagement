@@ -14,14 +14,14 @@ namespace CV.Management.Web.Controllers
     public class PowerPointDocumentController : ApiController
     {
         [HttpGet]
-        [Route("api/pptdocument")]
-        public HttpResponseMessage DownloadPdfFile()
+        [Route("api/pptdocument/{id}")]
+        public HttpResponseMessage DownloadPdfFile(string id)
         {
             try
             {
                 var documentManager = new PresentationDocumentManager();
 
-                var bytes = documentManager.GetDocument(GetGenerationData());
+                var bytes = documentManager.GetDocument(GetGenerationData(id));
 
                 var result = Request.CreateResponse(HttpStatusCode.OK);
                 result.Content = new ByteArrayContent(bytes);
@@ -38,12 +38,21 @@ namespace CV.Management.Web.Controllers
             }
         }
 
-        private PresentationGenerationData GetGenerationData()
+        private PresentationGenerationData GetGenerationData(string id)
         {
             using (var db = new ProfileInformationDbContext())
             {
-                var userName = User.Identity.Name;
-                var profile = db.Profiles.FirstOrDefault(x => x.Username == userName);
+                Profile profile = null;
+
+                if (!string.IsNullOrEmpty(id))
+                {
+                    profile = db.Profiles.FirstOrDefault(x => x.ProfileId.ToString() == id);
+                }
+                else
+                {
+                    var userName = User.Identity.Name;
+                    profile = db.Profiles.FirstOrDefault(x => x.Username == userName);
+                }
 
                 return DataFromProfile(profile);
             }

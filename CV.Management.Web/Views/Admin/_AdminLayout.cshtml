@@ -22,7 +22,10 @@
                 <a class="navbar-brand" href="/"><img src="~/Content/Images/logo.png" alt="Amrop"></a>
             </div>
             <div class="navbar-collapse collapse">
-                @Html.Partial("_LoginPartial")
+                @Html.Partial("_LoginPartial", new CV.Management.Web.Models.LoginPartialViewModel
+                   {
+                       FullName = Model.Name
+                   })
             </div>
         </div>
     </div>

@@ -16,14 +16,14 @@ namespace CV.Management.Web.Controllers
     public class WordDocumentController : ApiController
     {
         [HttpGet]
-        [Route("api/worddocument")]
-        public HttpResponseMessage DownloadPdfFile()
+        [Route("api/worddocument/{id}")]
+        public HttpResponseMessage DownloadPdfFile(string id)
         {
             try
             {
                 var documentManager = new WordDocumentManager();
 
-                var bytes = documentManager.GetDocument(GetGenerationData());
+                var bytes = documentManager.GetDocument(GetGenerationData(id));
 
                 var result = Request.CreateResponse(HttpStatusCode.OK);
                 result.Content = new ByteArrayContent(bytes);
@@ -40,12 +40,21 @@ namespace CV.Management.Web.Controllers
             }
         }
 
-        private GenerationData GetGenerationData()
+        private GenerationData GetGenerationData(string id)
         {
             using(var db = new ProfileInformationDbContext())
             {
-                var userName = User.Identity.Name;
-                var profile = db.Profiles.FirstOrDefault(x => x.Username == userName);
+                Profile profile = null;
+
+                if (!string.IsNullOrEmpty(id))
+                {
+                    profile = db.Profiles.FirstOrDefault(x => x.ProfileId.ToString() == id);
+                }
+                else
+                {
+                    var userName = User.Identity.Name;
+                    profile = db.Profiles.FirstOrDefault(x => x.Username == userName);
+                }
 
                 return DataFromProfile(profile);
             }

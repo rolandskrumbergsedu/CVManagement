@@ -1,5 +1,25 @@
 ﻿$(document).ready(function () {
 
+    $(".download_word").click(function (e) {
+
+        var row = $(this).closest('tr');
+        var hiddenInput = row.find("input");
+        var hiddenInputValue = hiddenInput.attr("value");
+
+        e.preventDefault();
+        window.location.href = "/api/worddocument/" + hiddenInputValue;
+    });
+
+    $(".download_ppt").click(function () {
+
+        var row = $(this).closest('tr');
+        var hiddenInput = row.find("input");
+        var hiddenInputValue = hiddenInput.attr("value");
+
+        e.preventDefault();
+        window.location.href = "/api/pptdocument/" + hiddenInputValue;
+    });
+
     $('.remove-image').click(function () {
         var row = $(this).closest('tr');
         var hiddenInput = row.find("input");
@@ -51,7 +71,7 @@
         } else {
             formGroup.find(".education-to-year-input").removeAttr("disabled");
         }
-        
+
     });
 
     $('.membership-now-input').change(function () {
@@ -142,9 +162,9 @@
         });
     }
     function removeEducation() {
-            $(this).closest('div[class^="education_row"]').remove();
+        $(this).closest('div[class^="education_row"]').remove();
 
-            updateEducationFieldNumbers();
+        updateEducationFieldNumbers();
     }
 
     $("#education_add").click(function () {
@@ -323,7 +343,7 @@
                 "name": formName + "[" + index + "]." + writtenLevelFieldName
             });
             $(this).find(".language-written-validation").attr("data-valmsg-for", formName + "[" + index + "]." + writtenLevelFieldName);
-            
+
         });
 
     }
@@ -811,9 +831,9 @@
         newRow.find(".career-position-now-input").attr({
             "value": null
         });
-        
+
         newRow.find(".position-key-tasks-input").val(null);
-        
+
         newRow.find(".position-reporting-to-input").attr({
             "value": null
         });
