@@ -13,6 +13,7 @@ namespace CV.Management.Generation.Ppt
         public List<EducationItem> Education { get; set; }
         public List<LanguageItem> Languages { get; set; }
         public List<ExperienceItem> Experience { get; set; }
+        public List<MotivationItem> Motivation { get; set; }
     }
 
     public class EducationItem
@@ -34,5 +35,11 @@ namespace CV.Management.Generation.Ppt
         public string EndingYear { get; set; }
         public string Company { get; set; }
         public string Position { get; set; }
+    }
+
+    public class MotivationItem
+    {
+        public string Label { get; set; }
+        public string Content { get; set; }
     }
 }

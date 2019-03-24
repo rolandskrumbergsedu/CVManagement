@@ -90,8 +90,18 @@ namespace CV.Management.Generation.Ppt
             SlidePart slidePart1 = presentationPart1.AddNewPart<SlidePart>("rId5");
             GenerateSlidePartHelper.GenerateSlidePart1Content(slidePart1, data);
 
-            ImagePart imagePart1 = slidePart1.AddNewPart<ImagePart>("image/png", "rId3");
-            GenerateImagePartHelper.GenerateImagePart1Content(imagePart1);
+            var pictureType = string.Empty;
+            if (!string.IsNullOrEmpty(data.PictureType))
+            {
+                pictureType = data.PictureType;
+            } 
+            else
+            {
+                pictureType = "image/png";
+            }
+
+            ImagePart imagePart1 = slidePart1.AddNewPart<ImagePart>(pictureType, "rId3");
+            GenerateImagePartHelper.GenerateImagePart1Content(imagePart1, data.PictureContent);
 
             NotesSlidePart notesSlidePart1 = slidePart1.AddNewPart<NotesSlidePart>("rId2");
             GenerateNotesSlidePartHelper.GenerateNotesSlidePart1Content(notesSlidePart1);

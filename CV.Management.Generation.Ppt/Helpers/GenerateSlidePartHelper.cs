@@ -4,6 +4,8 @@ using DocumentFormat.OpenXml.Presentation;
 using A = DocumentFormat.OpenXml.Drawing;
 using P14 = DocumentFormat.OpenXml.Office2010.PowerPoint;
 using A14 = DocumentFormat.OpenXml.Office2010.Drawing;
+using System.Collections.Generic;
+using System.Text;
 
 namespace CV.Management.Generation.Ppt.Helpers
 {
@@ -1094,531 +1096,528 @@ namespace CV.Management.Generation.Ppt.Helpers
             paragraph17.Append(paragraphProperties14);
             paragraph17.Append(run13);
 
-            A.Paragraph paragraph18 = new A.Paragraph();
+            //A.Paragraph paragraph18 = new A.Paragraph();
 
-            A.ParagraphProperties paragraphProperties15 = new A.ParagraphProperties();
+            //A.ParagraphProperties paragraphProperties15 = new A.ParagraphProperties();
 
-            A.SpaceBefore spaceBefore35 = new A.SpaceBefore();
-            A.SpacingPoints spacingPoints9 = new A.SpacingPoints() { Val = 0 };
+            //A.SpaceBefore spaceBefore35 = new A.SpaceBefore();
+            //A.SpacingPoints spacingPoints9 = new A.SpacingPoints() { Val = 0 };
 
-            spaceBefore35.Append(spacingPoints9);
+            //spaceBefore35.Append(spacingPoints9);
 
-            A.SpaceAfter spaceAfter25 = new A.SpaceAfter();
-            A.SpacingPoints spacingPoints10 = new A.SpacingPoints() { Val = 0 };
+            //A.SpaceAfter spaceAfter25 = new A.SpaceAfter();
+            //A.SpacingPoints spacingPoints10 = new A.SpacingPoints() { Val = 0 };
 
-            spaceAfter25.Append(spacingPoints10);
+            //spaceAfter25.Append(spacingPoints10);
 
-            A.BulletColor bulletColor23 = new A.BulletColor();
-            A.RgbColorModelHex rgbColorModelHex212 = new A.RgbColorModelHex() { Val = "8EBAE5" };
+            //A.BulletColor bulletColor23 = new A.BulletColor();
+            //A.RgbColorModelHex rgbColorModelHex212 = new A.RgbColorModelHex() { Val = "8EBAE5" };
 
-            bulletColor23.Append(rgbColorModelHex212);
-            A.BulletFontText bulletFontText7 = new A.BulletFontText();
-            A.NoBullet noBullet7 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties54 = new A.DefaultRunProperties();
+            //bulletColor23.Append(rgbColorModelHex212);
+            //A.BulletFontText bulletFontText7 = new A.BulletFontText();
+            //A.NoBullet noBullet7 = new A.NoBullet();
+            //A.DefaultRunProperties defaultRunProperties54 = new A.DefaultRunProperties();
 
-            paragraphProperties15.Append(spaceBefore35);
-            paragraphProperties15.Append(spaceAfter25);
-            paragraphProperties15.Append(bulletColor23);
-            paragraphProperties15.Append(bulletFontText7);
-            paragraphProperties15.Append(noBullet7);
-            paragraphProperties15.Append(defaultRunProperties54);
+            //paragraphProperties15.Append(spaceBefore35);
+            //paragraphProperties15.Append(spaceAfter25);
+            //paragraphProperties15.Append(bulletColor23);
+            //paragraphProperties15.Append(bulletFontText7);
+            //paragraphProperties15.Append(noBullet7);
+            //paragraphProperties15.Append(defaultRunProperties54);
 
-            A.Run run14 = new A.Run();
+            //A.Run run14 = new A.Run();
 
-            A.RunProperties runProperties17 = new A.RunProperties() { Language = "en-US", AlternativeLanguage = "et-EE", FontSize = 1050, Dirty = false };
+            //A.RunProperties runProperties17 = new A.RunProperties() { Language = "en-US", AlternativeLanguage = "et-EE", FontSize = 1050, Dirty = false };
 
-            A.SolidFill solidFill92 = new A.SolidFill();
-            A.SchemeColor schemeColor142 = new A.SchemeColor() { Val = A.SchemeColorValues.Background1 };
+            //A.SolidFill solidFill92 = new A.SolidFill();
+            //A.SchemeColor schemeColor142 = new A.SchemeColor() { Val = A.SchemeColorValues.Background1 };
 
-            solidFill92.Append(schemeColor142);
-            A.LatinFont latinFont59 = new A.LatinFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
-            A.ComplexScriptFont complexScriptFont39 = new A.ComplexScriptFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
+            //solidFill92.Append(schemeColor142);
+            //A.LatinFont latinFont59 = new A.LatinFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
+            //A.ComplexScriptFont complexScriptFont39 = new A.ComplexScriptFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
 
-            runProperties17.Append(solidFill92);
-            runProperties17.Append(latinFont59);
-            runProperties17.Append(complexScriptFont39);
-            A.Text text17 = new A.Text();
-            text17.Text = "2017 - ";
+            //runProperties17.Append(solidFill92);
+            //runProperties17.Append(latinFont59);
+            //runProperties17.Append(complexScriptFont39);
+            //A.Text text17 = new A.Text();
+            //text17.Text = "2017 - ";
 
-            run14.Append(runProperties17);
-            run14.Append(text17);
+            //run14.Append(runProperties17);
+            //run14.Append(text17);
 
-            A.Run run15 = new A.Run();
+            //A.Run run15 = new A.Run();
 
-            A.RunProperties runProperties18 = new A.RunProperties() { Language = "lv-LV", AlternativeLanguage = "et-EE", FontSize = 1050, Dirty = false, SpellingError = true };
+            //A.RunProperties runProperties18 = new A.RunProperties() { Language = "lv-LV", AlternativeLanguage = "et-EE", FontSize = 1050, Dirty = false, SpellingError = true };
 
-            A.SolidFill solidFill93 = new A.SolidFill();
-            A.SchemeColor schemeColor143 = new A.SchemeColor() { Val = A.SchemeColorValues.Background1 };
+            //A.SolidFill solidFill93 = new A.SolidFill();
+            //A.SchemeColor schemeColor143 = new A.SchemeColor() { Val = A.SchemeColorValues.Background1 };
 
-            solidFill93.Append(schemeColor143);
-            A.LatinFont latinFont60 = new A.LatinFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
-            A.ComplexScriptFont complexScriptFont40 = new A.ComplexScriptFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
+            //solidFill93.Append(schemeColor143);
+            //A.LatinFont latinFont60 = new A.LatinFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
+            //A.ComplexScriptFont complexScriptFont40 = new A.ComplexScriptFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
 
-            runProperties18.Append(solidFill93);
-            runProperties18.Append(latinFont60);
-            runProperties18.Append(complexScriptFont40);
-            A.Text text18 = new A.Text();
-            text18.Text = "present";
+            //runProperties18.Append(solidFill93);
+            //runProperties18.Append(latinFont60);
+            //runProperties18.Append(complexScriptFont40);
+            //A.Text text18 = new A.Text();
+            //text18.Text = "present";
 
-            run15.Append(runProperties18);
-            run15.Append(text18);
+            //run15.Append(runProperties18);
+            //run15.Append(text18);
 
-            A.Run run16 = new A.Run();
+            //A.Run run16 = new A.Run();
 
-            A.RunProperties runProperties19 = new A.RunProperties() { Language = "en-US", AlternativeLanguage = "et-EE", FontSize = 1050, Dirty = false };
+            //A.RunProperties runProperties19 = new A.RunProperties() { Language = "en-US", AlternativeLanguage = "et-EE", FontSize = 1050, Dirty = false };
 
-            A.SolidFill solidFill94 = new A.SolidFill();
-            A.SchemeColor schemeColor144 = new A.SchemeColor() { Val = A.SchemeColorValues.Background1 };
+            //A.SolidFill solidFill94 = new A.SolidFill();
+            //A.SchemeColor schemeColor144 = new A.SchemeColor() { Val = A.SchemeColorValues.Background1 };
 
-            solidFill94.Append(schemeColor144);
-            A.LatinFont latinFont61 = new A.LatinFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
-            A.ComplexScriptFont complexScriptFont41 = new A.ComplexScriptFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
+            //solidFill94.Append(schemeColor144);
+            //A.LatinFont latinFont61 = new A.LatinFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
+            //A.ComplexScriptFont complexScriptFont41 = new A.ComplexScriptFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
 
-            runProperties19.Append(solidFill94);
-            runProperties19.Append(latinFont61);
-            runProperties19.Append(complexScriptFont41);
-            A.Text text19 = new A.Text();
-            text19.Text = " BANKA - Head of Baltic Private banking";
+            //runProperties19.Append(solidFill94);
+            //runProperties19.Append(latinFont61);
+            //runProperties19.Append(complexScriptFont41);
+            //A.Text text19 = new A.Text();
+            //text19.Text = " BANKA - Head of Baltic Private banking";
 
-            run16.Append(runProperties19);
-            run16.Append(text19);
+            //run16.Append(runProperties19);
+            //run16.Append(text19);
 
-            paragraph18.Append(paragraphProperties15);
-            paragraph18.Append(run14);
-            paragraph18.Append(run15);
-            paragraph18.Append(run16);
+            //paragraph18.Append(paragraphProperties15);
+            //paragraph18.Append(run14);
+            //paragraph18.Append(run15);
+            //paragraph18.Append(run16);
 
-            A.Paragraph paragraph19 = new A.Paragraph();
+            //A.Paragraph paragraph19 = new A.Paragraph();
 
-            A.ParagraphProperties paragraphProperties16 = new A.ParagraphProperties();
+            //A.ParagraphProperties paragraphProperties16 = new A.ParagraphProperties();
 
-            A.SpaceBefore spaceBefore36 = new A.SpaceBefore();
-            A.SpacingPoints spacingPoints11 = new A.SpacingPoints() { Val = 0 };
+            //A.SpaceBefore spaceBefore36 = new A.SpaceBefore();
+            //A.SpacingPoints spacingPoints11 = new A.SpacingPoints() { Val = 0 };
 
-            spaceBefore36.Append(spacingPoints11);
+            //spaceBefore36.Append(spacingPoints11);
 
-            A.SpaceAfter spaceAfter26 = new A.SpaceAfter();
-            A.SpacingPoints spacingPoints12 = new A.SpacingPoints() { Val = 0 };
+            //A.SpaceAfter spaceAfter26 = new A.SpaceAfter();
+            //A.SpacingPoints spacingPoints12 = new A.SpacingPoints() { Val = 0 };
 
-            spaceAfter26.Append(spacingPoints12);
+            //spaceAfter26.Append(spacingPoints12);
 
-            A.BulletColor bulletColor24 = new A.BulletColor();
-            A.RgbColorModelHex rgbColorModelHex213 = new A.RgbColorModelHex() { Val = "8EBAE5" };
+            //A.BulletColor bulletColor24 = new A.BulletColor();
+            //A.RgbColorModelHex rgbColorModelHex213 = new A.RgbColorModelHex() { Val = "8EBAE5" };
 
-            bulletColor24.Append(rgbColorModelHex213);
-            A.BulletFontText bulletFontText8 = new A.BulletFontText();
-            A.NoBullet noBullet8 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties55 = new A.DefaultRunProperties();
+            //bulletColor24.Append(rgbColorModelHex213);
+            //A.BulletFontText bulletFontText8 = new A.BulletFontText();
+            //A.NoBullet noBullet8 = new A.NoBullet();
+            //A.DefaultRunProperties defaultRunProperties55 = new A.DefaultRunProperties();
 
-            paragraphProperties16.Append(spaceBefore36);
-            paragraphProperties16.Append(spaceAfter26);
-            paragraphProperties16.Append(bulletColor24);
-            paragraphProperties16.Append(bulletFontText8);
-            paragraphProperties16.Append(noBullet8);
-            paragraphProperties16.Append(defaultRunProperties55);
+            //paragraphProperties16.Append(spaceBefore36);
+            //paragraphProperties16.Append(spaceAfter26);
+            //paragraphProperties16.Append(bulletColor24);
+            //paragraphProperties16.Append(bulletFontText8);
+            //paragraphProperties16.Append(noBullet8);
+            //paragraphProperties16.Append(defaultRunProperties55);
 
-            A.Run run17 = new A.Run();
+            //A.Run run17 = new A.Run();
 
-            A.RunProperties runProperties20 = new A.RunProperties() { Language = "en-US", AlternativeLanguage = "et-EE", FontSize = 1050, Dirty = false };
+            //A.RunProperties runProperties20 = new A.RunProperties() { Language = "en-US", AlternativeLanguage = "et-EE", FontSize = 1050, Dirty = false };
 
-            A.SolidFill solidFill95 = new A.SolidFill();
-            A.SchemeColor schemeColor145 = new A.SchemeColor() { Val = A.SchemeColorValues.Background1 };
+            //A.SolidFill solidFill95 = new A.SolidFill();
+            //A.SchemeColor schemeColor145 = new A.SchemeColor() { Val = A.SchemeColorValues.Background1 };
 
-            solidFill95.Append(schemeColor145);
-            A.LatinFont latinFont62 = new A.LatinFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
-            A.ComplexScriptFont complexScriptFont42 = new A.ComplexScriptFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
+            //solidFill95.Append(schemeColor145);
+            //A.LatinFont latinFont62 = new A.LatinFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
+            //A.ComplexScriptFont complexScriptFont42 = new A.ComplexScriptFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
 
-            runProperties20.Append(solidFill95);
-            runProperties20.Append(latinFont62);
-            runProperties20.Append(complexScriptFont42);
-            A.Text text20 = new A.Text();
-            text20.Text = "2015 - 2017 BANKA - Head of Retail Baltic\'s";
+            //runProperties20.Append(solidFill95);
+            //runProperties20.Append(latinFont62);
+            //runProperties20.Append(complexScriptFont42);
+            //A.Text text20 = new A.Text();
+            //text20.Text = "2015 - 2017 BANKA - Head of Retail Baltic\'s";
 
-            run17.Append(runProperties20);
-            run17.Append(text20);
+            //run17.Append(runProperties20);
+            //run17.Append(text20);
 
-            paragraph19.Append(paragraphProperties16);
-            paragraph19.Append(run17);
+            //paragraph19.Append(paragraphProperties16);
+            //paragraph19.Append(run17);
 
-            A.Paragraph paragraph20 = new A.Paragraph();
+            //A.Paragraph paragraph20 = new A.Paragraph();
 
-            A.ParagraphProperties paragraphProperties17 = new A.ParagraphProperties();
+            //A.ParagraphProperties paragraphProperties17 = new A.ParagraphProperties();
 
-            A.SpaceBefore spaceBefore37 = new A.SpaceBefore();
-            A.SpacingPoints spacingPoints13 = new A.SpacingPoints() { Val = 0 };
+            //A.SpaceBefore spaceBefore37 = new A.SpaceBefore();
+            //A.SpacingPoints spacingPoints13 = new A.SpacingPoints() { Val = 0 };
 
-            spaceBefore37.Append(spacingPoints13);
+            //spaceBefore37.Append(spacingPoints13);
 
-            A.SpaceAfter spaceAfter27 = new A.SpaceAfter();
-            A.SpacingPoints spacingPoints14 = new A.SpacingPoints() { Val = 0 };
+            //A.SpaceAfter spaceAfter27 = new A.SpaceAfter();
+            //A.SpacingPoints spacingPoints14 = new A.SpacingPoints() { Val = 0 };
 
-            spaceAfter27.Append(spacingPoints14);
+            //spaceAfter27.Append(spacingPoints14);
 
-            A.BulletColor bulletColor25 = new A.BulletColor();
-            A.RgbColorModelHex rgbColorModelHex214 = new A.RgbColorModelHex() { Val = "8EBAE5" };
+            //A.BulletColor bulletColor25 = new A.BulletColor();
+            //A.RgbColorModelHex rgbColorModelHex214 = new A.RgbColorModelHex() { Val = "8EBAE5" };
 
-            bulletColor25.Append(rgbColorModelHex214);
-            A.BulletFontText bulletFontText9 = new A.BulletFontText();
-            A.NoBullet noBullet9 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties56 = new A.DefaultRunProperties();
+            //bulletColor25.Append(rgbColorModelHex214);
+            //A.BulletFontText bulletFontText9 = new A.BulletFontText();
+            //A.NoBullet noBullet9 = new A.NoBullet();
+            //A.DefaultRunProperties defaultRunProperties56 = new A.DefaultRunProperties();
 
-            paragraphProperties17.Append(spaceBefore37);
-            paragraphProperties17.Append(spaceAfter27);
-            paragraphProperties17.Append(bulletColor25);
-            paragraphProperties17.Append(bulletFontText9);
-            paragraphProperties17.Append(noBullet9);
-            paragraphProperties17.Append(defaultRunProperties56);
+            //paragraphProperties17.Append(spaceBefore37);
+            //paragraphProperties17.Append(spaceAfter27);
+            //paragraphProperties17.Append(bulletColor25);
+            //paragraphProperties17.Append(bulletFontText9);
+            //paragraphProperties17.Append(noBullet9);
+            //paragraphProperties17.Append(defaultRunProperties56);
 
-            A.Run run18 = new A.Run();
+            //A.Run run18 = new A.Run();
 
-            A.RunProperties runProperties21 = new A.RunProperties() { Language = "en-US", AlternativeLanguage = "et-EE", FontSize = 1050, Dirty = false };
+            //A.RunProperties runProperties21 = new A.RunProperties() { Language = "en-US", AlternativeLanguage = "et-EE", FontSize = 1050, Dirty = false };
 
-            A.SolidFill solidFill96 = new A.SolidFill();
-            A.SchemeColor schemeColor146 = new A.SchemeColor() { Val = A.SchemeColorValues.Background1 };
+            //A.SolidFill solidFill96 = new A.SolidFill();
+            //A.SchemeColor schemeColor146 = new A.SchemeColor() { Val = A.SchemeColorValues.Background1 };
 
-            solidFill96.Append(schemeColor146);
-            A.LatinFont latinFont63 = new A.LatinFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
-            A.ComplexScriptFont complexScriptFont43 = new A.ComplexScriptFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
+            //solidFill96.Append(schemeColor146);
+            //A.LatinFont latinFont63 = new A.LatinFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
+            //A.ComplexScriptFont complexScriptFont43 = new A.ComplexScriptFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
 
-            runProperties21.Append(solidFill96);
-            runProperties21.Append(latinFont63);
-            runProperties21.Append(complexScriptFont43);
-            A.Text text21 = new A.Text();
-            text21.Text = "2013 - 2015 BANKA - Head of Retail Lending Division";
+            //runProperties21.Append(solidFill96);
+            //runProperties21.Append(latinFont63);
+            //runProperties21.Append(complexScriptFont43);
+            //A.Text text21 = new A.Text();
+            //text21.Text = "2013 - 2015 BANKA - Head of Retail Lending Division";
 
-            run18.Append(runProperties21);
-            run18.Append(text21);
+            //run18.Append(runProperties21);
+            //run18.Append(text21);
 
-            paragraph20.Append(paragraphProperties17);
-            paragraph20.Append(run18);
+            //paragraph20.Append(paragraphProperties17);
+            //paragraph20.Append(run18);
 
-            A.Paragraph paragraph21 = new A.Paragraph();
+            //A.Paragraph paragraph21 = new A.Paragraph();
 
-            A.ParagraphProperties paragraphProperties18 = new A.ParagraphProperties();
+            //A.ParagraphProperties paragraphProperties18 = new A.ParagraphProperties();
 
-            A.SpaceBefore spaceBefore38 = new A.SpaceBefore();
-            A.SpacingPoints spacingPoints15 = new A.SpacingPoints() { Val = 0 };
+            //A.SpaceBefore spaceBefore38 = new A.SpaceBefore();
+            //A.SpacingPoints spacingPoints15 = new A.SpacingPoints() { Val = 0 };
 
-            spaceBefore38.Append(spacingPoints15);
+            //spaceBefore38.Append(spacingPoints15);
 
-            A.SpaceAfter spaceAfter28 = new A.SpaceAfter();
-            A.SpacingPoints spacingPoints16 = new A.SpacingPoints() { Val = 0 };
+            //A.SpaceAfter spaceAfter28 = new A.SpaceAfter();
+            //A.SpacingPoints spacingPoints16 = new A.SpacingPoints() { Val = 0 };
 
-            spaceAfter28.Append(spacingPoints16);
+            //spaceAfter28.Append(spacingPoints16);
 
-            A.BulletColor bulletColor26 = new A.BulletColor();
-            A.RgbColorModelHex rgbColorModelHex215 = new A.RgbColorModelHex() { Val = "8EBAE5" };
+            //A.BulletColor bulletColor26 = new A.BulletColor();
+            //A.RgbColorModelHex rgbColorModelHex215 = new A.RgbColorModelHex() { Val = "8EBAE5" };
 
-            bulletColor26.Append(rgbColorModelHex215);
-            A.BulletFontText bulletFontText10 = new A.BulletFontText();
-            A.NoBullet noBullet10 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties57 = new A.DefaultRunProperties();
+            //bulletColor26.Append(rgbColorModelHex215);
+            //A.BulletFontText bulletFontText10 = new A.BulletFontText();
+            //A.NoBullet noBullet10 = new A.NoBullet();
+            //A.DefaultRunProperties defaultRunProperties57 = new A.DefaultRunProperties();
 
-            paragraphProperties18.Append(spaceBefore38);
-            paragraphProperties18.Append(spaceAfter28);
-            paragraphProperties18.Append(bulletColor26);
-            paragraphProperties18.Append(bulletFontText10);
-            paragraphProperties18.Append(noBullet10);
-            paragraphProperties18.Append(defaultRunProperties57);
+            //paragraphProperties18.Append(spaceBefore38);
+            //paragraphProperties18.Append(spaceAfter28);
+            //paragraphProperties18.Append(bulletColor26);
+            //paragraphProperties18.Append(bulletFontText10);
+            //paragraphProperties18.Append(noBullet10);
+            //paragraphProperties18.Append(defaultRunProperties57);
 
-            A.Run run19 = new A.Run();
+            //A.Run run19 = new A.Run();
 
-            A.RunProperties runProperties22 = new A.RunProperties() { Language = "en-US", AlternativeLanguage = "et-EE", FontSize = 1050, Dirty = false };
+            //A.RunProperties runProperties22 = new A.RunProperties() { Language = "en-US", AlternativeLanguage = "et-EE", FontSize = 1050, Dirty = false };
 
-            A.SolidFill solidFill97 = new A.SolidFill();
-            A.SchemeColor schemeColor147 = new A.SchemeColor() { Val = A.SchemeColorValues.Background1 };
+            //A.SolidFill solidFill97 = new A.SolidFill();
+            //A.SchemeColor schemeColor147 = new A.SchemeColor() { Val = A.SchemeColorValues.Background1 };
 
-            solidFill97.Append(schemeColor147);
-            A.LatinFont latinFont64 = new A.LatinFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
-            A.ComplexScriptFont complexScriptFont44 = new A.ComplexScriptFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
+            //solidFill97.Append(schemeColor147);
+            //A.LatinFont latinFont64 = new A.LatinFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
+            //A.ComplexScriptFont complexScriptFont44 = new A.ComplexScriptFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
 
-            runProperties22.Append(solidFill97);
-            runProperties22.Append(latinFont64);
-            runProperties22.Append(complexScriptFont44);
-            A.Text text22 = new A.Text();
-            text22.Text = "2013 - 2014 BANKA - Head of Gold Service Lending Department";
+            //runProperties22.Append(solidFill97);
+            //runProperties22.Append(latinFont64);
+            //runProperties22.Append(complexScriptFont44);
+            //A.Text text22 = new A.Text();
+            //text22.Text = "2013 - 2014 BANKA - Head of Gold Service Lending Department";
 
-            run19.Append(runProperties22);
-            run19.Append(text22);
+            //run19.Append(runProperties22);
+            //run19.Append(text22);
 
-            paragraph21.Append(paragraphProperties18);
-            paragraph21.Append(run19);
+            //paragraph21.Append(paragraphProperties18);
+            //paragraph21.Append(run19);
 
-            A.Paragraph paragraph22 = new A.Paragraph();
+            //A.Paragraph paragraph22 = new A.Paragraph();
 
-            A.ParagraphProperties paragraphProperties19 = new A.ParagraphProperties();
+            //A.ParagraphProperties paragraphProperties19 = new A.ParagraphProperties();
 
-            A.SpaceBefore spaceBefore39 = new A.SpaceBefore();
-            A.SpacingPoints spacingPoints17 = new A.SpacingPoints() { Val = 0 };
+            //A.SpaceBefore spaceBefore39 = new A.SpaceBefore();
+            //A.SpacingPoints spacingPoints17 = new A.SpacingPoints() { Val = 0 };
 
-            spaceBefore39.Append(spacingPoints17);
+            //spaceBefore39.Append(spacingPoints17);
 
-            A.SpaceAfter spaceAfter29 = new A.SpaceAfter();
-            A.SpacingPoints spacingPoints18 = new A.SpacingPoints() { Val = 0 };
+            //A.SpaceAfter spaceAfter29 = new A.SpaceAfter();
+            //A.SpacingPoints spacingPoints18 = new A.SpacingPoints() { Val = 0 };
 
-            spaceAfter29.Append(spacingPoints18);
+            //spaceAfter29.Append(spacingPoints18);
 
-            A.BulletColor bulletColor27 = new A.BulletColor();
-            A.RgbColorModelHex rgbColorModelHex216 = new A.RgbColorModelHex() { Val = "8EBAE5" };
+            //A.BulletColor bulletColor27 = new A.BulletColor();
+            //A.RgbColorModelHex rgbColorModelHex216 = new A.RgbColorModelHex() { Val = "8EBAE5" };
 
-            bulletColor27.Append(rgbColorModelHex216);
-            A.BulletFontText bulletFontText11 = new A.BulletFontText();
-            A.NoBullet noBullet11 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties58 = new A.DefaultRunProperties();
+            //bulletColor27.Append(rgbColorModelHex216);
+            //A.BulletFontText bulletFontText11 = new A.BulletFontText();
+            //A.NoBullet noBullet11 = new A.NoBullet();
+            //A.DefaultRunProperties defaultRunProperties58 = new A.DefaultRunProperties();
 
-            paragraphProperties19.Append(spaceBefore39);
-            paragraphProperties19.Append(spaceAfter29);
-            paragraphProperties19.Append(bulletColor27);
-            paragraphProperties19.Append(bulletFontText11);
-            paragraphProperties19.Append(noBullet11);
-            paragraphProperties19.Append(defaultRunProperties58);
+            //paragraphProperties19.Append(spaceBefore39);
+            //paragraphProperties19.Append(spaceAfter29);
+            //paragraphProperties19.Append(bulletColor27);
+            //paragraphProperties19.Append(bulletFontText11);
+            //paragraphProperties19.Append(noBullet11);
+            //paragraphProperties19.Append(defaultRunProperties58);
 
-            A.Run run20 = new A.Run();
+            //A.Run run20 = new A.Run();
 
-            A.RunProperties runProperties23 = new A.RunProperties() { Language = "en-US", AlternativeLanguage = "et-EE", FontSize = 1050, Dirty = false };
+            //A.RunProperties runProperties23 = new A.RunProperties() { Language = "en-US", AlternativeLanguage = "et-EE", FontSize = 1050, Dirty = false };
 
-            A.SolidFill solidFill98 = new A.SolidFill();
-            A.SchemeColor schemeColor148 = new A.SchemeColor() { Val = A.SchemeColorValues.Background1 };
+            //A.SolidFill solidFill98 = new A.SolidFill();
+            //A.SchemeColor schemeColor148 = new A.SchemeColor() { Val = A.SchemeColorValues.Background1 };
 
-            solidFill98.Append(schemeColor148);
-            A.LatinFont latinFont65 = new A.LatinFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
-            A.ComplexScriptFont complexScriptFont45 = new A.ComplexScriptFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
+            //solidFill98.Append(schemeColor148);
+            //A.LatinFont latinFont65 = new A.LatinFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
+            //A.ComplexScriptFont complexScriptFont45 = new A.ComplexScriptFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
 
-            runProperties23.Append(solidFill98);
-            runProperties23.Append(latinFont65);
-            runProperties23.Append(complexScriptFont45);
-            A.Text text23 = new A.Text();
-            text23.Text = "2012 - 2015 ASSOCIATION OF COMMERCIAL BANKS OF LATVIA - Chairman of Mortgage Committee";
+            //runProperties23.Append(solidFill98);
+            //runProperties23.Append(latinFont65);
+            //runProperties23.Append(complexScriptFont45);
+            //A.Text text23 = new A.Text();
+            //text23.Text = "2012 - 2015 ASSOCIATION OF COMMERCIAL BANKS OF LATVIA - Chairman of Mortgage Committee";
 
-            run20.Append(runProperties23);
-            run20.Append(text23);
+            //run20.Append(runProperties23);
+            //run20.Append(text23);
 
-            paragraph22.Append(paragraphProperties19);
-            paragraph22.Append(run20);
+            //paragraph22.Append(paragraphProperties19);
+            //paragraph22.Append(run20);
 
-            A.Paragraph paragraph23 = new A.Paragraph();
+            //A.Paragraph paragraph23 = new A.Paragraph();
 
-            A.ParagraphProperties paragraphProperties20 = new A.ParagraphProperties();
+            //A.ParagraphProperties paragraphProperties20 = new A.ParagraphProperties();
 
-            A.SpaceBefore spaceBefore40 = new A.SpaceBefore();
-            A.SpacingPoints spacingPoints19 = new A.SpacingPoints() { Val = 0 };
+            //A.SpaceBefore spaceBefore40 = new A.SpaceBefore();
+            //A.SpacingPoints spacingPoints19 = new A.SpacingPoints() { Val = 0 };
 
-            spaceBefore40.Append(spacingPoints19);
+            //spaceBefore40.Append(spacingPoints19);
 
-            A.SpaceAfter spaceAfter30 = new A.SpaceAfter();
-            A.SpacingPoints spacingPoints20 = new A.SpacingPoints() { Val = 0 };
+            //A.SpaceAfter spaceAfter30 = new A.SpaceAfter();
+            //A.SpacingPoints spacingPoints20 = new A.SpacingPoints() { Val = 0 };
 
-            spaceAfter30.Append(spacingPoints20);
+            //spaceAfter30.Append(spacingPoints20);
 
-            A.BulletColor bulletColor28 = new A.BulletColor();
-            A.RgbColorModelHex rgbColorModelHex217 = new A.RgbColorModelHex() { Val = "8EBAE5" };
+            //A.BulletColor bulletColor28 = new A.BulletColor();
+            //A.RgbColorModelHex rgbColorModelHex217 = new A.RgbColorModelHex() { Val = "8EBAE5" };
 
-            bulletColor28.Append(rgbColorModelHex217);
-            A.BulletFontText bulletFontText12 = new A.BulletFontText();
-            A.NoBullet noBullet12 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties59 = new A.DefaultRunProperties();
+            //bulletColor28.Append(rgbColorModelHex217);
+            //A.BulletFontText bulletFontText12 = new A.BulletFontText();
+            //A.NoBullet noBullet12 = new A.NoBullet();
+            //A.DefaultRunProperties defaultRunProperties59 = new A.DefaultRunProperties();
 
-            paragraphProperties20.Append(spaceBefore40);
-            paragraphProperties20.Append(spaceAfter30);
-            paragraphProperties20.Append(bulletColor28);
-            paragraphProperties20.Append(bulletFontText12);
-            paragraphProperties20.Append(noBullet12);
-            paragraphProperties20.Append(defaultRunProperties59);
+            //paragraphProperties20.Append(spaceBefore40);
+            //paragraphProperties20.Append(spaceAfter30);
+            //paragraphProperties20.Append(bulletColor28);
+            //paragraphProperties20.Append(bulletFontText12);
+            //paragraphProperties20.Append(noBullet12);
+            //paragraphProperties20.Append(defaultRunProperties59);
 
-            A.Run run21 = new A.Run();
+            //A.Run run21 = new A.Run();
 
-            A.RunProperties runProperties24 = new A.RunProperties() { Language = "en-US", AlternativeLanguage = "et-EE", FontSize = 1050, Dirty = false };
+            //A.RunProperties runProperties24 = new A.RunProperties() { Language = "en-US", AlternativeLanguage = "et-EE", FontSize = 1050, Dirty = false };
 
-            A.SolidFill solidFill99 = new A.SolidFill();
-            A.SchemeColor schemeColor149 = new A.SchemeColor() { Val = A.SchemeColorValues.Background1 };
+            //A.SolidFill solidFill99 = new A.SolidFill();
+            //A.SchemeColor schemeColor149 = new A.SchemeColor() { Val = A.SchemeColorValues.Background1 };
 
-            solidFill99.Append(schemeColor149);
-            A.LatinFont latinFont66 = new A.LatinFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
-            A.ComplexScriptFont complexScriptFont46 = new A.ComplexScriptFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
+            //solidFill99.Append(schemeColor149);
+            //A.LatinFont latinFont66 = new A.LatinFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
+            //A.ComplexScriptFont complexScriptFont46 = new A.ComplexScriptFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
 
-            runProperties24.Append(solidFill99);
-            runProperties24.Append(latinFont66);
-            runProperties24.Append(complexScriptFont46);
-            A.Text text24 = new A.Text();
-            text24.Text = "2011 - 2013 BANKA - Head of Mortgage and SMEs Lending Division";
+            //runProperties24.Append(solidFill99);
+            //runProperties24.Append(latinFont66);
+            //runProperties24.Append(complexScriptFont46);
+            //A.Text text24 = new A.Text();
+            //text24.Text = "2011 - 2013 BANKA - Head of Mortgage and SMEs Lending Division";
 
-            run21.Append(runProperties24);
-            run21.Append(text24);
+            //run21.Append(runProperties24);
+            //run21.Append(text24);
 
-            paragraph23.Append(paragraphProperties20);
-            paragraph23.Append(run21);
+            //paragraph23.Append(paragraphProperties20);
+            //paragraph23.Append(run21);
 
-            A.Paragraph paragraph24 = new A.Paragraph();
+            //A.Paragraph paragraph24 = new A.Paragraph();
 
-            A.ParagraphProperties paragraphProperties21 = new A.ParagraphProperties();
+            //A.ParagraphProperties paragraphProperties21 = new A.ParagraphProperties();
 
-            A.SpaceBefore spaceBefore41 = new A.SpaceBefore();
-            A.SpacingPoints spacingPoints21 = new A.SpacingPoints() { Val = 0 };
+            //A.SpaceBefore spaceBefore41 = new A.SpaceBefore();
+            //A.SpacingPoints spacingPoints21 = new A.SpacingPoints() { Val = 0 };
 
-            spaceBefore41.Append(spacingPoints21);
+            //spaceBefore41.Append(spacingPoints21);
 
-            A.SpaceAfter spaceAfter31 = new A.SpaceAfter();
-            A.SpacingPoints spacingPoints22 = new A.SpacingPoints() { Val = 0 };
+            //A.SpaceAfter spaceAfter31 = new A.SpaceAfter();
+            //A.SpacingPoints spacingPoints22 = new A.SpacingPoints() { Val = 0 };
 
-            spaceAfter31.Append(spacingPoints22);
+            //spaceAfter31.Append(spacingPoints22);
 
-            A.BulletColor bulletColor29 = new A.BulletColor();
-            A.RgbColorModelHex rgbColorModelHex218 = new A.RgbColorModelHex() { Val = "8EBAE5" };
+            //A.BulletColor bulletColor29 = new A.BulletColor();
+            //A.RgbColorModelHex rgbColorModelHex218 = new A.RgbColorModelHex() { Val = "8EBAE5" };
 
-            bulletColor29.Append(rgbColorModelHex218);
-            A.BulletFontText bulletFontText13 = new A.BulletFontText();
-            A.NoBullet noBullet13 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties60 = new A.DefaultRunProperties();
+            //bulletColor29.Append(rgbColorModelHex218);
+            //A.BulletFontText bulletFontText13 = new A.BulletFontText();
+            //A.NoBullet noBullet13 = new A.NoBullet();
+            //A.DefaultRunProperties defaultRunProperties60 = new A.DefaultRunProperties();
 
-            paragraphProperties21.Append(spaceBefore41);
-            paragraphProperties21.Append(spaceAfter31);
-            paragraphProperties21.Append(bulletColor29);
-            paragraphProperties21.Append(bulletFontText13);
-            paragraphProperties21.Append(noBullet13);
-            paragraphProperties21.Append(defaultRunProperties60);
+            //paragraphProperties21.Append(spaceBefore41);
+            //paragraphProperties21.Append(spaceAfter31);
+            //paragraphProperties21.Append(bulletColor29);
+            //paragraphProperties21.Append(bulletFontText13);
+            //paragraphProperties21.Append(noBullet13);
+            //paragraphProperties21.Append(defaultRunProperties60);
 
-            A.Run run22 = new A.Run();
+            //A.Run run22 = new A.Run();
 
-            A.RunProperties runProperties25 = new A.RunProperties() { Language = "en-US", AlternativeLanguage = "et-EE", FontSize = 1050, Dirty = false };
+            //A.RunProperties runProperties25 = new A.RunProperties() { Language = "en-US", AlternativeLanguage = "et-EE", FontSize = 1050, Dirty = false };
 
-            A.SolidFill solidFill100 = new A.SolidFill();
-            A.SchemeColor schemeColor150 = new A.SchemeColor() { Val = A.SchemeColorValues.Background1 };
+            //A.SolidFill solidFill100 = new A.SolidFill();
+            //A.SchemeColor schemeColor150 = new A.SchemeColor() { Val = A.SchemeColorValues.Background1 };
 
-            solidFill100.Append(schemeColor150);
-            A.LatinFont latinFont67 = new A.LatinFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
-            A.ComplexScriptFont complexScriptFont47 = new A.ComplexScriptFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
+            //solidFill100.Append(schemeColor150);
+            //A.LatinFont latinFont67 = new A.LatinFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
+            //A.ComplexScriptFont complexScriptFont47 = new A.ComplexScriptFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
 
-            runProperties25.Append(solidFill100);
-            runProperties25.Append(latinFont67);
-            runProperties25.Append(complexScriptFont47);
-            A.Text text25 = new A.Text();
-            text25.Text = "2009 - 2011 BANKA - Head of Riga Lending Department";
+            //runProperties25.Append(solidFill100);
+            //runProperties25.Append(latinFont67);
+            //runProperties25.Append(complexScriptFont47);
+            //A.Text text25 = new A.Text();
+            //text25.Text = "2009 - 2011 BANKA - Head of Riga Lending Department";
 
-            run22.Append(runProperties25);
-            run22.Append(text25);
+            //run22.Append(runProperties25);
+            //run22.Append(text25);
 
-            paragraph24.Append(paragraphProperties21);
-            paragraph24.Append(run22);
+            //paragraph24.Append(paragraphProperties21);
+            //paragraph24.Append(run22);
 
-            A.Paragraph paragraph25 = new A.Paragraph();
+            //A.Paragraph paragraph25 = new A.Paragraph();
 
-            A.ParagraphProperties paragraphProperties22 = new A.ParagraphProperties();
+            //A.ParagraphProperties paragraphProperties22 = new A.ParagraphProperties();
 
-            A.SpaceBefore spaceBefore42 = new A.SpaceBefore();
-            A.SpacingPoints spacingPoints23 = new A.SpacingPoints() { Val = 0 };
+            //A.SpaceBefore spaceBefore42 = new A.SpaceBefore();
+            //A.SpacingPoints spacingPoints23 = new A.SpacingPoints() { Val = 0 };
 
-            spaceBefore42.Append(spacingPoints23);
+            //spaceBefore42.Append(spacingPoints23);
 
-            A.SpaceAfter spaceAfter32 = new A.SpaceAfter();
-            A.SpacingPoints spacingPoints24 = new A.SpacingPoints() { Val = 0 };
+            //A.SpaceAfter spaceAfter32 = new A.SpaceAfter();
+            //A.SpacingPoints spacingPoints24 = new A.SpacingPoints() { Val = 0 };
 
-            spaceAfter32.Append(spacingPoints24);
+            //spaceAfter32.Append(spacingPoints24);
 
-            A.BulletColor bulletColor30 = new A.BulletColor();
-            A.RgbColorModelHex rgbColorModelHex219 = new A.RgbColorModelHex() { Val = "8EBAE5" };
+            //A.BulletColor bulletColor30 = new A.BulletColor();
+            //A.RgbColorModelHex rgbColorModelHex219 = new A.RgbColorModelHex() { Val = "8EBAE5" };
 
-            bulletColor30.Append(rgbColorModelHex219);
-            A.BulletFontText bulletFontText14 = new A.BulletFontText();
-            A.NoBullet noBullet14 = new A.NoBullet();
-            A.DefaultRunProperties defaultRunProperties61 = new A.DefaultRunProperties();
+            //bulletColor30.Append(rgbColorModelHex219);
+            //A.BulletFontText bulletFontText14 = new A.BulletFontText();
+            //A.NoBullet noBullet14 = new A.NoBullet();
+            //A.DefaultRunProperties defaultRunProperties61 = new A.DefaultRunProperties();
 
-            paragraphProperties22.Append(spaceBefore42);
-            paragraphProperties22.Append(spaceAfter32);
-            paragraphProperties22.Append(bulletColor30);
-            paragraphProperties22.Append(bulletFontText14);
-            paragraphProperties22.Append(noBullet14);
-            paragraphProperties22.Append(defaultRunProperties61);
+            //paragraphProperties22.Append(spaceBefore42);
+            //paragraphProperties22.Append(spaceAfter32);
+            //paragraphProperties22.Append(bulletColor30);
+            //paragraphProperties22.Append(bulletFontText14);
+            //paragraphProperties22.Append(noBullet14);
+            //paragraphProperties22.Append(defaultRunProperties61);
 
-            A.Run run23 = new A.Run();
+            //A.Run run23 = new A.Run();
 
-            A.RunProperties runProperties26 = new A.RunProperties() { Language = "en-US", AlternativeLanguage = "et-EE", FontSize = 1050, Dirty = false };
+            //A.RunProperties runProperties26 = new A.RunProperties() { Language = "en-US", AlternativeLanguage = "et-EE", FontSize = 1050, Dirty = false };
 
-            A.SolidFill solidFill101 = new A.SolidFill();
-            A.SchemeColor schemeColor151 = new A.SchemeColor() { Val = A.SchemeColorValues.Background1 };
+            //A.SolidFill solidFill101 = new A.SolidFill();
+            //A.SchemeColor schemeColor151 = new A.SchemeColor() { Val = A.SchemeColorValues.Background1 };
 
-            solidFill101.Append(schemeColor151);
-            A.LatinFont latinFont68 = new A.LatinFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
-            A.ComplexScriptFont complexScriptFont48 = new A.ComplexScriptFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
+            //solidFill101.Append(schemeColor151);
+            //A.LatinFont latinFont68 = new A.LatinFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
+            //A.ComplexScriptFont complexScriptFont48 = new A.ComplexScriptFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
 
-            runProperties26.Append(solidFill101);
-            runProperties26.Append(latinFont68);
-            runProperties26.Append(complexScriptFont48);
-            A.Text text26 = new A.Text();
-            text26.Text = "2008 - 2009 BANK";
+            //runProperties26.Append(solidFill101);
+            //runProperties26.Append(latinFont68);
+            //runProperties26.Append(complexScriptFont48);
+            //A.Text text26 = new A.Text();
+            //text26.Text = "2008 - 2009 BANK";
 
-            run23.Append(runProperties26);
-            run23.Append(text26);
+            //run23.Append(runProperties26);
+            //run23.Append(text26);
 
-            A.Run run24 = new A.Run();
+            //A.Run run24 = new A.Run();
 
-            A.RunProperties runProperties27 = new A.RunProperties() { Language = "lv-LV", AlternativeLanguage = "et-EE", FontSize = 1050, Dirty = false };
+            //A.RunProperties runProperties27 = new A.RunProperties() { Language = "lv-LV", AlternativeLanguage = "et-EE", FontSize = 1050, Dirty = false };
 
-            A.SolidFill solidFill102 = new A.SolidFill();
-            A.SchemeColor schemeColor152 = new A.SchemeColor() { Val = A.SchemeColorValues.Background1 };
+            //A.SolidFill solidFill102 = new A.SolidFill();
+            //A.SchemeColor schemeColor152 = new A.SchemeColor() { Val = A.SchemeColorValues.Background1 };
 
-            solidFill102.Append(schemeColor152);
-            A.LatinFont latinFont69 = new A.LatinFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
-            A.ComplexScriptFont complexScriptFont49 = new A.ComplexScriptFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
+            //solidFill102.Append(schemeColor152);
+            //A.LatinFont latinFont69 = new A.LatinFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
+            //A.ComplexScriptFont complexScriptFont49 = new A.ComplexScriptFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
 
-            runProperties27.Append(solidFill102);
-            runProperties27.Append(latinFont69);
-            runProperties27.Append(complexScriptFont49);
-            A.Text text27 = new A.Text();
-            text27.Text = "A";
+            //runProperties27.Append(solidFill102);
+            //runProperties27.Append(latinFont69);
+            //runProperties27.Append(complexScriptFont49);
+            //A.Text text27 = new A.Text();
+            //text27.Text = "A";
 
-            run24.Append(runProperties27);
-            run24.Append(text27);
+            //run24.Append(runProperties27);
+            //run24.Append(text27);
 
-            A.Run run25 = new A.Run();
+            //A.Run run25 = new A.Run();
 
-            A.RunProperties runProperties28 = new A.RunProperties() { Language = "en-US", AlternativeLanguage = "et-EE", FontSize = 1050, Dirty = false };
+            //A.RunProperties runProperties28 = new A.RunProperties() { Language = "en-US", AlternativeLanguage = "et-EE", FontSize = 1050, Dirty = false };
 
-            A.SolidFill solidFill103 = new A.SolidFill();
-            A.SchemeColor schemeColor153 = new A.SchemeColor() { Val = A.SchemeColorValues.Background1 };
+            //A.SolidFill solidFill103 = new A.SolidFill();
+            //A.SchemeColor schemeColor153 = new A.SchemeColor() { Val = A.SchemeColorValues.Background1 };
 
-            solidFill103.Append(schemeColor153);
-            A.LatinFont latinFont70 = new A.LatinFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
-            A.ComplexScriptFont complexScriptFont50 = new A.ComplexScriptFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
+            //solidFill103.Append(schemeColor153);
+            //A.LatinFont latinFont70 = new A.LatinFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
+            //A.ComplexScriptFont complexScriptFont50 = new A.ComplexScriptFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
 
-            runProperties28.Append(solidFill103);
-            runProperties28.Append(latinFont70);
-            runProperties28.Append(complexScriptFont50);
-            A.Text text28 = new A.Text();
-            text28.Text = " - Head of Mortgage Lending Department in a Branch";
+            //runProperties28.Append(solidFill103);
+            //runProperties28.Append(latinFont70);
+            //runProperties28.Append(complexScriptFont50);
+            //A.Text text28 = new A.Text();
+            //text28.Text = " - Head of Mortgage Lending Department in a Branch";
 
-            run25.Append(runProperties28);
-            run25.Append(text28);
+            //run25.Append(runProperties28);
+            //run25.Append(text28);
 
-            A.EndParagraphRunProperties endParagraphRunProperties12 = new A.EndParagraphRunProperties() { Language = "en-GB", AlternativeLanguage = "et-EE", FontSize = 1050, Dirty = false };
+            //A.EndParagraphRunProperties endParagraphRunProperties12 = new A.EndParagraphRunProperties() { Language = "en-GB", AlternativeLanguage = "et-EE", FontSize = 1050, Dirty = false };
 
-            A.SolidFill solidFill104 = new A.SolidFill();
-            A.SchemeColor schemeColor154 = new A.SchemeColor() { Val = A.SchemeColorValues.Background1 };
+            //A.SolidFill solidFill104 = new A.SolidFill();
+            //A.SchemeColor schemeColor154 = new A.SchemeColor() { Val = A.SchemeColorValues.Background1 };
 
-            solidFill104.Append(schemeColor154);
-            A.LatinFont latinFont71 = new A.LatinFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
-            A.ComplexScriptFont complexScriptFont51 = new A.ComplexScriptFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
+            //solidFill104.Append(schemeColor154);
+            //A.LatinFont latinFont71 = new A.LatinFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
+            //A.ComplexScriptFont complexScriptFont51 = new A.ComplexScriptFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
 
-            endParagraphRunProperties12.Append(solidFill104);
-            endParagraphRunProperties12.Append(latinFont71);
-            endParagraphRunProperties12.Append(complexScriptFont51);
+            //endParagraphRunProperties12.Append(solidFill104);
+            //endParagraphRunProperties12.Append(latinFont71);
+            //endParagraphRunProperties12.Append(complexScriptFont51);
 
-            paragraph25.Append(paragraphProperties22);
-            paragraph25.Append(run23);
-            paragraph25.Append(run24);
-            paragraph25.Append(run25);
-            paragraph25.Append(endParagraphRunProperties12);
+            //paragraph25.Append(paragraphProperties22);
+            //paragraph25.Append(run23);
+            //paragraph25.Append(run24);
+            //paragraph25.Append(run25);
+            //paragraph25.Append(endParagraphRunProperties12);
 
             textBody11.Append(bodyProperties13);
             textBody11.Append(listStyle13);
             textBody11.Append(paragraph17);
-            textBody11.Append(paragraph18);
-            textBody11.Append(paragraph19);
-            textBody11.Append(paragraph20);
-            textBody11.Append(paragraph21);
-            textBody11.Append(paragraph22);
-            textBody11.Append(paragraph23);
-            textBody11.Append(paragraph24);
-            textBody11.Append(paragraph25);
+
+            foreach (var item in data.Experience)
+            {
+                textBody11.Append(CreateExperienceParagraph(item));
+            }
 
             shape12.Append(nonVisualShapeProperties12);
             shape12.Append(shapeProperties14);
@@ -2049,74 +2048,74 @@ namespace CV.Management.Generation.Ppt.Helpers
             paragraph26.Append(paragraphProperties23);
             paragraph26.Append(run26);
 
-            A.Paragraph paragraph27 = new A.Paragraph();
+            //A.Paragraph paragraph27 = new A.Paragraph();
 
-            A.ParagraphProperties paragraphProperties24 = new A.ParagraphProperties();
+            //A.ParagraphProperties paragraphProperties24 = new A.ParagraphProperties();
 
-            A.SpaceBefore spaceBefore53 = new A.SpaceBefore();
-            A.SpacingPercent spacingPercent66 = new A.SpacingPercent() { Val = 0 };
+            //A.SpaceBefore spaceBefore53 = new A.SpaceBefore();
+            //A.SpacingPercent spacingPercent66 = new A.SpacingPercent() { Val = 0 };
 
-            spaceBefore53.Append(spacingPercent66);
+            //spaceBefore53.Append(spacingPercent66);
 
-            A.SpaceAfter spaceAfter38 = new A.SpaceAfter();
-            A.SpacingPoints spacingPoints27 = new A.SpacingPoints() { Val = 600 };
+            //A.SpaceAfter spaceAfter38 = new A.SpaceAfter();
+            //A.SpacingPoints spacingPoints27 = new A.SpacingPoints() { Val = 600 };
 
-            spaceAfter38.Append(spacingPoints27);
+            //spaceAfter38.Append(spacingPoints27);
 
-            A.BulletColor bulletColor41 = new A.BulletColor();
-            A.RgbColorModelHex rgbColorModelHex222 = new A.RgbColorModelHex() { Val = "8EBAE5" };
+            //A.BulletColor bulletColor41 = new A.BulletColor();
+            //A.RgbColorModelHex rgbColorModelHex222 = new A.RgbColorModelHex() { Val = "8EBAE5" };
 
-            bulletColor41.Append(rgbColorModelHex222);
-            A.DefaultRunProperties defaultRunProperties72 = new A.DefaultRunProperties();
+            //bulletColor41.Append(rgbColorModelHex222);
+            //A.DefaultRunProperties defaultRunProperties72 = new A.DefaultRunProperties();
 
-            paragraphProperties24.Append(spaceBefore53);
-            paragraphProperties24.Append(spaceAfter38);
-            paragraphProperties24.Append(bulletColor41);
-            paragraphProperties24.Append(defaultRunProperties72);
+            //paragraphProperties24.Append(spaceBefore53);
+            //paragraphProperties24.Append(spaceAfter38);
+            //paragraphProperties24.Append(bulletColor41);
+            //paragraphProperties24.Append(defaultRunProperties72);
 
-            A.Run run27 = new A.Run();
+            //A.Run run27 = new A.Run();
 
-            A.RunProperties runProperties30 = new A.RunProperties() { Language = "en-GB", AlternativeLanguage = "et-EE", FontSize = 1050, Bold = true, Dirty = false };
+            //A.RunProperties runProperties30 = new A.RunProperties() { Language = "en-GB", AlternativeLanguage = "et-EE", FontSize = 1050, Bold = true, Dirty = false };
 
-            A.SolidFill solidFill117 = new A.SolidFill();
-            A.SchemeColor schemeColor175 = new A.SchemeColor() { Val = A.SchemeColorValues.Background1 };
+            //A.SolidFill solidFill117 = new A.SolidFill();
+            //A.SchemeColor schemeColor175 = new A.SchemeColor() { Val = A.SchemeColorValues.Background1 };
 
-            solidFill117.Append(schemeColor175);
-            A.LatinFont latinFont82 = new A.LatinFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
-            A.ComplexScriptFont complexScriptFont53 = new A.ComplexScriptFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
+            //solidFill117.Append(schemeColor175);
+            //A.LatinFont latinFont82 = new A.LatinFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
+            //A.ComplexScriptFont complexScriptFont53 = new A.ComplexScriptFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
 
-            runProperties30.Append(solidFill117);
-            runProperties30.Append(latinFont82);
-            runProperties30.Append(complexScriptFont53);
-            A.Text text30 = new A.Text();
-            text30.Text = "2006 BA School of Business and Finance ";
+            //runProperties30.Append(solidFill117);
+            //runProperties30.Append(latinFont82);
+            //runProperties30.Append(complexScriptFont53);
+            //A.Text text30 = new A.Text();
+            //text30.Text = "2006 BA School of Business and Finance ";
 
-            run27.Append(runProperties30);
-            run27.Append(text30);
+            //run27.Append(runProperties30);
+            //run27.Append(text30);
 
-            A.Run run28 = new A.Run();
+            //A.Run run28 = new A.Run();
 
-            A.RunProperties runProperties31 = new A.RunProperties() { Language = "en-GB", AlternativeLanguage = "et-EE", FontSize = 1050, Dirty = false };
+            //A.RunProperties runProperties31 = new A.RunProperties() { Language = "en-GB", AlternativeLanguage = "et-EE", FontSize = 1050, Dirty = false };
 
-            A.SolidFill solidFill118 = new A.SolidFill();
-            A.SchemeColor schemeColor176 = new A.SchemeColor() { Val = A.SchemeColorValues.Background1 };
+            //A.SolidFill solidFill118 = new A.SolidFill();
+            //A.SchemeColor schemeColor176 = new A.SchemeColor() { Val = A.SchemeColorValues.Background1 };
 
-            solidFill118.Append(schemeColor176);
-            A.LatinFont latinFont83 = new A.LatinFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
-            A.ComplexScriptFont complexScriptFont54 = new A.ComplexScriptFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
+            //solidFill118.Append(schemeColor176);
+            //A.LatinFont latinFont83 = new A.LatinFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
+            //A.ComplexScriptFont complexScriptFont54 = new A.ComplexScriptFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
 
-            runProperties31.Append(solidFill118);
-            runProperties31.Append(latinFont83);
-            runProperties31.Append(complexScriptFont54);
-            A.Text text31 = new A.Text();
-            text31.Text = "- Bachelor’s degree, Business Administration, Entrepreneurship";
+            //runProperties31.Append(solidFill118);
+            //runProperties31.Append(latinFont83);
+            //runProperties31.Append(complexScriptFont54);
+            //A.Text text31 = new A.Text();
+            //text31.Text = "- Bachelor’s degree, Business Administration, Entrepreneurship";
 
-            run28.Append(runProperties31);
-            run28.Append(text31);
+            //run28.Append(runProperties31);
+            //run28.Append(text31);
 
-            paragraph27.Append(paragraphProperties24);
-            paragraph27.Append(run27);
-            paragraph27.Append(run28);
+            //paragraph27.Append(paragraphProperties24);
+            //paragraph27.Append(run27);
+            //paragraph27.Append(run28);
 
             A.Paragraph paragraph28 = new A.Paragraph();
 
@@ -2300,8 +2299,9 @@ namespace CV.Management.Generation.Ppt.Helpers
             runProperties33.Append(solidFill123);
             runProperties33.Append(latinFont88);
             runProperties33.Append(complexScriptFont59);
+
             A.Text text33 = new A.Text();
-            text33.Text = "Latvian – native; English - fluent; Russian – fluent; German – good";
+            text33.Text = GetLanguages(data);
 
             run30.Append(runProperties33);
             run30.Append(text33);
@@ -2313,7 +2313,12 @@ namespace CV.Management.Generation.Ppt.Helpers
             textBody12.Append(bodyProperties14);
             textBody12.Append(listStyle14);
             textBody12.Append(paragraph26);
-            textBody12.Append(paragraph27);
+
+            foreach (var item in data.Education)
+            {
+                textBody12.Append(CreateEducationParagraph(item));
+            }
+            
             textBody12.Append(paragraph28);
             textBody12.Append(paragraph29);
             textBody12.Append(paragraph30);
@@ -3288,75 +3293,58 @@ namespace CV.Management.Generation.Ppt.Helpers
             paragraph38.Append(paragraphProperties35);
             paragraph38.Append(endParagraphRunProperties20);
 
-            A.Paragraph paragraph39 = new A.Paragraph();
+            //A.Paragraph paragraph39 = new A.Paragraph();
 
-            A.ParagraphProperties paragraphProperties36 = new A.ParagraphProperties();
+            //A.ParagraphProperties paragraphProperties36 = new A.ParagraphProperties();
 
-            A.SpaceAfter spaceAfter58 = new A.SpaceAfter();
-            A.SpacingPoints spacingPoints39 = new A.SpacingPoints() { Val = 600 };
+            //A.SpaceAfter spaceAfter58 = new A.SpaceAfter();
+            //A.SpacingPoints spacingPoints39 = new A.SpacingPoints() { Val = 600 };
 
-            spaceAfter58.Append(spacingPoints39);
+            //spaceAfter58.Append(spacingPoints39);
 
-            A.BulletColor bulletColor62 = new A.BulletColor();
-            A.RgbColorModelHex rgbColorModelHex238 = new A.RgbColorModelHex() { Val = "8EBAE5" };
+            //A.BulletColor bulletColor62 = new A.BulletColor();
+            //A.RgbColorModelHex rgbColorModelHex238 = new A.RgbColorModelHex() { Val = "8EBAE5" };
 
-            bulletColor62.Append(rgbColorModelHex238);
+            //bulletColor62.Append(rgbColorModelHex238);
 
-            paragraphProperties36.Append(spaceAfter58);
-            paragraphProperties36.Append(bulletColor62);
+            //paragraphProperties36.Append(spaceAfter58);
+            //paragraphProperties36.Append(bulletColor62);
 
-            A.Run run35 = new A.Run();
+            //A.Run run35 = new A.Run();
 
-            A.RunProperties runProperties38 = new A.RunProperties() { Language = "en-GB", AlternativeLanguage = "lv-LV", FontSize = 1050, Dirty = false };
+            //A.RunProperties runProperties38 = new A.RunProperties() { Language = "en-GB", AlternativeLanguage = "lv-LV", FontSize = 1050, Dirty = false };
 
-            A.SolidFill solidFill155 = new A.SolidFill();
-            A.SchemeColor schemeColor218 = new A.SchemeColor() { Val = A.SchemeColorValues.Background1 };
+            //A.SolidFill solidFill155 = new A.SolidFill();
+            //A.SchemeColor schemeColor218 = new A.SchemeColor() { Val = A.SchemeColorValues.Background1 };
 
-            solidFill155.Append(schemeColor218);
+            //solidFill155.Append(schemeColor218);
 
-            runProperties38.Append(solidFill155);
-            A.Text text38 = new A.Text();
-            text38.Text = "Remuneration: ";
+            //runProperties38.Append(solidFill155);
+            //A.Text text38 = new A.Text();
+            //text38.Text = "Remuneration: ";
 
-            run35.Append(runProperties38);
-            run35.Append(text38);
+            //run35.Append(runProperties38);
+            //run35.Append(text38);
 
-            A.Run run36 = new A.Run();
+            //A.Run run37 = new A.Run();
 
-            A.RunProperties runProperties39 = new A.RunProperties() { Language = "lv-LV", AlternativeLanguage = "lv-LV", FontSize = 1050, Dirty = false };
+            //A.RunProperties runProperties40 = new A.RunProperties() { Language = "en-GB", AlternativeLanguage = "lv-LV", FontSize = 1050, Dirty = false };
 
-            A.SolidFill solidFill156 = new A.SolidFill();
-            A.SchemeColor schemeColor219 = new A.SchemeColor() { Val = A.SchemeColorValues.Background1 };
+            //A.SolidFill solidFill157 = new A.SolidFill();
+            //A.SchemeColor schemeColor220 = new A.SchemeColor() { Val = A.SchemeColorValues.Background1 };
 
-            solidFill156.Append(schemeColor219);
+            //solidFill157.Append(schemeColor220);
 
-            runProperties39.Append(solidFill156);
-            A.Text text39 = new A.Text();
-            text39.Text = "8 500";
+            //runProperties40.Append(solidFill157);
+            //A.Text text40 = new A.Text();
+            //text40.Text = "8 500 EUR Gross (base salary)";
 
-            run36.Append(runProperties39);
-            run36.Append(text39);
+            //run37.Append(runProperties40);
+            //run37.Append(text40);
 
-            A.Run run37 = new A.Run();
-
-            A.RunProperties runProperties40 = new A.RunProperties() { Language = "en-GB", AlternativeLanguage = "lv-LV", FontSize = 1050, Dirty = false };
-
-            A.SolidFill solidFill157 = new A.SolidFill();
-            A.SchemeColor schemeColor220 = new A.SchemeColor() { Val = A.SchemeColorValues.Background1 };
-
-            solidFill157.Append(schemeColor220);
-
-            runProperties40.Append(solidFill157);
-            A.Text text40 = new A.Text();
-            text40.Text = " EUR Gross (base salary)";
-
-            run37.Append(runProperties40);
-            run37.Append(text40);
-
-            paragraph39.Append(paragraphProperties36);
-            paragraph39.Append(run35);
-            paragraph39.Append(run36);
-            paragraph39.Append(run37);
+            //paragraph39.Append(paragraphProperties36);
+            //paragraph39.Append(run35);
+            //paragraph39.Append(run37);
 
             textBody14.Append(bodyProperties16);
             textBody14.Append(listStyle16);
@@ -3364,7 +3352,11 @@ namespace CV.Management.Generation.Ppt.Helpers
             textBody14.Append(paragraph36);
             textBody14.Append(paragraph37);
             textBody14.Append(paragraph38);
-            textBody14.Append(paragraph39);
+
+            foreach (var item in data.Motivation)
+            {
+                textBody14.Append(CreateMotivationParagraph(item));
+            }
 
             shape15.Append(nonVisualShapeProperties15);
             shape15.Append(shapeProperties17);
@@ -3460,6 +3452,207 @@ namespace CV.Management.Generation.Ppt.Helpers
             slide1.Append(colorMapOverride1);
 
             slidePart1.Slide = slide1;
+        }
+
+        private static A.Paragraph CreateEducationParagraph(EducationItem item)
+        {
+            A.Paragraph paragraph27 = new A.Paragraph();
+
+            A.ParagraphProperties paragraphProperties24 = new A.ParagraphProperties();
+
+            A.SpaceBefore spaceBefore53 = new A.SpaceBefore();
+            A.SpacingPercent spacingPercent66 = new A.SpacingPercent() { Val = 0 };
+
+            spaceBefore53.Append(spacingPercent66);
+
+            A.SpaceAfter spaceAfter38 = new A.SpaceAfter();
+            A.SpacingPoints spacingPoints27 = new A.SpacingPoints() { Val = 600 };
+
+            spaceAfter38.Append(spacingPoints27);
+
+            A.BulletColor bulletColor41 = new A.BulletColor();
+            A.RgbColorModelHex rgbColorModelHex222 = new A.RgbColorModelHex() { Val = "8EBAE5" };
+
+            bulletColor41.Append(rgbColorModelHex222);
+            A.DefaultRunProperties defaultRunProperties72 = new A.DefaultRunProperties();
+
+            paragraphProperties24.Append(spaceBefore53);
+            paragraphProperties24.Append(spaceAfter38);
+            paragraphProperties24.Append(bulletColor41);
+            paragraphProperties24.Append(defaultRunProperties72);
+
+            A.Run run27 = new A.Run();
+
+            A.RunProperties runProperties30 = new A.RunProperties() { Language = "en-GB", AlternativeLanguage = "et-EE", FontSize = 1050, Bold = true, Dirty = false };
+
+            A.SolidFill solidFill117 = new A.SolidFill();
+            A.SchemeColor schemeColor175 = new A.SchemeColor() { Val = A.SchemeColorValues.Background1 };
+
+            solidFill117.Append(schemeColor175);
+            A.LatinFont latinFont82 = new A.LatinFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
+            A.ComplexScriptFont complexScriptFont53 = new A.ComplexScriptFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
+
+            runProperties30.Append(solidFill117);
+            runProperties30.Append(latinFont82);
+            runProperties30.Append(complexScriptFont53);
+            A.Text text30 = new A.Text();
+            text30.Text = $"{item.EndYear} {item.University} ";
+
+            run27.Append(runProperties30);
+            run27.Append(text30);
+
+            A.Run run28 = new A.Run();
+
+            A.RunProperties runProperties31 = new A.RunProperties() { Language = "en-GB", AlternativeLanguage = "et-EE", FontSize = 1050, Dirty = false };
+
+            A.SolidFill solidFill118 = new A.SolidFill();
+            A.SchemeColor schemeColor176 = new A.SchemeColor() { Val = A.SchemeColorValues.Background1 };
+
+            solidFill118.Append(schemeColor176);
+            A.LatinFont latinFont83 = new A.LatinFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
+            A.ComplexScriptFont complexScriptFont54 = new A.ComplexScriptFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
+
+            runProperties31.Append(solidFill118);
+            runProperties31.Append(latinFont83);
+            runProperties31.Append(complexScriptFont54);
+            A.Text text31 = new A.Text();
+            text31.Text = $"- {item.Degree}";
+
+            run28.Append(runProperties31);
+            run28.Append(text31);
+
+            paragraph27.Append(paragraphProperties24);
+            paragraph27.Append(run27);
+            paragraph27.Append(run28);
+
+            return paragraph27;
+        }
+
+        private static string GetLanguages(PresentationGenerationData data)
+        {
+            var sb = new StringBuilder();
+
+            foreach (var language in data.Languages)
+            {
+                sb.Append($"{language.LanguageName} - {language.LanguageLevel}; ");
+            }
+
+            return sb.ToString();
+        }
+
+        private static A.Paragraph CreateExperienceParagraph(ExperienceItem item)
+        {
+            A.Paragraph paragraph19 = new A.Paragraph();
+
+            A.ParagraphProperties paragraphProperties16 = new A.ParagraphProperties();
+
+            A.SpaceBefore spaceBefore36 = new A.SpaceBefore();
+            A.SpacingPoints spacingPoints11 = new A.SpacingPoints() { Val = 0 };
+
+            spaceBefore36.Append(spacingPoints11);
+
+            A.SpaceAfter spaceAfter26 = new A.SpaceAfter();
+            A.SpacingPoints spacingPoints12 = new A.SpacingPoints() { Val = 0 };
+
+            spaceAfter26.Append(spacingPoints12);
+
+            A.BulletColor bulletColor24 = new A.BulletColor();
+            A.RgbColorModelHex rgbColorModelHex213 = new A.RgbColorModelHex() { Val = "8EBAE5" };
+
+            bulletColor24.Append(rgbColorModelHex213);
+            A.BulletFontText bulletFontText8 = new A.BulletFontText();
+            A.NoBullet noBullet8 = new A.NoBullet();
+            A.DefaultRunProperties defaultRunProperties55 = new A.DefaultRunProperties();
+
+            paragraphProperties16.Append(spaceBefore36);
+            paragraphProperties16.Append(spaceAfter26);
+            paragraphProperties16.Append(bulletColor24);
+            paragraphProperties16.Append(bulletFontText8);
+            paragraphProperties16.Append(noBullet8);
+            paragraphProperties16.Append(defaultRunProperties55);
+
+            A.Run run17 = new A.Run();
+
+            A.RunProperties runProperties20 = new A.RunProperties() { Language = "en-US", AlternativeLanguage = "et-EE", FontSize = 1050, Dirty = false };
+
+            A.SolidFill solidFill95 = new A.SolidFill();
+            A.SchemeColor schemeColor145 = new A.SchemeColor() { Val = A.SchemeColorValues.Background1 };
+
+            solidFill95.Append(schemeColor145);
+            A.LatinFont latinFont62 = new A.LatinFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
+            A.ComplexScriptFont complexScriptFont42 = new A.ComplexScriptFont() { Typeface = "Arial", PitchFamily = 34, CharacterSet = 0 };
+
+            runProperties20.Append(solidFill95);
+            runProperties20.Append(latinFont62);
+            runProperties20.Append(complexScriptFont42);
+            A.Text text20 = new A.Text();
+            text20.Text = $"{item.StartingYear} - {item.EndingYear} {item.Company} - {item.Position}";
+
+            run17.Append(runProperties20);
+            run17.Append(text20);
+
+            paragraph19.Append(paragraphProperties16);
+            paragraph19.Append(run17);
+
+            return paragraph19;
+        }
+
+        private static A.Paragraph CreateMotivationParagraph(MotivationItem item)
+        {
+            A.Paragraph paragraph39 = new A.Paragraph();
+
+            A.ParagraphProperties paragraphProperties36 = new A.ParagraphProperties();
+
+            A.SpaceAfter spaceAfter58 = new A.SpaceAfter();
+            A.SpacingPoints spacingPoints39 = new A.SpacingPoints() { Val = 600 };
+
+            spaceAfter58.Append(spacingPoints39);
+
+            A.BulletColor bulletColor62 = new A.BulletColor();
+            A.RgbColorModelHex rgbColorModelHex238 = new A.RgbColorModelHex() { Val = "8EBAE5" };
+
+            bulletColor62.Append(rgbColorModelHex238);
+
+            paragraphProperties36.Append(spaceAfter58);
+            paragraphProperties36.Append(bulletColor62);
+
+            A.Run run35 = new A.Run();
+
+            A.RunProperties runProperties38 = new A.RunProperties() { Language = "en-GB", AlternativeLanguage = "lv-LV", FontSize = 1050, Dirty = false };
+
+            A.SolidFill solidFill155 = new A.SolidFill();
+            A.SchemeColor schemeColor218 = new A.SchemeColor() { Val = A.SchemeColorValues.Background1 };
+
+            solidFill155.Append(schemeColor218);
+
+            runProperties38.Append(solidFill155);
+            A.Text text38 = new A.Text();
+            text38.Text = $"{item.Label}: ";
+
+            run35.Append(runProperties38);
+            run35.Append(text38);
+
+            A.Run run37 = new A.Run();
+
+            A.RunProperties runProperties40 = new A.RunProperties() { Language = "en-GB", AlternativeLanguage = "lv-LV", FontSize = 1050, Dirty = false };
+
+            A.SolidFill solidFill157 = new A.SolidFill();
+            A.SchemeColor schemeColor220 = new A.SchemeColor() { Val = A.SchemeColorValues.Background1 };
+
+            solidFill157.Append(schemeColor220);
+
+            runProperties40.Append(solidFill157);
+            A.Text text40 = new A.Text();
+            text40.Text = item.Content;
+
+            run37.Append(runProperties40);
+            run37.Append(text40);
+
+            paragraph39.Append(paragraphProperties36);
+            paragraph39.Append(run35);
+            paragraph39.Append(run37);
+
+            return paragraph39;
         }
     }
 }
