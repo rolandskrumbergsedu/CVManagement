@@ -321,4 +321,16 @@
   <data name="AdditionalCommentsPlaceholder" xml:space="preserve">
     <value>Additional comments</value>
   </data>
+  <data name="AddressPlaceholder" xml:space="preserve">
+    <value>City, country</value>
+  </data>
+  <data name="KeyTasksPlaceholder" xml:space="preserve">
+    <value>Key Tasks and responsibilities (Please write each in new line);&amp;#x0a; •Task no 1;&amp;#x0a; •Responsibility no 2;&amp;#x0a; •Task no 3;&amp;#x0a; •Etc.</value>
+  </data>
+  <data name="LogOff" xml:space="preserve">
+    <value>Log off</value>
+  </data>
+  <data name="PhonePlaceholder" xml:space="preserve">
+    <value>Phone (mobile)</value>
+  </data>
 </root>

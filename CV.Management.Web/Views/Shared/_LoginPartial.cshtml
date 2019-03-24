@@ -10,7 +10,7 @@
         <li>
             @Html.ActionLink(@Resources.Hello + " " + Model.FullName + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()">@Resources.LogOff</a></li>
     </ul>
     }
 }

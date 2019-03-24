@@ -16,28 +16,28 @@
                             <div class="col-md-2">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.Courses[i].NumberOfDays, new { @class = "courses-number-of-days-label control-label" })
-                                    @Html.TextBoxFor(model => model.Courses[i].NumberOfDays, new { @class = "courses-number-of-days-input form-control" })
+                                    @Html.TextBoxFor(model => model.Courses[i].NumberOfDays, new { @class = "courses-number-of-days-input form-control", @placeholder = @Resources.NumberOfDays })
                                     @Html.ValidationMessageFor(model => model.Courses[i].NumberOfDays, "", new { @class = "courses-number-of-days-validation" })
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.Courses[i].Year, new { @class = "courses-year-label control-label" })
-                                    @Html.TextBoxFor(model => model.Courses[i].Year, new { @class = "courses-year-input form-control" })
+                                    @Html.TextBoxFor(model => model.Courses[i].Year, new { @class = "courses-year-input form-control", @placeholder = @Resources.Year })
                                     @Html.ValidationMessageFor(model => model.Courses[i].Year, "", new { @class = "courses-year-validation" })
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.Courses[i].CourseName, new { @class = "courses-name-label control-label" })
-                                    @Html.TextBoxFor(model => model.Courses[i].CourseName, new { @class = "courses-name-input form-control" })
+                                    @Html.TextBoxFor(model => model.Courses[i].CourseName, new { @class = "courses-name-input form-control", @placeholder = @Resources.CourseName })
                                     @Html.ValidationMessageFor(model => model.Courses[i].CourseName, "", new { @class = "courses-name-validation" })
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.Courses[i].Trainer, new { @class = "courses-trainer-label control-label" })
-                                    @Html.TextBoxFor(model => model.Courses[i].Trainer, new { @class = "courses-trainer-input form-control" })
+                                    @Html.TextBoxFor(model => model.Courses[i].Trainer, new { @class = "courses-trainer-input form-control", @placeholder = @Resources.Trainer })
                                     @Html.ValidationMessageFor(model => model.Courses[i].Trainer, "", new { @class = "courses-trainer-validation" })
                                 </div>
                             </div>

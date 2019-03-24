@@ -160,6 +160,15 @@ namespace CV.Management.Web {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to City, country.
+        /// </summary>
+        public static string AddressPlaceholder {
+            get {
+                return ResourceManager.GetString("AddressPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Requested bonuses.
         /// </summary>
         public static string BonusRequest {
@@ -367,6 +376,15 @@ namespace CV.Management.Web {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Key Tasks and responsibilities (Please write each in new line);&amp;#x0a; •Task no 1;&amp;#x0a; •Responsibility no 2;&amp;#x0a; •Task no 3;&amp;#x0a; •Etc..
+        /// </summary>
+        public static string KeyTasksPlaceholder {
+            get {
+                return ResourceManager.GetString("KeyTasksPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
         public static string Language {
@@ -399,6 +417,15 @@ namespace CV.Management.Web {
         public static string LogIn {
             get {
                 return ResourceManager.GetString("LogIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log off.
+        /// </summary>
+        public static string LogOff {
+            get {
+                return ResourceManager.GetString("LogOff", resourceCulture);
             }
         }
         
@@ -507,6 +534,15 @@ namespace CV.Management.Web {
         public static string Phone {
             get {
                 return ResourceManager.GetString("Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone (mobile).
+        /// </summary>
+        public static string PhonePlaceholder {
+            get {
+                return ResourceManager.GetString("PhonePlaceholder", resourceCulture);
             }
         }
         

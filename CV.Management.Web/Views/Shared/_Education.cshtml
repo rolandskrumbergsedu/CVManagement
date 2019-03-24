@@ -16,14 +16,14 @@
                             <div class="col-md-2">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.Education[i].FromYear, new { @class = "education-from-year-label control-label" })
-                                    @Html.TextBoxFor(model => model.Education[i].FromYear, new { @class = "education-from-year-input form-control" })
+                                    @Html.TextBoxFor(model => model.Education[i].FromYear, new { @class = "education-from-year-input form-control", @placeholder = @Resources.FromYear })
                                     @Html.ValidationMessageFor(model => model.Education[i].FromYear, "", new { @class = "education-from-year-validation" })
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.Education[i].ToYear, new { @class = "education-to-year-label control-label" })
-                                    @Html.TextBoxFor(model => model.Education[i].ToYear, new { @class = "education-to-year-input form-control" })
+                                    @Html.TextBoxFor(model => model.Education[i].ToYear, new { @class = "education-to-year-input form-control", @placeholder = @Resources.ToYear })
                                     @Html.ValidationMessageFor(model => model.Education[i].ToYear, "", new { @class = "education-to-year-validation" })
                                     <div class="checkbox">
                                         @Html.CheckBoxFor(model => model.Education[i].Now, new { @class = "education-now-input" })
@@ -35,14 +35,14 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.Education[i].Institution, new { @class = "education-institution-label control-label" })
-                                    @Html.TextBoxFor(model => model.Education[i].Institution, new { @class = "education-institution-input form-control" })
+                                    @Html.TextBoxFor(model => model.Education[i].Institution, new { @class = "education-institution-input form-control", @placeholder = @Resources.Institution })
                                     @Html.ValidationMessageFor(model => model.Education[i].Institution, "", new { @class = "education-institution-validation" })
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.Education[i].Degree, new { @class = "education-degree-label control-label" })
-                                    @Html.TextBoxFor(model => model.Education[i].Degree, new { @class = "education-degree-input form-control" })
+                                    @Html.TextBoxFor(model => model.Education[i].Degree, new { @class = "education-degree-input form-control", @placeholder = @Resources.Degree })
                                     @Html.ValidationMessageFor(model => model.Education[i].Degree, "", new { @class = "education-degree-validation" })
                                 </div>
                             </div>

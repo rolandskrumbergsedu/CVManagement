@@ -318,4 +318,16 @@
   <data name="AdditionalCommentsPlaceholder" xml:space="preserve">
     <value>Papildus komentāri</value>
   </data>
+  <data name="AddressPlaceholder" xml:space="preserve">
+    <value>Pilsēta, valsts</value>
+  </data>
+  <data name="KeyTasksPlaceholder" xml:space="preserve">
+    <value>Galvenie uzdevumi un atbildības (katru savā rindā); •Uzdevums 1; •Atbildība 2; •Uzdevums 3; •U.t.t..</value>
+  </data>
+  <data name="LogOff" xml:space="preserve">
+    <value>Iziet</value>
+  </data>
+  <data name="PhonePlaceholder" xml:space="preserve">
+    <value>Tālruņa numurs</value>
+  </data>
 </root>
