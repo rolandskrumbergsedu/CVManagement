@@ -11,14 +11,14 @@
             <div class="col-md-4">
                 <div class="form-group">
                     @Html.LabelFor(model => Model.CurrentSalary, new { @class = "control-label" })
-                    @Html.TextBoxFor(model => Model.CurrentSalary, new { @class = "form-control" })
+                    @Html.TextBoxFor(model => Model.CurrentSalary, new { @class = "form-control", @placeholder = @Resources.CurrentSalary })
                     @Html.ValidationMessageFor(model => Model.CurrentSalary)
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     @Html.LabelFor(model => Model.CurrentBonuses, new { @class = "control-label" })
-                    @Html.TextBoxFor(model => Model.CurrentBonuses, new { @class = "form-control" })
+                    @Html.TextBoxFor(model => Model.CurrentBonuses, new { @class = "form-control", @placeholder = @Resources.CurrentBonuses })
                     @Html.ValidationMessageFor(model => Model.CurrentBonuses)
                 </div>
             </div>
@@ -28,14 +28,14 @@
             <div class="col-md-4">
                 <div class="form-group">
                     @Html.LabelFor(model => Model.SalaryRequest, new { @class = "control-label" })
-                    @Html.TextBoxFor(model => Model.SalaryRequest, new { @class = "form-control" })
+                    @Html.TextBoxFor(model => Model.SalaryRequest, new { @class = "form-control", @placeholder = @Resources.SalaryRequest })
                     @Html.ValidationMessageFor(model => Model.SalaryRequest)
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     @Html.LabelFor(model => Model.BonusRequest, new { @class = "control-label" })
-                    @Html.TextBoxFor(model => Model.BonusRequest, new { @class = "form-control" })
+                    @Html.TextBoxFor(model => Model.BonusRequest, new { @class = "form-control", @placeholder = @Resources.BonusRequest })
                     @Html.ValidationMessageFor(model => Model.BonusRequest)
                 </div>
             </div>
@@ -45,7 +45,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     @Html.LabelFor(model => Model.AdditionalBonuses, new { @class = "control-label" })
-                    @Html.TextAreaFor(model => Model.AdditionalBonuses, new { @class = "form-control", @rows = 5 })
+                    @Html.TextAreaFor(model => Model.AdditionalBonuses, new { @class = "form-control", @rows = 5, @placeholder = @Resources.AdditionalBonuses })
                     @Html.ValidationMessageFor(model => Model.AdditionalBonuses)
                 </div>
             </div>

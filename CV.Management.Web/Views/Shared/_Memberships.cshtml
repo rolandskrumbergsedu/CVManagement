@@ -16,14 +16,14 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 @Html.LabelFor(model => model.Memberships[i].FromTime, new { @class = "membership-from-time-label control-label" })
-                                @Html.TextBoxFor(model => model.Memberships[i].FromTime, new { @class = "membership-from-time-input form-control" })
+                                @Html.TextBoxFor(model => model.Memberships[i].FromTime, new { @class = "membership-from-time-input form-control", @placeholder = @Resources.FromTime })
                                 @Html.ValidationMessageFor(model => model.Memberships[i].FromTime, "", new { @class = "membership-from-time-validation" })
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 @Html.LabelFor(model => model.Memberships[i].ToTime, new { @class = "membership-to-time-label control-label" })
-                                @Html.TextBoxFor(model => model.Memberships[i].ToTime, new { @class = "membership-to-time-input form-control" })
+                                @Html.TextBoxFor(model => model.Memberships[i].ToTime, new { @class = "membership-to-time-input form-control", @placeholder = @Resources.ToTime })
                                 @Html.ValidationMessageFor(model => model.Memberships[i].ToTime, "", new { @class = "membership-to-time-validation" })
                                 <div class="checkbox">
                                     @Html.CheckBoxFor(model => model.Memberships[i].Now, new { @class = "membership-now-input" })
@@ -37,7 +37,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 @Html.LabelFor(model => model.Memberships[i].Description, new { @class = "membership-description-label control-label" })
-                                @Html.TextAreaFor(model => model.Memberships[i].Description, new { @class = "membership-description-input form-control", @rows = 5 })
+                                @Html.TextAreaFor(model => model.Memberships[i].Description, new { @class = "membership-description-input form-control", @rows = 5, @placeholder = @Resources.MembershipDescription })
                                 @Html.ValidationMessageFor(model => model.Memberships[i].Description, "", new { @class = "membership-description-validation" })
                             </div>
                         </div>

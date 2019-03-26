@@ -376,7 +376,7 @@ namespace CV.Management.Web {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Key Tasks and responsibilities (Please write each in new line);&amp;#x0a; •Task no 1;&amp;#x0a; •Responsibility no 2;&amp;#x0a; •Task no 3;&amp;#x0a; •Etc..
+        ///   Looks up a localized string similar to Key Tasks and responsibilities (Please write each in new line);\n •Task no 1;\n •Responsibility no 2;\n •Task no 3;\n •Etc..
         /// </summary>
         public static string KeyTasksPlaceholder {
             get {

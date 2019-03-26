@@ -11,7 +11,7 @@
             <div class="col-md-4">
                 <div class="form-group">
                     @Html.LabelFor(model => Model.NoticePeriod, new { @class = "control-label" })
-                    @Html.TextBoxFor(model => Model.NoticePeriod, new { @class = "form-control" })
+                    @Html.TextBoxFor(model => Model.NoticePeriod, new { @class = "form-control", @placeholder = @Resources.NoticePeriod })
                     @Html.ValidationMessageFor(model => Model.NoticePeriod)
                 </div>
             </div>

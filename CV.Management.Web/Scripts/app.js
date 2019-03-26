@@ -1,5 +1,87 @@
 ﻿$(document).ready(function () {
 
+    var currentHost = $(location).attr('protocol') + "//" + $(location).attr('host') + "/";
+
+    $('#collapse1').parent().find(".tab_act").css("background", "url(" + currentHost + "Content/Images/tab_close.png) no-repeat center");
+
+    $('#collapse1').on('show.bs.collapse', function () {
+        $('#collapse1').parent().find(".tab_act").css("background", "url(" + currentHost + "Content/Images/tab_close.png) no-repeat center");
+    });
+
+    $('#collapse1').on('hide.bs.collapse', function () {
+        $('#collapse1').parent().find(".tab_act").css("background", "url(" + currentHost + "Content/Images/tab_close_h.png) no-repeat center");
+    });
+
+    $('#collapse2').on('show.bs.collapse', function () {
+        $('#collapse2').parent().find(".tab_act").css("background", "url(" + currentHost + "Content/Images/tab_close.png) no-repeat center");
+    });
+
+    $('#collapse2').on('hide.bs.collapse', function () {
+        $('#collapse2').parent().find(".tab_act").css("background", "url(" + currentHost + "Content/Images/tab_close_h.png) no-repeat center");
+    });
+
+    $('#collapse3').on('show.bs.collapse', function () {
+        $('#collapse3').parent().find(".tab_act").css("background", "url(" + currentHost + "Content/Images/tab_close.png) no-repeat center");
+    });
+
+    $('#collapse3').on('hide.bs.collapse', function () {
+        $('#collapse3').parent().find(".tab_act").css("background", "url(" + currentHost + "Content/Images/tab_close_h.png) no-repeat center");
+    });
+
+    $('#collapse4').on('show.bs.collapse', function () {
+        $('#collapse4').parent().find(".tab_act").css("background", "url(" + currentHost + "Content/Images/tab_close.png) no-repeat center");
+    });
+
+    $('#collapse4').on('hide.bs.collapse', function () {
+        $('#collapse4').parent().find(".tab_act").css("background", "url(" + currentHost + "Content/Images/tab_close_h.png) no-repeat center");
+    });
+
+    $('#collapse5').on('show.bs.collapse', function () {
+        $('#collapse5').parent().find(".tab_act").css("background", "url(" + currentHost + "Content/Images/tab_close.png) no-repeat center");
+    });
+
+    $('#collapse5').on('hide.bs.collapse', function () {
+        $('#collapse5').parent().find(".tab_act").css("background", "url(" + currentHost + "Content/Images/tab_close_h.png) no-repeat center");
+    });
+
+    $('#collapse6').on('show.bs.collapse', function () {
+        $('#collapse6').parent().find(".tab_act").css("background", "url(" + currentHost + "Content/Images/tab_close.png) no-repeat center");
+    });
+
+    $('#collapse6').on('hide.bs.collapse', function () {
+        $('#collapse6').parent().find(".tab_act").css("background", "url(" + currentHost + "Content/Images/tab_close_h.png) no-repeat center");
+    });
+
+    $('#collapse7').on('show.bs.collapse', function () {
+        $('#collapse7').parent().find(".tab_act").css("background", "url(" + currentHost + "Content/Images/tab_close.png) no-repeat center");
+    });
+
+    $('#collapse7').on('hide.bs.collapse', function () {
+        $('#collapse7').parent().find(".tab_act").css("background", "url(" + currentHost + "Content/Images/tab_close_h.png) no-repeat center");
+    });
+
+    $('#collapse8').on('show.bs.collapse', function () {
+        $('#collapse8').parent().find(".tab_act").css("background", "url(" + currentHost + "Content/Images/tab_close.png) no-repeat center");
+    });
+
+    $('#collapse8').on('hide.bs.collapse', function () {
+        $('#collapse8').parent().find(".tab_act").css("background", "url(" + currentHost + "Content/Images/tab_close_h.png) no-repeat center");
+    });
+
+    $('#collapse9').on('show.bs.collapse', function () {
+        $('#collapse9').parent().find(".tab_act").css("background", "url(" + currentHost + "Content/Images/tab_close.png) no-repeat center");
+    });
+
+    $('#collapse9').on('hide.bs.collapse', function () {
+        $('#collapse9').parent().find(".tab_act").css("background", "url(" + currentHost + "Content/Images/tab_close_h.png) no-repeat center");
+    });
+
+    var textAreas = document.getElementsByTagName('textarea');
+
+    Array.prototype.forEach.call(textAreas, function (elem) {
+        elem.placeholder = elem.placeholder.replace(/\\n/g, '\n');
+    });
+
     $(".download_word").click(function (e) {
 
         var row = $(this).closest('tr');
@@ -655,6 +737,10 @@
         var positionDirectSubordinatesFieldName = "DirectSubordinates";
         var positionAchievementsFieldName = "Achievements";
         var positionReasonForLeavingFieldName = "ReasonForLeaving";
+
+        var currentNumber = parseInt(newRow.find(".company-number").text());
+
+        newRow.find(".company-number").text(currentNumber + 1);
 
         newRow.find(".company-name-label").attr("for", companyFormName + "_" + existingCompanyRowCount + "__" + companyNameFieldName);
         newRow.find(".company-name-input").attr({
