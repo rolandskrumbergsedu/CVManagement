@@ -165,7 +165,9 @@ namespace CV.Management.Web.Controllers
                     IEnumerable<Claim> claims = identity.Claims;
 
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
+                    CreateProfile(model.Name, model.Surname, model.Email, string.Empty);
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -503,20 +505,24 @@ namespace CV.Management.Web.Controllers
 
         private void CreateProfile(string name, string surname, string email, string profilePictureClaim)
         {
-            var profilePicture = JObject.Parse(profilePictureClaim);
-            var elements = profilePicture.SelectTokens("$.displayImage~.elements[*]").ToList();
             ImageDownloadResponse pictureContent = null;
 
-            foreach (var element in elements)
+            if (!string.IsNullOrEmpty(profilePictureClaim))
             {
-                var artifact = element.SelectToken("$.artifact").Value<string>();
-                if (artifact.Contains("shrink_400_400"))
-                {
-                    var identifier = element.SelectTokens("$.identifiers[*]").First();
-                    var linkToPicture = identifier.SelectToken("$.identifier").Value<string>();
+                var profilePicture = JObject.Parse(profilePictureClaim);
+                var elements = profilePicture.SelectTokens("$.displayImage~.elements[*]").ToList();
 
-                    pictureContent = DownloadRemoteImageFile(linkToPicture);
-                    break;
+                foreach (var element in elements)
+                {
+                    var artifact = element.SelectToken("$.artifact").Value<string>();
+                    if (artifact.Contains("shrink_400_400"))
+                    {
+                        var identifier = element.SelectTokens("$.identifiers[*]").First();
+                        var linkToPicture = identifier.SelectToken("$.identifier").Value<string>();
+
+                        pictureContent = DownloadRemoteImageFile(linkToPicture);
+                        break;
+                    }
                 }
             }
 
@@ -527,8 +533,12 @@ namespace CV.Management.Web.Controllers
                 if (profile != null)
                 {
                     profile.FullName = $"{name} {surname}";
-                    profile.PictureContent = pictureContent.ImageContent;
-                    profile.PictureType = pictureContent.ImageContentType;
+
+                    if (pictureContent != null)
+                    {
+                        profile.PictureContent = pictureContent.ImageContent;
+                        profile.PictureType = pictureContent.ImageContentType;
+                    }                    
                 }
                 else
                 {

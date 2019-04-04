@@ -3,8 +3,11 @@
 
     @using (Html.BeginForm("PersonalInformation", "Cv", FormMethod.Post))
     {
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.AntiForgeryToken()
+
+        <div class="col-md-12">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        </div>
 
         <div class="col-md-6">
             <div class="row">
