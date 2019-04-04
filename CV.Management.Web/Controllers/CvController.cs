@@ -1,6 +1,7 @@
 ﻿using CV.Management.Web.DbContexts;
 using CV.Management.Web.Models;
 using CV.Management.Web.Models.Database;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -1128,7 +1129,16 @@ namespace CV.Management.Web.Controllers
                 AdditionalCommentsViewModel = new AdditionalCommentsViewModel
                 {
                     Comments = string.Empty
-                }
+                },
+                AdditionalFilesViewModel = new AdditionalFilesViewModel
+                {
+                    Files = new List<AdditionalFileItem>()
+                },
+                //AddAdditionalFileUploadViewModel = new AddAdditionalFileUploadViewModel
+                //{
+                //    FileSrc = string.Empty
+                //},
+                Name = string.Empty
             };
         }
 
