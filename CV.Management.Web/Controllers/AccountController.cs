@@ -528,7 +528,7 @@ namespace CV.Management.Web.Controllers
 
             using (var db = new ProfileInformationDbContext())
             {
-                var profile = db.Profiles.FirstOrDefault(x => x.Email == email);
+                var profile = db.Profiles.FirstOrDefault(x => x.Username == email);
 
                 if (profile != null)
                 {
@@ -544,6 +544,7 @@ namespace CV.Management.Web.Controllers
                 {
                     profile = new Profile
                     {
+                        Username = email,
                         FullName = $"{name} {surname}",
                         Email = email
                     };
