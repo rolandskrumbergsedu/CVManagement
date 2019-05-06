@@ -180,6 +180,21 @@ html, body {
         cursor: pointer;
     }
 
+.download_word_empty {
+    padding-left: 35px;
+    font-size: 24px;
+    color: #1c74bb;
+    text-transform: uppercase;
+    background: url(Images/docs.png) no-repeat left center;
+}
+
+    .download_word_empty:hover {
+        background: url(Images/docs_h.png) no-repeat left center;
+        color: #231f20;
+        cursor: pointer;
+    }
+
+
 .download_ppt {
     padding-left: 35px;
     font-size: 24px;
@@ -310,4 +325,17 @@ html, body {
     -ms-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
+}
+
+.phone-code-input-div {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.phone-input-div {
+    padding-right: 0px;
+}
+
+.italic {
+    font-style: italic;
 }

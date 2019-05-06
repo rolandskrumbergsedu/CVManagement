@@ -335,14 +335,13 @@ namespace CV.Management.Web.Controllers
         {
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
 
-            var name = loginInfo.ExternalIdentity.Claims.FirstOrDefault(x => x.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname").Value;
-            var surname = loginInfo.ExternalIdentity.Claims.FirstOrDefault(x => x.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname").Value;
-
-
             if (loginInfo == null)
             {
                 return RedirectToAction("Login");
             }
+
+            var name = loginInfo.ExternalIdentity.Claims.FirstOrDefault(x => x.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname").Value;
+            var surname = loginInfo.ExternalIdentity.Claims.FirstOrDefault(x => x.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname").Value;
 
             // Sign in the user with this external login provider if the user already has a login
             var result = await SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);

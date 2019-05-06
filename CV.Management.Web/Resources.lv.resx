@@ -130,7 +130,7 @@
     <value>Pievienot izglītību</value>
   </data>
   <data name="AdditionalBonuses" xml:space="preserve">
-    <value>Papildus bonusi (uzņēmuma auto, uzņēmuma daļas, u.c.)</value>
+    <value>Papildus labumi (uzņēmuma auto, uzņēmuma daļas, u.c.)</value>
   </data>
   <data name="AdditionalComments" xml:space="preserve">
     <value>Papildus komentāri</value>
@@ -148,10 +148,10 @@
     <value>Adrese</value>
   </data>
   <data name="BonusRequest" xml:space="preserve">
-    <value>Pieprasītie bonusi</value>
+    <value>Vēlamie labumi</value>
   </data>
   <data name="CareerSummary" xml:space="preserve">
-    <value>Karjeras pārskats</value>
+    <value>Darba pieredze</value>
   </data>
   <data name="City" xml:space="preserve">
     <value>Pilsēta, valsts</value>
@@ -175,13 +175,13 @@
     <value>Kursa nosaukums, iegūtais sertifikāts</value>
   </data>
   <data name="Courses" xml:space="preserve">
-    <value>Papildus kursi</value>
+    <value>Citi kursi, semināri</value>
   </data>
   <data name="CurrentBonuses" xml:space="preserve">
-    <value>Šobrīd saņemtie bonusi (gross)</value>
+    <value>Šobrīd saņemtie bonusi (bruto)</value>
   </data>
   <data name="CurrentSalary" xml:space="preserve">
-    <value>Šobrīd fiksētais atalgojums (gross mēnesī)</value>
+    <value>Šobrīd noteiktā darba alga (bruto mēnesī)</value>
   </data>
   <data name="Degree" xml:space="preserve">
     <value>Specialitāte, grāds</value>
@@ -232,7 +232,7 @@
     <value>Galvenie produkti un servisi</value>
   </data>
   <data name="MembershipDescription" xml:space="preserve">
-    <value>Organizatoriskā piederība</value>
+    <value>Organizācijas, biedrības nosaukums</value>
   </data>
   <data name="Memberships" xml:space="preserve">
     <value>Sociālās aktivitātes &amp; dalība organizācijās</value>
@@ -247,7 +247,7 @@
     <value>Tagad</value>
   </data>
   <data name="NumberOfDays" xml:space="preserve">
-    <value>Dienu skaits</value>
+    <value>Laika posms</value>
   </data>
   <data name="NumberOfEmployess" xml:space="preserve">
     <value>Darbinieku skaits</value>
@@ -283,7 +283,7 @@
     <value>Tiešais vadītājs (vārds, uzvārds, amats)</value>
   </data>
   <data name="SalaryRequest" xml:space="preserve">
-    <value>Pieprasītais atalgojums (gross mēnesī, valūta)</value>
+    <value>Vēlamais atalgojums (bruto mēnesī, valūta)</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Saglabāt</value>
@@ -301,7 +301,7 @@
     <value>Periods līdz (gggg)</value>
   </data>
   <data name="Trainer" xml:space="preserve">
-    <value>Apmācību vadītājs</value>
+    <value>Apmācību organizētājs, iestāde</value>
   </data>
   <data name="Turnover" xml:space="preserve">
     <value>Apgrozījums (+valūta, gads)</value>
@@ -329,5 +329,8 @@
   </data>
   <data name="PhonePlaceholder" xml:space="preserve">
     <value>Tālruņa numurs</value>
+  </data>
+  <data name="PhoneCodePlaceholder" xml:space="preserve">
+    <value>Valsts kods</value>
   </data>
 </root>

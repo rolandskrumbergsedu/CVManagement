@@ -82,6 +82,11 @@
         elem.placeholder = elem.placeholder.replace(/\\n/g, '\n');
     });
 
+    $(".download_word_empty").click(function (e) {
+        e.preventDefault();
+        window.location.href = "/api/worddocument";
+    });
+
     $(".download_word").click(function (e) {
 
         var row = $(this).closest('tr');
@@ -180,12 +185,21 @@
     $('.company-industry-select').each(function () {
 
         var row = $(this).closest('div[class^="row"]');
+        var otherField = row.find(".company-other-industry-input");
+        var otherFieldRow = otherField.closest('div[class^="form-group"]');
 
         if (this.value !== "22") {
             row.find(".company-other-industry-input").attr("value", null);
             row.find(".company-other-industry-input").attr("disabled", "true");
+
+            otherFieldRow.css({
+                "display": "none"
+            });
         } else {
             row.find(".company-other-industry-input").removeAttr("disabled");
+            otherFieldRow.css({
+                "display": "block"
+            });
         }
 
     });
@@ -193,12 +207,20 @@
     $('.company-industry-select').change(function () {
 
         var row = $(this).closest('div[class^="row"]');
+        var otherField = row.find(".company-other-industry-input");
+        var otherFieldRow = otherField.closest('div[class^="form-group"]');
 
         if (this.value !== "22") {
             row.find(".company-other-industry-input").attr("disabled", "true");
             row.find(".company-other-industry-input").attr("value", "");
+            otherFieldRow.css({
+                "display": "none"
+            });
         } else {
             row.find(".company-other-industry-input").removeAttr("disabled");
+            otherFieldRow.css({
+                "display": "block"
+            });
         }
 
     });
@@ -208,6 +230,7 @@
         var formName = "Education";
         var fromYearFieldName = "FromYear";
         var toYearFieldName = "ToYear";
+        var nowFieldName = "Now";
         var institutionFieldName = "Institution";
         var degreeFieldName = "Degree";
 
@@ -226,6 +249,18 @@
                 "name": formName + "[" + index + "]." + toYearFieldName
             });
             $(this).find(".education-to-year-validation").attr("data-valmsg-for", formName + "[" + index + "]." + toYearFieldName);
+
+            $(this).find(".education-now-label").attr("for", formName + "_" + index + "__" + nowFieldName);
+            $(this).find(".education-now-input").attr({
+                "id": formName + "_" + index + "__" + nowFieldName,
+                "name": formName + "[" + index + "]." + nowFieldName,
+                "checked": false
+            });
+            var educationNowCheckBox = $(this).find(".education-now-input").parent();
+            var hiddenInput = educationNowCheckBox.find("[type=hidden]");
+            hiddenInput.attr({
+                "name": formName + "[" + index + "]." + nowFieldName
+            });
 
             $(this).find(".education-institution-label").attr("for", formName + "_" + index + "__" + institutionFieldName);
             $(this).find(".education-institution-input").attr({
@@ -257,6 +292,7 @@
         var formName = "Education";
         var fromYearFieldName = "FromYear";
         var toYearFieldName = "ToYear";
+        var nowFieldName = "Now";
         var institutionFieldName = "Institution";
         var degreeFieldName = "Degree";
 
@@ -275,6 +311,18 @@
             "value": null
         });
         newRow.find(".education-to-year-label").attr("data-valmsg-for", formName + "[" + existingEducationRowCount + "]." + toYearFieldName);
+
+        newRow.find(".education-now-label").attr("for", formName + "_" + existingEducationRowCount + "__" + nowFieldName);
+        newRow.find(".education-now-input").attr({
+            "id": formName + "_" + existingEducationRowCount + "__" + nowFieldName,
+            "name": formName + "[" + existingEducationRowCount + "]." + nowFieldName,
+            "checked": false
+        });
+        var educationNowCheckBox = newRow.find(".education-now-input").parent();
+        var hiddenInput = educationNowCheckBox.find("[type=hidden]");
+        hiddenInput.attr({
+            "name": formName + "[" + existingEducationRowCount + "]." + nowFieldName
+        });
 
         newRow.find(".education-institution-label").attr("for", formName + "_" + existingEducationRowCount + "__" + institutionFieldName);
         newRow.find(".education-institution-input").attr({
@@ -481,6 +529,7 @@
         var formName = "Memberships";
         var fromTimeFieldName = "FromTime";
         var toTimeFieldName = "ToTime";
+        var nowFieldName = "Now";
         var descriptionFieldName = "Description";
 
         $(".membership_row").each(function (index) {
@@ -498,6 +547,18 @@
                 "name": formName + "[" + index + "]." + toTimeFieldName
             });
             $(this).find(".membership-to-time-validation").attr("data-valmsg-for", formName + "[" + index + "]." + toTimeFieldName);
+
+            $(this).find(".membership-now-label").attr("for", formName + "_" + index + "__" + nowFieldName);
+            $(this).find(".membership-now-input").attr({
+                "id": formName + "_" + index + "__" + nowFieldName,
+                "name": formName + "[" + index + "]." + nowFieldName,
+                "checked": false
+            });
+            var membershipNowCheckBox = $(this).find(".membership-now-input").parent();
+            var hiddenInput = membershipNowCheckBox.find("[type=hidden]");
+            hiddenInput.attr({
+                "name": formName + "[" + index + "]." + nowFieldName
+            });
 
             $(this).find(".membership-description-label").attr("for", formName + "_" + index + "__" + descriptionFieldName);
             $(this).find(".membership-description-input").attr({
@@ -522,6 +583,7 @@
         var formName = "Memberships";
         var fromTimeFieldName = "FromTime";
         var toTimeFieldName = "ToTime";
+        var nowFieldName = "Now";
         var descriptionFieldName = "Description";
 
         newRow.find(".membership-from-time-label").attr("for", formName + "_" + existingMembershipRowCount + "__" + fromTimeFieldName);
@@ -539,6 +601,18 @@
             "value": null
         });
         newRow.find(".membership-to-time-label").attr("data-valmsg-for", formName + "[" + existingMembershipRowCount + "]." + toTimeFieldName);
+
+        newRow.find(".membership-now-label").attr("for", formName + "_" + existingMembershipRowCount + "__" + nowFieldName);
+        newRow.find(".membership-now-input").attr({
+            "id": formName + "_" + existingMembershipRowCount + "__" + nowFieldName,
+            "name": formName + "[" + existingMembershipRowCount + "]." + nowFieldName,
+            "checked": false
+        });
+        var membershipNowCheckBox = newRow.find(".membership-now-input").parent();
+        var hiddenInput = membershipNowCheckBox.find("[type=hidden]");
+        hiddenInput.attr({
+            "name": formName + "[" + existingMembershipRowCount + "]." + nowFieldName
+        });
 
         newRow.find(".membership-description-label").attr("for", formName + "_" + existingMembershipRowCount + "__" + descriptionFieldName);
         newRow.find(".membership-description-input").attr({
@@ -665,6 +739,11 @@
                 $(this).find(".career-position-now-label").attr("for", companyFormName + "_" + companyIndex + "__" + positionFormName + "_" + positionIndex + "__" + positionNowFieldName);
                 $(this).find(".career-position-now-input").attr({
                     "id": companyFormName + "_" + companyIndex + "__" + positionFormName + "_" + positionIndex + "__" + positionNowFieldName,
+                    "name": companyFormName + "[" + companyIndex + "]." + positionFormName + "[" + positionIndex + "]." + positionNowFieldName
+                });
+                var positionNowCheckBox = $(this).find(".career-position-now-input").parent();
+                var hiddenInput = positionNowCheckBox.find("[type=hidden]");
+                hiddenInput.attr({
                     "name": companyFormName + "[" + companyIndex + "]." + positionFormName + "[" + positionIndex + "]." + positionNowFieldName
                 });
 
@@ -915,7 +994,8 @@
         });
 
         newRow.find(".career-position-now-input").attr({
-            "value": null
+            "value": null,
+            "checked": false
         });
 
         newRow.find(".position-key-tasks-input").val(null);

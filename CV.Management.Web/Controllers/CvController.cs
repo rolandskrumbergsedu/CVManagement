@@ -146,6 +146,7 @@ namespace CV.Management.Web.Controllers
                     userProfile.FullName = personal.FullName;
                     userProfile.LinkedInLink = personal.LinkedInLink;
                     userProfile.Phone = personal.Phone;
+                    userProfile.PhoneCode = personal.PhoneCode;
                     userProfile.Project = personal.Project;
                     userProfile.Skype = personal.Skype;
                 }
@@ -159,6 +160,7 @@ namespace CV.Management.Web.Controllers
                         FullName = personal.FullName,
                         LinkedInLink = personal.LinkedInLink,
                         Phone = personal.Phone,
+                        PhoneCode = personal.PhoneCode,
                         Project = personal.Project,
                         Skype = personal.Skype
                     });
@@ -666,6 +668,7 @@ namespace CV.Management.Web.Controllers
                 FullName = profile.FullName,
                 LinkedInLink = profile.LinkedInLink,
                 Phone = profile.Phone,
+                PhoneCode = profile.PhoneCode,
                 Project = profile.Project,
                 Skype = profile.Skype
             };
@@ -1029,6 +1032,7 @@ namespace CV.Management.Web.Controllers
                     Email = string.Empty,
                     FullName = string.Empty,
                     LinkedInLink = string.Empty,
+                    PhoneCode = string.Empty,
                     Phone = string.Empty,
                     Project = string.Empty,
                     Skype = string.Empty
@@ -1176,6 +1180,11 @@ namespace CV.Management.Web.Controllers
 
         public string GetKeyTasks(List<KeyTask> tasks)
         {
+            if(tasks == null)
+            {
+                return string.Empty;
+            }
+
             var sb = new StringBuilder();
 
             foreach (var task in tasks)

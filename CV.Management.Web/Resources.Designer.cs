@@ -268,7 +268,7 @@ namespace CV.Management.Web {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Current fixed salary (gross per month).
+        ///   Looks up a localized string similar to Current fixed salary (gross per month, currency).
         /// </summary>
         public static string CurrentSalary {
             get {
@@ -286,7 +286,7 @@ namespace CV.Management.Web {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Direct and indirect subordinates.
+        ///   Looks up a localized string similar to Direct and indirect subordinates (numbers and functions).
         /// </summary>
         public static string DirectSubordinates {
             get {
@@ -475,7 +475,7 @@ namespace CV.Management.Web {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Now.
+        ///   Looks up a localized string similar to Present.
         /// </summary>
         public static string Now {
             get {
@@ -534,6 +534,15 @@ namespace CV.Management.Web {
         public static string Phone {
             get {
                 return ResourceManager.GetString("Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Country code.
+        /// </summary>
+        public static string PhoneCodePlaceholder {
+            get {
+                return ResourceManager.GetString("PhoneCodePlaceholder", resourceCulture);
             }
         }
         

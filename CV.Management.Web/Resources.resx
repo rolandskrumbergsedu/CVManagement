@@ -181,13 +181,13 @@
     <value>Current bonuses (gross)</value>
   </data>
   <data name="CurrentSalary" xml:space="preserve">
-    <value>Current fixed salary (gross per month)</value>
+    <value>Current fixed salary (gross per month, currency)</value>
   </data>
   <data name="Degree" xml:space="preserve">
     <value>Speciality, degree</value>
   </data>
   <data name="DirectSubordinates" xml:space="preserve">
-    <value>Direct and indirect subordinates</value>
+    <value>Direct and indirect subordinates (numbers and functions)</value>
   </data>
   <data name="Education" xml:space="preserve">
     <value>Education &amp; qualifications</value>
@@ -244,7 +244,7 @@
     <value>Notice period</value>
   </data>
   <data name="Now" xml:space="preserve">
-    <value>Now</value>
+    <value>Present</value>
   </data>
   <data name="NumberOfDays" xml:space="preserve">
     <value>Number of days</value>
@@ -332,5 +332,8 @@
   </data>
   <data name="PhonePlaceholder" xml:space="preserve">
     <value>Phone (mobile)</value>
+  </data>
+  <data name="PhoneCodePlaceholder" xml:space="preserve">
+    <value>Country code</value>
   </data>
 </root>

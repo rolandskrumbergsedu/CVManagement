@@ -100,7 +100,7 @@ namespace CV.Management.Web.Controllers
                 Date = GetCurrentDate(),
                 FullName = profile.FullName,
                 Email = profile.Email,
-                Phone = profile.Phone,
+                Phone = profile.PhoneCode + profile.Phone,
                 PictureContent = profile.PictureContent,
                 PictureType = profile.PictureType,
                 Education = GetEducationItems(profile.Educations),

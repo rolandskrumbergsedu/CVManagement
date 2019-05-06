@@ -38,8 +38,16 @@
 
                     @Html.LabelFor(model => model.Phone, new { @class = "control-label col-md-12" })
                     <div class="col-md-12">
-                        @Html.TextBoxFor(model => model.Phone, new { @class = "form-control", @placeholder = @Resources.PhonePlaceholder })
-                        @Html.ValidationMessageFor(model => model.Phone)
+                        <div class="row">
+                            <div class="col-md-4 phone-code-input-div">
+                                @Html.TextBoxFor(model => model.PhoneCode, new { @class = "form-control", @placeholder = @Resources.PhoneCodePlaceholder })
+                                @Html.ValidationMessageFor(model => model.PhoneCode)
+                            </div>
+                            <div class="col-md-8 phone-input-div">
+                                @Html.TextBoxFor(model => model.Phone, new { @class = "form-control", @placeholder = @Resources.PhonePlaceholder })
+                                @Html.ValidationMessageFor(model => model.Phone)
+                            </div>
+                        </div>
                     </div>
 
                     @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-12" })

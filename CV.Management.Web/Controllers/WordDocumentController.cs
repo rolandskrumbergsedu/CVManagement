@@ -118,7 +118,7 @@ namespace CV.Management.Web.Controllers
             var personal = new PersonalInformation
             {
                 FullName = profile.FullName,
-                Mobile = profile.Phone,
+                Mobile = profile.PhoneCode + profile.Phone,
                 Email = profile.Email,
                 Address = profile.Address,
                 Skype = profile.Skype,
@@ -208,6 +208,11 @@ namespace CV.Management.Web.Controllers
 
         public string GetKeyTasks(List<KeyTask> tasks)
         {
+            if (tasks == null)
+            {
+                return string.Empty;
+            }
+
             var sb = new StringBuilder();
 
             foreach (var task in tasks)

@@ -71,14 +71,8 @@ namespace CV.Management.Web
 
             List<string> profileFieldsToGet = new List<string>()
             {
-                "location",
-                "positions",
-                "picture-url",
-                "public-profile-url",
-                "location",
-                "industry",
-                "specialties",
-                "positions"
+                "r_basicprofile",
+                "vanityName"
             };
 
             foreach (var field in profileFieldsToGet)

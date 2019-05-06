@@ -14,6 +14,7 @@ namespace CV.Management.Web.Models.Database
         public string LinkedInLink { get; set; }
         public string Address { get; set; }
         public string Email { get; set; }
+        public string PhoneCode { get; set; }
         public string Phone { get; set; }
         public string Skype { get; set; }
         public string Project { get; set; }

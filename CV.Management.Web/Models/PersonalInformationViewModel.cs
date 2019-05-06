@@ -16,6 +16,8 @@ namespace CV.Management.Web.Models
         [Display(Name = "Email", ResourceType = typeof(Resources))]
         public string Email { get; set; }
         [Required]
+        public string PhoneCode { get; set; }
+        [Required]
         [Display(Name = "Phone", ResourceType = typeof(Resources))]
         public string Phone { get; set; }
         [Display(Name = "Skype", ResourceType = typeof(Resources))]
