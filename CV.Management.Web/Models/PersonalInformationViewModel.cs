@@ -20,8 +20,8 @@ namespace CV.Management.Web.Models
         [Required]
         [Display(Name = "Phone", ResourceType = typeof(Resources))]
         public string Phone { get; set; }
-        [Display(Name = "Skype", ResourceType = typeof(Resources))]
-        public string Skype { get; set; }
+        [Display(Name = "OtherInformation", ResourceType = typeof(Resources))]
+        public string OtherInformation { get; set; }
         [Display(Name = "Project", ResourceType = typeof(Resources))]
         public string Project { get; set; }
     }

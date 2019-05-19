@@ -36,9 +36,13 @@ namespace CV.Management.Web.Models
         [Display(Name = "PositionName", ResourceType = typeof(Resources))]
         public string Name { get; set; }
         [Required]
+        [Range(1900, 3000)]
+        [RegularExpression("^[12][0-9]{3}$", ErrorMessageResourceType = typeof(Resources), ErrorMessageResourceName = "InvalidYear")]
         [Display(Name = "FromTime", ResourceType = typeof(Resources))]
         public int? FromTime { get; set; }
         [Required]
+        [Range(1900, 3000)]
+        [RegularExpression("^[12][0-9]{3}$", ErrorMessageResourceType = typeof(Resources), ErrorMessageResourceName = "InvalidYear")]
         [Display(Name = "ToTime", ResourceType = typeof(Resources))]
         public int? ToTime { get; set; }
         [Display(Name = "Now", ResourceType = typeof(Resources))]

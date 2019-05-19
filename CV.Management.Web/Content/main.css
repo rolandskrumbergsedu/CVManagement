@@ -339,3 +339,7 @@ html, body {
 .italic {
     font-style: italic;
 }
+
+.field-validation-error {
+    color: red;
+}

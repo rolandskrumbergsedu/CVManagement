@@ -148,7 +148,7 @@ namespace CV.Management.Web.Controllers
                     userProfile.Phone = personal.Phone;
                     userProfile.PhoneCode = personal.PhoneCode;
                     userProfile.Project = personal.Project;
-                    userProfile.Skype = personal.Skype;
+                    userProfile.OtherInformation = personal.OtherInformation;
                 }
                 else
                 {
@@ -162,7 +162,7 @@ namespace CV.Management.Web.Controllers
                         Phone = personal.Phone,
                         PhoneCode = personal.PhoneCode,
                         Project = personal.Project,
-                        Skype = personal.Skype
+                        OtherInformation = personal.OtherInformation
                     });
                 }
 
@@ -670,7 +670,7 @@ namespace CV.Management.Web.Controllers
                 Phone = profile.Phone,
                 PhoneCode = profile.PhoneCode,
                 Project = profile.Project,
-                Skype = profile.Skype
+                OtherInformation = profile.OtherInformation
             };
         }
 
@@ -1035,7 +1035,7 @@ namespace CV.Management.Web.Controllers
                     PhoneCode = string.Empty,
                     Phone = string.Empty,
                     Project = string.Empty,
-                    Skype = string.Empty
+                    OtherInformation = string.Empty
                 },
                 EducationViewModel = new EducationViewModel
                 {

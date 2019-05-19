@@ -124,6 +124,15 @@ namespace CV.Management.Web {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Additional files (certificates, motivation letter, etc.).
+        /// </summary>
+        public static string AdditionalFiles {
+            get {
+                return ResourceManager.GetString("AdditionalFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add language.
         /// </summary>
         public static string AddLanguage {
@@ -286,7 +295,7 @@ namespace CV.Management.Web {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Direct and indirect subordinates (numbers and functions).
+        ///   Looks up a localized string similar to Direct and indirect subordinates (numbers and functions, if you have no, leave blank).
         /// </summary>
         public static string DirectSubordinates {
             get {
@@ -313,7 +322,7 @@ namespace CV.Management.Web {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to From (mm.yyyy).
+        ///   Looks up a localized string similar to From (YYYY).
         /// </summary>
         public static string FromTime {
             get {
@@ -322,7 +331,7 @@ namespace CV.Management.Web {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Period from (yyyy).
+        ///   Looks up a localized string similar to Period from (YYYY).
         /// </summary>
         public static string FromYear {
             get {
@@ -363,6 +372,15 @@ namespace CV.Management.Web {
         public static string Institution {
             get {
                 return ResourceManager.GetString("Institution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid year!.
+        /// </summary>
+        public static string InvalidYear {
+            get {
+                return ResourceManager.GetString("InvalidYear", resourceCulture);
             }
         }
         
@@ -511,6 +529,15 @@ namespace CV.Management.Web {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Other contact information.
+        /// </summary>
+        public static string OtherInformation {
+            get {
+                return ResourceManager.GetString("OtherInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Parent company name.
         /// </summary>
         public static string ParentCompanyName {
@@ -583,7 +610,7 @@ namespace CV.Management.Web {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Project.
+        ///   Looks up a localized string similar to Project (if you are not part of existing assignment, please indicate desired position).
         /// </summary>
         public static string Project {
             get {
@@ -637,15 +664,6 @@ namespace CV.Management.Web {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Skype.
-        /// </summary>
-        public static string Skype {
-            get {
-                return ResourceManager.GetString("Skype", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Spoken.
         /// </summary>
         public static string SpokenLevel {
@@ -655,7 +673,7 @@ namespace CV.Management.Web {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to To (mm.yyyy).
+        ///   Looks up a localized string similar to To (YYYY).
         /// </summary>
         public static string ToTime {
             get {
@@ -664,7 +682,7 @@ namespace CV.Management.Web {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Period to (yyyy).
+        ///   Looks up a localized string similar to Period to (YYYY).
         /// </summary>
         public static string ToYear {
             get {

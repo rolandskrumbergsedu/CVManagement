@@ -62,6 +62,12 @@ namespace CV.Management.Web
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                 "~/Scripts/app.js"));
+
+#if DEBUG
+            BundleTable.EnableOptimizations = false;
+#else
+        BundleTable.EnableOptimizations = true;
+#endif
         }
     }
 }

@@ -587,7 +587,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties11.Append(fontSize11);
             runProperties11.Append(fontSizeComplexScript11);
             Text text11 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text11.Text = "Skype: ";
+            text11.Text = "OtherInformation: ";
 
             run11.Append(runProperties11);
             run11.Append(text11);
@@ -635,7 +635,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties12.Append(fontSize12);
             runProperties12.Append(fontSizeComplexScript12);
             Text text12 = new Text();
-            text12.Text = data.Personal.Skype;
+            text12.Text = data.Personal.OtherInformation;
 
             run12.Append(runProperties12);
             run12.Append(text12);

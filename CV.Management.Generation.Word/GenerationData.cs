@@ -58,7 +58,7 @@ namespace CV.Management.Generation.Word
         public string Address { get; set; }
         public string Mobile { get; set; }
         public string Email { get; set; }
-        public string Skype { get; set; }
+        public string OtherInformation { get; set; }
         public string LinkedIn { get; set; }
         public string FullName { get; set; }
         public string ProfilePictureContent { get; set; }

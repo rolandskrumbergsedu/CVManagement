@@ -121,7 +121,7 @@ namespace CV.Management.Web.Controllers
                 Mobile = profile.PhoneCode + profile.Phone,
                 Email = profile.Email,
                 Address = profile.Address,
-                Skype = profile.Skype,
+                OtherInformation = profile.OtherInformation,
                 LinkedIn = profile.LinkedInLink,
                 ProfilePictureContent = profile.PictureContent,
                 ProfilePictureType = profile.PictureType

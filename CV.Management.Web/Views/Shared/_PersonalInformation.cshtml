@@ -56,10 +56,10 @@
                         @Html.ValidationMessageFor(model => model.Email)
                     </div>
 
-                    @Html.LabelFor(model => model.Skype, new { @class = "control-label col-md-12" })
+                    @Html.LabelFor(model => model.OtherInformation, new { @class = "control-label col-md-12" })
                     <div class="col-md-12">
-                        @Html.TextBoxFor(model => model.Skype, new { @class = "form-control", @placeholder = @Resources.Skype })
-                        @Html.ValidationMessageFor(model => model.Skype)
+                        @Html.TextBoxFor(model => model.OtherInformation, new { @class = "form-control", @placeholder = @Resources.OtherInformation })
+                        @Html.ValidationMessageFor(model => model.OtherInformation)
                     </div>
 
                     @Html.LabelFor(model => model.Project, new { @class = "control-label col-md-12" })

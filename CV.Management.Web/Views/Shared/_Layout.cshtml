@@ -26,7 +26,14 @@
                 <ul class="nav navbar-nav">
                     <li><a href="/cv/profile/en">EN</a></li>
                     <li><a href="/cv/profile/lv">LV</a></li>
-                    <li><span class="download_word_empty"></span></span></li>
+
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <li><a href="/admin/overview">Admin</a></li>
+                    }
+
+
+                    @*<li><span class="download_word_empty"></span></span></li>*@
                 </ul>
                 @Html.Partial("_LoginPartial", new CV.Management.Web.Models.LoginPartialViewModel
                    {

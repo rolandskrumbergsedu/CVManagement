@@ -187,7 +187,7 @@
     <value>Specialitāte, grāds</value>
   </data>
   <data name="DirectSubordinates" xml:space="preserve">
-    <value>Tiešie un netiešie padotie</value>
+    <value>Tiešie un netiešie padotie (ja nav, atstāt tukšu)</value>
   </data>
   <data name="Education" xml:space="preserve">
     <value>Izglītība &amp; kvalifikācijas</value>
@@ -196,10 +196,10 @@
     <value>E-pasts</value>
   </data>
   <data name="FromTime" xml:space="preserve">
-    <value>No (mm.gggg)</value>
+    <value>No (GGGG)</value>
   </data>
   <data name="FromYear" xml:space="preserve">
-    <value>Periods no (gggg)</value>
+    <value>Periods no (GGGG)</value>
   </data>
   <data name="FullName" xml:space="preserve">
     <value>Vārds, uzvārds</value>
@@ -288,17 +288,17 @@
   <data name="Save" xml:space="preserve">
     <value>Saglabāt</value>
   </data>
-  <data name="Skype" xml:space="preserve">
-    <value>Skype lietotājvārds</value>
+  <data name="OtherInformation" xml:space="preserve">
+    <value>Papildus kontaktinformācija</value>
   </data>
   <data name="SpokenLevel" xml:space="preserve">
     <value>Runas līmenis</value>
   </data>
   <data name="ToTime" xml:space="preserve">
-    <value>Līdz (mm.gggg)</value>
+    <value>Līdz (GGGG)</value>
   </data>
   <data name="ToYear" xml:space="preserve">
-    <value>Periods līdz (gggg)</value>
+    <value>Periods līdz (GGGG)</value>
   </data>
   <data name="Trainer" xml:space="preserve">
     <value>Apmācību organizētājs, iestāde</value>
@@ -332,5 +332,11 @@
   </data>
   <data name="PhoneCodePlaceholder" xml:space="preserve">
     <value>Valsts kods</value>
+  </data>
+  <data name="AdditionalFiles" xml:space="preserve">
+    <value>Papildus faili (sertifikāti, motivācijas vēstules u.c.)</value>
+  </data>
+  <data name="InvalidYear" xml:space="preserve">
+    <value>Neatbilstošs gads</value>
   </data>
 </root>

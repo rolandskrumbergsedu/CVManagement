@@ -46,7 +46,7 @@ namespace CV.Management.Generation.Word.Tests
                     Mobile = "+371 222222222",
                     Email = "spam@rolands.lv",
                     Address = "Neteiksu iela 22, Rīga, LV-0000",
-                    Skype = "-",
+                    OtherInformation = "-",
                     LinkedIn = "https://lv.linkedin.com/in/rolands-krumbergs-25599b37"
                 },
                 Education = new System.Collections.Generic.List<EducationItem>
@@ -66,7 +66,7 @@ namespace CV.Management.Generation.Word.Tests
                         EndingYear = 1998
                     }
                 },
-                AdditionalCourses = new System.Collections.Generic.List<AdditionalCoursesItem>
+                AdditionalCourses = new List<AdditionalCoursesItem>
                 {
                     new AdditionalCoursesItem
                     {

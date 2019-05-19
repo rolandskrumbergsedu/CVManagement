@@ -15,8 +15,12 @@ namespace CV.Management.Web.Models
 
     public class EducationItem
     {
+        [Range(1900, 3000)]
+        [RegularExpression("^[12][0-9]{3}$", ErrorMessageResourceType = typeof(Resources), ErrorMessageResourceName = "InvalidYear")]
         [Display(Name = "FromYear", ResourceType = typeof(Resources))]
         public int? FromYear { get; set; }
+        [Range(1900, 3000)]
+        [RegularExpression("^[12][0-9]{3}$", ErrorMessageResourceType = typeof(Resources), ErrorMessageResourceName = "InvalidYear")]
         [Display(Name = "ToYear", ResourceType = typeof(Resources))]
         public int? ToYear { get; set; }
         [Display(Name = "Now", ResourceType = typeof(Resources))]

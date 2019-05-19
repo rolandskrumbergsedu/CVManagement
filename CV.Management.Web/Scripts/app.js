@@ -154,7 +154,7 @@
         var formGroup = $(this).closest('div[class^="form-group"]');
         if (this.checked) {
             formGroup.find(".education-to-year-input").attr("disabled", "true");
-            formGroup.find(".education-to-year-input").attr("value", "");
+            formGroup.find(".education-to-year-input").val("");
         } else {
             formGroup.find(".education-to-year-input").removeAttr("disabled");
         }
@@ -313,11 +313,31 @@
         newRow.find(".education-to-year-label").attr("data-valmsg-for", formName + "[" + existingEducationRowCount + "]." + toYearFieldName);
 
         newRow.find(".education-now-label").attr("for", formName + "_" + existingEducationRowCount + "__" + nowFieldName);
-        newRow.find(".education-now-input").attr({
+
+        var educationNowInput = newRow.find(".education-now-input");
+        educationNowInput.attr({
             "id": formName + "_" + existingEducationRowCount + "__" + nowFieldName,
-            "name": formName + "[" + existingEducationRowCount + "]." + nowFieldName,
-            "checked": false
+            "name": formName + "[" + existingEducationRowCount + "]." + nowFieldName
         });
+        educationNowInput.prop("checked", false);
+
+        var formGroup = educationNowInput.closest('div[class^="form-group"]');
+        if (educationNowInput.checked) {
+            formGroup.find(".education-to-year-input").attr("disabled", "true");
+        } else {
+            formGroup.find(".education-to-year-input").removeAttr("disabled");
+        }
+
+        educationNowInput.change(function () {
+            var inputFormGroup = $(this).closest('div[class^="form-group"]');
+            if (this.checked) {
+                inputFormGroup.find(".education-to-year-input").attr("disabled", "true");
+                inputFormGroup.find(".education-to-year-input").val("");
+            } else {
+                inputFormGroup.find(".education-to-year-input").removeAttr("disabled");
+            }
+        });
+
         var educationNowCheckBox = newRow.find(".education-now-input").parent();
         var hiddenInput = educationNowCheckBox.find("[type=hidden]");
         hiddenInput.attr({
@@ -603,12 +623,32 @@
         newRow.find(".membership-to-time-label").attr("data-valmsg-for", formName + "[" + existingMembershipRowCount + "]." + toTimeFieldName);
 
         newRow.find(".membership-now-label").attr("for", formName + "_" + existingMembershipRowCount + "__" + nowFieldName);
-        newRow.find(".membership-now-input").attr({
+
+        var membershipNow = newRow.find(".membership-now-input");
+        membershipNow.attr({
             "id": formName + "_" + existingMembershipRowCount + "__" + nowFieldName,
-            "name": formName + "[" + existingMembershipRowCount + "]." + nowFieldName,
-            "checked": false
+            "name": formName + "[" + existingMembershipRowCount + "]." + nowFieldName
         });
-        var membershipNowCheckBox = newRow.find(".membership-now-input").parent();
+        membershipNow.prop("checked", false);
+
+        var formGroup = membershipNow.closest('div[class^="form-group"]');
+        if (membershipNow.checked) {
+            formGroup.find(".membership-to-time-input").attr("disabled", "true");
+        } else {
+            formGroup.find(".membership-to-time-input").removeAttr("disabled");
+        }
+
+        membershipNow.change(function () {
+            var inputFormGroup = $(this).closest('div[class^="form-group"]');
+            if (this.checked) {
+                inputFormGroup.find(".membership-to-time-input").attr("disabled", "true");
+                inputFormGroup.find(".membership-to-time-input").val("");
+            } else {
+                inputFormGroup.find(".membership-to-time-input").removeAttr("disabled");
+            }
+        });
+
+        var membershipNowCheckBox = membershipNow.parent();
         var hiddenInput = membershipNowCheckBox.find("[type=hidden]");
         hiddenInput.attr({
             "name": formName + "[" + existingMembershipRowCount + "]." + nowFieldName
@@ -912,10 +952,29 @@
         newRow.find(".position-to-time-validation").attr("data-valmsg-for", companyFormName + "[" + existingCompanyRowCount + "]." + positionFormName + "[0]." + positionToTimeFieldName);
 
         newRow.find(".career-position-now-label").attr("for", companyFormName + "_" + existingCompanyRowCount + "__" + positionFormName + "_0__" + positionNowFieldName);
+
+        var positionNow = newRow.find(".career-position-now-input");
         newRow.find(".career-position-now-input").attr({
             "id": companyFormName + "_" + existingCompanyRowCount + "__" + positionFormName + "_0__" + positionNowFieldName,
             "name": companyFormName + "[" + existingCompanyRowCount + "]." + positionFormName + "[0]." + positionNowFieldName,
-            "value": null
+        });
+        positionNow.prop("checked", false);
+
+        var formGroup = positionNow.closest('div[class^="form-group"]');
+        if (positionNow.checked) {
+            formGroup.find(".position-to-time-input").attr("disabled", "true");
+        } else {
+            formGroup.find(".position-to-time-input").removeAttr("disabled");
+        }
+
+        positionNow.change(function () {
+            var inputFormGroup = $(this).closest('div[class^="form-group"]');
+            if (this.checked) {
+                inputFormGroup.find(".position-to-time-input").attr("disabled", "true");
+                inputFormGroup.find(".position-to-time-input").val("");
+            } else {
+                inputFormGroup.find(".position-to-time-input").removeAttr("disabled");
+            }
         });
 
         newRow.find(".position-key-tasks-label").attr("for", companyFormName + "_" + existingCompanyRowCount + "__" + positionFormName + "_0__" + positionKeyTasks);
@@ -994,8 +1053,26 @@
         });
 
         newRow.find(".career-position-now-input").attr({
-            "value": null,
-            "checked": false
+            "value": null
+        });
+        newRow.find(".career-position-now-input").prop("checked", false);
+
+        var positionNow = newRow.find(".career-position-now-input");
+        var formGroup = positionNow.closest('div[class^="form-group"]');
+        if (positionNow.checked) {
+            formGroup.find(".position-to-time-input").attr("disabled", "true");
+        } else {
+            formGroup.find(".position-to-time-input").removeAttr("disabled");
+        }
+
+        positionNow.change(function () {
+            var inputFormGroup = $(this).closest('div[class^="form-group"]');
+            if (this.checked) {
+                inputFormGroup.find(".position-to-time-input").attr("disabled", "true");
+                inputFormGroup.find(".position-to-time-input").val("");
+            } else {
+                inputFormGroup.find(".position-to-time-input").removeAttr("disabled");
+            }
         });
 
         newRow.find(".position-key-tasks-input").val(null);

@@ -238,6 +238,10 @@
     <Compile Include="MigrationsApp\201905061644151_PhoneCode.Designer.cs">
       <DependentUpon>201905061644151_PhoneCode.cs</DependentUpon>
     </Compile>
+    <Compile Include="MigrationsApp\201905192039136_SkypeToOther.cs" />
+    <Compile Include="MigrationsApp\201905192039136_SkypeToOther.Designer.cs">
+      <DependentUpon>201905192039136_SkypeToOther.cs</DependentUpon>
+    </Compile>
     <Compile Include="MigrationsApp\Configuration.cs" />
     <Compile Include="Migrations\201902272154540_Initial.cs" />
     <Compile Include="Migrations\201902272154540_Initial.Designer.cs">
@@ -495,6 +499,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MigrationsApp\201905061644151_PhoneCode.resx">
       <DependentUpon>201905061644151_PhoneCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MigrationsApp\201905192039136_SkypeToOther.resx">
+      <DependentUpon>201905192039136_SkypeToOther.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902272154540_Initial.resx">
       <DependentUpon>201902272154540_Initial.cs</DependentUpon>

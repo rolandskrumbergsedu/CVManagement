@@ -16,7 +16,7 @@ namespace CV.Management.Web.Models.Database
         public string Email { get; set; }
         public string PhoneCode { get; set; }
         public string Phone { get; set; }
-        public string Skype { get; set; }
+        public string OtherInformation { get; set; }
         public string Project { get; set; }
         public string CurrentSalary { get; set; }
         public string CurrentBonuses { get; set; }
