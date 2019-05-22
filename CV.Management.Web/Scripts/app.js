@@ -1096,4 +1096,224 @@
     $(".position_add").click(addPosition);
 
     $(".position-remove").click(removePosition);
+
+
+    $("#save_personal").on("click", function () {
+        createCookie("open", "save_education", 1);
+    });
+
+    $("#save_education").on("click", function () {
+        createCookie("open", "save_courses", 1);
+    });
+
+    $("#save_courses").on("click", function () {
+        createCookie("open", "save_language", 1);
+    });
+
+    $("#save_language").on("click", function () {
+        createCookie("open", "save_carreer", 1);
+    });
+
+    $("#save_carreer").on("click", function () {
+        createCookie("open", "save_memberships", 1);
+    });
+
+    $("#save_memberships").on("click", function () {
+        createCookie("open", "save_compensation", 1);
+    });
+
+    $("#save_compensation").on("click", function () {
+        createCookie("open", "save_notice", 1);
+    });
+
+    $("#save_notice").on("click", function () {
+        createCookie("open", "save_comments", 1);
+    });
+
+    var cookie = readCookie("open");
+    if (cookie === "save_education") {
+
+        $('#collapse2').on('shown.bs.collapse', function () {
+            $('html, body').animate(
+                {
+                    scrollTop: $("#education_panel").offset().top
+                },
+                500,
+                'linear'
+            );
+            $('#collapse2').off('shown.bs.collapse');
+        });
+
+        $('#collapse1').collapse('hide');
+        $('#collapse2').collapse('show');
+
+        eraseCookie("open");
+    }
+
+    if (cookie === "save_courses") {
+
+        $('#collapse3').on('shown.bs.collapse', function () {
+            $('html, body').animate(
+                {
+                    scrollTop: $("#courses_panel").offset().top
+                },
+                500,
+                'linear'
+            );
+            $('#collapse3').off('shown.bs.collapse');
+        });
+
+        $('#collapse2').collapse('hide');
+        $('#collapse3').collapse('show');
+
+        eraseCookie("open");
+    }
+
+    if (cookie === "save_language") {
+
+        $('#collapse4').on('shown.bs.collapse', function () {
+            $('html, body').animate(
+                {
+                    scrollTop: $("#language_panel").offset().top
+                },
+                500,
+                'linear'
+            );
+            $('#collapse3').off('shown.bs.collapse');
+        });
+
+        $('#collapse3').collapse('hide');
+        $('#collapse4').collapse('show');
+
+        eraseCookie("open");
+    }
+
+    if (cookie === "save_carreer") {
+
+        $('#collapse5').on('shown.bs.collapse', function () {
+            $('html, body').animate(
+                {
+                    scrollTop: $("#career_panel").offset().top
+                },
+                500,
+                'linear'
+            );
+            $('#collapse3').off('shown.bs.collapse');
+        });
+
+        $('#collapse4').collapse('hide');
+        $('#collapse5').collapse('show');
+
+        eraseCookie("open");
+    }
+
+    if (cookie === "save_memberships") {
+
+        $('#collapse6').on('shown.bs.collapse', function () {
+            $('html, body').animate(
+                {
+                    scrollTop: $("#memberships_panel").offset().top
+                },
+                500,
+                'linear'
+            );
+            $('#collapse3').off('shown.bs.collapse');
+        });
+
+        $('#collapse5').collapse('hide');
+        $('#collapse6').collapse('show');
+
+        eraseCookie("open");
+    }
+
+    if (cookie === "save_compensation") {
+
+        $('#collapse7').on('shown.bs.collapse', function () {
+            $('html, body').animate(
+                {
+                    scrollTop: $("#compensation_panel").offset().top
+                },
+                500,
+                'linear'
+            );
+            $('#collapse3').off('shown.bs.collapse');
+        });
+
+        $('#collapse6').collapse('hide');
+        $('#collapse7').collapse('show');
+
+        eraseCookie("open");
+    }
+
+    if (cookie === "save_notice") {
+
+        $('#collapse8').on('shown.bs.collapse', function () {
+            $('html, body').animate(
+                {
+                    scrollTop: $("#notice_panel").offset().top
+                },
+                500,
+                'linear'
+            );
+            $('#collapse3').off('shown.bs.collapse');
+        });
+
+        $('#collapse7').collapse('hide');
+        $('#collapse8').collapse('show');
+
+        eraseCookie("open");
+    }
+
+    if (cookie === "save_comments") {
+
+        $('#collapse9').on('shown.bs.collapse', function () {
+            $('html, body').animate(
+                {
+                    scrollTop: $("#notice_panel").offset().top
+                },
+                500,
+                'linear'
+            );
+            $('#collapse3').off('shown.bs.collapse');
+        });
+
+        $('#collapse8').collapse('hide');
+        $('#collapse9').collapse('show');
+
+        eraseCookie("open");
+    }
+
+    if (!cookie) {
+        $('#collapse1').collapse('show');
+    }
 });
+
+function createCookie(name, value, days) {
+    var expires;
+
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toGMTString();
+    } else {
+        expires = "";
+    }
+    document.cookie = encodeURIComponent(name) + "=" + encodeURIComponent(value) + expires + "; path=/";
+}
+
+function readCookie(name) {
+    var nameEQ = encodeURIComponent(name) + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) === ' ')
+            c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) === 0)
+            return decodeURIComponent(c.substring(nameEQ.length, c.length));
+    }
+    return null;
+}
+
+function eraseCookie(name) {
+    createCookie(name, "", -1);
+}
