@@ -187,7 +187,7 @@
     <value>Specialitāte, grāds</value>
   </data>
   <data name="DirectSubordinates" xml:space="preserve">
-    <value>Tiešie un netiešie padotie (ja nav, atstāt tukšu)</value>
+    <value>Tieši un netieši pakļautībā esošie (skaits un funkcijas)</value>
   </data>
   <data name="Education" xml:space="preserve">
     <value>Izglītība &amp; kvalifikācijas</value>
@@ -271,7 +271,7 @@
     <value>Profils</value>
   </data>
   <data name="Project" xml:space="preserve">
-    <value>Projekts</value>
+    <value>Projekts, vēlamais amats</value>
   </data>
   <data name="ReasonForLeaving" xml:space="preserve">
     <value>Aiziešanas iemesls (izlaidiet, ja strādājat turpat)</value>
@@ -338,5 +338,8 @@
   </data>
   <data name="InvalidYear" xml:space="preserve">
     <value>Neatbilstošs gads</value>
+  </data>
+  <data name="Present" xml:space="preserve">
+    <value>Šobrīd</value>
   </data>
 </root>

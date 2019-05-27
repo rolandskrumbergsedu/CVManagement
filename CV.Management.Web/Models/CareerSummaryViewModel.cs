@@ -45,7 +45,7 @@ namespace CV.Management.Web.Models
         [RegularExpression("^[12][0-9]{3}$", ErrorMessageResourceType = typeof(Resources), ErrorMessageResourceName = "InvalidYear")]
         [Display(Name = "ToTime", ResourceType = typeof(Resources))]
         public int? ToTime { get; set; }
-        [Display(Name = "Now", ResourceType = typeof(Resources))]
+        [Display(Name = "Present", ResourceType = typeof(Resources))]
         public bool Now { get; set; }
         [Display(Name = "KeyTasks", ResourceType = typeof(Resources))]
         public string KeyTasks { get; set; }

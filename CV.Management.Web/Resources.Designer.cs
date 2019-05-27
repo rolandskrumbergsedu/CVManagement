@@ -601,6 +601,15 @@ namespace CV.Management.Web {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Present.
+        /// </summary>
+        public static string Present {
+            get {
+                return ResourceManager.GetString("Present", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Profile.
         /// </summary>
         public static string Profile {

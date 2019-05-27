@@ -97,7 +97,7 @@
         window.location.href = "/api/worddocument/" + hiddenInputValue;
     });
 
-    $(".download_ppt").click(function () {
+    $(".download_ppt").click(function (e) {
 
         var row = $(this).closest('tr');
         var hiddenInput = row.find("input");
@@ -1100,34 +1100,42 @@
 
     $("#save_personal").on("click", function () {
         createCookie("open", "save_education", 1);
+        createCookie("message", "saved", 1);
     });
 
     $("#save_education").on("click", function () {
         createCookie("open", "save_courses", 1);
+        createCookie("message", "saved", 1);
     });
 
     $("#save_courses").on("click", function () {
         createCookie("open", "save_language", 1);
+        createCookie("message", "saved", 1);
     });
 
     $("#save_language").on("click", function () {
         createCookie("open", "save_carreer", 1);
+        createCookie("message", "saved", 1);
     });
 
     $("#save_carreer").on("click", function () {
         createCookie("open", "save_memberships", 1);
+        createCookie("message", "saved", 1);
     });
 
     $("#save_memberships").on("click", function () {
         createCookie("open", "save_compensation", 1);
+        createCookie("message", "saved", 1);
     });
 
     $("#save_compensation").on("click", function () {
         createCookie("open", "save_notice", 1);
+        createCookie("message", "saved", 1);
     });
 
     $("#save_notice").on("click", function () {
         createCookie("open", "save_comments", 1);
+        createCookie("message", "saved", 1);
     });
 
     var cookie = readCookie("open");
@@ -1285,6 +1293,21 @@
 
     if (!cookie) {
         $('#collapse1').collapse('show');
+    }
+
+    cookie = readCookie("message");
+    if (cookie === "saved") {
+
+        $("#alert_message").css("display", "block");
+
+        setTimeout(
+            function () {
+                $("#alert_message").slideUp(1000, function () {
+                    // Animation complete.
+                });
+
+                eraseCookie("message");
+            }, 5000);
     }
 });
 

@@ -1,6 +1,8 @@
 ﻿using DocumentFormat.OpenXml.Wordprocessing;
 using DocumentFormat.OpenXml;
 using System.Linq;
+using System;
+using System.Collections.Generic;
 
 namespace CV.Management.Generation.Word.ContentHelper
 {
@@ -59,7 +61,8 @@ namespace CV.Management.Generation.Word.ContentHelper
             table1.Append(tableGrid1);
             table1.Append(tableRow1);
 
-            var educationItems = data.Education.OrderByDescending(x => x.StartingYear).ToList();
+            var educationItems = SortEducation(data.Education);
+            //var educationItems = data.Education.OrderByDescending(x => x.StartingYear).ToList();
 
             foreach (var item in educationItems)
             {
@@ -67,6 +70,38 @@ namespace CV.Management.Generation.Word.ContentHelper
             }
 
             return table1;
+        }
+
+        private static List<EducationItem> SortEducation(List<EducationItem> education)
+        {
+            var result = new List<EducationItem>();
+
+            var present = education.Where(x => x.EndingYear == null && x.StartingYear != null).OrderByDescending(x => x.StartingYear);
+
+            result.AddRange(present);
+
+            var restOfThem = education.Where(x => x.EndingYear != null && x.StartingYear != null).OrderByDescending(x => x.EndingYear).ToList();
+
+            while (restOfThem.Count() > 0)
+            {
+                var lastYear = restOfThem[0].EndingYear;
+
+                var latestYears = restOfThem.Where(x => x.EndingYear == lastYear).OrderByDescending(x => x.StartingYear);
+
+                education.AddRange(latestYears);
+
+                restOfThem.RemoveAll(x => x.EndingYear == lastYear);
+            }
+
+            var emptyOnes = education.Where(x => x.EndingYear != null && x.StartingYear == null).ToList();
+
+            education.AddRange(emptyOnes);
+
+            var lastOnes = education.Where(x => x.EndingYear == null && x.StartingYear == null).ToList();
+
+            education.AddRange(lastOnes);
+
+            return result;
         }
 
         private static TableRow GenerateHeadline()

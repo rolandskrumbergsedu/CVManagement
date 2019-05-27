@@ -342,4 +342,7 @@
   <data name="InvalidYear" xml:space="preserve">
     <value>Invalid year!</value>
   </data>
+  <data name="Present" xml:space="preserve">
+    <value>Present</value>
+  </data>
 </root>

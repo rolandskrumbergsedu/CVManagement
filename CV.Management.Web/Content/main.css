@@ -343,3 +343,14 @@ html, body {
 .field-validation-error {
     color: red;
 }
+
+#alert_message {
+    display: none;
+    position: fixed;
+    top: 10px;
+    width: 400px;
+    z-index: 100;
+    left: 50%;
+    margin-left: -200px;
+    text-align: center;
+}
