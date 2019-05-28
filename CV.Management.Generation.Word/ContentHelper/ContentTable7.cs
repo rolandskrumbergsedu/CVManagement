@@ -2,6 +2,7 @@
 using DocumentFormat.OpenXml;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace CV.Management.Generation.Word.ContentHelper
 {
@@ -123,38 +124,44 @@ namespace CV.Management.Generation.Word.ContentHelper
             table1.Append(tableGrid1);
             table1.Append(tableRow1);
 
-            for (int i = 0; i < data.CareerSummary.Count; i++)
+            var careerSummaries = SortCareerSummary(data.CareerSummary);
+
+            for (int i = 0; i < careerSummaries.Count; i++)
             {
-                table1.Append(CreateCompanySubheadingRow(data.CareerSummary[i]));
-                table1.Append(CreateCompanyInformationRow(data.CareerSummary[i]));
+                table1.Append(CreateCompanySubheadingRow(careerSummaries[i]));
+                table1.Append(CreateCompanyInformationRow(careerSummaries[i]));
 
-                for (int j = 0; j < data.CareerSummary[i].Roles.Count; j++)
+                for (int j = 0; j < careerSummaries[i].Roles.Count; j++)
                 {
-                    table1.Append(CreateRoleInformationRow(data.CareerSummary[i].Roles[j]));
-                    table1.Append(CreateTaskInformationRow(data.CareerSummary[i].Roles[j]));
+                    table1.Append(CreateRoleInformationRow(careerSummaries[i].Roles[j]));
 
-                    if (!string.IsNullOrEmpty(data.CareerSummary[i].Roles[j].ReportingTo))
+                    if (careerSummaries[i].Roles[j].Tasks != null && careerSummaries[i].Roles[j].Tasks.Count() > 1)
                     {
-                        table1.Append(CreateReportingToRow(data.CareerSummary[i].Roles[j]));
+                        table1.Append(CreateTaskInformationRow(careerSummaries[i].Roles[j]));
                     }
 
-                    if (!string.IsNullOrEmpty(data.CareerSummary[i].Roles[j].Subordinates))
+                    if (!string.IsNullOrEmpty(careerSummaries[i].Roles[j].ReportingTo))
                     {
-                        table1.Append(CreateSubordinatesRow(data.CareerSummary[i].Roles[j]));
+                        table1.Append(CreateReportingToRow(careerSummaries[i].Roles[j]));
                     }
 
-                    if (!string.IsNullOrEmpty(data.CareerSummary[i].Roles[j].Achievements))
+                    if (!string.IsNullOrEmpty(careerSummaries[i].Roles[j].Subordinates))
                     {
-                        table1.Append(CreateAchievementsRow(data.CareerSummary[i].Roles[j]));
+                        table1.Append(CreateSubordinatesRow(careerSummaries[i].Roles[j]));
                     }
 
-                    if (!string.IsNullOrEmpty(data.CareerSummary[i].Roles[j].ReasonForLeaving))
+                    if (!string.IsNullOrEmpty(careerSummaries[i].Roles[j].Achievements))
                     {
-                        table1.Append(CreateReasonForLeavingRow(data.CareerSummary[i].Roles[j]));
+                        table1.Append(CreateAchievementsRow(careerSummaries[i].Roles[j]));
+                    }
+
+                    if (!string.IsNullOrEmpty(careerSummaries[i].Roles[j].ReasonForLeaving))
+                    {
+                        table1.Append(CreateReasonForLeavingRow(careerSummaries[i].Roles[j]));
                     }
                 }
 
-                if (i != data.CareerSummary.Count - 1)
+                if (i != careerSummaries.Count - 1)
                 {
                     table1.Append(CreateEmptyRow());
                 }
@@ -164,6 +171,64 @@ namespace CV.Management.Generation.Word.ContentHelper
 
             return table1;
         }
+
+        private static List<CareerSummaryItem> SortCareerSummary(List<CareerSummaryItem> careerSummary)
+        {
+            var result = new List<CareerSummaryItem>();
+
+            var presentCompanies = careerSummary.Where(x => x.Roles.Where(y => y.EndingYear == null && y.Now.Value).Count() > 0);
+
+            foreach (var company in presentCompanies)
+            {
+                company.Roles = company.Roles.OrderByDescending(x => x.StartingYear).ToList();
+                result.Add(company);
+            }
+
+            var nonPresentCompanies = careerSummary.Where(x => x.Roles.Where(y => y.EndingYear.HasValue && !y.Now.Value).Count() > 0 && x.Roles.Where(y => y.EndingYear == null && y.Now.Value).Count() == 0).ToList();
+
+            while(nonPresentCompanies.Count() > 0)
+            {
+                var highestYear = 0;
+
+                foreach (var company in nonPresentCompanies)
+                {
+                    var highestYearInPosition = company.Roles.Max(x => x.EndingYear).Value;
+
+                    if (highestYearInPosition > highestYear)
+                    {
+                        highestYear = highestYearInPosition;
+                    }
+                }
+
+                var highestCompanies = nonPresentCompanies.Where(x => x.Roles.Where(y => y.EndingYear.HasValue && y.EndingYear.Value == highestYear).Count() > 0);
+
+                var highestStartYear = 0;
+
+                foreach (var company in nonPresentCompanies)
+                {
+                    var lowestYearInPosition = company.Roles.Min(x => x.StartingYear).Value;
+
+                    if (lowestYearInPosition > highestStartYear)
+                    {
+                        highestStartYear = lowestYearInPosition;
+                    }
+                }
+
+                var companies = highestCompanies.Where(x => x.Roles.Where(y => y.StartingYear.Value == highestStartYear).Count() > 0);
+
+                foreach (var company in companies)
+                {
+                    company.Roles = company.Roles.OrderByDescending(x => x.StartingYear).ToList();
+                    result.Add(company);
+                }
+
+                nonPresentCompanies.RemoveAll(x => x.Roles.Where(y => y.EndingYear.Value == highestYear && y.StartingYear.Value == highestStartYear).Count() > 0);
+            }
+
+            return result;
+        }
+
+
 
         private static TableRow CreateCompanySubheadingRow(CareerSummaryItem data)
         {

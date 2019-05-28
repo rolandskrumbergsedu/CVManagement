@@ -1290,7 +1290,7 @@ namespace CV.Management.Web.Controllers
                 result.Companies.Add(company);
             }
 
-            var fullCompanies = models.Companies.Where(x => x.Positions.Where(y => y.ToTime != null && !y.Now).Count() > 0).ToList();
+            var fullCompanies = models.Companies.Where(x => x.Positions.Where(y => y.ToTime != null && !y.Now).Count() > 0 && x.Positions.Where(y => y.ToTime == null && y.Now).Count() == 0).ToList();
 
             while (fullCompanies.Count() > 0)
             {
@@ -1306,7 +1306,21 @@ namespace CV.Management.Web.Controllers
                     }
                 }
 
-                var companies = fullCompanies.Where(x => x.Positions.Where(y => y.ToTime.Value == highestYear).Count() > 0);
+                var highestCompanies = fullCompanies.Where(x => x.Positions.Where(y => y.ToTime.HasValue && y.ToTime.Value == highestYear).Count() > 0);
+
+                var highestStartYear = 0;
+
+                foreach (var company in highestCompanies)
+                {
+                    var lowestYearInPosition = company.Positions.Min(x => x.FromTime).Value;
+
+                    if (lowestYearInPosition > highestStartYear)
+                    {
+                        highestStartYear = lowestYearInPosition;
+                    }
+                }
+
+                var companies = highestCompanies.Where(x => x.Positions.Where(y => y.FromTime.HasValue && y.FromTime.Value == highestStartYear).Count() > 0);
 
                 foreach (var company in companies)
                 {
@@ -1314,7 +1328,7 @@ namespace CV.Management.Web.Controllers
                     result.Companies.Add(company);
                 }
 
-                fullCompanies.RemoveAll(x => x.Positions.Where(y => y.ToTime.Value == highestYear).Count() > 0);
+                fullCompanies.RemoveAll(x => x.Positions.Where(y => y.ToTime.HasValue && y.ToTime.Value == highestYear && y.FromTime.HasValue && y.FromTime.Value == highestStartYear).Count() > 0);
             }
 
             var halfEmptyCompanies = models.Companies.Where(x => x.Positions.Where(y => y.ToTime == null && !y.Now && y.FromTime != null).Count() > 0).ToList();
