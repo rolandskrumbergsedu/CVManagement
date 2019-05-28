@@ -345,4 +345,10 @@
   <data name="Present" xml:space="preserve">
     <value>Present</value>
   </data>
+  <data name="TurnoverExample" xml:space="preserve">
+    <value>e.g. 30 MEUR (2018)</value>
+  </data>
+  <data name="TurnoverPlaceholder" xml:space="preserve">
+    <value>X EUR (YYYY)</value>
+  </data>
 </root>

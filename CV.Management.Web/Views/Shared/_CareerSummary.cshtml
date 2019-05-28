@@ -73,8 +73,8 @@
 
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    @Html.LabelFor(model => Model.Companies[i].Turnover, new { @class = "company-turnover-label control-label" })
-                                    @Html.TextBoxFor(model => Model.Companies[i].Turnover, new { @class = "company-turnover-input form-control", @placeholder = @Resources.Turnover })
+                                    @Html.LabelFor(model => Model.Companies[i].Turnover, new { @class = "company-turnover-label control-label" }) <span class="italic">@Resources.TurnoverExample</span>
+                                    @Html.TextBoxFor(model => Model.Companies[i].Turnover, new { @class = "company-turnover-input form-control", @placeholder = @Resources.TurnoverPlaceholder })
                                     @Html.ValidationMessageFor(model => Model.Companies[i].Turnover, "", new { @class = "company-turnover-validation" })
                                 </div>
                             </div>

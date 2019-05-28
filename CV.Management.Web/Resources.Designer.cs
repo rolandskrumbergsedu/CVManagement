@@ -718,6 +718,24 @@ namespace CV.Management.Web {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to e.g. 30 MEUR (2018).
+        /// </summary>
+        public static string TurnoverExample {
+            get {
+                return ResourceManager.GetString("TurnoverExample", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to X EUR (YYYY).
+        /// </summary>
+        public static string TurnoverPlaceholder {
+            get {
+                return ResourceManager.GetString("TurnoverPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Upload.
         /// </summary>
         public static string Upload {
