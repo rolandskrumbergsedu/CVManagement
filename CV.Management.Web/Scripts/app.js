@@ -82,6 +82,31 @@
         elem.placeholder = elem.placeholder.replace(/\\n/g, '\n');
     });
 
+    var addNativeTrigger = function () {
+
+        $(this).change(function () {
+
+            if (this.value === '4') {
+                var row = $(this).closest('div[class^="row"]');
+
+                var selectableClass = '.language-spoken-select';
+
+                if ($(this).hasClass('language-spoken-select')) {
+                    selectableClass = '.language-written-select';
+                } else {
+                    selectableClass = '.language-spoken-select';
+                }
+
+                row.find(selectableClass).val(4);
+            }
+
+        });
+
+    };
+
+    $('.language-spoken-select').each(addNativeTrigger);
+    $('.language-written-select').each(addNativeTrigger);
+
     $(".download_word_empty").click(function (e) {
         e.preventDefault();
         window.location.href = "/api/worddocument";
@@ -526,6 +551,7 @@
             "id": formName + "_" + index + "__" + spokenLevelFieldName,
             "name": formName + "[" + index + "]." + spokenLevelFieldName
         });
+        newRow.find(".language-spoken-select").each(addNativeTrigger);
         newRow.find(".language-spoken-select option[selected='selected']").removeAttr("selected");
         newRow.find(".language-spoken-validation").attr("data-valmsg-for", formName + "[" + index + "]." + spokenLevelFieldName);
 
@@ -534,6 +560,7 @@
             "id": formName + "_" + index + "__" + writtenLevelFieldName,
             "name": formName + "[" + index + "]." + writtenLevelFieldName
         });
+        newRow.find(".language-written-select").each(addNativeTrigger);
         newRow.find(".language-written-select option[selected='selected']").removeAttr("selected");
         newRow.find(".language-written-validation").attr("data-valmsg-for", formName + "[" + index + "]." + writtenLevelFieldName);
 
