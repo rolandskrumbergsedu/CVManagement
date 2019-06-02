@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading;
 using System.Web;
@@ -18,17 +19,37 @@ namespace CV.Management.Web.Controllers
     {
         public ActionResult Profile(string language)
         {
-            if (language == "lv")
+            if (!string.IsNullOrEmpty(language))
             {
-                Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("lv");
-                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("lv");
+                if (language == "lv")
+                {
+                    Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("lv");
+                    Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("lv");
+                }
+                else
+                {
+                    Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en");
+                    Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
+                }
             }
             else
             {
-                Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en");
-                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
-            }
+                if (ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("language"))
+                {
+                    HttpCookie cookie = this.ControllerContext.HttpContext.Request.Cookies["language"];
 
+                    if (cookie.Value == "lv")
+                    {
+                        Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("lv");
+                        Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("lv");
+                    }
+                    else
+                    {
+                        Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en");
+                        Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
+                    };
+                }
+            }
             return View(GetCurrentUserProfileViewModel());
         }
 

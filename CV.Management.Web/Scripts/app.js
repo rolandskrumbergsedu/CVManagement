@@ -2,6 +2,13 @@
 
     var currentHost = $(location).attr('protocol') + "//" + $(location).attr('host') + "/";
 
+    if (window.location.href.match(/lv$/)) {
+        createCookie("language", "lv", 1);
+    }
+    if (window.location.href.match(/en$/)) {
+        createCookie("language", "en", 1);
+    }
+
     $('#collapse1').parent().find(".tab_act").css("background", "url(" + currentHost + "Content/Images/tab_close.png) no-repeat center");
 
     $('#collapse1').on('show.bs.collapse', function () {
