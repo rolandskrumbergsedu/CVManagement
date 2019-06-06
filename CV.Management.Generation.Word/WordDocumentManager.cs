@@ -58,7 +58,7 @@ namespace CV.Management.Generation.Word
             EndnotesPartHelper.GenerateEndnotesPart1Content(endnotesPart1);
 
             var footerPart1 = mainDocumentPart1.AddNewPart<FooterPart>("rId13");
-            FooterPartHelper.GenerateFooterPart1Content(footerPart1);
+            FooterPartHelper.GenerateFooterPart1Content(footerPart1, data);
 
             var customXmlPart1 = mainDocumentPart1.AddNewPart<CustomXmlPart>("application/xml", "rId3");
             CustomXmlPartHelper.GenerateCustomXmlPart1Content(customXmlPart1);

@@ -15,6 +15,7 @@ namespace CV.Management.Generation.Word
         public CompensationItem Compensation { get; set; }
         public string TransitionTime { get; set; }
         public string AdditionalComments { get; set; }
+        public string Language { get; set; }
     }
 
     public class CompensationItem

@@ -95,7 +95,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties1.Append(fontSize1);
             runProperties1.Append(fontSizeComplexScript1);
             Text text1 = new Text();
-            text1.Text = "COMPENSATION";
+            text1.Text = DocumentMetadataTexts.GetText(MetadataTexts.CV_COMPENSATION, data.Language);
 
             run1.Append(runProperties1);
             run1.Append(text1);
@@ -114,23 +114,23 @@ namespace CV.Management.Generation.Word.ContentHelper
 
             if (!string.IsNullOrEmpty(data.Compensation.CurrentSalary))
             {
-                table1.Append(CreateItemRow("Current salary (gross)", data.Compensation.CurrentSalary));
+                table1.Append(CreateItemRow(DocumentMetadataTexts.GetText(MetadataTexts.CV_COMPENSATION_CURRENT_SALARY, data.Language), data.Compensation.CurrentSalary));
             }
             if (!string.IsNullOrEmpty(data.Compensation.CurrentBonuses))
             {
-                table1.Append(CreateItemRow("Current bonuses", data.Compensation.CurrentBonuses));
+                table1.Append(CreateItemRow(DocumentMetadataTexts.GetText(MetadataTexts.CV_COMPENSATION_CURRENT_BONUSES, data.Language), data.Compensation.CurrentBonuses));
             }
             if (!string.IsNullOrEmpty(data.Compensation.SalaryRequest))
             {
-                table1.Append(CreateItemRow("Requested salary (gross)", data.Compensation.SalaryRequest));
+                table1.Append(CreateItemRow(DocumentMetadataTexts.GetText(MetadataTexts.CV_COMPENSATION_REQUESTED_SALARY, data.Language), data.Compensation.SalaryRequest));
             }
             if (!string.IsNullOrEmpty(data.Compensation.BonusRequest))
             {
-                table1.Append(CreateItemRow("Requested bonuses", data.Compensation.BonusRequest));
+                table1.Append(CreateItemRow(DocumentMetadataTexts.GetText(MetadataTexts.CV_COMPENSATION_REQUESTED_BONUSES, data.Language), data.Compensation.BonusRequest));
             }
             if (!string.IsNullOrEmpty(data.Compensation.AdditionalBonuses))
             {
-                table1.Append(CreateItemRow("Additional bonuses", data.Compensation.AdditionalBonuses));
+                table1.Append(CreateItemRow(DocumentMetadataTexts.GetText(MetadataTexts.CV_COMPENSATION_ADDITIONAL_BONUSES, data.Language), data.Compensation.AdditionalBonuses));
             }
 
             return table1;

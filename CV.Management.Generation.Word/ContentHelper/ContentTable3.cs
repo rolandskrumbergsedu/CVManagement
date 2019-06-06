@@ -100,7 +100,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties1.Append(fontSize1);
             runProperties1.Append(fontSizeComplexScript1);
             Text text1 = new Text();
-            text1.Text = "PERSONAL";
+            text1.Text = DocumentMetadataTexts.GetText(MetadataTexts.CV_PERSONAL, data.Language).ToUpper();
 
             run1.Append(runProperties1);
             run1.Append(text1);
@@ -160,7 +160,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties3.Append(fontSize3);
             runProperties3.Append(fontSizeComplexScript3);
             Text text3 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text3.Text = "Name, Surname: ";
+            text3.Text = $"{DocumentMetadataTexts.GetText(MetadataTexts.CV_NAME_SURNAME, data.Language)}: ";
 
             run3.Append(runProperties3);
             run3.Append(text3);
@@ -284,7 +284,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties5.Append(fontSize5);
             runProperties5.Append(fontSizeComplexScript5);
             Text text5 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text5.Text = "Address: ";
+            text5.Text = $"{DocumentMetadataTexts.GetText(MetadataTexts.CV_ADDRESS, data.Language)}: ";
 
             run5.Append(runProperties5);
             run5.Append(text5);
@@ -385,7 +385,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties7.Append(fontSize7);
             runProperties7.Append(fontSizeComplexScript7);
             Text text7 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text7.Text = "Mobile: ";
+            text7.Text = $"{DocumentMetadataTexts.GetText(MetadataTexts.CV_MOBILE, data.Language)}: ";
 
             run7.Append(runProperties7);
             run7.Append(text7);
@@ -486,7 +486,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties9.Append(fontSize9);
             runProperties9.Append(fontSizeComplexScript9);
             Text text9 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text9.Text = "E-mail: ";
+            text9.Text = $"{DocumentMetadataTexts.GetText(MetadataTexts.CV_EMAIL, data.Language)}: ";
 
             run9.Append(runProperties9);
             run9.Append(text9);
@@ -587,7 +587,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties11.Append(fontSize11);
             runProperties11.Append(fontSizeComplexScript11);
             Text text11 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text11.Text = "OtherInformation: ";
+            text11.Text = $"{DocumentMetadataTexts.GetText(MetadataTexts.CV_OTHER_INFORMATION, data.Language)}: ";
 
             run11.Append(runProperties11);
             run11.Append(text11);
@@ -692,7 +692,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties13.Append(fontSize13);
             runProperties13.Append(fontSizeComplexScript13);
             Text text13 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text13.Text = "LinkedIn profile link: ";
+            text13.Text = $"{DocumentMetadataTexts.GetText(MetadataTexts.CV_LINKEDIN_LINK, data.Language)}: ";
 
             run13.Append(runProperties13);
             run13.Append(text13);
@@ -877,7 +877,6 @@ namespace CV.Management.Generation.Word.ContentHelper
             drawing1.Append(anchor1);
 
             run15.Append(runProperties15);
-            //run15.Append(drawing1);
 
             paragraph14.Append(paragraphProperties6);
             paragraph14.Append(run14);

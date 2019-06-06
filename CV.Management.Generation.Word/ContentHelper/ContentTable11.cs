@@ -91,7 +91,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties1.Append(fontSize1);
             runProperties1.Append(fontSizeComplexScript1);
             Text text1 = new Text();
-            text1.Text = "ADDITIONAL COMMENTS";
+            text1.Text = DocumentMetadataTexts.GetText(MetadataTexts.CV_ADDITIONAL_COMMENTS, data.Language).ToUpper();
 
             run1.Append(runProperties1);
             run1.Append(text1);
@@ -172,38 +172,6 @@ namespace CV.Management.Generation.Word.ContentHelper
             paragraph2.Append(paragraphProperties1);
             paragraph2.Append(run3);
 
-            //Paragraph paragraph3 = new Paragraph() { RsidParagraphAddition = "009E39C2", RsidParagraphProperties = "009E39C2", RsidRunAdditionDefault = "009E39C2", ParagraphId = "3EAC2DD4", TextId = "77777777" };
-
-            //ParagraphProperties paragraphProperties2 = new ParagraphProperties();
-            //Indentation indentation1 = new Indentation() { Left = "128", Hanging = "128" };
-
-            //ParagraphMarkRunProperties paragraphMarkRunProperties2 = new ParagraphMarkRunProperties();
-            //FontSize fontSize5 = new FontSize() { Val = "22" };
-            //FontSizeComplexScript fontSizeComplexScript5 = new FontSizeComplexScript() { Val = "22" };
-
-            //paragraphMarkRunProperties2.Append(fontSize5);
-            //paragraphMarkRunProperties2.Append(fontSizeComplexScript5);
-
-            //paragraphProperties2.Append(indentation1);
-            //paragraphProperties2.Append(paragraphMarkRunProperties2);
-
-            //Run run4 = new Run();
-
-            //RunProperties runProperties4 = new RunProperties();
-            //FontSize fontSize6 = new FontSize() { Val = "22" };
-            //FontSizeComplexScript fontSizeComplexScript6 = new FontSizeComplexScript() { Val = "22" };
-
-            //runProperties4.Append(fontSize6);
-            //runProperties4.Append(fontSizeComplexScript6);
-            //Text text4 = new Text();
-            //text4.Text = "- Council member of NASDAQ Riga (former Riga Stock Exchange);";
-
-            //run4.Append(runProperties4);
-            //run4.Append(text4);
-
-            //paragraph3.Append(paragraphProperties2);
-            //paragraph3.Append(run4);
-
             Paragraph paragraph4 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidParagraphProperties = "009E39C2", RsidRunAdditionDefault = "009E39C2", ParagraphId = "19FFAC55", TextId = "07256EAB" };
 
             ParagraphProperties paragraphProperties3 = new ParagraphProperties();
@@ -230,7 +198,6 @@ namespace CV.Management.Generation.Word.ContentHelper
 
             tableCell2.Append(tableCellProperties2);
             tableCell2.Append(paragraph2);
-            //tableCell2.Append(paragraph3);
             tableCell2.Append(paragraph4);
 
             tableRow2.Append(tableCell2);

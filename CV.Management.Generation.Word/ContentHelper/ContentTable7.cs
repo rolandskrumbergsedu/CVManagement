@@ -92,27 +92,12 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties1.Append(fontSize1);
             runProperties1.Append(fontSizeComplexScript1);
             Text text1 = new Text();
-            text1.Text = "CAREER SUMMARY";
+            text1.Text = DocumentMetadataTexts.GetText(MetadataTexts.CV_CAREER_SUMMARY, data.Language).ToUpper();
 
             run1.Append(runProperties1);
             run1.Append(text1);
-
-            //Run run2 = new Run();
-
-            //RunProperties runProperties2 = new RunProperties();
-            //FontSize fontSize2 = new FontSize() { Val = "22" };
-            //FontSizeComplexScript fontSizeComplexScript2 = new FontSizeComplexScript() { Val = "22" };
-
-            //runProperties2.Append(fontSize2);
-            //runProperties2.Append(fontSizeComplexScript2);
-            //Text text2 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            //text2.Text = "   ";
-
-            //run2.Append(runProperties2);
-            //run2.Append(text2);
-
+            
             paragraph1.Append(run1);
-            //paragraph1.Append(run2);
 
             tableCell1.Append(tableCellProperties1);
             tableCell1.Append(paragraph1);
@@ -128,36 +113,36 @@ namespace CV.Management.Generation.Word.ContentHelper
 
             for (int i = 0; i < careerSummaries.Count; i++)
             {
-                table1.Append(CreateCompanySubheadingRow(careerSummaries[i]));
-                table1.Append(CreateCompanyInformationRow(careerSummaries[i]));
+                table1.Append(CreateCompanySubheadingRow(careerSummaries[i], data.Language));
+                table1.Append(CreateCompanyInformationRow(careerSummaries[i], data.Language));
 
                 for (int j = 0; j < careerSummaries[i].Roles.Count; j++)
                 {
-                    table1.Append(CreateRoleInformationRow(careerSummaries[i].Roles[j]));
+                    table1.Append(CreateRoleInformationRow(careerSummaries[i].Roles[j], data.Language));
 
                     if (careerSummaries[i].Roles[j].Tasks != null && careerSummaries[i].Roles[j].Tasks.Count() > 1)
                     {
-                        table1.Append(CreateTaskInformationRow(careerSummaries[i].Roles[j]));
+                        table1.Append(CreateTaskInformationRow(careerSummaries[i].Roles[j], data.Language));
                     }
 
                     if (!string.IsNullOrEmpty(careerSummaries[i].Roles[j].ReportingTo))
                     {
-                        table1.Append(CreateReportingToRow(careerSummaries[i].Roles[j]));
+                        table1.Append(CreateReportingToRow(careerSummaries[i].Roles[j], data.Language));
                     }
 
                     if (!string.IsNullOrEmpty(careerSummaries[i].Roles[j].Subordinates))
                     {
-                        table1.Append(CreateSubordinatesRow(careerSummaries[i].Roles[j]));
+                        table1.Append(CreateSubordinatesRow(careerSummaries[i].Roles[j], data.Language));
                     }
 
                     if (!string.IsNullOrEmpty(careerSummaries[i].Roles[j].Achievements))
                     {
-                        table1.Append(CreateAchievementsRow(careerSummaries[i].Roles[j]));
+                        table1.Append(CreateAchievementsRow(careerSummaries[i].Roles[j], data.Language));
                     }
 
                     if (!string.IsNullOrEmpty(careerSummaries[i].Roles[j].ReasonForLeaving))
                     {
-                        table1.Append(CreateReasonForLeavingRow(careerSummaries[i].Roles[j]));
+                        table1.Append(CreateReasonForLeavingRow(careerSummaries[i].Roles[j], data.Language));
                     }
                 }
 
@@ -166,9 +151,7 @@ namespace CV.Management.Generation.Word.ContentHelper
                     table1.Append(CreateEmptyRow());
                 }
             }
-
-           // table1.Append(CreateEndingRow());
-
+            
             return table1;
         }
 
@@ -228,9 +211,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             return result;
         }
 
-
-
-        private static TableRow CreateCompanySubheadingRow(CareerSummaryItem data)
+        private static TableRow CreateCompanySubheadingRow(CareerSummaryItem data, string language)
         {
             TableRow tableRow2 = new TableRow() { RsidTableRowAddition = "009B2C1D", RsidTableRowProperties = "009E39C2", ParagraphId = "69B55967", TextId = "77777777" };
 
@@ -276,7 +257,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties3.Append(fontSize3);
             runProperties3.Append(fontSizeComplexScript3);
             Text text3 = new Text();
-            text3.Text = $"{GetCompanyStartingTime(data)} - {GetCompanyEndingTime(data)}";
+            text3.Text = $"{GetCompanyStartingTime(data)} - {GetCompanyEndingTime(data, language)}";
 
             run3.Append(runProperties3);
             run3.Append(text3);
@@ -348,7 +329,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             return tableRow2;
         }
 
-        private static TableRow CreateCompanyInformationRow(CareerSummaryItem data)
+        private static TableRow CreateCompanyInformationRow(CareerSummaryItem data, string language)
         {
 
             TableRow tableRow3 = new TableRow() { RsidTableRowAddition = "009B2C1D", RsidTableRowProperties = "009E39C2", ParagraphId = "25CC8C24", TextId = "77777777" };
@@ -422,7 +403,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties6.Append(fontSize6);
             runProperties6.Append(fontSizeComplexScript6);
             Text text6 = new Text();
-            text6.Text = "Company information:";
+            text6.Text = $"{DocumentMetadataTexts.GetText(MetadataTexts.CV_COMPANY_INFORMATION, language)}:";
 
             run6.Append(runProperties6);
             run6.Append(text6);
@@ -435,37 +416,37 @@ namespace CV.Management.Generation.Word.ContentHelper
 
             if (!string.IsNullOrEmpty(data.City))
             {
-                var paragraph10 = CreateCompanyInformationParagraph("City", data.City);
+                var paragraph10 = CreateCompanyInformationParagraph(DocumentMetadataTexts.GetText(MetadataTexts.CV_COMPANY_CITY, language), data.City);
                 tableCell5.Append(paragraph10);
             }
 
             if (!string.IsNullOrEmpty(data.ParentCompany))
             {
-                var paragraph10 = CreateCompanyInformationParagraph("Parent company", data.ParentCompany);
+                var paragraph10 = CreateCompanyInformationParagraph(DocumentMetadataTexts.GetText(MetadataTexts.CV_COMPANY_PARENT_COMPANY, language), data.ParentCompany);
                 tableCell5.Append(paragraph10);
             }
 
             if (!string.IsNullOrEmpty(data.Industry))
             {
-                var paragraph6 = CreateCompanyInformationParagraph("Industry", data.Industry);
+                var paragraph6 = CreateCompanyInformationParagraph(DocumentMetadataTexts.GetText(MetadataTexts.CV_COMPANY_INDUSTRY, language), data.Industry);
                 tableCell5.Append(paragraph6);
             }
 
             if (!string.IsNullOrEmpty(data.Services))
             {
-                var paragraph7 = CreateCompanyInformationParagraph("Services", data.Services);
+                var paragraph7 = CreateCompanyInformationParagraph(DocumentMetadataTexts.GetText(MetadataTexts.CV_COMPANY_SERVICES, language), data.Services);
                 tableCell5.Append(paragraph7);
             }
 
             if (!string.IsNullOrEmpty(data.Turnover))
             {
-                var paragraph8 = CreateCompanyInformationParagraph("Turnover", data.Turnover);
+                var paragraph8 = CreateCompanyInformationParagraph(DocumentMetadataTexts.GetText(MetadataTexts.CV_COMPANY_TURNOVER, language), data.Turnover);
                 tableCell5.Append(paragraph8);
             }
 
             if (!string.IsNullOrEmpty(data.NumberOfEmployees))
             {
-                var paragraph9 = CreateCompanyInformationParagraph("Number of employees", data.NumberOfEmployees);
+                var paragraph9 = CreateCompanyInformationParagraph(DocumentMetadataTexts.GetText(MetadataTexts.CV_COMPANY_EMPLOYEES, language), data.NumberOfEmployees);
                 tableCell5.Append(paragraph9);
             }
 
@@ -476,7 +457,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             return tableRow3;
         }
 
-        private static TableRow CreateRoleInformationRow(RoleInformation data)
+        private static TableRow CreateRoleInformationRow(RoleInformation data, string language)
         {
             TableRow tableRow4 = new TableRow() { RsidTableRowAddition = "009B2C1D", RsidTableRowProperties = "009E39C2", ParagraphId = "418DF43A", TextId = "77777777" };
 
@@ -563,7 +544,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties20.Append(fontSize20);
             runProperties20.Append(fontSizeComplexScript20);
             Text text20 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            var endingYear = data.EndingYear.HasValue ? data.EndingYear.ToString() : "present";
+            var endingYear = data.EndingYear.HasValue ? data.EndingYear.ToString() : DocumentMetadataTexts.GetText(MetadataTexts.CV_PRESENT, language); ;
             text20.Text = $" ({data.StartingYear} - {endingYear})";
 
             run20.Append(runProperties20);
@@ -583,7 +564,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             return tableRow4;
         }
 
-        private static TableRow CreateTaskInformationRow(RoleInformation data)
+        private static TableRow CreateTaskInformationRow(RoleInformation data, string language)
         {
             TableRow tableRow5 = new TableRow() { RsidTableRowAddition = "009B2C1D", RsidTableRowProperties = "009E39C2", ParagraphId = "7B3ACA60", TextId = "77777777" };
 
@@ -656,7 +637,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties23.Append(fontSize23);
             runProperties23.Append(fontSizeComplexScript23);
             Text text23 = new Text();
-            text23.Text = "Task information:";
+            text23.Text = $"{DocumentMetadataTexts.GetText(MetadataTexts.CV_TASK_INFORMATION, language)}: ";
 
             run23.Append(runProperties23);
             run23.Append(text23);
@@ -718,7 +699,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             return tableRow5;
         }
 
-        private static TableRow CreateReportingToRow(RoleInformation data)
+        private static TableRow CreateReportingToRow(RoleInformation data, string language)
         {
             TableRow tableRow6 = new TableRow() { RsidTableRowAddition = "009B2C1D", RsidTableRowProperties = "009E39C2", ParagraphId = "5D5C1C0F", TextId = "77777777" };
 
@@ -791,7 +772,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties33.Append(fontSize33);
             runProperties33.Append(fontSizeComplexScript33);
             Text text33 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text33.Text = "Reporting to: ";
+            text33.Text = $"{DocumentMetadataTexts.GetText(MetadataTexts.CV_POSITION_REPORTING_TO, language)}: ";
 
             run33.Append(runProperties33);
             run33.Append(text33);
@@ -824,7 +805,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             return tableRow6;
         }
 
-        private static TableRow CreateSubordinatesRow(RoleInformation data)
+        private static TableRow CreateSubordinatesRow(RoleInformation data, string language)
         {
             TableRow tableRow6 = new TableRow() { RsidTableRowAddition = "009B2C1D", RsidTableRowProperties = "009E39C2", ParagraphId = "5D5C1C0F", TextId = "77777777" };
 
@@ -897,7 +878,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties33.Append(fontSize33);
             runProperties33.Append(fontSizeComplexScript33);
             Text text33 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text33.Text = "Subordinates: ";
+            text33.Text = $"{DocumentMetadataTexts.GetText(MetadataTexts.CV_POSTION_SUBORDINATES, language)}: ";
 
             run33.Append(runProperties33);
             run33.Append(text33);
@@ -930,7 +911,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             return tableRow6;
         }
 
-        private static TableRow CreateAchievementsRow(RoleInformation data)
+        private static TableRow CreateAchievementsRow(RoleInformation data, string language)
         {
             TableRow tableRow6 = new TableRow() { RsidTableRowAddition = "009B2C1D", RsidTableRowProperties = "009E39C2", ParagraphId = "5D5C1C0F", TextId = "77777777" };
 
@@ -1003,7 +984,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties33.Append(fontSize33);
             runProperties33.Append(fontSizeComplexScript33);
             Text text33 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text33.Text = "Achievements: ";
+            text33.Text = $"{DocumentMetadataTexts.GetText(MetadataTexts.CV_POSITION_ACHIEVEMENTS, language)}: ";
 
             run33.Append(runProperties33);
             run33.Append(text33);
@@ -1036,7 +1017,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             return tableRow6;
         }
 
-        private static TableRow CreateReasonForLeavingRow(RoleInformation data)
+        private static TableRow CreateReasonForLeavingRow(RoleInformation data, string language)
         {
             TableRow tableRow25 = new TableRow() { RsidTableRowAddition = "009B2C1D", RsidTableRowProperties = "009E39C2", ParagraphId = "18133863", TextId = "77777777" };
 
@@ -1109,7 +1090,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties147.Append(fontSize147);
             runProperties147.Append(fontSizeComplexScript147);
             Text text147 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text147.Text = "Reason for leaving: ";
+            text147.Text = $"{DocumentMetadataTexts.GetText(MetadataTexts.CV_POSITION_REASON_FOR_LEAVING, language)}: ";
 
             run147.Append(runProperties147);
             run147.Append(text147);
@@ -1323,13 +1304,13 @@ namespace CV.Management.Generation.Word.ContentHelper
             return minTime;
         }
 
-        private static string GetCompanyEndingTime(CareerSummaryItem data)
+        private static string GetCompanyEndingTime(CareerSummaryItem data, string language)
         {
             var role = data.Roles.FirstOrDefault(x => x.Now == true);
 
             if (role != null)
             {
-                return "present";
+                return DocumentMetadataTexts.GetText(MetadataTexts.CV_PRESENT, language);
             }
 
             var maxTime = data.Roles.Max(x => x.EndingYear).ToString();

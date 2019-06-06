@@ -203,47 +203,13 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties7.Append(fontSize8);
             runProperties7.Append(fontSizeComplexScript5);
             Text text7 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text7.Text = "This CV contains personal information obtained on a confidential basis; ";
+            text7.Text = DocumentMetadataTexts.GetText(MetadataTexts.CV_NOTICE_FIRST, data.Language);
 
             run7.Append(runProperties7);
             run7.Append(text7);
-            ProofError proofError1 = new ProofError() { Type = ProofingErrorValues.GrammarStart };
-
-            Run run8 = new Run();
-
-            RunProperties runProperties8 = new RunProperties();
-            FontSize fontSize9 = new FontSize() { Val = "15" };
-            FontSizeComplexScript fontSizeComplexScript6 = new FontSizeComplexScript() { Val = "15" };
-
-            runProperties8.Append(fontSize9);
-            runProperties8.Append(fontSizeComplexScript6);
-            Text text8 = new Text();
-            text8.Text = "therefore";
-
-            run8.Append(runProperties8);
-            run8.Append(text8);
-            ProofError proofError2 = new ProofError() { Type = ProofingErrorValues.GrammarEnd };
-
-            Run run9 = new Run();
-
-            RunProperties runProperties9 = new RunProperties();
-            FontSize fontSize10 = new FontSize() { Val = "15" };
-            FontSizeComplexScript fontSizeComplexScript7 = new FontSizeComplexScript() { Val = "15" };
-
-            runProperties9.Append(fontSize10);
-            runProperties9.Append(fontSizeComplexScript7);
-            Text text9 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text9.Text = " its use should be controlled and strictly limited to designated executives concerned with the selection of the candidate";
-
-            run9.Append(runProperties9);
-            run9.Append(text9);
-
+            
             paragraph8.Append(paragraphProperties3);
             paragraph8.Append(run7);
-            paragraph8.Append(proofError1);
-            paragraph8.Append(run8);
-            paragraph8.Append(proofError2);
-            paragraph8.Append(run9);
 
             Paragraph paragraph9 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidRunAdditionDefault = "009E39C2", ParagraphId = "0F00B1CA", TextId = "77777777" };
 
@@ -261,153 +227,13 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties10.Append(fontSize11);
             runProperties10.Append(fontSizeComplexScript8);
             Text text10 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text10.Text = "Complete references have not been taken up to substantiate the information in this report, but ";
+            text10.Text = DocumentMetadataTexts.GetText(MetadataTexts.CV_NOTICE_SECOND, data.Language);
 
             run10.Append(runProperties10);
             run10.Append(text10);
-            ProofError proofError3 = new ProofError() { Type = ProofingErrorValues.SpellStart };
-
-            Run run11 = new Run();
-
-            RunProperties runProperties11 = new RunProperties();
-            FontSize fontSize12 = new FontSize() { Val = "15" };
-            FontSizeComplexScript fontSizeComplexScript9 = new FontSizeComplexScript() { Val = "15" };
-
-            runProperties11.Append(fontSize12);
-            runProperties11.Append(fontSizeComplexScript9);
-            Text text11 = new Text();
-            text11.Text = "Amrop";
-
-            run11.Append(runProperties11);
-            run11.Append(text11);
-            ProofError proofError4 = new ProofError() { Type = ProofingErrorValues.SpellEnd };
-
-            Run run12 = new Run();
-
-            RunProperties runProperties12 = new RunProperties();
-            FontSize fontSize13 = new FontSize() { Val = "15" };
-            FontSizeComplexScript fontSizeComplexScript10 = new FontSizeComplexScript() { Val = "15" };
-
-            runProperties12.Append(fontSize13);
-            runProperties12.Append(fontSizeComplexScript10);
-            Text text12 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text12.Text = " will do so at the appropriate ";
-
-            run12.Append(runProperties12);
-            run12.Append(text12);
-            ProofError proofError5 = new ProofError() { Type = ProofingErrorValues.SpellStart };
-            ProofError proofError6 = new ProofError() { Type = ProofingErrorValues.GrammarStart };
-
-            Run run13 = new Run();
-
-            RunProperties runProperties13 = new RunProperties();
-            FontSize fontSize14 = new FontSize() { Val = "15" };
-            FontSizeComplexScript fontSizeComplexScript11 = new FontSizeComplexScript() { Val = "15" };
-
-            runProperties13.Append(fontSize14);
-            runProperties13.Append(fontSizeComplexScript11);
-            Text text13 = new Text();
-            text13.Text = "stage.The";
-
-            run13.Append(runProperties13);
-            run13.Append(text13);
-            ProofError proofError7 = new ProofError() { Type = ProofingErrorValues.SpellEnd };
-            ProofError proofError8 = new ProofError() { Type = ProofingErrorValues.GrammarEnd };
-
-            Run run14 = new Run();
-
-            RunProperties runProperties14 = new RunProperties();
-            FontSize fontSize15 = new FontSize() { Val = "15" };
-            FontSizeComplexScript fontSizeComplexScript12 = new FontSizeComplexScript() { Val = "15" };
-
-            runProperties14.Append(fontSize15);
-            runProperties14.Append(fontSizeComplexScript12);
-            Text text14 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text14.Text = " candidate has agreed to discuss this opportunity on a completely confidential basis. ";
-
-            run14.Append(runProperties14);
-            run14.Append(text14);
-            ProofError proofError9 = new ProofError() { Type = ProofingErrorValues.GrammarStart };
-
-            Run run15 = new Run();
-
-            RunProperties runProperties15 = new RunProperties();
-            FontSize fontSize16 = new FontSize() { Val = "15" };
-            FontSizeComplexScript fontSizeComplexScript13 = new FontSizeComplexScript() { Val = "15" };
-
-            runProperties15.Append(fontSize16);
-            runProperties15.Append(fontSizeComplexScript13);
-            Text text15 = new Text();
-            text15.Text = "Therefore";
-
-            run15.Append(runProperties15);
-            run15.Append(text15);
-            ProofError proofError10 = new ProofError() { Type = ProofingErrorValues.GrammarEnd };
-
-            Run run16 = new Run();
-
-            RunProperties runProperties16 = new RunProperties();
-            FontSize fontSize17 = new FontSize() { Val = "15" };
-            FontSizeComplexScript fontSizeComplexScript14 = new FontSizeComplexScript() { Val = "15" };
-
-            runProperties16.Append(fontSize17);
-            runProperties16.Append(fontSizeComplexScript14);
-            Text text16 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text16.Text = " it is imperative that any member of your ";
-
-            run16.Append(runProperties16);
-            run16.Append(text16);
-            ProofError proofError11 = new ProofError() { Type = ProofingErrorValues.SpellStart };
-
-            Run run17 = new Run();
-
-            RunProperties runProperties17 = new RunProperties();
-            FontSize fontSize18 = new FontSize() { Val = "15" };
-            FontSizeComplexScript fontSizeComplexScript15 = new FontSizeComplexScript() { Val = "15" };
-
-            runProperties17.Append(fontSize18);
-            runProperties17.Append(fontSizeComplexScript15);
-            Text text17 = new Text();
-            text17.Text = "organisation";
-
-            run17.Append(runProperties17);
-            run17.Append(text17);
-            ProofError proofError12 = new ProofError() { Type = ProofingErrorValues.SpellEnd };
-
-            Run run18 = new Run();
-
-            RunProperties runProperties18 = new RunProperties();
-            FontSize fontSize19 = new FontSize() { Val = "15" };
-            FontSizeComplexScript fontSizeComplexScript16 = new FontSizeComplexScript() { Val = "15" };
-
-            runProperties18.Append(fontSize19);
-            runProperties18.Append(fontSizeComplexScript16);
-            Text text18 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text18.Text = " without our prior notification and consent check no references";
-
-            run18.Append(runProperties18);
-            run18.Append(text18);
 
             paragraph9.Append(paragraphProperties4);
             paragraph9.Append(run10);
-            paragraph9.Append(proofError3);
-            paragraph9.Append(run11);
-            paragraph9.Append(proofError4);
-            paragraph9.Append(run12);
-            paragraph9.Append(proofError5);
-            paragraph9.Append(proofError6);
-            paragraph9.Append(run13);
-            paragraph9.Append(proofError7);
-            paragraph9.Append(proofError8);
-            paragraph9.Append(run14);
-            paragraph9.Append(proofError9);
-            paragraph9.Append(run15);
-            paragraph9.Append(proofError10);
-            paragraph9.Append(run16);
-            paragraph9.Append(proofError11);
-            paragraph9.Append(run17);
-            paragraph9.Append(proofError12);
-            paragraph9.Append(run18);
 
             Paragraph paragraph10 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidRunAdditionDefault = "009E39C2", ParagraphId = "28B14C27", TextId = "77777777" };
 
@@ -425,32 +251,13 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties19.Append(fontSize20);
             runProperties19.Append(fontSizeComplexScript17);
             Text text19 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text19.Text = "No contact should be made with this individual, without the prior consent of ";
+            text19.Text = DocumentMetadataTexts.GetText(MetadataTexts.CV_NOTICE_THIRD, data.Language);
 
             run19.Append(runProperties19);
             run19.Append(text19);
-            ProofError proofError13 = new ProofError() { Type = ProofingErrorValues.SpellStart };
-
-            Run run20 = new Run();
-
-            RunProperties runProperties20 = new RunProperties();
-            FontSize fontSize21 = new FontSize() { Val = "15" };
-            FontSizeComplexScript fontSizeComplexScript18 = new FontSizeComplexScript() { Val = "15" };
-
-            runProperties20.Append(fontSize21);
-            runProperties20.Append(fontSizeComplexScript18);
-            Text text20 = new Text();
-            text20.Text = "Amrop";
-
-            run20.Append(runProperties20);
-            run20.Append(text20);
-            ProofError proofError14 = new ProofError() { Type = ProofingErrorValues.SpellEnd };
 
             paragraph10.Append(paragraphProperties5);
             paragraph10.Append(run19);
-            paragraph10.Append(proofError13);
-            paragraph10.Append(run20);
-            paragraph10.Append(proofError14);
 
             tableCell1.Append(tableCellProperties1);
             tableCell1.Append(paragraph1);

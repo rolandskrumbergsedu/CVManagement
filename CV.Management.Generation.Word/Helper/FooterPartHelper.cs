@@ -6,7 +6,7 @@ namespace CV.Management.Generation.Word.Helpers
 {
     public static class FooterPartHelper
     {
-        public static void GenerateFooterPart1Content(FooterPart footerPart1)
+        public static void GenerateFooterPart1Content(FooterPart footerPart1, GenerationData data)
         {
             var footer1 = new Footer { MCAttributes = new MarkupCompatibilityAttributes { Ignorable = "w14 w15 w16se w16cid wp14" } };
             footer1.AddNamespaceDeclaration("wpc", "http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas");
@@ -47,7 +47,7 @@ namespace CV.Management.Generation.Word.Helpers
             paragraphProperties176.Append(paragraphStyleId1);
 
             var run396 = new Run();
-            var text366 = new Text {Text = "Confidential Candidate CV"};
+            var text366 = new Text {Text = DocumentMetadataTexts.GetText(MetadataTexts.CV_TITLE, data.Language) };
 
             run396.Append(text366);
 

@@ -91,7 +91,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties1.Append(fontSize1);
             runProperties1.Append(fontSizeComplexScript1);
             Text text1 = new Text();
-            text1.Text = "ADDITIONAL COURSES";
+            text1.Text = DocumentMetadataTexts.GetText(MetadataTexts.CV_ADDITIONAL_COURSES, data.Language).ToUpper();
 
             run1.Append(runProperties1);
             run1.Append(text1);
@@ -126,7 +126,7 @@ namespace CV.Management.Generation.Word.ContentHelper
 
             foreach (var course in courses)
             {
-                TableRow generateRow = CreateAdditionalCourseRow(course);
+                TableRow generateRow = CreateAdditionalCourseRow(course, data);
                 table1.Append(generateRow);
             }
 
@@ -148,7 +148,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             return result;
         }
 
-        private static TableRow CreateAdditionalCourseRow(AdditionalCoursesItem additionalCourse)
+        private static TableRow CreateAdditionalCourseRow(AdditionalCoursesItem additionalCourse, GenerationData data)
         {
             TableRow tableRow2 = new TableRow() { RsidTableRowAddition = "009B2C1D", ParagraphId = "78EC2050", TextId = "77777777" };
 
@@ -189,7 +189,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties3.Append(fontSize3);
             runProperties3.Append(fontSizeComplexScript3);
             Text text3 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text3.Text = $"{additionalCourse.AmountOfDays} {GetDay(additionalCourse.AmountOfDays)} / {additionalCourse.Year} ";
+            text3.Text = $"{additionalCourse.AmountOfDays} {GetDay(additionalCourse.AmountOfDays, data)} / {additionalCourse.Year} ";
 
             run3.Append(runProperties3);
             run3.Append(text3);
@@ -283,11 +283,11 @@ namespace CV.Management.Generation.Word.ContentHelper
             return tableRow2;
         }
 
-        private static string GetDay(int? amountOfDays)
+        private static string GetDay(int? amountOfDays, GenerationData data)
         {
             if (amountOfDays.HasValue)
             {
-                return amountOfDays > 1 ? "days" : "day";
+                return amountOfDays > 1 ? DocumentMetadataTexts.GetText(MetadataTexts.CV_DAYS, data.Language) : DocumentMetadataTexts.GetText(MetadataTexts.CV_DAY, data.Language);
             }
             else
             {

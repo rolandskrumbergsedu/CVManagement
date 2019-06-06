@@ -98,7 +98,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties1.Append(fontSize1);
             runProperties1.Append(fontSizeComplexScript1);
             Text text1 = new Text();
-            text1.Text = "SOCIAL ACTIVITIES / MEMBERSHIPS";
+            text1.Text = DocumentMetadataTexts.GetText(MetadataTexts.CV_SOCIAL_ACTIVITIES, data.Language).ToUpper();
 
             run1.Append(runProperties1);
             run1.Append(text1);

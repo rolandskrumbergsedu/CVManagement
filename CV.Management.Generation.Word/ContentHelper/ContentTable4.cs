@@ -55,14 +55,13 @@ namespace CV.Management.Generation.Word.ContentHelper
             tableGrid1.Append(gridColumn2);
             tableGrid1.Append(gridColumn3);
 
-            TableRow tableRow1 = GenerateHeadline();
+            TableRow tableRow1 = GenerateHeadline(data);
 
             table1.Append(tableProperties1);
             table1.Append(tableGrid1);
             table1.Append(tableRow1);
 
             var educationItems = SortEducation(data.Education);
-            //var educationItems = data.Education.OrderByDescending(x => x.StartingYear).ToList();
 
             foreach (var item in educationItems)
             {
@@ -88,23 +87,23 @@ namespace CV.Management.Generation.Word.ContentHelper
 
                 var latestYears = restOfThem.Where(x => x.EndingYear == lastYear).OrderByDescending(x => x.StartingYear);
 
-                education.AddRange(latestYears);
+                result.AddRange(latestYears);
 
                 restOfThem.RemoveAll(x => x.EndingYear == lastYear);
             }
 
             var emptyOnes = education.Where(x => x.EndingYear != null && x.StartingYear == null).ToList();
 
-            education.AddRange(emptyOnes);
+            result.AddRange(emptyOnes);
 
             var lastOnes = education.Where(x => x.EndingYear == null && x.StartingYear == null).ToList();
 
-            education.AddRange(lastOnes);
+            result.AddRange(lastOnes);
 
             return result;
         }
 
-        private static TableRow GenerateHeadline()
+        private static TableRow GenerateHeadline(GenerationData data)
         {
             TableRow tableRow1 = new TableRow() { RsidTableRowAddition = "009B2C1D", RsidTableRowProperties = "0007641E", ParagraphId = "4B076042", TextId = "77777777" };
 
@@ -142,7 +141,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties1.Append(fontSize1);
             runProperties1.Append(fontSizeComplexScript1);
             Text text1 = new Text();
-            text1.Text = "EDUCATION AND QUALIFICATIONS";
+            text1.Text = DocumentMetadataTexts.GetText(MetadataTexts.CV_EDUCATION, data.Language).ToUpper();
 
             run1.Append(runProperties1);
             run1.Append(text1);

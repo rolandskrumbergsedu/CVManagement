@@ -74,7 +74,6 @@ namespace CV.Management.Generation.Word.ContentHelper
             tableGrid1.Append(gridColumn10);
             tableGrid1.Append(gridColumn11);
 
-            //
             var languages = data.Languages.OrderByDescending(x => x.SpokenLevel + x.WrittenLevel);
             var tableRows = new List<TableRow>();
 
@@ -82,7 +81,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             {
                 var tableRow = new TableRow() { RsidTableRowAddition = "009B2C1D", ParagraphId = "37671891", TextId = "77777777" };
 
-                TableCell tableCell5 = GenerateLanguageHeadlineCell(languageItem.LanguageName);
+                TableCell tableCell5 = GenerateLanguageHeadlineCell(languageItem.LanguageName, data);
 
                 // Level 1
                 TableCell tableCell6 = languageItem.SpokenLevel >= 1 ? GenerateFilledCell(true, false) : GenerateNotFilledCell(true, false);
@@ -132,12 +131,12 @@ namespace CV.Management.Generation.Word.ContentHelper
             table1.Append(tableProperties1);
             table1.Append(tableGrid1);
 
-            table1.Append(GenerateHeadlineRow());
-            table1.Append(GenerateSubheadlineRow());
+            table1.Append(GenerateHeadlineRow(data));
+            table1.Append(GenerateSubheadlineRow(data));
 
             tableRows.ForEach(x => table1.Append(x));
 
-            table1.Append(GenerateProficiencyLevelRow());
+            table1.Append(GenerateProficiencyLevelRow(data));
 
             return table1;
         }
@@ -341,7 +340,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             return tableCell6;
         }
 
-        private static TableCell GenerateLanguageHeadlineCell(string languageName)
+        private static TableCell GenerateLanguageHeadlineCell(string languageName, GenerationData data)
         {
             TableCell tableCell5 = new TableCell();
 
@@ -378,7 +377,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties6.Append(fontSize6);
             runProperties6.Append(fontSizeComplexScript6);
             Text text6 = new Text();
-            text6.Text = languageName;
+            text6.Text = TranslateLanguageName(languageName, data.Language);
 
             run6.Append(runProperties6);
             run6.Append(text6);
@@ -392,7 +391,42 @@ namespace CV.Management.Generation.Word.ContentHelper
             return tableCell5;
         }
 
-        private static TableRow GenerateSubheadlineRow()
+        private static string TranslateLanguageName(string name, string language)
+        {
+            if (language == "en")
+            {
+                return name;
+            } else if (language == "lv") {
+                switch (name)
+                {
+                    case "Latvian":
+                        return "Latviešu";
+                    case "Lithuanian":
+                        return "Lietuviešu";
+                    case "Estonian":
+                        return "Igauņu";
+                    case "English":
+                        return "Angļu";
+                    case "Russian":
+                        return "Krievu";
+                    case "German":
+                        return "Vācu";
+                    case "French":
+                        return "Franču";
+                    case "Spanish":
+                        return "Spāņu";
+                    case "Other":
+                        return "Cita";
+                    default:
+                        throw new System.Exception($"Could not translate language {name}");
+                }
+            } else
+            {
+                throw new System.Exception($"Invalid locale for langauge translation {language}");
+            }
+        }
+
+        private static TableRow GenerateSubheadlineRow(GenerationData data)
         {
             TableRow tableRow2 = new TableRow() { RsidTableRowAddition = "009B2C1D", ParagraphId = "328E3093", TextId = "77777777" };
 
@@ -431,7 +465,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties3.Append(fontSize3);
             runProperties3.Append(fontSizeComplexScript3);
             Text text3 = new Text();
-            text3.Text = "Language";
+            text3.Text = DocumentMetadataTexts.GetText(MetadataTexts.CV_LANGUAGE, data.Language);
 
             run3.Append(runProperties3);
             run3.Append(text3);
@@ -481,7 +515,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties4.Append(fontSize4);
             runProperties4.Append(fontSizeComplexScript4);
             Text text4 = new Text();
-            text4.Text = "Spoken";
+            text4.Text = DocumentMetadataTexts.GetText(MetadataTexts.CV_LANGUAGE_SPOKEN, data.Language);
 
             run4.Append(runProperties4);
             run4.Append(text4);
@@ -531,7 +565,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties5.Append(fontSize5);
             runProperties5.Append(fontSizeComplexScript5);
             Text text5 = new Text();
-            text5.Text = "Written";
+            text5.Text = DocumentMetadataTexts.GetText(MetadataTexts.CV_LANGUAGE_WRITTEN, data.Language);
 
             run5.Append(runProperties5);
             run5.Append(text5);
@@ -549,7 +583,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             return tableRow2;
         }
 
-        private static TableRow GenerateHeadlineRow()
+        private static TableRow GenerateHeadlineRow(GenerationData data)
         {
             TableRow tableRow1 = new TableRow() { RsidTableRowAddition = "009B2C1D", ParagraphId = "1ED7053C", TextId = "77777777" };
 
@@ -599,7 +633,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties1.Append(fontSize1);
             runProperties1.Append(fontSizeComplexScript1);
             Text text1 = new Text();
-            text1.Text = "LANGUAGE PROFICIENCY";
+            text1.Text = DocumentMetadataTexts.GetText(MetadataTexts.CV_LANGUAGE_PROFICIENCY, data.Language);
 
             run1.Append(runProperties1);
             run1.Append(text1);
@@ -631,7 +665,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             return tableRow1;
         }
 
-        private static TableRow GenerateProficiencyLevelRow()
+        private static TableRow GenerateProficiencyLevelRow(GenerationData data)
         {
             TableRow tableRow6 = new TableRow() { RsidTableRowAddition = "009B2C1D", ParagraphId = "74B05C77", TextId = "77777777" };
 
@@ -670,7 +704,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties39.Append(fontSize13);
             runProperties39.Append(fontSizeComplexScript13);
             Text text13 = new Text();
-            text13.Text = "Proficiency level";
+            text13.Text = DocumentMetadataTexts.GetText(MetadataTexts.CV_LANGUAGE_PROFICIENCY_LEVEL, data.Language);
 
             run39.Append(runProperties39);
             run39.Append(text13);
@@ -718,7 +752,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties40.Append(fontSize14);
             runProperties40.Append(fontSizeComplexScript14);
             Text text14 = new Text();
-            text14.Text = "-basic";
+            text14.Text = $"-{DocumentMetadataTexts.GetText(MetadataTexts.CV_LANGUAGE_PROFICIENCY_BASIC, data.Language)}";
 
             run40.Append(runProperties40);
             run40.Append(text14);
@@ -764,7 +798,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties41.Append(fontSize15);
             runProperties41.Append(fontSizeComplexScript15);
             Text text15 = new Text();
-            text15.Text = "-satisfactory";
+            text15.Text = $"-{DocumentMetadataTexts.GetText(MetadataTexts.CV_LANGUAGE_PROFICIENCY_SATISFACTORY, data.Language)}";
 
             run41.Append(runProperties41);
             run41.Append(text15);
@@ -812,7 +846,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties42.Append(fontSize16);
             runProperties42.Append(fontSizeComplexScript16);
             Text text16 = new Text();
-            text16.Text = "-good";
+            text16.Text = $"-{DocumentMetadataTexts.GetText(MetadataTexts.CV_LANGUAGE_PROFICIENCY_GOOD, data.Language)}";
 
             run42.Append(runProperties42);
             run42.Append(text16);
@@ -860,7 +894,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties43.Append(fontSize17);
             runProperties43.Append(fontSizeComplexScript17);
             Text text17 = new Text();
-            text17.Text = "-excellent";
+            text17.Text = $"-{DocumentMetadataTexts.GetText(MetadataTexts.CV_LANGUAGE_PROFICIENCY_EXCELLENT, data.Language)}";
 
             run43.Append(runProperties43);
             run43.Append(text17);
@@ -908,7 +942,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties44.Append(fontSize18);
             runProperties44.Append(fontSizeComplexScript18);
             Text text18 = new Text();
-            text18.Text = "-native";
+            text18.Text = $"-{DocumentMetadataTexts.GetText(MetadataTexts.CV_LANGUAGE_PROFICIENCY_NATIVE, data.Language)}";
 
             run44.Append(runProperties44);
             run44.Append(text18);
@@ -956,7 +990,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties45.Append(fontSize19);
             runProperties45.Append(fontSizeComplexScript19);
             Text text19 = new Text();
-            text19.Text = "-basic";
+            text19.Text = $"-{DocumentMetadataTexts.GetText(MetadataTexts.CV_LANGUAGE_PROFICIENCY_BASIC, data.Language)}";
 
             run45.Append(runProperties45);
             run45.Append(text19);
@@ -1002,7 +1036,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties46.Append(fontSize20);
             runProperties46.Append(fontSizeComplexScript20);
             Text text20 = new Text();
-            text20.Text = "-satisfactory";
+            text20.Text = $"-{DocumentMetadataTexts.GetText(MetadataTexts.CV_LANGUAGE_PROFICIENCY_SATISFACTORY, data.Language)}";
 
             run46.Append(runProperties46);
             run46.Append(text20);
@@ -1050,7 +1084,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties47.Append(fontSize21);
             runProperties47.Append(fontSizeComplexScript21);
             Text text21 = new Text();
-            text21.Text = "-good";
+            text21.Text = $"-{DocumentMetadataTexts.GetText(MetadataTexts.CV_LANGUAGE_PROFICIENCY_GOOD, data.Language)}";
 
             run47.Append(runProperties47);
             run47.Append(text21);
@@ -1098,7 +1132,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties48.Append(fontSize22);
             runProperties48.Append(fontSizeComplexScript22);
             Text text22 = new Text();
-            text22.Text = "-excellent";
+            text22.Text = $"-{DocumentMetadataTexts.GetText(MetadataTexts.CV_LANGUAGE_PROFICIENCY_EXCELLENT, data.Language)}";
 
             run48.Append(runProperties48);
             run48.Append(text22);
@@ -1146,7 +1180,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties49.Append(fontSize23);
             runProperties49.Append(fontSizeComplexScript23);
             Text text23 = new Text();
-            text23.Text = "-native";
+            text23.Text = $"-{DocumentMetadataTexts.GetText(MetadataTexts.CV_LANGUAGE_PROFICIENCY_NATIVE, data.Language)}";
 
             run49.Append(runProperties49);
             run49.Append(text23);

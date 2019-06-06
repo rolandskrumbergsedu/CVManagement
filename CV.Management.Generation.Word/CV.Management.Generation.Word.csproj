@@ -82,6 +82,7 @@
     <Compile Include="ContentHelper\ContentTable7.cs" />
     <Compile Include="ContentHelper\ContentTable8.cs" />
     <Compile Include="ContentHelper\ContentTable9.cs" />
+    <Compile Include="DocumentMetadataTexts.cs" />
     <Compile Include="GenerationData.cs" />
     <Compile Include="Helper\CustomFilePropertiesPartHelper.cs" />
     <Compile Include="Helper\CustomXmlPartHelper.cs" />
@@ -98,6 +99,7 @@
     <Compile Include="Helper\StyleDefinitionsPartHelper.cs" />
     <Compile Include="Helper\ThemePartHelper.cs" />
     <Compile Include="Helper\WebSettingsPartHelper.cs" />
+    <Compile Include="MetadataTexts.cs" />
     <Compile Include="OpenXmlElementExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WordDocumentManager.cs" />

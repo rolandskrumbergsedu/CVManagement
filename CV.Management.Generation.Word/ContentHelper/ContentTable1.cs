@@ -366,7 +366,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties2.Append(fontSize1);
             runProperties2.Append(fontSizeComplexScript1);
             Text text1 = new Text();
-            text1.Text = "Confidential candidate CV";
+            text1.Text = DocumentMetadataTexts.GetText(MetadataTexts.CV_TITLE, data.Language);
 
             run2.Append(runProperties2);
             run2.Append(text1);

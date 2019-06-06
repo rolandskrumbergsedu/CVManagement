@@ -88,7 +88,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties1.Append(fontSize1);
             runProperties1.Append(fontSizeComplexScript1);
             Text text1 = new Text();
-            text1.Text = "TRANSITION TIME";
+            text1.Text = DocumentMetadataTexts.GetText(MetadataTexts.CV_TRANSITION_TIME, data.Language).ToUpper();
 
             run1.Append(runProperties1);
             run1.Append(text1);
@@ -154,7 +154,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties3.Append(fontSize3);
             runProperties3.Append(fontSizeComplexScript3);
             Text text3 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text3.Text = "Notice period leaving current employer: ";
+            text3.Text = $"{DocumentMetadataTexts.GetText(MetadataTexts.CV_NOTICE_PERIOD, data.Language)}: ";
 
             run3.Append(runProperties3);
             run3.Append(text3);
