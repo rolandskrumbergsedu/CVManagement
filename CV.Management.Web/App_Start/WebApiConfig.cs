@@ -15,6 +15,12 @@ namespace CV.Management.Web
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
+                name: "DefaultLanguageApi",
+                routeTemplate: "api/{controller}/{language}/{id}",
+                defaults: new { language = RouteParameter.Optional, id = RouteParameter.Optional }
+            );
+
+            config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }

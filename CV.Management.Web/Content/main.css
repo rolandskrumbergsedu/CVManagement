@@ -166,7 +166,7 @@ html, body {
         cursor: pointer;
     }
 
-.download_word {
+.download_word_en, .download_word_lv {
     padding-left: 35px;
     font-size: 24px;
     color: #1c74bb;
@@ -174,11 +174,11 @@ html, body {
     background: url(Images/docs.png) no-repeat left center;
 }
 
-    .download_word:hover {
-        background: url(Images/docs_h.png) no-repeat left center;
-        color: #231f20;
-        cursor: pointer;
-    }
+.download_word_en:hover, .download_word_lv:hover {
+    background: url(Images/docs_h.png) no-repeat left center;
+    color: #231f20;
+    cursor: pointer;
+}
 
 .download_word_empty {
     padding-left: 35px;
@@ -195,7 +195,7 @@ html, body {
     }
 
 
-.download_ppt {
+.download_ppt_en {
     padding-left: 35px;
     font-size: 24px;
     color: #1c74bb;
@@ -203,7 +203,7 @@ html, body {
     background: url(Images/pptx.png) no-repeat left center;
 }
 
-    .download_ppt:hover {
+    .download_ppt_en:hover {
         background: url(Images/pptx_h.png) no-repeat left center;
         color: #231f20;
         cursor: pointer;

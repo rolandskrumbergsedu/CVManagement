@@ -56,6 +56,18 @@ namespace CV.Management.Generation.Word
         CV_COMPENSATION_ADDITIONAL_BONUSES,
         CV_TRANSITION_TIME,
         CV_NOTICE_PERIOD,
-        CV_ADDITIONAL_COMMENTS
+        CV_ADDITIONAL_COMMENTS,
+        CV_MONTH_JANUARY,
+        CV_MONTH_FEBRUARY,
+        CV_MONTH_MARCH,
+        CV_MONTH_APRIL,
+        CV_MONTH_MAY,
+        CV_MONTH_JUNE,
+        CV_MONTH_JULY,
+        CV_MONTH_AUGUST,
+        CV_MONTH_SEPTEMBER,
+        CV_MONTH_OCTOBER,
+        CV_MONTH_NOVEMBER,
+        CV_MONTH_DECEMBER
     }
 }

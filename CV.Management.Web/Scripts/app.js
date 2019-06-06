@@ -119,17 +119,27 @@
         window.location.href = "/api/worddocument";
     });
 
-    $(".download_word").click(function (e) {
+    $(".download_word_en").click(function (e) {
 
         var row = $(this).closest('tr');
         var hiddenInput = row.find("input");
         var hiddenInputValue = hiddenInput.attr("value");
 
         e.preventDefault();
-        window.location.href = "/api/worddocument/" + hiddenInputValue;
+        window.location.href = "/api/worddocument/en/" + hiddenInputValue;
     });
 
-    $(".download_ppt").click(function (e) {
+    $(".download_word_lv").click(function (e) {
+
+        var row = $(this).closest('tr');
+        var hiddenInput = row.find("input");
+        var hiddenInputValue = hiddenInput.attr("value");
+
+        e.preventDefault();
+        window.location.href = "/api/worddocument/lv/" + hiddenInputValue;
+    });
+
+    $(".download_ppt_en").click(function (e) {
 
         var row = $(this).closest('tr');
         var hiddenInput = row.find("input");

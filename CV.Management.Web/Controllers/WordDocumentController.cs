@@ -16,14 +16,14 @@ namespace CV.Management.Web.Controllers
     public class WordDocumentController : ApiController
     {
         [HttpGet]
-        [Route("api/worddocument/{id}")]
-        public HttpResponseMessage DownloadPdfFile(string id)
+        [Route("api/worddocument/{language}/{id}")]
+        public HttpResponseMessage DownloadPdfFile(string language, string id)
         {
             try
             {
                 var documentManager = new WordDocumentManager();
 
-                var bytes = documentManager.GetDocument(GetGenerationData(id));
+                var bytes = documentManager.GetDocument(GetGenerationData(language, id));
 
                 var result = Request.CreateResponse(HttpStatusCode.OK);
                 result.Content = new ByteArrayContent(bytes);
@@ -40,7 +40,7 @@ namespace CV.Management.Web.Controllers
             }
         }
 
-        private GenerationData GetGenerationData(string id)
+        private GenerationData GetGenerationData(string language, string id)
         {
             using(var db = new ProfileInformationDbContext())
             {
@@ -56,46 +56,46 @@ namespace CV.Management.Web.Controllers
                     profile = db.Profiles.FirstOrDefault(x => x.Username == userName);
                 }
 
-                return DataFromProfile(profile);
+                return DataFromProfile(profile, language);
             }
         }
 
-        private string GetCurrentDate()
+        private string GetCurrentDate(string language)
         {
             var year = DateTime.Now.Year.ToString();
 
             switch (DateTime.Now.Month)
             {
                 case 1:
-                    return $"January {year}";
+                    return $"{DocumentMetadataTexts.GetText(MetadataTexts.CV_MONTH_JANUARY, language)} {year}";
                 case 2:
-                    return $"February {year}";
+                    return $"{DocumentMetadataTexts.GetText(MetadataTexts.CV_MONTH_FEBRUARY, language)} {year}";
                 case 3:
-                    return $"March {year}";
+                    return $"{DocumentMetadataTexts.GetText(MetadataTexts.CV_MONTH_MARCH, language)} {year}";
                 case 4:
-                    return $"April {year}";
+                    return $"{DocumentMetadataTexts.GetText(MetadataTexts.CV_MONTH_APRIL, language)} {year}";
                 case 5:
-                    return $"May {year}";
+                    return $"{DocumentMetadataTexts.GetText(MetadataTexts.CV_MONTH_MAY, language)} {year}";
                 case 6:
-                    return $"June {year}";
+                    return $"{DocumentMetadataTexts.GetText(MetadataTexts.CV_MONTH_JUNE, language)} {year}";
                 case 7:
-                    return $"July {year}";
+                    return $"{DocumentMetadataTexts.GetText(MetadataTexts.CV_MONTH_JULY, language)} {year}";
                 case 8:
-                    return $"August {year}";
+                    return $"{DocumentMetadataTexts.GetText(MetadataTexts.CV_MONTH_AUGUST, language)} {year}";
                 case 9:
-                    return $"September {year}";
+                    return $"{DocumentMetadataTexts.GetText(MetadataTexts.CV_MONTH_SEPTEMBER, language)} {year}";
                 case 10:
-                    return $"October {year}";
+                    return $"{DocumentMetadataTexts.GetText(MetadataTexts.CV_MONTH_OCTOBER, language)} {year}";
                 case 11:
-                    return $"November {year}";
+                    return $"{DocumentMetadataTexts.GetText(MetadataTexts.CV_MONTH_NOVEMBER, language)} {year}";
                 case 12:
-                    return $"December {year}";
+                    return $"{DocumentMetadataTexts.GetText(MetadataTexts.CV_MONTH_DECEMBER, language)} {year}";
                 default:
                     return "Unknown";
             }
         }
 
-        private GenerationData DataFromProfile(Profile profile)
+        private GenerationData DataFromProfile(Profile profile, string language)
         {
             var documentProperties = new DocumentProperties
             {
@@ -109,9 +109,9 @@ namespace CV.Management.Web.Controllers
 
             var titleArea = new TitleArea
             {
-                Date = GetCurrentDate(),
+                Date = GetCurrentDate(language),
                 Name = profile.FullName,
-                Title = "Confidential candidate CV",
+                Title = DocumentMetadataTexts.GetText(MetadataTexts.CV_TITLE, language),
                 Project = profile.Project
             };
 
@@ -202,7 +202,8 @@ namespace CV.Management.Web.Controllers
                 SocialActivites = activities,
                 Compensation = compensation,
                 TransitionTime = profile.NoticePeriod,
-                AdditionalComments = profile.Comments
+                AdditionalComments = profile.Comments,
+                Language = language
             };
         }
 

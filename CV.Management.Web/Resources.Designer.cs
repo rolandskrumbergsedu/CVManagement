@@ -673,6 +673,15 @@ namespace CV.Management.Web {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your data was saved successfully!.
+        /// </summary>
+        public static string SaveNotice {
+            get {
+                return ResourceManager.GetString("SaveNotice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Spoken.
         /// </summary>
         public static string SpokenLevel {

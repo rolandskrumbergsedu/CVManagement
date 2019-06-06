@@ -115,6 +115,30 @@ namespace CV.Management.Generation.Word
                     return language == "lv" ? "Pārejas periods aiziešanai no šī brīža darba vietas" : "Notice period leaving current employer";
                 case MetadataTexts.CV_ADDITIONAL_COMMENTS:
                     return language == "lv" ? "Papildus komentāri" : "Additional comments";
+                case MetadataTexts.CV_MONTH_JANUARY:
+                    return language == "lv" ? "Janvāris" : "January";
+                case MetadataTexts.CV_MONTH_FEBRUARY:
+                    return language == "lv" ? "Februāris" : "February";
+                case MetadataTexts.CV_MONTH_MARCH:
+                    return language == "lv" ? "Marts" : "March";
+                case MetadataTexts.CV_MONTH_APRIL:
+                    return language == "lv" ? "Aprīlis" : "April";
+                case MetadataTexts.CV_MONTH_MAY:
+                    return language == "lv" ? "Maijs" : "May";
+                case MetadataTexts.CV_MONTH_JUNE:
+                    return language == "lv" ? "Jūnijs" : "June";
+                case MetadataTexts.CV_MONTH_JULY:
+                    return language == "lv" ? "Jūlijs" : "July";
+                case MetadataTexts.CV_MONTH_AUGUST:
+                    return language == "lv" ? "Augusts" : "August";
+                case MetadataTexts.CV_MONTH_SEPTEMBER:
+                    return language == "lv" ? "Septembris" : "September";
+                case MetadataTexts.CV_MONTH_OCTOBER:
+                    return language == "lv" ? "Oktobris" : "October";
+                case MetadataTexts.CV_MONTH_NOVEMBER:
+                    return language == "lv" ? "Novembris" : "November";
+                case MetadataTexts.CV_MONTH_DECEMBER:
+                    return language == "lv" ? "Decembris" : "December";
                 default:
                     throw new Exception($"Could not find the text {textKey.ToString()}!");
             }

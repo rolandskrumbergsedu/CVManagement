@@ -348,4 +348,7 @@
   <data name="TurnoverPlaceholder" xml:space="preserve">
     <value>X EUR (YYYY)</value>
   </data>
+  <data name="SaveNotice" xml:space="preserve">
+    <value>Jūsu dati tika veiksmīgi saglabāti!</value>
+  </data>
 </root>

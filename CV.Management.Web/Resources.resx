@@ -351,4 +351,7 @@
   <data name="TurnoverPlaceholder" xml:space="preserve">
     <value>X EUR (YYYY)</value>
   </data>
+  <data name="SaveNotice" xml:space="preserve">
+    <value>Your data was saved successfully!</value>
+  </data>
 </root>
