@@ -345,7 +345,7 @@
             "name": formName + "[" + existingEducationRowCount + "]." + fromYearFieldName,
             "value": null
         });
-        newRow.find(".education-from-year-label").attr("data-valmsg-for", formName + "[" + existingEducationRowCount + "]." + fromYearFieldName);
+        newRow.find(".education-from-year-validation").attr("data-valmsg-for", formName + "[" + existingEducationRowCount + "]." + fromYearFieldName);
 
         newRow.find(".education-to-year-label").attr("for", formName + "_" + existingEducationRowCount + "__" + toYearFieldName);
         newRow.find(".education-to-year-input").attr({
@@ -353,7 +353,7 @@
             "name": formName + "[" + existingEducationRowCount + "]." + toYearFieldName,
             "value": null
         });
-        newRow.find(".education-to-year-label").attr("data-valmsg-for", formName + "[" + existingEducationRowCount + "]." + toYearFieldName);
+        newRow.find(".education-to-year-validation").attr("data-valmsg-for", formName + "[" + existingEducationRowCount + "]." + toYearFieldName);
 
         newRow.find(".education-now-label").attr("for", formName + "_" + existingEducationRowCount + "__" + nowFieldName);
 
@@ -393,7 +393,7 @@
             "name": formName + "[" + existingEducationRowCount + "]." + institutionFieldName,
             "value": null
         });
-        newRow.find(".education-institution-label").attr("data-valmsg-for", formName + "[" + existingEducationRowCount + "]." + institutionFieldName);
+        newRow.find(".education-institution-validation").attr("data-valmsg-for", formName + "[" + existingEducationRowCount + "]." + institutionFieldName);
 
         newRow.find(".education-degree-label").attr("for", formName + "_" + existingEducationRowCount + "__" + degreeFieldName);
         newRow.find(".education-degree-input").attr({
@@ -401,7 +401,7 @@
             "name": formName + "[" + existingEducationRowCount + "]." + degreeFieldName,
             "value": null
         });
-        newRow.find(".education-degree-label").attr("data-valmsg-for", formName + "[" + existingEducationRowCount + "]." + degreeFieldName);
+        newRow.find(".education-degree-validation").attr("data-valmsg-for", formName + "[" + existingEducationRowCount + "]." + degreeFieldName);
 
         newRow.find(".education-remove").click(removeEducation);
 
@@ -657,7 +657,7 @@
             "name": formName + "[" + existingMembershipRowCount + "]." + fromTimeFieldName,
             "value": null
         });
-        newRow.find(".membership-from-time-label").attr("data-valmsg-for", formName + "[" + existingMembershipRowCount + "]." + fromTimeFieldName);
+        newRow.find(".membership-from-time-validation").attr("data-valmsg-for", formName + "[" + existingMembershipRowCount + "]." + fromTimeFieldName);
 
         newRow.find(".membership-to-time-label").attr("for", formName + "_" + existingMembershipRowCount + "__" + toTimeFieldName);
         newRow.find(".membership-to-time-input").attr({
@@ -665,7 +665,7 @@
             "name": formName + "[" + existingMembershipRowCount + "]." + toTimeFieldName,
             "value": null
         });
-        newRow.find(".membership-to-time-label").attr("data-valmsg-for", formName + "[" + existingMembershipRowCount + "]." + toTimeFieldName);
+        newRow.find(".membership-to-time-validation").attr("data-valmsg-for", formName + "[" + existingMembershipRowCount + "]." + toTimeFieldName);
 
         newRow.find(".membership-now-label").attr("for", formName + "_" + existingMembershipRowCount + "__" + nowFieldName);
 
@@ -705,7 +705,7 @@
             "name": formName + "[" + existingMembershipRowCount + "]." + descriptionFieldName
         });
         newRow.find(".membership-description-input").val(null);
-        newRow.find(".membership-description-label").attr("data-valmsg-for", formName + "[" + existingMembershipRowCount + "]." + descriptionFieldName);
+        newRow.find(".membership-description-validation").attr("data-valmsg-for", formName + "[" + existingMembershipRowCount + "]." + descriptionFieldName);
 
         newRow.find(".membership-remove").click(removeMembership);
 
