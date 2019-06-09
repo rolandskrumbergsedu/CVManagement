@@ -4,8 +4,9 @@
 
     if (window.location.href.match(/lv$/)) {
         createCookie("language", "lv", 1);
-    }
-    if (window.location.href.match(/en$/)) {
+    } else if (window.location.href.match(/en$/)) {
+        createCookie("language", "en", 1);
+    } else {
         createCookie("language", "en", 1);
     }
 
@@ -1182,7 +1183,16 @@
         createCookie("message", "saved", 1);
     });
 
+    var languageCookie = readCookie("language");
+    if (languageCookie === "lv") {
+        $(".dropdown-title").text("Language - LV");
+    }
+    if (languageCookie === "en") {
+        $(".dropdown-title").text("Language - ENG");
+    }
+
     var cookie = readCookie("open");
+
     if (cookie === "save_education") {
 
         $('#collapse2').on('shown.bs.collapse', function () {

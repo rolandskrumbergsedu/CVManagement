@@ -174,11 +174,11 @@ html, body {
     background: url(Images/docs.png) no-repeat left center;
 }
 
-.download_word_en:hover, .download_word_lv:hover {
-    background: url(Images/docs_h.png) no-repeat left center;
-    color: #231f20;
-    cursor: pointer;
-}
+    .download_word_en:hover, .download_word_lv:hover {
+        background: url(Images/docs_h.png) no-repeat left center;
+        color: #231f20;
+        cursor: pointer;
+    }
 
 .download_word_empty {
     padding-left: 35px;
@@ -240,10 +240,11 @@ html, body {
 .panel-default {
     border-color: #FFFFFF;
 }
-        .panel-default > .panel-heading + .panel-collapse > .panel-body {
-            background-color: #FFFFFF;
-            border-top-color: #FFFFFF;
-        }
+
+    .panel-default > .panel-heading + .panel-collapse > .panel-body {
+        background-color: #FFFFFF;
+        border-top-color: #FFFFFF;
+    }
 
 .panel-group .panel-heading + .panel-collapse > .panel-body, .panel-group .panel-heading + .panel-collapse > .list-group {
     border-top: 0px;
@@ -283,7 +284,7 @@ html, body {
 
 .btn-primary {
     background-color: #1a76bc;
-    border-color: #1a76bc; 
+    border-color: #1a76bc;
     color: #FFFFFF;
 }
 
@@ -353,4 +354,13 @@ html, body {
     left: 50%;
     margin-left: -200px;
     text-align: center;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: black;
+}
+
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+    color: black;
+    background-color: #e6e6e6;
 }
