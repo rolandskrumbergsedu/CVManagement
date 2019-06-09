@@ -322,9 +322,11 @@
         });
     }
     function removeEducation() {
-        $(this).closest('div[class^="education_row"]').remove();
 
-        updateEducationFieldNumbers();
+        if ($('.education_row').length > 1) {
+            $(this).closest('div[class^="education_row"]').remove();
+            updateEducationFieldNumbers();
+        }
     }
 
     $("#education_add").click(function () {
@@ -452,9 +454,12 @@
 
     }
     function removeAdditionalCourse() {
-        $(this).closest('div[class^="courses_row"]').remove();
 
-        updateAdditionalCoursesFieldNumbers();
+        if ($('.courses_row').length > 1) {
+            $(this).closest('div[class^="courses_row"]').remove();
+            updateAdditionalCoursesFieldNumbers();
+        }
+
     }
 
     $("#additional_course_add").click(function () {
@@ -541,9 +546,11 @@
 
     }
     function removeLanguage() {
-        $(this).closest('div[class^="language_row"]').remove();
 
-        updateLanguagesFieldNumbers();
+        if ($('.language_row').length > 1) {
+            $(this).closest('div[class^="language_row"]').remove();
+            updateLanguagesFieldNumbers();
+        }
     }
 
     $("#language_add").click(function () {
@@ -635,9 +642,11 @@
         });
     }
     function removeMembership() {
-        $(this).closest('div[class^="membership_row"]').remove();
 
-        updateMembershipFieldNumbers();
+        if ($('.language_row').length > 1) {
+            $(this).closest('div[class^="membership_row"]').remove();
+            updateMembershipFieldNumbers();
+        }
     }
 
     $("#membership_add").click(function () {
@@ -872,9 +881,13 @@
 
     }
     function removeCompany() {
-        $(this).closest('div[class^="company_row"]').remove();
 
-        updateCompanyFieldNumbers();
+        var companies = $('.company_row');
+
+        if (companies.length > 1) {
+            $(this).closest('div[class^="company_row"]').remove();
+            updateCompanyFieldNumbers();
+        }
     }
 
     $("#career_summary_add").click(function () {
@@ -1072,9 +1085,13 @@
     $(".company-remove").click(removeCompany);
 
     function removePosition() {
-        $(this).closest('div[class^="position_row"]').remove();
 
-        updateCompanyFieldNumbers();
+        var positions = $(this).closest('div[class^="company_row"]').find('.position_row');
+
+        if (positions.length > 1) {
+            $(this).closest('div[class^="position_row"]').remove();
+            updateCompanyFieldNumbers();
+        }
     }
 
     function addPosition() {
