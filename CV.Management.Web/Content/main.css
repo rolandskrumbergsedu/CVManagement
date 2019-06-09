@@ -364,3 +364,11 @@ html, body {
     color: black;
     background-color: #e6e6e6;
 }
+
+.login-table {
+    padding-top:20px;
+}
+
+.login-title {
+    padding-top: 6px;
+}
