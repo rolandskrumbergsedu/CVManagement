@@ -12,7 +12,7 @@
         @for (var i = 0; i < Model.Education.Count; i++)
         {
             <div class="education_row row">
-                <div class="col-md-11">
+                <div class="col-xs-11 education-main">
                     <div class="row">
                         <div class="col-md-2">
                             <div class="form-group">
@@ -50,7 +50,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-1">
+                <div class="col-xs-1">
                     <img class="remove-button education-remove" src="~/Content/Images/remove.png" />
                 </div>
             </div>
@@ -59,13 +59,13 @@
     </div>
 
         <div class="row">
-            <div class="col-md-12 text-center add-button">
+            <div class="col-xs-12 text-center add-button">
                 <span id="education_add" class="tab_more uppercase">@Resources.AddEducation</span>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-xs-12">
                 <div class="form-group text-right">
                     <input id="save_education" type="submit" value="@Resources.Save" class="btn btn-primary float-right" />
                 </div>
