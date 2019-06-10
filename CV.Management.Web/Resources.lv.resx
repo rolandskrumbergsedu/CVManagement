@@ -351,4 +351,7 @@
   <data name="SaveNotice" xml:space="preserve">
     <value>Jūsu dati tika veiksmīgi saglabāti!</value>
   </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Dzēst foto</value>
+  </data>
 </root>

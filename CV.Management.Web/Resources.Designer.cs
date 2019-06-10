@@ -295,6 +295,15 @@ namespace CV.Management.Web {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete picture.
+        /// </summary>
+        public static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Direct and indirect subordinates (numbers and functions, if you have no, leave blank).
         /// </summary>
         public static string DirectSubordinates {

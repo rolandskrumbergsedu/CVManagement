@@ -18,7 +18,16 @@
             <input id="file_upload" type="file" name="file" class="btn btn-default upload-button" />
         </div>
         <div class="col-md-12">
-            <input id="file_save" type="submit" name="Submit" id="Submit" value="@Resources.Upload" class="btn btn-primary" />
+            <input id="file_save" type="submit" name="Submit" value="@Resources.Upload" class="btn btn-primary" />
+        </div>
+    }
+</div>
+
+<div class="row">
+    @using (Html.BeginForm("Delete", "Cv", FormMethod.Post))
+    {
+        <div class="col-md-12">
+            <input id="file_delete" type="submit" name="Delete" value="@Resources.Delete" class="btn btn-primary" />
         </div>
     }
 </div>

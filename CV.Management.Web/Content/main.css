@@ -372,3 +372,8 @@ html, body {
 .login-title {
     padding-top: 6px;
 }
+
+#file_delete {
+    width: 100%;
+    margin-top: 15px;
+}

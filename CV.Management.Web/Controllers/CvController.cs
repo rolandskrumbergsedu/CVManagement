@@ -94,6 +94,31 @@ namespace CV.Management.Web.Controllers
         }
 
         [HttpPost]
+        public ActionResult Delete()
+        {
+            var username = GetCurrentUsername();
+
+            if (!string.IsNullOrEmpty(username))
+            {
+                using (var db = new ProfileInformationDbContext())
+                {
+                    var userProfile = db.Profiles.FirstOrDefault(x => x.Username == username);
+
+                    if (userProfile != null)
+                    {
+                        userProfile.PictureContent = null;
+                        userProfile.PictureType = null;
+
+                        db.SaveChanges();
+                    }
+
+                }
+            }
+
+            return RedirectToAction("Profile");
+        }
+
+        [HttpPost]
         public ActionResult AdditionalFiles(IEnumerable<HttpPostedFileBase> files)
         {
             if (files != null && files.Count() > 0)
