@@ -91,7 +91,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties1.Append(fontSize1);
             runProperties1.Append(fontSizeComplexScript1);
             Text text1 = new Text();
-            text1.Text = DocumentMetadataTexts.GetText(MetadataTexts.CV_ADDITIONAL_COURSES, data.Language).ToUpper();
+            text1.Text = DocumentMetadataTexts.GetText(MetadataTexts.CV_ADDITIONAL_COURSES, data.Language)?.ToUpper();
 
             run1.Append(runProperties1);
             run1.Append(text1);
@@ -238,7 +238,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties4.Append(fontSize4);
             runProperties4.Append(fontSizeComplexScript4);
             Text text4 = new Text();
-            text4.Text = additionalCourse.CourseName.ToUpper();
+            text4.Text = additionalCourse.CourseName?.ToUpper();
 
             run4.Append(runProperties4);
             run4.Append(text4);

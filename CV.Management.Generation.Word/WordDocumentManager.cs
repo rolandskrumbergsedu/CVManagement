@@ -112,9 +112,12 @@ namespace CV.Management.Generation.Word
             ImagePartHelper.GenerateImagePart3Content(imagePart3);
 
             // Profile picture
-            var imagePart4 = mainDocumentPart1.AddNewPart<ImagePart>(data.Personal.ProfilePictureType, "rId30");
-            ImagePartHelper.GenerateProfileImageContent(imagePart4, data.Personal.ProfilePictureContent);
-
+            if (data.Personal.ProfilePictureContent != null && data.Personal.ProfilePictureType != null)
+            {
+                var imagePart4 = mainDocumentPart1.AddNewPart<ImagePart>(data.Personal.ProfilePictureType, "rId30");
+                ImagePartHelper.GenerateProfileImageContent(imagePart4, data.Personal.ProfilePictureContent);
+            }
+            
             var headerPart2 = mainDocumentPart1.AddNewPart<HeaderPart>("rId14");
             HeaderPartHelper.GenerateHeaderPart2Content(headerPart2);
 

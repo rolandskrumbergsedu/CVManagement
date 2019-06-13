@@ -31,6 +31,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             tableBorders1.Append(rightBorder1);
             tableBorders1.Append(insideHorizontalBorder1);
             tableBorders1.Append(insideVerticalBorder1);
+            TableLayout tableLayout1 = new TableLayout() { Type = TableLayoutValues.Fixed };
 
             TableCellMarginDefault tableCellMarginDefault1 = new TableCellMarginDefault();
             TableCellLeftMargin tableCellLeftMargin1 = new TableCellLeftMargin() { Width = 10, Type = TableWidthValues.Dxa };
@@ -43,6 +44,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             tableProperties1.Append(tableWidth1);
             tableProperties1.Append(tableIndentation1);
             tableProperties1.Append(tableBorders1);
+            tableProperties1.Append(tableLayout1);
             tableProperties1.Append(tableCellMarginDefault1);
             tableProperties1.Append(tableLook1);
 
@@ -92,7 +94,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties1.Append(fontSize1);
             runProperties1.Append(fontSizeComplexScript1);
             Text text1 = new Text();
-            text1.Text = DocumentMetadataTexts.GetText(MetadataTexts.CV_CAREER_SUMMARY, data.Language).ToUpper();
+            text1.Text = DocumentMetadataTexts.GetText(MetadataTexts.CV_CAREER_SUMMARY, data.Language)?.ToUpper();
 
             run1.Append(runProperties1);
             run1.Append(text1);
@@ -118,31 +120,34 @@ namespace CV.Management.Generation.Word.ContentHelper
 
                 for (int j = 0; j < careerSummaries[i].Roles.Count; j++)
                 {
-                    table1.Append(CreateRoleInformationRow(careerSummaries[i].Roles[j], data.Language));
-
-                    if (careerSummaries[i].Roles[j].Tasks != null && careerSummaries[i].Roles[j].Tasks.Count() > 1)
+                    if (!string.IsNullOrEmpty(careerSummaries[i].Roles[j].Role) && careerSummaries[i].Roles[j].StartingYear != null)
                     {
-                        table1.Append(CreateTaskInformationRow(careerSummaries[i].Roles[j], data.Language));
-                    }
+                        table1.Append(CreateRoleInformationRow(careerSummaries[i].Roles[j], data.Language));
 
-                    if (!string.IsNullOrEmpty(careerSummaries[i].Roles[j].ReportingTo))
-                    {
-                        table1.Append(CreateReportingToRow(careerSummaries[i].Roles[j], data.Language));
-                    }
+                        if (careerSummaries[i].Roles[j].Tasks != null && careerSummaries[i].Roles[j].Tasks.Count() > 1)
+                        {
+                            table1.Append(CreateTaskInformationRow(careerSummaries[i].Roles[j], data.Language));
+                        }
 
-                    if (!string.IsNullOrEmpty(careerSummaries[i].Roles[j].Subordinates))
-                    {
-                        table1.Append(CreateSubordinatesRow(careerSummaries[i].Roles[j], data.Language));
-                    }
+                        if (!string.IsNullOrEmpty(careerSummaries[i].Roles[j].ReportingTo))
+                        {
+                            table1.Append(CreateReportingToRow(careerSummaries[i].Roles[j], data.Language));
+                        }
 
-                    if (!string.IsNullOrEmpty(careerSummaries[i].Roles[j].Achievements))
-                    {
-                        table1.Append(CreateAchievementsRow(careerSummaries[i].Roles[j], data.Language));
-                    }
+                        if (!string.IsNullOrEmpty(careerSummaries[i].Roles[j].Subordinates))
+                        {
+                            table1.Append(CreateSubordinatesRow(careerSummaries[i].Roles[j], data.Language));
+                        }
 
-                    if (!string.IsNullOrEmpty(careerSummaries[i].Roles[j].ReasonForLeaving))
-                    {
-                        table1.Append(CreateReasonForLeavingRow(careerSummaries[i].Roles[j], data.Language));
+                        if (!string.IsNullOrEmpty(careerSummaries[i].Roles[j].Achievements))
+                        {
+                            table1.Append(CreateAchievementsRow(careerSummaries[i].Roles[j], data.Language));
+                        }
+
+                        if (!string.IsNullOrEmpty(careerSummaries[i].Roles[j].ReasonForLeaving))
+                        {
+                            table1.Append(CreateReasonForLeavingRow(careerSummaries[i].Roles[j], data.Language));
+                        }
                     }
                 }
 
@@ -530,7 +535,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties19.Append(fontSize19);
             runProperties19.Append(fontSizeComplexScript19);
             Text text19 = new Text();
-            text19.Text = data.Role.ToUpper();
+            text19.Text = data.Role?.ToUpper();
 
             run19.Append(runProperties19);
             run19.Append(text19);

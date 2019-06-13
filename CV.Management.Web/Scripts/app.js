@@ -342,19 +342,21 @@
         var degreeFieldName = "Degree";
 
         newRow.find(".education-from-year-label").attr("for", formName + "_" + existingEducationRowCount + "__" + fromYearFieldName);
-        newRow.find(".education-from-year-input").attr({
+        var educationYearInput = newRow.find(".education-from-year-input");
+        educationYearInput.attr({
             "id": formName + "_" + existingEducationRowCount + "__" + fromYearFieldName,
-            "name": formName + "[" + existingEducationRowCount + "]." + fromYearFieldName,
-            "value": null
+            "name": formName + "[" + existingEducationRowCount + "]." + fromYearFieldName
         });
+        educationYearInput.val(null);
         newRow.find(".education-from-year-validation").attr("data-valmsg-for", formName + "[" + existingEducationRowCount + "]." + fromYearFieldName);
 
         newRow.find(".education-to-year-label").attr("for", formName + "_" + existingEducationRowCount + "__" + toYearFieldName);
-        newRow.find(".education-to-year-input").attr({
+        var educationToYearInput = newRow.find(".education-to-year-input");
+        educationToYearInput.attr({
             "id": formName + "_" + existingEducationRowCount + "__" + toYearFieldName,
-            "name": formName + "[" + existingEducationRowCount + "]." + toYearFieldName,
-            "value": null
+            "name": formName + "[" + existingEducationRowCount + "]." + toYearFieldName
         });
+        educationToYearInput.val(null);
         newRow.find(".education-to-year-validation").attr("data-valmsg-for", formName + "[" + existingEducationRowCount + "]." + toYearFieldName);
 
         newRow.find(".education-now-label").attr("for", formName + "_" + existingEducationRowCount + "__" + nowFieldName);
@@ -390,19 +392,21 @@
         });
 
         newRow.find(".education-institution-label").attr("for", formName + "_" + existingEducationRowCount + "__" + institutionFieldName);
-        newRow.find(".education-institution-input").attr({
+        var institutionInput = newRow.find(".education-institution-input");
+        institutionInput.attr({
             "id": formName + "_" + existingEducationRowCount + "__" + institutionFieldName,
-            "name": formName + "[" + existingEducationRowCount + "]." + institutionFieldName,
-            "value": null
+            "name": formName + "[" + existingEducationRowCount + "]." + institutionFieldName
         });
+        institutionInput.val(null);
         newRow.find(".education-institution-validation").attr("data-valmsg-for", formName + "[" + existingEducationRowCount + "]." + institutionFieldName);
 
         newRow.find(".education-degree-label").attr("for", formName + "_" + existingEducationRowCount + "__" + degreeFieldName);
-        newRow.find(".education-degree-input").attr({
+        var degreeInput = newRow.find(".education-degree-input");
+        degreeInput.attr({
             "id": formName + "_" + existingEducationRowCount + "__" + degreeFieldName,
-            "name": formName + "[" + existingEducationRowCount + "]." + degreeFieldName,
-            "value": null
+            "name": formName + "[" + existingEducationRowCount + "]." + degreeFieldName
         });
+        degreeInput.val(null);
         newRow.find(".education-degree-validation").attr("data-valmsg-for", formName + "[" + existingEducationRowCount + "]." + degreeFieldName);
 
         newRow.find(".education-remove").click(removeEducation);
@@ -474,35 +478,39 @@
         var trainerFieldName = "Trainer";
 
         newRow.find(".courses-number-of-days-label").attr("for", formName + "_" + index + "__" + numberOfDaysFieldName);
-        newRow.find(".courses-number-of-days-input").attr({
+        var daysInput = newRow.find(".courses-number-of-days-input");
+        daysInput.attr({
             "id": formName + "_" + index + "__" + numberOfDaysFieldName,
-            "name": formName + "[" + index + "]." + numberOfDaysFieldName,
-            "value": null
+            "name": formName + "[" + index + "]." + numberOfDaysFieldName
         });
+        daysInput.val(null);
         newRow.find(".courses-number-of-days-validation").attr("data-valmsg-for", formName + "[" + index + "]." + numberOfDaysFieldName);
 
         newRow.find(".courses-year-label").attr("for", formName + "_" + index + "__" + yearFieldName);
-        newRow.find(".courses-year-input").attr({
+        var yearInput = newRow.find(".courses-year-input");
+        yearInput.attr({
             "id": formName + "_" + index + "__" + yearFieldName,
-            "name": formName + "[" + index + "]." + yearFieldName,
-            "value": null
+            "name": formName + "[" + index + "]." + yearFieldName
         });
+        yearInput.val(null);
         newRow.find(".courses-year-validation").attr("data-valmsg-for", formName + "[" + index + "]." + yearFieldName);
 
         newRow.find(".courses-name-label").attr("for", formName + "_" + index + "__" + courseNameFieldName);
+        var nameInput = newRow.find(".courses-name-input");
         newRow.find(".courses-name-input").attr({
             "id": formName + "_" + index + "__" + courseNameFieldName,
-            "name": formName + "[" + index + "]." + courseNameFieldName,
-            "value": null
+            "name": formName + "[" + index + "]." + courseNameFieldName
         });
+        nameInput.val(null);
         newRow.find(".courses-name-validation").attr("data-valmsg-for", formName + "[" + index + "]." + courseNameFieldName);
 
         newRow.find(".courses-trainer-label").attr("for", formName + "_" + index + "__" + trainerFieldName);
+        var trainerInput = newRow.find(".courses-trainer-input");
         newRow.find(".courses-trainer-input").attr({
             "id": formName + "_" + index + "__" + trainerFieldName,
-            "name": formName + "[" + index + "]." + trainerFieldName,
-            "value": null
+            "name": formName + "[" + index + "]." + trainerFieldName
         });
+        trainerInput.val(null);
         newRow.find(".courses-trainer-validation").attr("data-valmsg-for", formName + "[" + index + "]." + trainerFieldName);
 
         newRow.find(".courses-remove").click(removeAdditionalCourse);
@@ -661,19 +669,21 @@
         var descriptionFieldName = "Description";
 
         newRow.find(".membership-from-time-label").attr("for", formName + "_" + existingMembershipRowCount + "__" + fromTimeFieldName);
-        newRow.find(".membership-from-time-input").attr({
+        var fromTimeInput = newRow.find(".membership-from-time-input");
+        fromTimeInput.attr({
             "id": formName + "_" + existingMembershipRowCount + "__" + fromTimeFieldName,
-            "name": formName + "[" + existingMembershipRowCount + "]." + fromTimeFieldName,
-            "value": null
+            "name": formName + "[" + existingMembershipRowCount + "]." + fromTimeFieldName
         });
+        fromTimeInput.val(null);
         newRow.find(".membership-from-time-validation").attr("data-valmsg-for", formName + "[" + existingMembershipRowCount + "]." + fromTimeFieldName);
 
         newRow.find(".membership-to-time-label").attr("for", formName + "_" + existingMembershipRowCount + "__" + toTimeFieldName);
-        newRow.find(".membership-to-time-input").attr({
+        var toTimeInput = newRow.find(".membership-to-time-input");
+        toTimeInput.attr({
             "id": formName + "_" + existingMembershipRowCount + "__" + toTimeFieldName,
-            "name": formName + "[" + existingMembershipRowCount + "]." + toTimeFieldName,
-            "value": null
+            "name": formName + "[" + existingMembershipRowCount + "]." + toTimeFieldName
         });
+        toTimeInput.val(null);
         newRow.find(".membership-to-time-validation").attr("data-valmsg-for", formName + "[" + existingMembershipRowCount + "]." + toTimeFieldName);
 
         newRow.find(".membership-now-label").attr("for", formName + "_" + existingMembershipRowCount + "__" + nowFieldName);
@@ -920,27 +930,30 @@
         newRow.find(".company-number").text(currentNumber + 1);
 
         newRow.find(".company-name-label").attr("for", companyFormName + "_" + existingCompanyRowCount + "__" + companyNameFieldName);
-        newRow.find(".company-name-input").attr({
+        var companyNameInput = newRow.find(".company-name-input");
+        companyNameInput.attr({
             "id": companyFormName + "_" + existingCompanyRowCount + "__" + companyNameFieldName,
-            "name": companyFormName + "[" + existingCompanyRowCount + "]." + companyNameFieldName,
-            "value": null
+            "name": companyFormName + "[" + existingCompanyRowCount + "]." + companyNameFieldName
         });
+        companyNameInput.val(null);
         newRow.find(".company-name-validation").attr("data-valmsg-for", companyFormName + "[" + existingCompanyRowCount + "]." + companyNameFieldName);
 
         newRow.find(".company-city-label").attr("for", companyFormName + "_" + existingCompanyRowCount + "__" + companyCityFieldName);
-        newRow.find(".company-city-input").attr({
+        var cityInput = newRow.find(".company-city-input");
+        cityInput.attr({
             "id": companyFormName + "_" + existingCompanyRowCount + "__" + companyCityFieldName,
-            "name": companyFormName + "[" + existingCompanyRowCount + "]." + companyCityFieldName,
-            "value": null
+            "name": companyFormName + "[" + existingCompanyRowCount + "]." + companyCityFieldName
         });
+        cityInput.val(null);
         newRow.find(".company-city-validation").attr("data-valmsg-for", companyFormName + "[" + existingCompanyRowCount + "]." + companyCityFieldName);
 
         newRow.find(".company-parent-company-label").attr("for", companyFormName + "_" + existingCompanyRowCount + "__" + companyParentCompanyFieldName);
-        newRow.find(".company-parent-company-input").attr({
+        var parentCompanyInput = newRow.find(".company-parent-company-input");
+        parentCompanyInput.attr({
             "id": companyFormName + "_" + existingCompanyRowCount + "__" + companyParentCompanyFieldName,
-            "name": companyFormName + "[" + existingCompanyRowCount + "]." + companyParentCompanyFieldName,
-            "value": null
+            "name": companyFormName + "[" + existingCompanyRowCount + "]." + companyParentCompanyFieldName
         });
+        parentCompanyInput.val(null);
         newRow.find(".company-parent-company-validation").attr("data-valmsg-for", companyFormName + "[" + existingCompanyRowCount + "]." + companyParentCompanyFieldName);
 
         newRow.find(".company-industry-label").attr("for", companyFormName + "_" + existingCompanyRowCount + "__" + companyIndustryFieldName);
@@ -952,61 +965,69 @@
         newRow.find(".company-industry-validation").attr("data-valmsg-for", companyFormName + "[" + existingCompanyRowCount + "]." + companyIndustryFieldName);
 
         newRow.find(".company-other-industry-label").attr("for", companyFormName + "_" + existingCompanyRowCount + "__" + companyOtherIndustryFieldName);
-        newRow.find(".company-other-industry-input").attr({
+        var otherIndustryInput = newRow.find(".company-other-industry-input");
+        otherIndustryInput.attr({
             "id": companyFormName + "_" + existingCompanyRowCount + "__" + companyOtherIndustryFieldName,
-            "name": companyFormName + "[" + existingCompanyRowCount + "]." + companyOtherIndustryFieldName,
-            "value": null
+            "name": companyFormName + "[" + existingCompanyRowCount + "]." + companyOtherIndustryFieldName
         });
+        otherIndustryInput.val(null);
         newRow.find(".company-other-industry-validation").attr("data-valmsg-for", companyFormName + "[" + existingCompanyRowCount + "]." + companyOtherIndustryFieldName);
 
         newRow.find(".company-productions-label").attr("for", companyFormName + "_" + existingCompanyRowCount + "__" + companyMainProductionsFieldName);
-        newRow.find(".company-productions-input").attr({
+        var productionInput = newRow.find(".company-productions-input");
+        productionInput.attr({
             "id": companyFormName + "_" + existingCompanyRowCount + "__" + companyMainProductionsFieldName,
-            "name": companyFormName + "[" + existingCompanyRowCount + "]." + companyMainProductionsFieldName,
-            "value": null
+            "name": companyFormName + "[" + existingCompanyRowCount + "]." + companyMainProductionsFieldName
         });
+        productionInput.val(null);
         newRow.find(".company-productions-validation").attr("data-valmsg-for", companyFormName + "[" + existingCompanyRowCount + "]." + companyMainProductionsFieldName);
 
         newRow.find(".company-turnover-label").attr("for", companyFormName + "_" + existingCompanyRowCount + "__" + companyTurnoverFieldName);
-        newRow.find(".company-turnover-input").attr({
+        var turnoverInput = newRow.find(".company-turnover-input");
+        turnoverInput.attr({
             "id": companyFormName + "_" + existingCompanyRowCount + "__" + companyTurnoverFieldName,
-            "name": companyFormName + "[" + existingCompanyRowCount + "]." + companyTurnoverFieldName,
-            "value": null
+            "name": companyFormName + "[" + existingCompanyRowCount + "]." + companyTurnoverFieldName
         });
+        turnoverInput.val(null);
         newRow.find(".company-turnover-validation").attr("data-valmsg-for", companyFormName + "[" + existingCompanyRowCount + "]." + companyTurnoverFieldName);
 
         newRow.find(".company-employees-label").attr("for", companyFormName + "_" + existingCompanyRowCount + "__" + companyEmployeesFieldName);
+        var employeesInput = newRow.find(".company-employees-input");
         newRow.find(".company-employees-input").attr({
             "id": companyFormName + "_" + existingCompanyRowCount + "__" + companyEmployeesFieldName,
-            "name": companyFormName + "[" + existingCompanyRowCount + "]." + companyEmployeesFieldName,
-            "value": null
+            "name": companyFormName + "[" + existingCompanyRowCount + "]." + companyEmployeesFieldName
         });
+        employeesInput.val(null);
         newRow.find(".company-employees-validation").attr("data-valmsg-for", companyFormName + "[" + existingCompanyRowCount + "]." + companyEmployeesFieldName);
 
         newRow.find(".position_row").slice(1).remove();
 
         newRow.find(".position-name-label").attr("for", companyFormName + "_" + existingCompanyRowCount + "__" + positionFormName + "_0__" + positionNameFieldName);
-        newRow.find(".position-name-input").attr({
+        var positionNameInput = newRow.find(".position-name-input");
+        positionNameInput.attr({
             "id": companyFormName + "_" + existingCompanyRowCount + "__" + positionFormName + "_0__" + positionNameFieldName,
             "name": companyFormName + "[" + existingCompanyRowCount + "]." + positionFormName + "[0]." + positionNameFieldName,
             "value": null
         });
+        positionNameInput.val(null);
         newRow.find(".position-name-validation").attr("data-valmsg-for", companyFormName + "[" + existingCompanyRowCount + "]." + positionFormName + "[0]." + positionNameFieldName);
 
         newRow.find(".position-from-time-label").attr("for", companyFormName + "_" + existingCompanyRowCount + "__" + positionFormName + "_0__" + positionFromTimeFieldName);
-        newRow.find(".position-from-time-input").attr({
+        var positionFromTimeInput = newRow.find(".position-from-time-input");
+        positionFromTimeInput.attr({
             "id": companyFormName + "_" + existingCompanyRowCount + "__" + positionFormName + "_0__" + positionFromTimeFieldName,
-            "name": companyFormName + "[" + existingCompanyRowCount + "]." + positionFormName + "[0]." + positionFromTimeFieldName,
-            "value": null
+            "name": companyFormName + "[" + existingCompanyRowCount + "]." + positionFormName + "[0]." + positionFromTimeFieldName
         });
+        positionFromTimeInput.val(null);
         newRow.find(".position-from-time-validation").attr("data-valmsg-for", companyFormName + "[" + existingCompanyRowCount + "]." + positionFormName + "[0]." + positionFromTimeFieldName);
 
         newRow.find(".position-to-time-label").attr("for", companyFormName + "_" + existingCompanyRowCount + "__" + positionFormName + "_0__" + positionToTimeFieldName);
-        newRow.find(".position-to-time-input").attr({
+        var positionToTimeInput = newRow.find(".position-to-time-input");
+        positionToTimeInput.attr({
             "id": companyFormName + "_" + existingCompanyRowCount + "__" + positionFormName + "_0__" + positionToTimeFieldName,
-            "name": companyFormName + "[" + existingCompanyRowCount + "]." + positionFormName + "[0]." + positionToTimeFieldName,
-            "value": null
+            "name": companyFormName + "[" + existingCompanyRowCount + "]." + positionFormName + "[0]." + positionToTimeFieldName
         });
+        positionToTimeInput.val(null);
         newRow.find(".position-to-time-validation").attr("data-valmsg-for", companyFormName + "[" + existingCompanyRowCount + "]." + positionFormName + "[0]." + positionToTimeFieldName);
 
         newRow.find(".career-position-now-label").attr("for", companyFormName + "_" + existingCompanyRowCount + "__" + positionFormName + "_0__" + positionNowFieldName);
@@ -1044,11 +1065,12 @@
         newRow.find(".position-key-tasks-validation").attr("data-valmsg-for", companyFormName + "[" + existingCompanyRowCount + "]." + positionFormName + "[0]." + positionKeyTasks);
 
         newRow.find(".position-reporting-to-label").attr("for", companyFormName + "_" + existingCompanyRowCount + "__" + positionFormName + "_0__" + positionReportingToFieldName);
-        newRow.find(".position-reporting-to-input").attr({
+        var reportingToInput = newRow.find(".position-reporting-to-input");
+        reportingToInput.attr({
             "id": companyFormName + "_" + existingCompanyRowCount + "__" + positionFormName + "_0__" + positionReportingToFieldName,
-            "name": companyFormName + "[" + existingCompanyRowCount + "]." + positionFormName + "[0]." + positionReportingToFieldName,
-            "value": null
+            "name": companyFormName + "[" + existingCompanyRowCount + "]." + positionFormName + "[0]." + positionReportingToFieldName
         });
+        reportingToInput.val(null);
         newRow.find(".position-reporting-to-validation").attr("data-valmsg-for", companyFormName + "[" + existingCompanyRowCount + "]." + positionFormName + "[0]." + positionReportingToFieldName);
 
         newRow.find(".position-subordinates-label").attr("for", companyFormName + "_" + existingCompanyRowCount + "__" + positionFormName + "_0__" + positionDirectSubordinatesFieldName);
@@ -1102,21 +1124,13 @@
 
         newRow.find(".position-number").text(currentNumber + 1);
 
-        newRow.find(".position-name-input").attr({
-            "value": null
-        });
+        newRow.find(".position-name-input").val(null);
 
-        newRow.find(".position-from-time-input").attr({
-            "value": null
-        });
+        newRow.find(".position-from-time-input").val(null);
 
-        newRow.find(".position-to-time-input").attr({
-            "value": null
-        });
+        newRow.find(".position-to-time-input").val(null);
 
-        newRow.find(".career-position-now-input").attr({
-            "value": null
-        });
+        newRow.find(".career-position-now-input").val(null);
         newRow.find(".career-position-now-input").prop("checked", false);
 
         var positionNow = newRow.find(".career-position-now-input");
@@ -1139,9 +1153,7 @@
 
         newRow.find(".position-key-tasks-input").val(null);
 
-        newRow.find(".position-reporting-to-input").attr({
-            "value": null
-        });
+        newRow.find(".position-reporting-to-input").val(null);
 
         newRow.find(".position-subordinates-input").val(null);
 

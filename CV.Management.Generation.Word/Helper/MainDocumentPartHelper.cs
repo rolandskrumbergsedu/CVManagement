@@ -26,7 +26,7 @@ namespace CV.Management.Generation.Word.Helpers
             body1.Append(ContentTable5.GenerateTable(data));
             body1.Append(ContentParagraph6.GenerateParagraph());
             body1.Append(ContentParagraph7.GenerateParagraph());
-            body1.Append(ContentParagraph8.GenerateParagraph());
+           // body1.Append(ContentParagraph8.GenerateParagraph());
             body1.Append(ContentTable6.GenerateTable(data));
             body1.Append(ContentParagraph9.GenerateParagraph());
             body1.Append(ContentParagraph10.GenerateParagraph());

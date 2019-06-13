@@ -187,7 +187,7 @@
     <value>Specialitāte, grāds</value>
   </data>
   <data name="DirectSubordinates" xml:space="preserve">
-    <value>Tieši un netieši pakļautībā esošie (skaits un funkcijas)</value>
+    <value>Tieši un netieši pakļautībā esošie (skaits un funkcijas, atstājiet šo lauku tukšu, ja Jums nav padoto)</value>
   </data>
   <data name="Education" xml:space="preserve">
     <value>Izglītība &amp; kvalifikācijas</value>
@@ -271,7 +271,7 @@
     <value>Profils</value>
   </data>
   <data name="Project" xml:space="preserve">
-    <value>Projekts, vēlamais amats</value>
+    <value>Projekts (ja nepiedalies konkrētā projektā, lūdzu, norādi, kāda būtu Tava vēlamā pozīcija)</value>
   </data>
   <data name="ReasonForLeaving" xml:space="preserve">
     <value>Aiziešanas iemesls (izlaidiet, ja strādājat turpat)</value>
@@ -289,7 +289,7 @@
     <value>Saglabāt</value>
   </data>
   <data name="OtherInformation" xml:space="preserve">
-    <value>Papildus kontaktinformācija</value>
+    <value>Cita kontaktinformācija</value>
   </data>
   <data name="SpokenLevel" xml:space="preserve">
     <value>Runas līmenis</value>
@@ -334,7 +334,7 @@
     <value>Valsts kods</value>
   </data>
   <data name="AdditionalFiles" xml:space="preserve">
-    <value>Papildus faili (sertifikāti, motivācijas vēstules u.c.)</value>
+    <value>Papildus faili (sertifikāti, motivācijas vēstule, u.c.)</value>
   </data>
   <data name="InvalidYear" xml:space="preserve">
     <value>Neatbilstošs gads</value>
