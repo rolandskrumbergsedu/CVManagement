@@ -635,6 +635,12 @@ namespace CV.Management.Web.Controllers
             return RedirectToAction("Profile");
         }
 
+        [HttpPost]
+        public ActionResult ProfileSummary(ProfileViewModel profile)
+        {
+            return RedirectToAction("Profile");
+        }
+
         private string GetCurrentLanguage()
         {
             return Thread.CurrentThread.CurrentCulture.Name.Substring(0, 2);

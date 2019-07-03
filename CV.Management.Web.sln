@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CV.Management.Generation.Pp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CV.Management.Generation.Ppt.Tests", "CV.Management.Generation.Ppt.Tests\CV.Management.Generation.Ppt.Tests.csproj", "{56BD4C54-8B8C-4DEE-BB76-6A5539486BE8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CV.Management.Web.Tests", "CV.Management.Web.Tests\CV.Management.Web.Tests.csproj", "{E0879846-8590-4E2A-BAD8-6D746EB2AA88}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{56BD4C54-8B8C-4DEE-BB76-6A5539486BE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56BD4C54-8B8C-4DEE-BB76-6A5539486BE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56BD4C54-8B8C-4DEE-BB76-6A5539486BE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0879846-8590-4E2A-BAD8-6D746EB2AA88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0879846-8590-4E2A-BAD8-6D746EB2AA88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0879846-8590-4E2A-BAD8-6D746EB2AA88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0879846-8590-4E2A-BAD8-6D746EB2AA88}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

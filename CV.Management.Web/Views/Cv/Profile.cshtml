@@ -8,135 +8,148 @@
 <div id="alert_message" class="alert alert-success" role="alert">
     @Resources.SaveNotice
 </div>
+@using (Html.BeginForm("ProfileSummary", "Cv", FormMethod.Post))
+{
 
-<div class="panel-group" id="accordion">
-    <div class="panel panel-default">
-        <div class="panel-heading panel-light-blue" data-toggle="collapse" data-target="#collapse1">
-            <h4 class="panel-title uppercase">
-                @Resources.Personal
-                <span class="tab_act"> </span>
-            </h4>
-            
-        </div>
-        <div id="collapse1" class="panel-collapse collapse">
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-xs-4">
-                        @Html.Partial("_FileUpload", Model.FileUploadViewModel)
-                    </div>
-                    <div class="col-xs-8 personal-information">
-                        @Html.Partial("_PersonalInformation", Model.PersonalInformationViewModel)
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+            <div class="panel-heading panel-light-blue" data-toggle="collapse" data-target="#collapse1">
+                <h4 class="panel-title uppercase">
+                    @Resources.Personal
+                    <span class="tab_act"> </span>
+                </h4>
+
+            </div>
+            <div id="collapse1" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            @Html.Partial("_FileUpload", Model.FileUploadViewModel)
+                        </div>
+                        <div class="col-xs-8 personal-information">
+                            @Html.Partial("_PersonalInformation", Model.PersonalInformationViewModel)
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div id="education_panel" class="panel panel-default">
-        <div class="panel-heading panel-green" data-toggle="collapse" data-target="#collapse2">
-            <h4 class="panel-title uppercase">
-                @Resources.Education
-                <span class="tab_act"> </span>
-            </h4>
+        <div id="education_panel" class="panel panel-default">
+            <div class="panel-heading panel-green" data-toggle="collapse" data-target="#collapse2">
+                <h4 class="panel-title uppercase">
+                    @Resources.Education
+                    <span class="tab_act"> </span>
+                </h4>
+            </div>
+            <div id="collapse2" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <div class="row">
+                        @Html.Partial("_Education", Model.EducationViewModel)
+                    </div>
+                </div>
+            </div>
         </div>
-        <div id="collapse2" class="panel-collapse collapse">
-            <div class="panel-body">
-                <div class="row">
-                    @Html.Partial("_Education", Model.EducationViewModel)
+        <div id="courses_panel" class="panel panel-default">
+            <div class="panel-heading panel-middle-blue" data-toggle="collapse" data-target="#collapse3">
+                <h4 class="panel-title uppercase">
+                    @Resources.Courses
+                    <span class="tab_act"> </span>
+                </h4>
+            </div>
+            <div id="collapse3" class="panel-collapse collapse">
+                <div class="panel-body">
+                    @Html.Partial("_AdditionalCourses", Model.AdditionalCoursesViewModel)
+                </div>
+            </div>
+        </div>
+        <div id="language_panel" class="panel panel-default">
+            <div class="panel-heading panel-pink" data-toggle="collapse" data-target="#collapse4">
+                <h4 class="panel-title uppercase">
+                    @Resources.Language
+                    <span class="tab_act"> </span>
+                </h4>
+            </div>
+            <div id="collapse4" class="panel-collapse collapse">
+                <div class="panel-body">
+                    @Html.Partial("_Language", Model.LanguageViewModel)
+                </div>
+            </div>
+        </div>
+        <div id="career_panel" class="panel panel-default">
+            <div class="panel-heading panel-red" data-toggle="collapse" data-target="#collapse5">
+                <h4 class="panel-title uppercase">
+                    @Resources.CareerSummary
+                    <span class="tab_act"> </span>
+                </h4>
+            </div>
+            <div id="collapse5" class="panel-collapse collapse">
+                <div class="panel-body">
+                    @Html.Partial("_CareerSummary", Model.CareerSummaryViewModel)
+                </div>
+            </div>
+        </div>
+        <div id="memberships_panel" class="panel panel-default">
+            <div class="panel-heading panel-heavy-blue" data-toggle="collapse" data-target="#collapse6">
+                <h4 class="panel-title uppercase">
+                    @Resources.Memberships
+                    <span class="tab_act"> </span>
+                </h4>
+            </div>
+            <div id="collapse6" class="panel-collapse collapse">
+                <div class="panel-body">
+                    @Html.Partial("_Memberships", Model.MembershipViewModel)
+                </div>
+            </div>
+        </div>
+        <div id="compensation_panel" class="panel panel-default">
+            <div class="panel-heading panel-orange" data-toggle="collapse" data-target="#collapse7">
+                <h4 class="panel-title uppercase">
+                    @Resources.Compensation
+                    <span class="tab_act"> </span>
+                </h4>
+            </div>
+            <div id="collapse7" class="panel-collapse collapse">
+                <div class="panel-body">
+                    @Html.Partial("_Compensation", Model.CompensationViewModel)
+                </div>
+            </div>
+        </div>
+        <div id="notice_panel" class="panel panel-default">
+            <div class="panel-heading panel-light-blue" data-toggle="collapse" data-target="#collapse8">
+                <h4 class="panel-title uppercase">
+                    @Resources.NoticePeriodLabel
+                    <span class="tab_act"> </span>
+                </h4>
+            </div>
+            <div id="collapse8" class="panel-collapse collapse">
+                <div class="panel-body">
+                    @Html.Partial("_NoticePeriod", Model.NoticePeriodViewModel)
+                </div>
+            </div>
+        </div>
+        <div id="comments_panel" class="panel panel-default">
+            <div class="panel-heading panel-green" data-toggle="collapse" data-target="#collapse9">
+                <h4 class="panel-title uppercase">
+                    @Resources.AdditionalComments
+                    <span class="tab_act"> </span>
+                </h4>
+            </div>
+            <div id="collapse9" class="panel-collapse collapse">
+                <div class="panel-body">
+                    @Html.Partial("_AdditionalComments", Model.AdditionalCommentsViewModel)
+                    @Html.Partial("_AdditionalFiles", Model.AdditionalFilesViewModel)
+                    @Html.Partial("_AddAdditionalFile")
                 </div>
             </div>
         </div>
     </div>
-    <div id="courses_panel" class="panel panel-default">
-        <div class="panel-heading panel-middle-blue" data-toggle="collapse" data-target="#collapse3">
-            <h4 class="panel-title uppercase">
-                @Resources.Courses
-                <span class="tab_act"> </span>
-            </h4>
-        </div>
-        <div id="collapse3" class="panel-collapse collapse">
-            <div class="panel-body">
-                @Html.Partial("_AdditionalCourses", Model.AdditionalCoursesViewModel)
+
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group text-right">
+                    <input id="save_all" type="submit" value="@Resources.Save" class="btn btn-primary float-right" />
+                </div>
             </div>
         </div>
     </div>
-    <div id="language_panel" class="panel panel-default">
-        <div class="panel-heading panel-pink" data-toggle="collapse" data-target="#collapse4">
-            <h4 class="panel-title uppercase">
-                @Resources.Language
-                <span class="tab_act"> </span>
-            </h4>
-        </div>
-        <div id="collapse4" class="panel-collapse collapse">
-            <div class="panel-body">
-                @Html.Partial("_Language", Model.LanguageViewModel)
-            </div>
-        </div>
-    </div>
-    <div id="career_panel" class="panel panel-default">
-        <div class="panel-heading panel-red" data-toggle="collapse" data-target="#collapse5">
-            <h4 class="panel-title uppercase">
-                @Resources.CareerSummary
-                <span class="tab_act"> </span>
-            </h4>
-        </div>
-        <div id="collapse5" class="panel-collapse collapse">
-            <div class="panel-body">
-                @Html.Partial("_CareerSummary", Model.CareerSummaryViewModel)
-            </div>
-        </div>
-    </div>
-    <div id="memberships_panel" class="panel panel-default">
-        <div class="panel-heading panel-heavy-blue" data-toggle="collapse" data-target="#collapse6">
-            <h4 class="panel-title uppercase">
-                @Resources.Memberships
-                <span class="tab_act"> </span>
-            </h4>
-        </div>
-        <div id="collapse6" class="panel-collapse collapse">
-            <div class="panel-body">
-                @Html.Partial("_Memberships", Model.MembershipViewModel)
-            </div>
-        </div>
-    </div>
-    <div id="compensation_panel" class="panel panel-default">
-        <div class="panel-heading panel-orange" data-toggle="collapse" data-target="#collapse7">
-            <h4 class="panel-title uppercase">
-                @Resources.Compensation
-                <span class="tab_act"> </span>
-            </h4>
-        </div>
-        <div id="collapse7" class="panel-collapse collapse">
-            <div class="panel-body">
-                @Html.Partial("_Compensation", Model.CompensationViewModel)
-            </div>
-        </div>
-    </div>
-    <div id="notice_panel" class="panel panel-default">
-        <div class="panel-heading panel-light-blue" data-toggle="collapse" data-target="#collapse8">
-            <h4 class="panel-title uppercase">
-                @Resources.NoticePeriodLabel
-                <span class="tab_act"> </span>
-            </h4>
-        </div>
-        <div id="collapse8" class="panel-collapse collapse">
-            <div class="panel-body">
-                @Html.Partial("_NoticePeriod", Model.NoticePeriodViewModel)
-            </div>
-        </div>
-    </div>
-    <div id="comments_panel" class="panel panel-default">
-        <div class="panel-heading panel-green" data-toggle="collapse" data-target="#collapse9">
-            <h4 class="panel-title uppercase">
-                @Resources.AdditionalComments
-                <span class="tab_act"> </span>
-            </h4>
-        </div>
-        <div id="collapse9" class="panel-collapse collapse">
-            <div class="panel-body">
-                @Html.Partial("_AdditionalComments", Model.AdditionalCommentsViewModel)
-                @Html.Partial("_AdditionalFiles", Model.AdditionalFilesViewModel)
-                @Html.Partial("_AddAdditionalFile")
-            </div>
-        </div>
-    </div>
-</div>
+}

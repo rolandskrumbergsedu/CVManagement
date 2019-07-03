@@ -263,6 +263,7 @@
     <Compile Include="Models\Database\KeyTask.cs" />
     <Compile Include="Models\Database\Language.cs" />
     <Compile Include="Models\Database\Membership.cs" />
+    <Compile Include="Models\Database\OrderingExtensions.cs" />
     <Compile Include="Models\Database\Position.cs" />
     <Compile Include="Models\Database\Profile.cs" />
     <Compile Include="Models\Database\ProfileImage.cs" />

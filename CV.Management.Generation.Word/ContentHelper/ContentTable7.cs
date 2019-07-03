@@ -202,7 +202,7 @@ namespace CV.Management.Generation.Word.ContentHelper
                     }
                 }
 
-                var companies = highestCompanies.Where(x => x.Roles.Where(y => y.StartingYear.Value == highestStartYear).Count() > 0);
+                var companies = highestCompanies.Where(x => x.Roles.Where(y => y.StartingYear.HasValue && y.StartingYear.Value == highestStartYear).Count() > 0);
 
                 foreach (var company in companies)
                 {
@@ -210,7 +210,7 @@ namespace CV.Management.Generation.Word.ContentHelper
                     result.Add(company);
                 }
 
-                nonPresentCompanies.RemoveAll(x => x.Roles.Where(y => y.EndingYear.Value == highestYear && y.StartingYear.Value == highestStartYear).Count() > 0);
+                nonPresentCompanies.RemoveAll(x => x.Roles.Where(y => y.EndingYear.HasValue && y.EndingYear.Value == highestYear && y.StartingYear.HasValue && y.StartingYear.Value == highestStartYear).Count() > 0);
             }
 
             return result;
