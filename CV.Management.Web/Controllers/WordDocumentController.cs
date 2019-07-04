@@ -153,7 +153,7 @@ namespace CV.Management.Web.Controllers
                 WrittenLevel = ((int)x.WrittenLevel.Value) + 1
             }).ToList();
 
-            var careerSummary = profile.Companies.Select(x => new CareerSummaryItem
+            var careerSummary = profile.Companies.ToList().OrderCompanies().Select(x => new CareerSummaryItem
             {
                 City = x.City,
                 Industry = x.Industry.HasValue ? x.Industry.Value.ToString() : x.OtherIndustry,

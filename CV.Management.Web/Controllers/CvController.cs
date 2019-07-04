@@ -951,7 +951,9 @@ namespace CV.Management.Web.Controllers
                 }
                 else
                 {
-                    foreach (var company in profile.Companies)
+                    var companiesToReturn = profile.Companies.ToList().OrderCompanies();
+
+                    foreach (var company in companiesToReturn)
                     {
                         var companyViewModel = new CompanyItem
                         {
@@ -985,7 +987,7 @@ namespace CV.Management.Web.Controllers
                         careerSummaryViewModel.Companies.Add(companyViewModel);
                     }
                 }
-                return SortCareerSummary(careerSummaryViewModel);
+                return careerSummaryViewModel;
             }
         }
 
@@ -1323,99 +1325,6 @@ namespace CV.Management.Web.Controllers
             var emptyOnes = models.Memberships.Where(x => x.ToTime == null && !x.Now).OrderByDescending(x => x.ToTime).ToList();
 
             result.Memberships.AddRange(emptyOnes);
-
-            return result;
-        }
-
-        private CareerSummaryViewModel SortCareerSummary(CareerSummaryViewModel models)
-        {
-            var result = new CareerSummaryViewModel
-            {
-                Companies = new List<CompanyItem>()
-            };
-
-            var currentCompanies = models.Companies.Where(x => x.Positions.Where(y => y.ToTime == null && y.Now).Count() > 0);
-
-            foreach (var company in currentCompanies)
-            {
-                company.Positions = company.Positions.OrderByDescending(x => x.FromTime).ToList();
-                result.Companies.Add(company);
-            }
-
-            var fullCompanies = models.Companies.Where(x => x.Positions.Where(y => y.ToTime != null && !y.Now).Count() > 0 && x.Positions.Where(y => y.ToTime == null && y.Now).Count() == 0).ToList();
-
-            while (fullCompanies.Count() > 0)
-            {
-                var highestYear = 0;
-
-                foreach (var fullCompany in fullCompanies)
-                {
-                    var highestYearInPosition = fullCompany.Positions.Max(x => x.ToTime).Value;
-
-                    if (highestYearInPosition > highestYear)
-                    {
-                        highestYear = highestYearInPosition;
-                    }
-                }
-
-                var highestCompanies = fullCompanies.Where(x => x.Positions.Where(y => y.ToTime.HasValue && y.ToTime.Value == highestYear).Count() > 0);
-
-                var highestStartYear = 0;
-
-                foreach (var company in highestCompanies)
-                {
-                    var lowestYearInPosition = company.Positions.Min(x => x.FromTime).Value;
-
-                    if (lowestYearInPosition > highestStartYear)
-                    {
-                        highestStartYear = lowestYearInPosition;
-                    }
-                }
-
-                var companies = highestCompanies.Where(x => x.Positions.Where(y => y.FromTime.HasValue && y.FromTime.Value == highestStartYear).Count() > 0);
-
-                foreach (var company in companies)
-                {
-                    company.Positions = company.Positions.OrderByDescending(x => x.FromTime).ToList();
-                    result.Companies.Add(company);
-                }
-
-                fullCompanies.RemoveAll(x => x.Positions.Where(y => y.ToTime.HasValue && y.ToTime.Value == highestYear && y.FromTime.HasValue && y.FromTime.Value == highestStartYear).Count() > 0);
-            }
-
-            var halfEmptyCompanies = models.Companies.Where(x => x.Positions.Where(y => y.ToTime == null && !y.Now && y.FromTime != null).Count() > 0).ToList();
-
-            while (halfEmptyCompanies.Count() > 0)
-            {
-                var highestYear = 0;
-
-                foreach (var halfCompany in halfEmptyCompanies)
-                {
-                    var highestYearInPosition = halfCompany.Positions.Max(x => x.FromTime).Value;
-
-                    if (highestYearInPosition > highestYear)
-                    {
-                        highestYear = highestYearInPosition;
-                    }
-                }
-
-                var companies = halfEmptyCompanies.Where(x => x.Positions.Where(y => y.FromTime.Value == highestYear).Count() > 0);
-
-                foreach (var company in companies)
-                {
-                    company.Positions = company.Positions.OrderByDescending(x => x.FromTime).ToList();
-                    result.Companies.Add(company);
-                }
-
-                halfEmptyCompanies.RemoveAll(x => x.Positions.Where(y => y.FromTime.Value == highestYear).Count() > 0);
-            }
-
-            var emptyCompanies = models.Companies.Where(x => x.Positions.Where(y => y.ToTime == null && !y.Now && y.FromTime == null).Count() > 0).ToList();
-
-            foreach (var emptyCompany in emptyCompanies)
-            {
-                result.Companies.AddRange(emptyCompanies);
-            }
 
             return result;
         }
