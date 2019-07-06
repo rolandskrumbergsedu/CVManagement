@@ -111,7 +111,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             table1.Append(tableGrid1);
             table1.Append(tableRow1);
 
-            var careerSummaries = SortCareerSummary(data.CareerSummary);
+            var careerSummaries = data.CareerSummary;
 
             for (int i = 0; i < careerSummaries.Count; i++)
             {
@@ -159,63 +159,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             
             return table1;
         }
-
-        private static List<CareerSummaryItem> SortCareerSummary(List<CareerSummaryItem> careerSummary)
-        {
-            var result = new List<CareerSummaryItem>();
-
-            var presentCompanies = careerSummary.Where(x => x.Roles.Where(y => y.EndingYear == null && y.Now.Value).Count() > 0);
-
-            foreach (var company in presentCompanies)
-            {
-                company.Roles = company.Roles.OrderByDescending(x => x.StartingYear).ToList();
-                result.Add(company);
-            }
-
-            var nonPresentCompanies = careerSummary.Where(x => x.Roles.Where(y => y.EndingYear.HasValue && !y.Now.Value).Count() > 0 && x.Roles.Where(y => y.EndingYear == null && y.Now.Value).Count() == 0).ToList();
-
-            while(nonPresentCompanies.Count() > 0)
-            {
-                var highestYear = 0;
-
-                foreach (var company in nonPresentCompanies)
-                {
-                    var highestYearInPosition = company.Roles.Max(x => x.EndingYear).Value;
-
-                    if (highestYearInPosition > highestYear)
-                    {
-                        highestYear = highestYearInPosition;
-                    }
-                }
-
-                var highestCompanies = nonPresentCompanies.Where(x => x.Roles.Where(y => y.EndingYear.HasValue && y.EndingYear.Value == highestYear).Count() > 0);
-
-                var highestStartYear = 0;
-
-                foreach (var company in nonPresentCompanies)
-                {
-                    var lowestYearInPosition = company.Roles.Min(x => x.StartingYear).Value;
-
-                    if (lowestYearInPosition > highestStartYear)
-                    {
-                        highestStartYear = lowestYearInPosition;
-                    }
-                }
-
-                var companies = highestCompanies.Where(x => x.Roles.Where(y => y.StartingYear.HasValue && y.StartingYear.Value == highestStartYear).Count() > 0);
-
-                foreach (var company in companies)
-                {
-                    company.Roles = company.Roles.OrderByDescending(x => x.StartingYear).ToList();
-                    result.Add(company);
-                }
-
-                nonPresentCompanies.RemoveAll(x => x.Roles.Where(y => y.EndingYear.HasValue && y.EndingYear.Value == highestYear && y.StartingYear.HasValue && y.StartingYear.Value == highestStartYear).Count() > 0);
-            }
-
-            return result;
-        }
-
+        
         private static TableRow CreateCompanySubheadingRow(CareerSummaryItem data, string language)
         {
             TableRow tableRow2 = new TableRow() { RsidTableRowAddition = "009B2C1D", RsidTableRowProperties = "009E39C2", ParagraphId = "69B55967", TextId = "77777777" };

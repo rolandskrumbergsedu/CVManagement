@@ -111,5 +111,71 @@ namespace CV.Management.Web.Models.Database
 
             return result;
         }
+
+        public static List<Education> OrderEducation(this List<Education> educationToOrder)
+        {
+            var result = new List<Education>();
+
+            var presentEducation = educationToOrder.Where(x => x.Now).OrderByDescending(y => y.FromYear).ToList();
+            result.AddRange(presentEducation);
+
+            var nonPresentEducation = educationToOrder.Where(x => !x.Now).ToList();
+
+            while (nonPresentEducation.Count() > 0)
+            {
+                var highestYear = nonPresentEducation.Max(x => x.ToYear);
+                
+                var highestYeareducations = nonPresentEducation.Where(x => x.ToYear == highestYear).ToList();
+
+                var orderedHighestYeareducations = highestYeareducations.OrderByDescending(x => x.FromYear).ToList();
+
+                result.AddRange(orderedHighestYeareducations);
+
+                nonPresentEducation.RemoveAll(x => x.ToYear == highestYear);
+            }
+
+            return result;
+        }
+
+        public static List<AdditionalCourse> OrderAdditionalCourse(this List<AdditionalCourse> additionalCoursesToOrder)
+        {
+            var result = new List<AdditionalCourse>();
+
+            var nonEmptyCourses = additionalCoursesToOrder
+                .Where(x => x.Year.HasValue)
+                .OrderByDescending(x => x.Year)
+                .ToList();
+            result.AddRange(nonEmptyCourses);
+
+            result.AddRange(additionalCoursesToOrder
+                .Where(x => !x.Year.HasValue));
+
+            return result;
+        }
+
+        public static List<Membership> OrderMembership(this List<Membership> membershipToOrder)
+        {
+            var result = new List<Membership>();
+
+            var presentMembership = membershipToOrder.Where(x => x.Now).OrderByDescending(y => y.FromTime).ToList();
+            result.AddRange(presentMembership);
+
+            var nonPresentMemberships = membershipToOrder.Where(x => !x.Now).ToList();
+
+            while (nonPresentMemberships.Count() > 0)
+            {
+                var highestYear = nonPresentMemberships.Max(x => x.ToTime);
+
+                var highestYearMemberships = nonPresentMemberships.Where(x => x.ToTime == highestYear).ToList();
+
+                var orderedHighestYearMemberships = highestYearMemberships.OrderByDescending(x => x.FromTime).ToList();
+
+                result.AddRange(orderedHighestYearMemberships);
+
+                nonPresentMemberships.RemoveAll(x => x.ToTime == highestYear);
+            }
+
+            return result;
+        }
     }
 }
