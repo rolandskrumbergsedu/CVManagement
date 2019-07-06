@@ -122,7 +122,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             table1.Append(tableGrid1);
             table1.Append(tableRow1);
 
-            var courses = SortCourses(data.AdditionalCourses);
+            var courses = data.AdditionalCourses;
 
             foreach (var course in courses)
             {
@@ -131,21 +131,6 @@ namespace CV.Management.Generation.Word.ContentHelper
             }
 
             return table1;
-        }
-
-        private static List<AdditionalCoursesItem> SortCourses(List<AdditionalCoursesItem> additionalCourses)
-        {
-            var result = new List<AdditionalCoursesItem>();
-            
-            var full = additionalCourses.Where(x => x.Year != null).OrderByDescending(x => x.Year);
-
-            result.AddRange(full);
-
-            var empty = additionalCourses.Where(x => x.Year == null);
-
-            result.AddRange(empty);
-
-            return result;
         }
 
         private static TableRow CreateAdditionalCourseRow(AdditionalCoursesItem additionalCourse, GenerationData data)

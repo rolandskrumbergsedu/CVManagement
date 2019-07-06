@@ -765,7 +765,9 @@ namespace CV.Management.Web.Controllers
                 }
                 else
                 {
-                    foreach (var educationItem in profile.Educations)
+                    var orderedEducation = profile.Educations.ToList().OrderEducation();
+
+                    foreach (var educationItem in orderedEducation)
                     {
                         educationViewModel.Education.Add(new EducationItem
                         {
@@ -778,7 +780,7 @@ namespace CV.Management.Web.Controllers
                     }
                 }
 
-                return SortEducation(educationViewModel);
+                return educationViewModel;
             }
         }
 
@@ -819,7 +821,9 @@ namespace CV.Management.Web.Controllers
                 }
                 else
                 {
-                    foreach (var courseItem in profile.AdditionalCourses)
+                    var orderedCourses = profile.AdditionalCourses.ToList().OrderAdditionalCourse();
+
+                    foreach (var courseItem in orderedCourses)
                     {
                         additionalCoursesViewModel.Courses.Add(new Course
                         {
@@ -831,7 +835,7 @@ namespace CV.Management.Web.Controllers
                     }
                 }
 
-                return SortCourses(additionalCoursesViewModel);
+                return additionalCoursesViewModel;
             }
         }
 
@@ -993,7 +997,9 @@ namespace CV.Management.Web.Controllers
 
         private MembershipViewModel CreateMembershipViewModel(Profile profile)
         {
-            if (profile.Memberships == null)
+            var memberships = profile.Memberships;
+
+            if (memberships == null)
             {
                 return new MembershipViewModel
                 {
@@ -1016,7 +1022,7 @@ namespace CV.Management.Web.Controllers
                     Memberships = new List<MembershipItem>()
                 };
 
-                if (profile.Memberships.Count == 0)
+                if (memberships.Count == 0)
                 {
                     membershipViewModel.Memberships.Add(new MembershipItem
                     {
@@ -1028,7 +1034,9 @@ namespace CV.Management.Web.Controllers
                 }
                 else
                 {
-                    foreach (var membership in profile.Memberships)
+                    var orderedMemberships = memberships.ToList().OrderMembership();
+
+                    foreach (var membership in orderedMemberships)
                     {
                         membershipViewModel.Memberships.Add(new MembershipItem
                         {
@@ -1040,7 +1048,7 @@ namespace CV.Management.Web.Controllers
                     }
                 }
 
-                return SortMemberships(membershipViewModel);
+                return membershipViewModel;
             }
         }
 
@@ -1247,86 +1255,6 @@ namespace CV.Management.Web.Controllers
             }
 
             return sb.ToString();
-        }
-
-        private EducationViewModel SortEducation(EducationViewModel models)
-        {
-            var result = new EducationViewModel()
-            {
-                Education = new List<EducationItem>()
-            };
-
-            var present = models.Education.Where(x => x.ToYear == null && x.Now).OrderByDescending(x => x.FromYear);
-
-            result.Education.AddRange(present);
-
-            var restOfThem = models.Education.Where(x => x.ToYear != null && !x.Now).OrderByDescending(x => x.ToYear).ToList();
-
-            while (restOfThem.Count() > 0)
-            {
-                var lastYear = restOfThem[0].ToYear;
-
-                var latestYears = restOfThem.Where(x => x.ToYear == lastYear).OrderByDescending(x => x.FromYear);
-
-                result.Education.AddRange(latestYears);
-
-                restOfThem.RemoveAll(x => x.ToYear == lastYear);
-            }
-
-            var emptyOnes = models.Education.Where(x => x.ToYear == null && !x.Now).OrderByDescending(x => x.ToYear).ToList();
-
-            result.Education.AddRange(emptyOnes);
-
-            return result;
-        }
-
-        private AdditionalCoursesViewModel SortCourses(AdditionalCoursesViewModel models)
-        {
-            var result = new AdditionalCoursesViewModel()
-            {
-                Courses = new List<Course>()
-            };
-
-            var full = models.Courses.Where(x => x.Year != null).OrderByDescending(x => x.Year);
-
-            result.Courses.AddRange(full);
-
-            var empty = models.Courses.Where(x => x.Year == null);
-
-            result.Courses.AddRange(empty);
-
-            return result;
-        }
-
-        private MembershipViewModel SortMemberships(MembershipViewModel models)
-        {
-            var result = new MembershipViewModel()
-            {
-                Memberships = new List<MembershipItem>()
-            };
-
-            var present = models.Memberships.Where(x => x.ToTime == null && x.Now).OrderByDescending(x => x.FromTime);
-
-            result.Memberships.AddRange(present);
-
-            var restOfThem = models.Memberships.Where(x => x.ToTime != null && !x.Now).OrderByDescending(x => x.ToTime).ToList();
-
-            while (restOfThem.Count() > 0)
-            {
-                var lastYear = restOfThem[0].ToTime;
-
-                var latestYears = restOfThem.Where(x => x.ToTime == lastYear).OrderByDescending(x => x.FromTime);
-
-                result.Memberships.AddRange(latestYears);
-
-                restOfThem.RemoveAll(x => x.ToTime == lastYear);
-            }
-
-            var emptyOnes = models.Memberships.Where(x => x.ToTime == null && !x.Now).OrderByDescending(x => x.ToTime).ToList();
-
-            result.Memberships.AddRange(emptyOnes);
-
-            return result;
         }
     }
 }

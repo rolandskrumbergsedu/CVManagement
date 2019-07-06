@@ -115,7 +115,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             table1.Append(tableGrid1);
             table1.Append(tableRow1);
 
-            var activities = SortActivities(data.SocialActivites);
+            var activities = data.SocialActivites;
 
             foreach (var activity in activities)
             {
@@ -123,38 +123,6 @@ namespace CV.Management.Generation.Word.ContentHelper
             }
 
             return table1;
-        }
-
-        private static List<SocialActivity> SortActivities(List<SocialActivity> socialActivites)
-        {
-            var result = new List<SocialActivity>();
-
-            var present = socialActivites.Where(x => x.EndingYear == null && x.StartingYear != null).OrderByDescending(x => x.StartingYear);
-
-            result.AddRange(present);
-
-            var restOfThem = socialActivites.Where(x => x.EndingYear != null).OrderByDescending(x => x.EndingYear).ToList();
-
-            while (restOfThem.Count() > 0)
-            {
-                var lastYear = restOfThem[0].EndingYear;
-
-                var latestYears = restOfThem.Where(x => x.EndingYear == lastYear && x.StartingYear != null).OrderByDescending(x => x.StartingYear);
-
-                result.AddRange(latestYears);
-
-                var latestEmptyYears = restOfThem.Where(x => x.EndingYear == lastYear && x.StartingYear == null);
-
-                result.AddRange(latestEmptyYears);
-
-                restOfThem.RemoveAll(x => x.EndingYear == lastYear);
-            }
-
-            var emptyOnes = socialActivites.Where(x => x.EndingYear == null && x.StartingYear == null).ToList();
-
-            result.AddRange(emptyOnes);
-
-            return result;
         }
 
         private static TableRow CreateMembershipRow(SocialActivity data)

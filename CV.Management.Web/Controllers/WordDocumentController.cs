@@ -130,7 +130,7 @@ namespace CV.Management.Web.Controllers
                 ProfilePictureType = profile.PictureType
             };
 
-            var education = profile.Educations.Select(x => new EducationItem
+            var education = profile.Educations.ToList().OrderEducation().Select(x => new EducationItem
             {
                 Degree = x.Degree,
                 EndingYear = x.ToYear,
@@ -138,7 +138,7 @@ namespace CV.Management.Web.Controllers
                 University = x.Institution
             }).ToList();
 
-            var courses = profile.AdditionalCourses.Select(x => new AdditionalCoursesItem
+            var courses = profile.AdditionalCourses.ToList().OrderAdditionalCourse().Select(x => new AdditionalCoursesItem
             {
                 AmountOfDays = x.NumberOfDays,
                 CourseName = x.CourseName,
@@ -177,7 +177,7 @@ namespace CV.Management.Web.Controllers
 
             }).ToList();
 
-            var activities = profile.Memberships.Select(x => new SocialActivity
+            var activities = profile.Memberships.ToList().OrderMembership().Select(x => new SocialActivity
             {
                 StartingYear = x.FromTime,
                 EndingYear = x.ToTime,
