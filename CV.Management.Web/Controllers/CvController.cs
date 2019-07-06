@@ -427,12 +427,14 @@ namespace CV.Management.Web.Controllers
                                 {
                                     Achievements = position.Achievements,
                                     DirectSubordinates = position.DirectSubordinates,
-                                    FromTime = position.FromTime,
+                                    FromTime = position.FromTime.Contains(".") ? int.Parse(position.FromTime.Split('.')[1]) : int.Parse(position.FromTime),
+                                    FromTimeMonth = position.FromTime.Contains(".") ? int.Parse(position.FromTime.Split('.')[0]) : (int?)null,
                                     KeyTasks = GetKeyTasks(position.KeyTasks),
                                     Name = position.Name,
                                     ReasonForLeaving = position.ReasonForLeaving,
                                     ReportingTo = position.ReportingTo,
-                                    ToTime = position.ToTime,
+                                    ToTime = position.ToTime.Contains(".") ? int.Parse(position.ToTime.Split('.')[1]) : int.Parse(position.ToTime),
+                                    ToTimeMonth = position.ToTime.Contains(".") ? int.Parse(position.ToTime.Split('.')[0]) : (int?)null,
                                     Now = position.Now
                                 });
                             }
@@ -470,12 +472,14 @@ namespace CV.Management.Web.Controllers
                             {
                                 Achievements = position.Achievements,
                                 DirectSubordinates = position.DirectSubordinates,
-                                FromTime = position.FromTime,
+                                FromTime = position.FromTime.Contains(".") ? int.Parse(position.FromTime.Split('.')[1]) : int.Parse(position.FromTime),
+                                FromTimeMonth = position.FromTime.Contains(".") ? int.Parse(position.FromTime.Split('.')[0]) : (int?)null,
                                 KeyTasks = GetKeyTasks(position.KeyTasks),
                                 Name = position.Name,
                                 ReasonForLeaving = position.ReasonForLeaving,
                                 ReportingTo = position.ReportingTo,
-                                ToTime = position.ToTime,
+                                ToTime = position.ToTime.Contains(".") ? int.Parse(position.ToTime.Split('.')[1]) : int.Parse(position.ToTime),
+                                ToTimeMonth = position.ToTime.Contains(".") ? int.Parse(position.ToTime.Split('.')[0]) : (int?)null,
                                 Now = position.Now
                             });
                         }
@@ -974,16 +978,24 @@ namespace CV.Management.Web.Controllers
 
                         foreach (var position in company.Positions)
                         {
+                            var fromTime = position.FromTimeMonth.HasValue ? 
+                                position.FromTime.HasValue ? position.FromTimeMonth + "." + position.FromTime.Value : position.FromTimeMonth + "." :
+                                position.FromTime.HasValue ? position.FromTime.ToString() : "";
+
+                            var toTime = position.ToTimeMonth.HasValue ?
+                                position.ToTime.HasValue ? position.ToTimeMonth + "." + position.ToTime.Value : position.ToTimeMonth + "." :
+                                position.ToTime.HasValue ? position.ToTime.ToString() : "";
+
                             companyViewModel.Positions.Add(new PositionItem
                             {
                                 Achievements = position.Achievements,
                                 DirectSubordinates = position.DirectSubordinates,
-                                FromTime = position.FromTime,
+                                FromTime = fromTime,
                                 KeyTasks = GetKeyTasks(position.KeyTasks.ToList()),
                                 Name = position.Name,
                                 ReasonForLeaving = position.ReasonForLeaving,
                                 ReportingTo = position.ReportingTo,
-                                ToTime = position.ToTime,
+                                ToTime = toTime,
                                 Now = position.Now
                             });
                         }

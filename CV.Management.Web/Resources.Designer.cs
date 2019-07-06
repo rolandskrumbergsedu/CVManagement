@@ -340,6 +340,15 @@ namespace CV.Management.Web {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to From (YYYY or MM.YYYY) *.
+        /// </summary>
+        public static string FromTimeWithMonth {
+            get {
+                return ResourceManager.GetString("FromTimeWithMonth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Period from (YYYY).
         /// </summary>
         public static string FromYear {
@@ -705,6 +714,15 @@ namespace CV.Management.Web {
         public static string ToTime {
             get {
                 return ResourceManager.GetString("ToTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To (YYYY or MM.YYYY) *.
+        /// </summary>
+        public static string ToTimeWithMonth {
+            get {
+                return ResourceManager.GetString("ToTimeWithMonth", resourceCulture);
             }
         }
         

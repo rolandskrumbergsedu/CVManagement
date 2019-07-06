@@ -38,14 +38,14 @@ namespace CV.Management.Web.Models
         public string Name { get; set; }
         [Required]
         [Range(1900, 3000)]
-        [RegularExpression("^[12][0-9]{3}$", ErrorMessageResourceType = typeof(Resources), ErrorMessageResourceName = "InvalidYear")]
-        [Display(Name = "FromTime", ResourceType = typeof(Resources))]
-        public int? FromTime { get; set; }
+        [RegularExpression("^[0-9]*[0-9]{1}.[12][0-9]{3}|^[12][0-9]{3}$", ErrorMessageResourceType = typeof(Resources), ErrorMessageResourceName = "InvalidYearWithMonth")]
+        [Display(Name = "FromTimeWithMonth", ResourceType = typeof(Resources))]
+        public string FromTime { get; set; }
         [Required]
         [Range(1900, 3000)]
-        [RegularExpression("^[12][0-9]{3}$", ErrorMessageResourceType = typeof(Resources), ErrorMessageResourceName = "InvalidYear")]
-        [Display(Name = "ToTime", ResourceType = typeof(Resources))]
-        public int? ToTime { get; set; }
+        [RegularExpression("^[0-9]*[0-9]{1}.[12][0-9]{3}|^[12][0-9]{3}$", ErrorMessageResourceType = typeof(Resources), ErrorMessageResourceName = "InvalidYearWithMonth")]
+        [Display(Name = "ToTimeWithMonth", ResourceType = typeof(Resources))]
+        public string ToTime { get; set; }
         [Display(Name = "Present", ResourceType = typeof(Resources))]
         public bool Now { get; set; }
         [Display(Name = "KeyTasks", ResourceType = typeof(Resources))]

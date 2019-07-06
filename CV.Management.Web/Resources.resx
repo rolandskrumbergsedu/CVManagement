@@ -357,4 +357,10 @@
   <data name="Delete" xml:space="preserve">
     <value>Delete picture</value>
   </data>
+  <data name="FromTimeWithMonth" xml:space="preserve">
+    <value>From (YYYY or MM.YYYY) *</value>
+  </data>
+  <data name="ToTimeWithMonth" xml:space="preserve">
+    <value>To (YYYY or MM.YYYY) *</value>
+  </data>
 </root>

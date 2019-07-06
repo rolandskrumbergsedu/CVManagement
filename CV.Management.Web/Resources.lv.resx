@@ -354,4 +354,10 @@
   <data name="Delete" xml:space="preserve">
     <value>Dzēst foto</value>
   </data>
+  <data name="FromTimeWithMonth" xml:space="preserve">
+    <value>No (GGGG vai MM.GGGG) *</value>
+  </data>
+  <data name="ToTimeWithMonth" xml:space="preserve">
+    <value>Līdz (GGGG vai MM.GGGG) *</value>
+  </data>
 </root>
