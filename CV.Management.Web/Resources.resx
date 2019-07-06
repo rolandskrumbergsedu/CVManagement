@@ -166,7 +166,7 @@
     <value>Company information</value>
   </data>
   <data name="CompanyName" xml:space="preserve">
-    <value>Company name</value>
+    <value>Company name *</value>
   </data>
   <data name="Compensation" xml:space="preserve">
     <value>Compensation</value>
@@ -193,16 +193,16 @@
     <value>Education &amp; qualifications</value>
   </data>
   <data name="Email" xml:space="preserve">
-    <value>Email</value>
+    <value>Email *</value>
   </data>
   <data name="FromTime" xml:space="preserve">
-    <value>From (YYYY)</value>
+    <value>From (YYYY) *</value>
   </data>
   <data name="FromYear" xml:space="preserve">
     <value>Period from (YYYY)</value>
   </data>
   <data name="FullName" xml:space="preserve">
-    <value>Full name</value>
+    <value>Full name *</value>
   </data>
   <data name="Hello" xml:space="preserve">
     <value>Hello</value>
@@ -262,13 +262,13 @@
     <value>Personal</value>
   </data>
   <data name="Phone" xml:space="preserve">
-    <value>Phone</value>
+    <value>Phone *</value>
   </data>
   <data name="Position" xml:space="preserve">
     <value>Position</value>
   </data>
   <data name="PositionName" xml:space="preserve">
-    <value>Position name</value>
+    <value>Position name *</value>
   </data>
   <data name="Profile" xml:space="preserve">
     <value>Profile</value>
@@ -298,7 +298,7 @@
     <value>Spoken</value>
   </data>
   <data name="ToTime" xml:space="preserve">
-    <value>To (YYYY)</value>
+    <value>To (YYYY) *</value>
   </data>
   <data name="ToYear" xml:space="preserve">
     <value>Period to (YYYY)</value>

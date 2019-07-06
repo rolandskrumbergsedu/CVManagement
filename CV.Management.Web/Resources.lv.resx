@@ -166,7 +166,7 @@
     <value>Informācija par uzņēmumu</value>
   </data>
   <data name="CompanyName" xml:space="preserve">
-    <value>Uzņēmuma nosaukums</value>
+    <value>Uzņēmuma nosaukums *</value>
   </data>
   <data name="Compensation" xml:space="preserve">
     <value>Atalgojums</value>
@@ -193,16 +193,16 @@
     <value>Izglītība &amp; kvalifikācijas</value>
   </data>
   <data name="Email" xml:space="preserve">
-    <value>E-pasts</value>
+    <value>E-pasts *</value>
   </data>
   <data name="FromTime" xml:space="preserve">
-    <value>No (GGGG)</value>
+    <value>No (GGGG) *</value>
   </data>
   <data name="FromYear" xml:space="preserve">
     <value>Periods no (GGGG)</value>
   </data>
   <data name="FullName" xml:space="preserve">
-    <value>Vārds, uzvārds</value>
+    <value>Vārds, uzvārds *</value>
   </data>
   <data name="Hello" xml:space="preserve">
     <value>Sveiks/a</value>
@@ -259,13 +259,13 @@
     <value>Personas informācija</value>
   </data>
   <data name="Phone" xml:space="preserve">
-    <value>Telefona numurs</value>
+    <value>Telefona numurs *</value>
   </data>
   <data name="Position" xml:space="preserve">
     <value>Amats</value>
   </data>
   <data name="PositionName" xml:space="preserve">
-    <value>Amata nosaukums</value>
+    <value>Amata nosaukums *</value>
   </data>
   <data name="Profile" xml:space="preserve">
     <value>Profils</value>
@@ -295,7 +295,7 @@
     <value>Runas līmenis</value>
   </data>
   <data name="ToTime" xml:space="preserve">
-    <value>Līdz (GGGG)</value>
+    <value>Līdz (GGGG) *</value>
   </data>
   <data name="ToYear" xml:space="preserve">
     <value>Periods līdz (GGGG)</value>

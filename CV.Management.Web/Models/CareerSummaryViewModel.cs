@@ -10,6 +10,7 @@ namespace CV.Management.Web.Models
 
     public class CompanyItem
     {
+        [Required]
         [Display(Name = "CompanyName", ResourceType = typeof(Resources))]
         public string Name { get; set; }
         [Display(Name = "City", ResourceType = typeof(Resources))]

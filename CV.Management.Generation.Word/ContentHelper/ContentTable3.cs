@@ -5,6 +5,7 @@ using A = DocumentFormat.OpenXml.Drawing;
 using Pic = DocumentFormat.OpenXml.Drawing.Pictures;
 using A14 = DocumentFormat.OpenXml.Office2010.Drawing;
 using Wp14 = DocumentFormat.OpenXml.Office2010.Word.Drawing;
+using System;
 
 namespace CV.Management.Generation.Word.ContentHelper
 {
@@ -58,6 +59,8 @@ namespace CV.Management.Generation.Word.ContentHelper
             tableGrid1.Append(gridColumn1);
             tableGrid1.Append(gridColumn2);
             tableGrid1.Append(gridColumn3);
+
+
 
             TableRow tableRow1 = new TableRow() { RsidTableRowAddition = "009B2C1D", RsidTableRowProperties = "00B96314", ParagraphId = "2270864E", TextId = "77777777" };
 
@@ -128,6 +131,58 @@ namespace CV.Management.Generation.Word.ContentHelper
             tableRow1.Append(tableRowProperties1);
             tableRow1.Append(tableCell1);
 
+            TableRow tableRow2 = CreateFullNameRow(data);
+
+            TableRow tableRow3 = CreateAddressTableRow(data);
+
+            TableRow tableRow4 = CreateMobileTableRow(data);
+
+            TableRow tableRow5 = CreateEmailTableRow(data);
+
+            TableRow tableRow6 = CreateOtherInformation(data);
+
+            TableRow tableRow7 = CreateLinkedInInformation(data);
+
+            table1.Append(tableProperties1);
+            table1.Append(tableGrid1);
+            table1.Append(tableRow1);
+
+            if (!string.IsNullOrEmpty(data.Personal.FullName))
+            {
+                table1.Append(tableRow2);
+            }
+
+            if (!string.IsNullOrEmpty(data.Personal.Address))
+            {
+                table1.Append(tableRow3);
+            }
+
+            if (!string.IsNullOrEmpty(data.Personal.Mobile))
+            {
+                table1.Append(tableRow4);
+            }
+
+            if (!string.IsNullOrEmpty(data.Personal.Email))
+            {
+                table1.Append(tableRow5);
+            }
+
+            if (!string.IsNullOrEmpty(data.Personal.OtherInformation))
+            {
+                table1.Append(tableRow6);
+            }
+
+            if (!string.IsNullOrEmpty(data.Personal.LinkedIn))
+            {
+                table1.Append(tableRow7);
+            }
+
+            return table1;
+
+        }
+
+        private static TableRow CreateFullNameRow(GenerationData data)
+        {
             TableRow tableRow2 = new TableRow() { RsidTableRowAddition = "009B2C1D", RsidTableRowProperties = "00B96314", ParagraphId = "0470BACE", TextId = "77777777" };
 
             TableCell tableCell2 = new TableCell();
@@ -245,413 +300,11 @@ namespace CV.Management.Generation.Word.ContentHelper
             tableRow2.Append(tableCell3);
             tableRow2.Append(tableCell4);
 
-            TableRow tableRow3 = new TableRow() { RsidTableRowAddition = "009B2C1D", RsidTableRowProperties = "00B96314", ParagraphId = "28972EE0", TextId = "77777777" };
-
-            TableRowProperties tableRowProperties2 = new TableRowProperties();
-            GridAfter gridAfter2 = new GridAfter() { Val = 1 };
-            WidthAfterTableRow widthAfterTableRow2 = new WidthAfterTableRow() { Width = "800", Type = TableWidthUnitValues.Dxa };
-
-            tableRowProperties2.Append(gridAfter2);
-            tableRowProperties2.Append(widthAfterTableRow2);
-
-            TableCell tableCell5 = new TableCell();
-
-            TableCellProperties tableCellProperties5 = new TableCellProperties();
-            TableCellWidth tableCellWidth5 = new TableCellWidth() { Width = "800", Type = TableWidthUnitValues.Dxa };
-
-            TableCellBorders tableCellBorders5 = new TableCellBorders();
-            TopBorder topBorder6 = new TopBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
-            LeftBorder leftBorder6 = new LeftBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
-            BottomBorder bottomBorder6 = new BottomBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
-            RightBorder rightBorder6 = new RightBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
-
-            tableCellBorders5.Append(topBorder6);
-            tableCellBorders5.Append(leftBorder6);
-            tableCellBorders5.Append(bottomBorder6);
-            tableCellBorders5.Append(rightBorder6);
-
-            tableCellProperties5.Append(tableCellWidth5);
-            tableCellProperties5.Append(tableCellBorders5);
-
-            Paragraph paragraph5 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidParagraphProperties = "00B96314", RsidRunAdditionDefault = "009E39C2", ParagraphId = "73BB2908", TextId = "77777777" };
-
-            Run run5 = new Run();
-
-            RunProperties runProperties5 = new RunProperties();
-            FontSize fontSize5 = new FontSize() { Val = "22" };
-            FontSizeComplexScript fontSizeComplexScript5 = new FontSizeComplexScript() { Val = "22" };
-
-            runProperties5.Append(fontSize5);
-            runProperties5.Append(fontSizeComplexScript5);
-            Text text5 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text5.Text = $"{DocumentMetadataTexts.GetText(MetadataTexts.CV_ADDRESS, data.Language)}: ";
-
-            run5.Append(runProperties5);
-            run5.Append(text5);
-
-            paragraph5.Append(run5);
-
-            tableCell5.Append(tableCellProperties5);
-            tableCell5.Append(paragraph5);
-
-            TableCell tableCell6 = new TableCell();
-
-            TableCellProperties tableCellProperties6 = new TableCellProperties();
-            TableCellWidth tableCellWidth6 = new TableCellWidth() { Width = "800", Type = TableWidthUnitValues.Dxa };
-
-            TableCellBorders tableCellBorders6 = new TableCellBorders();
-            TopBorder topBorder7 = new TopBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
-            LeftBorder leftBorder7 = new LeftBorder() { Val = BorderValues.Single, Color = "000000", Size = (UInt32Value)1U, Space = (UInt32Value)0U };
-            BottomBorder bottomBorder7 = new BottomBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
-            RightBorder rightBorder7 = new RightBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
-
-            tableCellBorders6.Append(topBorder7);
-            tableCellBorders6.Append(leftBorder7);
-            tableCellBorders6.Append(bottomBorder7);
-            tableCellBorders6.Append(rightBorder7);
-
-            tableCellProperties6.Append(tableCellWidth6);
-            tableCellProperties6.Append(tableCellBorders6);
-
-            Paragraph paragraph6 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidParagraphProperties = "00B96314", RsidRunAdditionDefault = "009E39C2", ParagraphId = "6E21FA96", TextId = "77777777" };
-
-            ParagraphProperties paragraphProperties2 = new ParagraphProperties();
-            SpacingBetweenLines spacingBetweenLines2 = new SpacingBetweenLines() { After = "0", Line = "240", LineRule = LineSpacingRuleValues.Auto };
-            Indentation indentation2 = new Indentation() { Left = "144" };
-
-            paragraphProperties2.Append(spacingBetweenLines2);
-            paragraphProperties2.Append(indentation2);
-
-            Run run6 = new Run();
-
-            RunProperties runProperties6 = new RunProperties();
-            FontSize fontSize6 = new FontSize() { Val = "21" };
-            FontSizeComplexScript fontSizeComplexScript6 = new FontSizeComplexScript() { Val = "21" };
-
-            runProperties6.Append(fontSize6);
-            runProperties6.Append(fontSizeComplexScript6);
-            Text text6 = new Text();
-            text6.Text = data.Personal.Address;
-
-            run6.Append(runProperties6);
-            run6.Append(text6);
-
-            paragraph6.Append(paragraphProperties2);
-            paragraph6.Append(run6);
-
-            tableCell6.Append(tableCellProperties6);
-            tableCell6.Append(paragraph6);
-
-            tableRow3.Append(tableRowProperties2);
-            tableRow3.Append(tableCell5);
-            tableRow3.Append(tableCell6);
-
-            TableRow tableRow4 = new TableRow() { RsidTableRowAddition = "009B2C1D", RsidTableRowProperties = "00B96314", ParagraphId = "31648444", TextId = "77777777" };
-
-            TableRowProperties tableRowProperties3 = new TableRowProperties();
-            GridAfter gridAfter3 = new GridAfter() { Val = 1 };
-            WidthAfterTableRow widthAfterTableRow3 = new WidthAfterTableRow() { Width = "800", Type = TableWidthUnitValues.Dxa };
-
-            tableRowProperties3.Append(gridAfter3);
-            tableRowProperties3.Append(widthAfterTableRow3);
-
-            TableCell tableCell7 = new TableCell();
-
-            TableCellProperties tableCellProperties7 = new TableCellProperties();
-            TableCellWidth tableCellWidth7 = new TableCellWidth() { Width = "800", Type = TableWidthUnitValues.Dxa };
-
-            TableCellBorders tableCellBorders7 = new TableCellBorders();
-            TopBorder topBorder8 = new TopBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
-            LeftBorder leftBorder8 = new LeftBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
-            BottomBorder bottomBorder8 = new BottomBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
-            RightBorder rightBorder8 = new RightBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
-
-            tableCellBorders7.Append(topBorder8);
-            tableCellBorders7.Append(leftBorder8);
-            tableCellBorders7.Append(bottomBorder8);
-            tableCellBorders7.Append(rightBorder8);
-
-            tableCellProperties7.Append(tableCellWidth7);
-            tableCellProperties7.Append(tableCellBorders7);
-
-            Paragraph paragraph7 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidParagraphProperties = "00B96314", RsidRunAdditionDefault = "009E39C2", ParagraphId = "4AEE0DE2", TextId = "77777777" };
-
-            Run run7 = new Run();
-
-            RunProperties runProperties7 = new RunProperties();
-            FontSize fontSize7 = new FontSize() { Val = "22" };
-            FontSizeComplexScript fontSizeComplexScript7 = new FontSizeComplexScript() { Val = "22" };
-
-            runProperties7.Append(fontSize7);
-            runProperties7.Append(fontSizeComplexScript7);
-            Text text7 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text7.Text = $"{DocumentMetadataTexts.GetText(MetadataTexts.CV_MOBILE, data.Language)}: ";
-
-            run7.Append(runProperties7);
-            run7.Append(text7);
-
-            paragraph7.Append(run7);
-
-            tableCell7.Append(tableCellProperties7);
-            tableCell7.Append(paragraph7);
-
-            TableCell tableCell8 = new TableCell();
-
-            TableCellProperties tableCellProperties8 = new TableCellProperties();
-            TableCellWidth tableCellWidth8 = new TableCellWidth() { Width = "800", Type = TableWidthUnitValues.Dxa };
-
-            TableCellBorders tableCellBorders8 = new TableCellBorders();
-            TopBorder topBorder9 = new TopBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
-            LeftBorder leftBorder9 = new LeftBorder() { Val = BorderValues.Single, Color = "000000", Size = (UInt32Value)1U, Space = (UInt32Value)0U };
-            BottomBorder bottomBorder9 = new BottomBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
-            RightBorder rightBorder9 = new RightBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
-
-            tableCellBorders8.Append(topBorder9);
-            tableCellBorders8.Append(leftBorder9);
-            tableCellBorders8.Append(bottomBorder9);
-            tableCellBorders8.Append(rightBorder9);
-
-            tableCellProperties8.Append(tableCellWidth8);
-            tableCellProperties8.Append(tableCellBorders8);
-
-            Paragraph paragraph8 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidParagraphProperties = "00B96314", RsidRunAdditionDefault = "009E39C2", ParagraphId = "29976E05", TextId = "370AA65E" };
-
-            ParagraphProperties paragraphProperties3 = new ParagraphProperties();
-            SpacingBetweenLines spacingBetweenLines3 = new SpacingBetweenLines() { After = "0", Line = "240", LineRule = LineSpacingRuleValues.Auto };
-            Indentation indentation3 = new Indentation() { Left = "144" };
-
-            paragraphProperties3.Append(spacingBetweenLines3);
-            paragraphProperties3.Append(indentation3);
-
-            Run run8 = new Run();
-
-            RunProperties runProperties8 = new RunProperties();
-            FontSize fontSize8 = new FontSize() { Val = "21" };
-            FontSizeComplexScript fontSizeComplexScript8 = new FontSizeComplexScript() { Val = "21" };
-
-            runProperties8.Append(fontSize8);
-            runProperties8.Append(fontSizeComplexScript8);
-            Text text8 = new Text();
-            text8.Text = data.Personal.Mobile;
-
-            run8.Append(runProperties8);
-            run8.Append(text8);
-
-            paragraph8.Append(paragraphProperties3);
-            paragraph8.Append(run8);
-
-            tableCell8.Append(tableCellProperties8);
-            tableCell8.Append(paragraph8);
-
-            tableRow4.Append(tableRowProperties3);
-            tableRow4.Append(tableCell7);
-            tableRow4.Append(tableCell8);
-
-            TableRow tableRow5 = new TableRow() { RsidTableRowAddition = "009B2C1D", RsidTableRowProperties = "00B96314", ParagraphId = "2F87AB23", TextId = "77777777" };
-
-            TableRowProperties tableRowProperties4 = new TableRowProperties();
-            GridAfter gridAfter4 = new GridAfter() { Val = 1 };
-            WidthAfterTableRow widthAfterTableRow4 = new WidthAfterTableRow() { Width = "800", Type = TableWidthUnitValues.Dxa };
-
-            tableRowProperties4.Append(gridAfter4);
-            tableRowProperties4.Append(widthAfterTableRow4);
-
-            TableCell tableCell9 = new TableCell();
-
-            TableCellProperties tableCellProperties9 = new TableCellProperties();
-            TableCellWidth tableCellWidth9 = new TableCellWidth() { Width = "800", Type = TableWidthUnitValues.Dxa };
-
-            TableCellBorders tableCellBorders9 = new TableCellBorders();
-            TopBorder topBorder10 = new TopBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
-            LeftBorder leftBorder10 = new LeftBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
-            BottomBorder bottomBorder10 = new BottomBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
-            RightBorder rightBorder10 = new RightBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
-
-            tableCellBorders9.Append(topBorder10);
-            tableCellBorders9.Append(leftBorder10);
-            tableCellBorders9.Append(bottomBorder10);
-            tableCellBorders9.Append(rightBorder10);
-
-            tableCellProperties9.Append(tableCellWidth9);
-            tableCellProperties9.Append(tableCellBorders9);
-
-            Paragraph paragraph9 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidParagraphProperties = "00B96314", RsidRunAdditionDefault = "009E39C2", ParagraphId = "7833055C", TextId = "77777777" };
-
-            Run run9 = new Run();
-
-            RunProperties runProperties9 = new RunProperties();
-            FontSize fontSize9 = new FontSize() { Val = "22" };
-            FontSizeComplexScript fontSizeComplexScript9 = new FontSizeComplexScript() { Val = "22" };
-
-            runProperties9.Append(fontSize9);
-            runProperties9.Append(fontSizeComplexScript9);
-            Text text9 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text9.Text = $"{DocumentMetadataTexts.GetText(MetadataTexts.CV_EMAIL, data.Language)}: ";
-
-            run9.Append(runProperties9);
-            run9.Append(text9);
-
-            paragraph9.Append(run9);
-
-            tableCell9.Append(tableCellProperties9);
-            tableCell9.Append(paragraph9);
-
-            TableCell tableCell10 = new TableCell();
-
-            TableCellProperties tableCellProperties10 = new TableCellProperties();
-            TableCellWidth tableCellWidth10 = new TableCellWidth() { Width = "800", Type = TableWidthUnitValues.Dxa };
-
-            TableCellBorders tableCellBorders10 = new TableCellBorders();
-            TopBorder topBorder11 = new TopBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
-            LeftBorder leftBorder11 = new LeftBorder() { Val = BorderValues.Single, Color = "000000", Size = (UInt32Value)1U, Space = (UInt32Value)0U };
-            BottomBorder bottomBorder11 = new BottomBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
-            RightBorder rightBorder11 = new RightBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
-
-            tableCellBorders10.Append(topBorder11);
-            tableCellBorders10.Append(leftBorder11);
-            tableCellBorders10.Append(bottomBorder11);
-            tableCellBorders10.Append(rightBorder11);
-
-            tableCellProperties10.Append(tableCellWidth10);
-            tableCellProperties10.Append(tableCellBorders10);
-
-            Paragraph paragraph10 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidParagraphProperties = "00B96314", RsidRunAdditionDefault = "0007641E", ParagraphId = "58618066", TextId = "100C819A" };
-
-            ParagraphProperties paragraphProperties4 = new ParagraphProperties();
-            SpacingBetweenLines spacingBetweenLines4 = new SpacingBetweenLines() { After = "0", Line = "240", LineRule = LineSpacingRuleValues.Auto };
-            Indentation indentation4 = new Indentation() { Left = "144" };
-
-            paragraphProperties4.Append(spacingBetweenLines4);
-            paragraphProperties4.Append(indentation4);
-
-            Run run10 = new Run();
-
-            RunProperties runProperties10 = new RunProperties();
-            FontSize fontSize10 = new FontSize() { Val = "21" };
-            FontSizeComplexScript fontSizeComplexScript10 = new FontSizeComplexScript() { Val = "21" };
-
-            runProperties10.Append(fontSize10);
-            runProperties10.Append(fontSizeComplexScript10);
-            Text text10 = new Text();
-            text10.Text = data.Personal.Email;
-
-            run10.Append(runProperties10);
-            run10.Append(text10);
-
-            paragraph10.Append(paragraphProperties4);
-            paragraph10.Append(run10);
-
-            tableCell10.Append(tableCellProperties10);
-            tableCell10.Append(paragraph10);
-
-            tableRow5.Append(tableRowProperties4);
-            tableRow5.Append(tableCell9);
-            tableRow5.Append(tableCell10);
-
-            TableRow tableRow6 = new TableRow() { RsidTableRowAddition = "009B2C1D", RsidTableRowProperties = "00B96314", ParagraphId = "249FC862", TextId = "77777777" };
-
-            TableRowProperties tableRowProperties5 = new TableRowProperties();
-            GridAfter gridAfter5 = new GridAfter() { Val = 1 };
-            WidthAfterTableRow widthAfterTableRow5 = new WidthAfterTableRow() { Width = "800", Type = TableWidthUnitValues.Dxa };
-
-            tableRowProperties5.Append(gridAfter5);
-            tableRowProperties5.Append(widthAfterTableRow5);
-
-            TableCell tableCell11 = new TableCell();
-
-            TableCellProperties tableCellProperties11 = new TableCellProperties();
-            TableCellWidth tableCellWidth11 = new TableCellWidth() { Width = "800", Type = TableWidthUnitValues.Dxa };
-
-            TableCellBorders tableCellBorders11 = new TableCellBorders();
-            TopBorder topBorder12 = new TopBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
-            LeftBorder leftBorder12 = new LeftBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
-            BottomBorder bottomBorder12 = new BottomBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
-            RightBorder rightBorder12 = new RightBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
-
-            tableCellBorders11.Append(topBorder12);
-            tableCellBorders11.Append(leftBorder12);
-            tableCellBorders11.Append(bottomBorder12);
-            tableCellBorders11.Append(rightBorder12);
-
-            tableCellProperties11.Append(tableCellWidth11);
-            tableCellProperties11.Append(tableCellBorders11);
-
-            Paragraph paragraph11 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidParagraphProperties = "00B96314", RsidRunAdditionDefault = "009E39C2", ParagraphId = "02BD2EA4", TextId = "77777777" };
-
-            Run run11 = new Run();
-
-            RunProperties runProperties11 = new RunProperties();
-            FontSize fontSize11 = new FontSize() { Val = "22" };
-            FontSizeComplexScript fontSizeComplexScript11 = new FontSizeComplexScript() { Val = "22" };
-
-            runProperties11.Append(fontSize11);
-            runProperties11.Append(fontSizeComplexScript11);
-            Text text11 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text11.Text = $"{DocumentMetadataTexts.GetText(MetadataTexts.CV_OTHER_INFORMATION, data.Language)}: ";
-
-            run11.Append(runProperties11);
-            run11.Append(text11);
-
-            paragraph11.Append(run11);
-
-            tableCell11.Append(tableCellProperties11);
-            tableCell11.Append(paragraph11);
-
-            TableCell tableCell12 = new TableCell();
-
-            TableCellProperties tableCellProperties12 = new TableCellProperties();
-            TableCellWidth tableCellWidth12 = new TableCellWidth() { Width = "800", Type = TableWidthUnitValues.Dxa };
-
-            TableCellBorders tableCellBorders12 = new TableCellBorders();
-            TopBorder topBorder13 = new TopBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
-            LeftBorder leftBorder13 = new LeftBorder() { Val = BorderValues.Single, Color = "000000", Size = (UInt32Value)1U, Space = (UInt32Value)0U };
-            BottomBorder bottomBorder13 = new BottomBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
-            RightBorder rightBorder13 = new RightBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
-
-            tableCellBorders12.Append(topBorder13);
-            tableCellBorders12.Append(leftBorder13);
-            tableCellBorders12.Append(bottomBorder13);
-            tableCellBorders12.Append(rightBorder13);
-
-            tableCellProperties12.Append(tableCellWidth12);
-            tableCellProperties12.Append(tableCellBorders12);
-
-            Paragraph paragraph12 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidParagraphProperties = "00B96314", RsidRunAdditionDefault = "009E39C2", ParagraphId = "2EB303A6", TextId = "302F4569" };
-
-            ParagraphProperties paragraphProperties5 = new ParagraphProperties();
-            SpacingBetweenLines spacingBetweenLines5 = new SpacingBetweenLines() { After = "0", Line = "240", LineRule = LineSpacingRuleValues.Auto };
-            Indentation indentation5 = new Indentation() { Left = "144" };
-
-            paragraphProperties5.Append(spacingBetweenLines5);
-            paragraphProperties5.Append(indentation5);
-            ProofError proofError1 = new ProofError() { Type = ProofingErrorValues.SpellStart };
-
-            Run run12 = new Run();
-
-            RunProperties runProperties12 = new RunProperties();
-            FontSize fontSize12 = new FontSize() { Val = "22" };
-            FontSizeComplexScript fontSizeComplexScript12 = new FontSizeComplexScript() { Val = "22" };
-
-            runProperties12.Append(fontSize12);
-            runProperties12.Append(fontSizeComplexScript12);
-            Text text12 = new Text();
-            text12.Text = data.Personal.OtherInformation;
-
-            run12.Append(runProperties12);
-            run12.Append(text12);
-            ProofError proofError2 = new ProofError() { Type = ProofingErrorValues.SpellEnd };
-
-            paragraph12.Append(paragraphProperties5);
-            paragraph12.Append(proofError1);
-            paragraph12.Append(run12);
-            paragraph12.Append(proofError2);
-
-            tableCell12.Append(tableCellProperties12);
-            tableCell12.Append(paragraph12);
-
-            tableRow6.Append(tableRowProperties5);
-            tableRow6.Append(tableCell11);
-            tableRow6.Append(tableCell12);
+            return tableRow2;
+        }
+
+        private static TableRow CreateLinkedInInformation(GenerationData data)
+        {
 
             TableRow tableRow7 = new TableRow() { RsidTableRowAddition = "009B2C1D", RsidTableRowProperties = "00B96314", ParagraphId = "7015B121", TextId = "77777777" };
 
@@ -889,19 +542,436 @@ namespace CV.Management.Generation.Word.ContentHelper
             tableRow7.Append(tableCell13);
             tableRow7.Append(tableCell14);
 
-            table1.Append(tableProperties1);
-            table1.Append(tableGrid1);
-            table1.Append(tableRow1);
-            table1.Append(tableRow2);
-            table1.Append(tableRow3);
-            table1.Append(tableRow4);
-            table1.Append(tableRow5);
-            table1.Append(tableRow6);
-            table1.Append(tableRow7);
-            return table1;
-
+            return tableRow7;
         }
 
+        private static TableRow CreateOtherInformation(GenerationData data)
+        {
+            TableRow tableRow6 = new TableRow() { RsidTableRowAddition = "009B2C1D", RsidTableRowProperties = "00B96314", ParagraphId = "249FC862", TextId = "77777777" };
+
+            TableRowProperties tableRowProperties5 = new TableRowProperties();
+            GridAfter gridAfter5 = new GridAfter() { Val = 1 };
+            WidthAfterTableRow widthAfterTableRow5 = new WidthAfterTableRow() { Width = "800", Type = TableWidthUnitValues.Dxa };
+
+            tableRowProperties5.Append(gridAfter5);
+            tableRowProperties5.Append(widthAfterTableRow5);
+
+            TableCell tableCell11 = new TableCell();
+
+            TableCellProperties tableCellProperties11 = new TableCellProperties();
+            TableCellWidth tableCellWidth11 = new TableCellWidth() { Width = "800", Type = TableWidthUnitValues.Dxa };
+
+            TableCellBorders tableCellBorders11 = new TableCellBorders();
+            TopBorder topBorder12 = new TopBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
+            LeftBorder leftBorder12 = new LeftBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
+            BottomBorder bottomBorder12 = new BottomBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
+            RightBorder rightBorder12 = new RightBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
+
+            tableCellBorders11.Append(topBorder12);
+            tableCellBorders11.Append(leftBorder12);
+            tableCellBorders11.Append(bottomBorder12);
+            tableCellBorders11.Append(rightBorder12);
+
+            tableCellProperties11.Append(tableCellWidth11);
+            tableCellProperties11.Append(tableCellBorders11);
+
+            Paragraph paragraph11 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidParagraphProperties = "00B96314", RsidRunAdditionDefault = "009E39C2", ParagraphId = "02BD2EA4", TextId = "77777777" };
+
+            Run run11 = new Run();
+
+            RunProperties runProperties11 = new RunProperties();
+            FontSize fontSize11 = new FontSize() { Val = "22" };
+            FontSizeComplexScript fontSizeComplexScript11 = new FontSizeComplexScript() { Val = "22" };
+
+            runProperties11.Append(fontSize11);
+            runProperties11.Append(fontSizeComplexScript11);
+            Text text11 = new Text() { Space = SpaceProcessingModeValues.Preserve };
+            text11.Text = $"{DocumentMetadataTexts.GetText(MetadataTexts.CV_OTHER_INFORMATION, data.Language)}: ";
+
+            run11.Append(runProperties11);
+            run11.Append(text11);
+
+            paragraph11.Append(run11);
+
+            tableCell11.Append(tableCellProperties11);
+            tableCell11.Append(paragraph11);
+
+            TableCell tableCell12 = new TableCell();
+
+            TableCellProperties tableCellProperties12 = new TableCellProperties();
+            TableCellWidth tableCellWidth12 = new TableCellWidth() { Width = "800", Type = TableWidthUnitValues.Dxa };
+
+            TableCellBorders tableCellBorders12 = new TableCellBorders();
+            TopBorder topBorder13 = new TopBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
+            LeftBorder leftBorder13 = new LeftBorder() { Val = BorderValues.Single, Color = "000000", Size = (UInt32Value)1U, Space = (UInt32Value)0U };
+            BottomBorder bottomBorder13 = new BottomBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
+            RightBorder rightBorder13 = new RightBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
+
+            tableCellBorders12.Append(topBorder13);
+            tableCellBorders12.Append(leftBorder13);
+            tableCellBorders12.Append(bottomBorder13);
+            tableCellBorders12.Append(rightBorder13);
+
+            tableCellProperties12.Append(tableCellWidth12);
+            tableCellProperties12.Append(tableCellBorders12);
+
+            Paragraph paragraph12 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidParagraphProperties = "00B96314", RsidRunAdditionDefault = "009E39C2", ParagraphId = "2EB303A6", TextId = "302F4569" };
+
+            ParagraphProperties paragraphProperties5 = new ParagraphProperties();
+            SpacingBetweenLines spacingBetweenLines5 = new SpacingBetweenLines() { After = "0", Line = "240", LineRule = LineSpacingRuleValues.Auto };
+            Indentation indentation5 = new Indentation() { Left = "144" };
+
+            paragraphProperties5.Append(spacingBetweenLines5);
+            paragraphProperties5.Append(indentation5);
+            ProofError proofError1 = new ProofError() { Type = ProofingErrorValues.SpellStart };
+
+            Run run12 = new Run();
+
+            RunProperties runProperties12 = new RunProperties();
+            FontSize fontSize12 = new FontSize() { Val = "22" };
+            FontSizeComplexScript fontSizeComplexScript12 = new FontSizeComplexScript() { Val = "22" };
+
+            runProperties12.Append(fontSize12);
+            runProperties12.Append(fontSizeComplexScript12);
+            Text text12 = new Text();
+            text12.Text = data.Personal.OtherInformation;
+
+            run12.Append(runProperties12);
+            run12.Append(text12);
+            ProofError proofError2 = new ProofError() { Type = ProofingErrorValues.SpellEnd };
+
+            paragraph12.Append(paragraphProperties5);
+            paragraph12.Append(proofError1);
+            paragraph12.Append(run12);
+            paragraph12.Append(proofError2);
+
+            tableCell12.Append(tableCellProperties12);
+            tableCell12.Append(paragraph12);
+
+            tableRow6.Append(tableRowProperties5);
+            tableRow6.Append(tableCell11);
+            tableRow6.Append(tableCell12);
+
+            return tableRow6;
+        }
+
+        private static TableRow CreateEmailTableRow(GenerationData data)
+        {
+            TableRow tableRow5 = new TableRow() { RsidTableRowAddition = "009B2C1D", RsidTableRowProperties = "00B96314", ParagraphId = "2F87AB23", TextId = "77777777" };
+
+            TableRowProperties tableRowProperties4 = new TableRowProperties();
+            GridAfter gridAfter4 = new GridAfter() { Val = 1 };
+            WidthAfterTableRow widthAfterTableRow4 = new WidthAfterTableRow() { Width = "800", Type = TableWidthUnitValues.Dxa };
+
+            tableRowProperties4.Append(gridAfter4);
+            tableRowProperties4.Append(widthAfterTableRow4);
+
+            TableCell tableCell9 = new TableCell();
+
+            TableCellProperties tableCellProperties9 = new TableCellProperties();
+            TableCellWidth tableCellWidth9 = new TableCellWidth() { Width = "800", Type = TableWidthUnitValues.Dxa };
+
+            TableCellBorders tableCellBorders9 = new TableCellBorders();
+            TopBorder topBorder10 = new TopBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
+            LeftBorder leftBorder10 = new LeftBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
+            BottomBorder bottomBorder10 = new BottomBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
+            RightBorder rightBorder10 = new RightBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
+
+            tableCellBorders9.Append(topBorder10);
+            tableCellBorders9.Append(leftBorder10);
+            tableCellBorders9.Append(bottomBorder10);
+            tableCellBorders9.Append(rightBorder10);
+
+            tableCellProperties9.Append(tableCellWidth9);
+            tableCellProperties9.Append(tableCellBorders9);
+
+            Paragraph paragraph9 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidParagraphProperties = "00B96314", RsidRunAdditionDefault = "009E39C2", ParagraphId = "7833055C", TextId = "77777777" };
+
+            Run run9 = new Run();
+
+            RunProperties runProperties9 = new RunProperties();
+            FontSize fontSize9 = new FontSize() { Val = "22" };
+            FontSizeComplexScript fontSizeComplexScript9 = new FontSizeComplexScript() { Val = "22" };
+
+            runProperties9.Append(fontSize9);
+            runProperties9.Append(fontSizeComplexScript9);
+            Text text9 = new Text() { Space = SpaceProcessingModeValues.Preserve };
+            text9.Text = $"{DocumentMetadataTexts.GetText(MetadataTexts.CV_EMAIL, data.Language)}: ";
+
+            run9.Append(runProperties9);
+            run9.Append(text9);
+
+            paragraph9.Append(run9);
+
+            tableCell9.Append(tableCellProperties9);
+            tableCell9.Append(paragraph9);
+
+            TableCell tableCell10 = new TableCell();
+
+            TableCellProperties tableCellProperties10 = new TableCellProperties();
+            TableCellWidth tableCellWidth10 = new TableCellWidth() { Width = "800", Type = TableWidthUnitValues.Dxa };
+
+            TableCellBorders tableCellBorders10 = new TableCellBorders();
+            TopBorder topBorder11 = new TopBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
+            LeftBorder leftBorder11 = new LeftBorder() { Val = BorderValues.Single, Color = "000000", Size = (UInt32Value)1U, Space = (UInt32Value)0U };
+            BottomBorder bottomBorder11 = new BottomBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
+            RightBorder rightBorder11 = new RightBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
+
+            tableCellBorders10.Append(topBorder11);
+            tableCellBorders10.Append(leftBorder11);
+            tableCellBorders10.Append(bottomBorder11);
+            tableCellBorders10.Append(rightBorder11);
+
+            tableCellProperties10.Append(tableCellWidth10);
+            tableCellProperties10.Append(tableCellBorders10);
+
+            Paragraph paragraph10 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidParagraphProperties = "00B96314", RsidRunAdditionDefault = "0007641E", ParagraphId = "58618066", TextId = "100C819A" };
+
+            ParagraphProperties paragraphProperties4 = new ParagraphProperties();
+            SpacingBetweenLines spacingBetweenLines4 = new SpacingBetweenLines() { After = "0", Line = "240", LineRule = LineSpacingRuleValues.Auto };
+            Indentation indentation4 = new Indentation() { Left = "144" };
+
+            paragraphProperties4.Append(spacingBetweenLines4);
+            paragraphProperties4.Append(indentation4);
+
+            Run run10 = new Run();
+
+            RunProperties runProperties10 = new RunProperties();
+            FontSize fontSize10 = new FontSize() { Val = "21" };
+            FontSizeComplexScript fontSizeComplexScript10 = new FontSizeComplexScript() { Val = "21" };
+
+            runProperties10.Append(fontSize10);
+            runProperties10.Append(fontSizeComplexScript10);
+            Text text10 = new Text();
+            text10.Text = data.Personal.Email;
+
+            run10.Append(runProperties10);
+            run10.Append(text10);
+
+            paragraph10.Append(paragraphProperties4);
+            paragraph10.Append(run10);
+
+            tableCell10.Append(tableCellProperties10);
+            tableCell10.Append(paragraph10);
+
+            tableRow5.Append(tableRowProperties4);
+            tableRow5.Append(tableCell9);
+            tableRow5.Append(tableCell10);
+
+            return tableRow5;
+        }
+
+        private static TableRow CreateMobileTableRow(GenerationData data)
+        {
+            TableRow tableRow4 = new TableRow() { RsidTableRowAddition = "009B2C1D", RsidTableRowProperties = "00B96314", ParagraphId = "31648444", TextId = "77777777" };
+
+            TableRowProperties tableRowProperties3 = new TableRowProperties();
+            GridAfter gridAfter3 = new GridAfter() { Val = 1 };
+            WidthAfterTableRow widthAfterTableRow3 = new WidthAfterTableRow() { Width = "800", Type = TableWidthUnitValues.Dxa };
+
+            tableRowProperties3.Append(gridAfter3);
+            tableRowProperties3.Append(widthAfterTableRow3);
+
+            TableCell tableCell7 = new TableCell();
+
+            TableCellProperties tableCellProperties7 = new TableCellProperties();
+            TableCellWidth tableCellWidth7 = new TableCellWidth() { Width = "800", Type = TableWidthUnitValues.Dxa };
+
+            TableCellBorders tableCellBorders7 = new TableCellBorders();
+            TopBorder topBorder8 = new TopBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
+            LeftBorder leftBorder8 = new LeftBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
+            BottomBorder bottomBorder8 = new BottomBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
+            RightBorder rightBorder8 = new RightBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
+
+            tableCellBorders7.Append(topBorder8);
+            tableCellBorders7.Append(leftBorder8);
+            tableCellBorders7.Append(bottomBorder8);
+            tableCellBorders7.Append(rightBorder8);
+
+            tableCellProperties7.Append(tableCellWidth7);
+            tableCellProperties7.Append(tableCellBorders7);
+
+            Paragraph paragraph7 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidParagraphProperties = "00B96314", RsidRunAdditionDefault = "009E39C2", ParagraphId = "4AEE0DE2", TextId = "77777777" };
+
+            Run run7 = new Run();
+
+            RunProperties runProperties7 = new RunProperties();
+            FontSize fontSize7 = new FontSize() { Val = "22" };
+            FontSizeComplexScript fontSizeComplexScript7 = new FontSizeComplexScript() { Val = "22" };
+
+            runProperties7.Append(fontSize7);
+            runProperties7.Append(fontSizeComplexScript7);
+            Text text7 = new Text() { Space = SpaceProcessingModeValues.Preserve };
+            text7.Text = $"{DocumentMetadataTexts.GetText(MetadataTexts.CV_MOBILE, data.Language)}: ";
+
+            run7.Append(runProperties7);
+            run7.Append(text7);
+
+            paragraph7.Append(run7);
+
+            tableCell7.Append(tableCellProperties7);
+            tableCell7.Append(paragraph7);
+
+            TableCell tableCell8 = new TableCell();
+
+            TableCellProperties tableCellProperties8 = new TableCellProperties();
+            TableCellWidth tableCellWidth8 = new TableCellWidth() { Width = "800", Type = TableWidthUnitValues.Dxa };
+
+            TableCellBorders tableCellBorders8 = new TableCellBorders();
+            TopBorder topBorder9 = new TopBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
+            LeftBorder leftBorder9 = new LeftBorder() { Val = BorderValues.Single, Color = "000000", Size = (UInt32Value)1U, Space = (UInt32Value)0U };
+            BottomBorder bottomBorder9 = new BottomBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
+            RightBorder rightBorder9 = new RightBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
+
+            tableCellBorders8.Append(topBorder9);
+            tableCellBorders8.Append(leftBorder9);
+            tableCellBorders8.Append(bottomBorder9);
+            tableCellBorders8.Append(rightBorder9);
+
+            tableCellProperties8.Append(tableCellWidth8);
+            tableCellProperties8.Append(tableCellBorders8);
+
+            Paragraph paragraph8 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidParagraphProperties = "00B96314", RsidRunAdditionDefault = "009E39C2", ParagraphId = "29976E05", TextId = "370AA65E" };
+
+            ParagraphProperties paragraphProperties3 = new ParagraphProperties();
+            SpacingBetweenLines spacingBetweenLines3 = new SpacingBetweenLines() { After = "0", Line = "240", LineRule = LineSpacingRuleValues.Auto };
+            Indentation indentation3 = new Indentation() { Left = "144" };
+
+            paragraphProperties3.Append(spacingBetweenLines3);
+            paragraphProperties3.Append(indentation3);
+
+            Run run8 = new Run();
+
+            RunProperties runProperties8 = new RunProperties();
+            FontSize fontSize8 = new FontSize() { Val = "21" };
+            FontSizeComplexScript fontSizeComplexScript8 = new FontSizeComplexScript() { Val = "21" };
+
+            runProperties8.Append(fontSize8);
+            runProperties8.Append(fontSizeComplexScript8);
+            Text text8 = new Text();
+            text8.Text = data.Personal.Mobile;
+
+            run8.Append(runProperties8);
+            run8.Append(text8);
+
+            paragraph8.Append(paragraphProperties3);
+            paragraph8.Append(run8);
+
+            tableCell8.Append(tableCellProperties8);
+            tableCell8.Append(paragraph8);
+
+            tableRow4.Append(tableRowProperties3);
+            tableRow4.Append(tableCell7);
+            tableRow4.Append(tableCell8);
+
+            return tableRow4;
+        }
+
+        private static TableRow CreateAddressTableRow(GenerationData data)
+        {
+            TableRow tableRow3 = new TableRow() { RsidTableRowAddition = "009B2C1D", RsidTableRowProperties = "00B96314", ParagraphId = "28972EE0", TextId = "77777777" };
+
+            TableRowProperties tableRowProperties2 = new TableRowProperties();
+            GridAfter gridAfter2 = new GridAfter() { Val = 1 };
+            WidthAfterTableRow widthAfterTableRow2 = new WidthAfterTableRow() { Width = "800", Type = TableWidthUnitValues.Dxa };
+
+            tableRowProperties2.Append(gridAfter2);
+            tableRowProperties2.Append(widthAfterTableRow2);
+
+            TableCell tableCell5 = new TableCell();
+
+            TableCellProperties tableCellProperties5 = new TableCellProperties();
+            TableCellWidth tableCellWidth5 = new TableCellWidth() { Width = "800", Type = TableWidthUnitValues.Dxa };
+
+            TableCellBorders tableCellBorders5 = new TableCellBorders();
+            TopBorder topBorder6 = new TopBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
+            LeftBorder leftBorder6 = new LeftBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
+            BottomBorder bottomBorder6 = new BottomBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
+            RightBorder rightBorder6 = new RightBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
+
+            tableCellBorders5.Append(topBorder6);
+            tableCellBorders5.Append(leftBorder6);
+            tableCellBorders5.Append(bottomBorder6);
+            tableCellBorders5.Append(rightBorder6);
+
+            tableCellProperties5.Append(tableCellWidth5);
+            tableCellProperties5.Append(tableCellBorders5);
+
+            Paragraph paragraph5 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidParagraphProperties = "00B96314", RsidRunAdditionDefault = "009E39C2", ParagraphId = "73BB2908", TextId = "77777777" };
+
+            Run run5 = new Run();
+
+            RunProperties runProperties5 = new RunProperties();
+            FontSize fontSize5 = new FontSize() { Val = "22" };
+            FontSizeComplexScript fontSizeComplexScript5 = new FontSizeComplexScript() { Val = "22" };
+
+            runProperties5.Append(fontSize5);
+            runProperties5.Append(fontSizeComplexScript5);
+            Text text5 = new Text() { Space = SpaceProcessingModeValues.Preserve };
+            text5.Text = $"{DocumentMetadataTexts.GetText(MetadataTexts.CV_ADDRESS, data.Language)}: ";
+
+            run5.Append(runProperties5);
+            run5.Append(text5);
+
+            paragraph5.Append(run5);
+
+            tableCell5.Append(tableCellProperties5);
+            tableCell5.Append(paragraph5);
+
+            TableCell tableCell6 = new TableCell();
+
+            TableCellProperties tableCellProperties6 = new TableCellProperties();
+            TableCellWidth tableCellWidth6 = new TableCellWidth() { Width = "800", Type = TableWidthUnitValues.Dxa };
+
+            TableCellBorders tableCellBorders6 = new TableCellBorders();
+            TopBorder topBorder7 = new TopBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
+            LeftBorder leftBorder7 = new LeftBorder() { Val = BorderValues.Single, Color = "000000", Size = (UInt32Value)1U, Space = (UInt32Value)0U };
+            BottomBorder bottomBorder7 = new BottomBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
+            RightBorder rightBorder7 = new RightBorder() { Val = BorderValues.Single, Color = "FFFFFF", Size = (UInt32Value)0U, Space = (UInt32Value)0U };
+
+            tableCellBorders6.Append(topBorder7);
+            tableCellBorders6.Append(leftBorder7);
+            tableCellBorders6.Append(bottomBorder7);
+            tableCellBorders6.Append(rightBorder7);
+
+            tableCellProperties6.Append(tableCellWidth6);
+            tableCellProperties6.Append(tableCellBorders6);
+
+            Paragraph paragraph6 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidParagraphProperties = "00B96314", RsidRunAdditionDefault = "009E39C2", ParagraphId = "6E21FA96", TextId = "77777777" };
+
+            ParagraphProperties paragraphProperties2 = new ParagraphProperties();
+            SpacingBetweenLines spacingBetweenLines2 = new SpacingBetweenLines() { After = "0", Line = "240", LineRule = LineSpacingRuleValues.Auto };
+            Indentation indentation2 = new Indentation() { Left = "144" };
+
+            paragraphProperties2.Append(spacingBetweenLines2);
+            paragraphProperties2.Append(indentation2);
+
+            Run run6 = new Run();
+
+            RunProperties runProperties6 = new RunProperties();
+            FontSize fontSize6 = new FontSize() { Val = "21" };
+            FontSizeComplexScript fontSizeComplexScript6 = new FontSizeComplexScript() { Val = "21" };
+
+            runProperties6.Append(fontSize6);
+            runProperties6.Append(fontSizeComplexScript6);
+            Text text6 = new Text();
+            text6.Text = data.Personal.Address;
+
+            run6.Append(runProperties6);
+            run6.Append(text6);
+
+            paragraph6.Append(paragraphProperties2);
+            paragraph6.Append(run6);
+
+            tableCell6.Append(tableCellProperties6);
+            tableCell6.Append(paragraph6);
+
+            tableRow3.Append(tableRowProperties2);
+            tableRow3.Append(tableCell5);
+            tableRow3.Append(tableCell6);
+
+            return tableRow3;
+        }
 
     }
 }

@@ -232,7 +232,7 @@ namespace CV.Management.Web {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Company name.
+        ///   Looks up a localized string similar to Company name *.
         /// </summary>
         public static string CompanyName {
             get {
@@ -322,7 +322,7 @@ namespace CV.Management.Web {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Email.
+        ///   Looks up a localized string similar to Email *.
         /// </summary>
         public static string Email {
             get {
@@ -331,7 +331,7 @@ namespace CV.Management.Web {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to From (YYYY).
+        ///   Looks up a localized string similar to From (YYYY) *.
         /// </summary>
         public static string FromTime {
             get {
@@ -349,7 +349,7 @@ namespace CV.Management.Web {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Full name.
+        ///   Looks up a localized string similar to Full name *.
         /// </summary>
         public static string FullName {
             get {
@@ -565,7 +565,7 @@ namespace CV.Management.Web {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Phone.
+        ///   Looks up a localized string similar to Phone *.
         /// </summary>
         public static string Phone {
             get {
@@ -601,7 +601,7 @@ namespace CV.Management.Web {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Position name.
+        ///   Looks up a localized string similar to Position name *.
         /// </summary>
         public static string PositionName {
             get {
@@ -700,7 +700,7 @@ namespace CV.Management.Web {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to To (YYYY).
+        ///   Looks up a localized string similar to To (YYYY) *.
         /// </summary>
         public static string ToTime {
             get {
