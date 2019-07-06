@@ -22,7 +22,7 @@ namespace CV.Management.Web.Models.Database
 
                 foreach (var company in presentCompanies)
                 {
-                    var highestYearInPosition = company.Positions.Max(x => x.ToTime).Value;
+                    var highestYearInPosition = company.Positions.Where(y => y.Now).Max(x => x.FromTime).Value;
 
                     if (highestYearInPosition > highestFromYear)
                     {
@@ -47,7 +47,7 @@ namespace CV.Management.Web.Models.Database
                 }
 
                 // Remove highest year companies
-                presentCompanies.RemoveAll(x => x.Positions.Where(y => y.ToTime == highestFromYear && !y.Now).Count() > 0);
+                presentCompanies.RemoveAll(x => x.Positions.Where(y => y.FromTime == highestFromYear && y.Now).Count() > 0);
             }
 
             // Add all companies with Now positions
