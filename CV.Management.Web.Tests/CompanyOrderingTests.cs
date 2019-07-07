@@ -1684,5 +1684,858 @@ namespace CV.Management.Web.Tests
             Assert.AreEqual("Position E", result[3].Positions.ElementAt(1).Name);
             Assert.AreEqual("Position C", result[3].Positions.ElementAt(2).Name);
         }
+
+        [TestMethod]
+        public void TestGetMostRecentPositionTimes_OneRecent()
+        {
+            var company = new Company
+            {
+                Name = "Company A",
+                Positions = new List<Position>
+                    {
+                        new Position
+                        {
+                            Name = "Position A",
+                            Now = true,
+                            ToTime = null,
+                            ToTimeMonth = null,
+                            FromTime = 2009,
+                            FromTimeMonth = 7
+                        },
+                        new Position
+                        {
+                            Name = "Position B",
+                            Now = false,
+                            ToTime = 2009,
+                            ToTimeMonth = 3,
+                            FromTime = 2007,
+                            FromTimeMonth = 7
+                        }
+                    }
+            };
+
+            // 7, 2009, null, 9999
+            var result = company.GetMostRecentPositionTimes();
+
+            Assert.AreEqual(7, result.Item1);
+            Assert.AreEqual(2009, result.Item2);
+            Assert.AreEqual(null, result.Item3);
+            Assert.AreEqual(9999, result.Item4);
+        }
+
+        [TestMethod]
+        public void TestGetMostRecentPositionTimes_TwoRecent()
+        {
+            var company = new Company
+            {
+                Name = "Company A",
+                Positions = new List<Position>
+                    {
+                        new Position
+                        {
+                            Name = "Position A",
+                            Now = true,
+                            ToTime = null,
+                            ToTimeMonth = null,
+                            FromTime = 2009,
+                            FromTimeMonth = 7
+                        },
+                        new Position
+                        {
+                            Name = "Position C",
+                            Now = true,
+                            ToTime = null,
+                            ToTimeMonth = null,
+                            FromTime = 2010,
+                            FromTimeMonth = 9
+                        },
+                        new Position
+                        {
+                            Name = "Position B",
+                            Now = false,
+                            ToTime = 2009,
+                            ToTimeMonth = 3,
+                            FromTime = 2007,
+                            FromTimeMonth = 7
+                        }
+                    }
+            };
+
+            // 9, 2010, null, 9999
+            var result = company.GetMostRecentPositionTimes();
+
+            Assert.AreEqual(9, result.Item1);
+            Assert.AreEqual(2010, result.Item2);
+            Assert.AreEqual(null, result.Item3);
+            Assert.AreEqual(9999, result.Item4);
+        }
+
+        [TestMethod]
+        public void TestGetMostRecentPositionTimes_NoRecent()
+        {
+            var company = new Company
+            {
+                Name = "Company A",
+                Positions = new List<Position>
+                    {
+                        new Position
+                        {
+                            Name = "Position A",
+                            Now = false,
+                            ToTime = 2019,
+                            ToTimeMonth = 5,
+                            FromTime = 2009,
+                            FromTimeMonth = 7
+                        },
+                        new Position
+                        {
+                            Name = "Position C",
+                            Now = false,
+                            ToTime = 2017,
+                            ToTimeMonth = 5,
+                            FromTime = 2010,
+                            FromTimeMonth = 9
+                        },
+                        new Position
+                        {
+                            Name = "Position B",
+                            Now = false,
+                            ToTime = 2009,
+                            ToTimeMonth = 3,
+                            FromTime = 2007,
+                            FromTimeMonth = 7
+                        }
+                    }
+            };
+
+            // 7, 2009, 5, 2019
+            var result = company.GetMostRecentPositionTimes();
+
+            Assert.AreEqual(7, result.Item1);
+            Assert.AreEqual(2009, result.Item2);
+            Assert.AreEqual(5, result.Item3);
+            Assert.AreEqual(2019, result.Item4);
+        }
+
+        [TestMethod]
+        public void TestGetMostRecentPositionTimes_NoRecentEqualTo()
+        {
+            var company = new Company
+            {
+                Name = "Company A",
+                Positions = new List<Position>
+                    {
+                        new Position
+                        {
+                            Name = "Position A",
+                            Now = false,
+                            ToTime = 2019,
+                            ToTimeMonth = 5,
+                            FromTime = 2009,
+                            FromTimeMonth = 7
+                        },
+                        new Position
+                        {
+                            Name = "Position C",
+                            Now = false,
+                            ToTime = 2019,
+                            ToTimeMonth = 5,
+                            FromTime = 2010,
+                            FromTimeMonth = 9
+                        },
+                        new Position
+                        {
+                            Name = "Position B",
+                            Now = false,
+                            ToTime = 2009,
+                            ToTimeMonth = 3,
+                            FromTime = 2007,
+                            FromTimeMonth = 7
+                        }
+                    }
+            };
+
+            // 9, 2010, 5, 2019
+            var result = company.GetMostRecentPositionTimes();
+
+            Assert.AreEqual(9, result.Item1);
+            Assert.AreEqual(2010, result.Item2);
+            Assert.AreEqual(5, result.Item3);
+            Assert.AreEqual(2019, result.Item4);
+        }
+
+        [TestMethod]
+        public void TestGetMostRecentPositionTimesFromCompanies_OneCompany_OneRecent()
+        {
+            var companies = new List<Company>
+            {
+                new Company
+                {
+                    Name = "Company A",
+                    Positions = new List<Position>
+                    {
+                        new Position
+                        {
+                            Name = "Position A",
+                            Now = true,
+                            ToTime = null,
+                            ToTimeMonth = null,
+                            FromTime = 2009,
+                            FromTimeMonth = 7
+                        },
+                        new Position
+                        {
+                            Name = "Position B",
+                            Now = false,
+                            ToTime = 2009,
+                            ToTimeMonth = 3,
+                            FromTime = 2007,
+                            FromTimeMonth = 7
+                        }
+                    }
+                }
+            };
+
+            // 7, 2009, null, 9999
+            var result = companies.GetMostRecentPositionTimes();
+
+            Assert.AreEqual(7, result.Item1);
+            Assert.AreEqual(2009, result.Item2);
+            Assert.AreEqual(null, result.Item3);
+            Assert.AreEqual(9999, result.Item4);
+        }
+
+        [TestMethod]
+        public void TestGetMostRecentPositionTimesFromCompanies_OneCompany_TwoRecent()
+        {
+            var companies = new List<Company>
+            {
+                new Company
+                {
+                    Name = "Company A",
+                    Positions = new List<Position>
+                    {
+                        new Position
+                        {
+                            Name = "Position A",
+                            Now = true,
+                            ToTime = null,
+                            ToTimeMonth = null,
+                            FromTime = 2009,
+                            FromTimeMonth = 7
+                        },
+                        new Position
+                        {
+                            Name = "Position C",
+                            Now = true,
+                            ToTime = null,
+                            ToTimeMonth = null,
+                            FromTime = 2010,
+                            FromTimeMonth = 9
+                        },
+                        new Position
+                        {
+                            Name = "Position B",
+                            Now = false,
+                            ToTime = 2009,
+                            ToTimeMonth = 3,
+                            FromTime = 2007,
+                            FromTimeMonth = 7
+                        }
+                    }
+                }
+            };
+
+            // 9, 2010, null, 9999
+            var result = companies.GetMostRecentPositionTimes();
+
+            Assert.AreEqual(9, result.Item1);
+            Assert.AreEqual(2010, result.Item2);
+            Assert.AreEqual(null, result.Item3);
+            Assert.AreEqual(9999, result.Item4);
+        }
+
+        [TestMethod]
+        public void TestGetMostRecentPositionTimesFromCompanies_OneCompany_NoRecent()
+        {
+            var companies = new List<Company>
+            {
+                new Company
+                {
+                    Name = "Company A",
+                Positions = new List<Position>
+                    {
+                        new Position
+                        {
+                            Name = "Position A",
+                            Now = false,
+                            ToTime = 2019,
+                            ToTimeMonth = 5,
+                            FromTime = 2009,
+                            FromTimeMonth = 7
+                        },
+                        new Position
+                        {
+                            Name = "Position C",
+                            Now = false,
+                            ToTime = 2017,
+                            ToTimeMonth = 5,
+                            FromTime = 2010,
+                            FromTimeMonth = 9
+                        },
+                        new Position
+                        {
+                            Name = "Position B",
+                            Now = false,
+                            ToTime = 2009,
+                            ToTimeMonth = 3,
+                            FromTime = 2007,
+                            FromTimeMonth = 7
+                        }
+                    }
+                }
+            };
+
+            // 7, 2009, 5, 2019
+            var result = companies.GetMostRecentPositionTimes();
+
+            Assert.AreEqual(7, result.Item1);
+            Assert.AreEqual(2009, result.Item2);
+            Assert.AreEqual(5, result.Item3);
+            Assert.AreEqual(2019, result.Item4);
+        }
+
+        [TestMethod]
+        public void TestGetMostRecentPositionTimesFromCompanies_OneCompany_NoRecentEqualTo()
+        {
+            var company = new List<Company>
+            {
+                new Company
+                {
+                    Name = "Company A",
+                    Positions = new List<Position>
+                    {
+                        new Position
+                        {
+                            Name = "Position A",
+                            Now = false,
+                            ToTime = 2019,
+                            ToTimeMonth = 5,
+                            FromTime = 2009,
+                            FromTimeMonth = 7
+                        },
+                        new Position
+                        {
+                            Name = "Position C",
+                            Now = false,
+                            ToTime = 2019,
+                            ToTimeMonth = 5,
+                            FromTime = 2010,
+                            FromTimeMonth = 9
+                        },
+                        new Position
+                        {
+                            Name = "Position B",
+                            Now = false,
+                            ToTime = 2009,
+                            ToTimeMonth = 3,
+                            FromTime = 2007,
+                            FromTimeMonth = 7
+                        }
+                    }
+                }
+            };
+
+            // 9, 2010, 5, 2019
+            var result = company.GetMostRecentPositionTimes();
+
+            Assert.AreEqual(9, result.Item1);
+            Assert.AreEqual(2010, result.Item2);
+            Assert.AreEqual(5, result.Item3);
+            Assert.AreEqual(2019, result.Item4);
+        }
+
+        [TestMethod]
+        public void TestGetMostRecentPositionTimesFromCompanies_MultipleCompanies_NoRecentEqualTo()
+        {
+            var companies = new List<Company>
+            {
+                new Company
+                {
+                    Name = "Company A",
+                    Positions = new List<Position>
+                    {
+                        new Position
+                        {
+                            Name = "Position C",
+                            Now = false,
+                            ToTime = 2019,
+                            ToTimeMonth = 5,
+                            FromTime = 2008,
+                            FromTimeMonth = 9
+                        },
+                        new Position
+                        {
+                            Name = "Position B",
+                            Now = false,
+                            ToTime = 2009,
+                            ToTimeMonth = 3,
+                            FromTime = 2007,
+                            FromTimeMonth = 7
+                        }
+                    }
+                },
+                new Company
+                {
+                    Name = "Company B",
+                    Positions = new List<Position>
+                    {
+                        new Position
+                        {
+                            Name = "Position A",
+                            Now = false,
+                            ToTime = 2019,
+                            ToTimeMonth = 5,
+                            FromTime = 2009,
+                            FromTimeMonth = 7
+                        },
+                        new Position
+                        {
+                            Name = "Position B",
+                            Now = false,
+                            ToTime = 2018,
+                            ToTimeMonth = 6,
+                            FromTime = 2016,
+                            FromTimeMonth = 7
+                        }
+                    }
+                }
+            };
+            
+            var result = companies.GetMostRecentPositionTimes();
+
+            Assert.AreEqual(7, result.Item1);
+            Assert.AreEqual(2009, result.Item2);
+            Assert.AreEqual(5, result.Item3);
+            Assert.AreEqual(2019, result.Item4);
+        }
+
+        [TestMethod]
+        public void TestGetMostRecentPositionTimesFromCompanies_MultipleCompanies_ContainsRecent()
+        {
+            var company = new List<Company>
+            {
+                new Company
+                {
+                    Name = "Company A",
+                    Positions = new List<Position>
+                    {
+                        new Position
+                        {
+                            Name = "Position C",
+                            Now = false,
+                            ToTime = 2019,
+                            ToTimeMonth = 5,
+                            FromTime = 2008,
+                            FromTimeMonth = 9
+                        },
+                        new Position
+                        {
+                            Name = "Position B",
+                            Now = false,
+                            ToTime = 2009,
+                            ToTimeMonth = 3,
+                            FromTime = 2007,
+                            FromTimeMonth = 7
+                        }
+                    }
+                },
+                new Company
+                {
+                    Name = "Company B",
+                    Positions = new List<Position>
+                    {
+                        new Position
+                        {
+                            Name = "Position A",
+                            Now = false,
+                            ToTime = 2019,
+                            ToTimeMonth = 5,
+                            FromTime = 2009,
+                            FromTimeMonth = 7
+                        },
+                        new Position
+                        {
+                            Name = "Position B",
+                            Now = true,
+                            ToTime = null,
+                            ToTimeMonth = null,
+                            FromTime = 2016,
+                            FromTimeMonth = 7
+                        }
+                    }
+                }
+            };
+
+            // 9, 2010, 5, 2019
+            var result = company.GetMostRecentPositionTimes();
+
+            Assert.AreEqual(7, result.Item1);
+            Assert.AreEqual(2016, result.Item2);
+            Assert.AreEqual(null, result.Item3);
+            Assert.AreEqual(9999, result.Item4);
+        }
+
+        [TestMethod]
+        public void TestGetCompaniesWithMostRecentPositionTimesAndUpdateCompanyList_NoCurrent()
+        {
+            var companies = new List<Company>
+            {
+                new Company
+                {
+                    Name = "Company A",
+                    Positions = new List<Position>
+                    {
+                        new Position
+                        {
+                            Name = "Position A",
+                            Now = false,
+                            ToTime = 2019,
+                            ToTimeMonth = 5,
+                            FromTime = 2008,
+                            FromTimeMonth = 9
+                        },
+                        new Position
+                        {
+                            Name = "Position B",
+                            Now = false,
+                            ToTime = 2009,
+                            ToTimeMonth = 3,
+                            FromTime = 2007,
+                            FromTimeMonth = 7
+                        }
+                    }
+                },
+                new Company
+                {
+                    Name = "Company B",
+                    Positions = new List<Position>
+                    {
+                        new Position
+                        {
+                            Name = "Position C",
+                            Now = false,
+                            ToTime = 2019,
+                            ToTimeMonth = 5,
+                            FromTime = 2009,
+                            FromTimeMonth = 7
+                        },
+                        new Position
+                        {
+                            Name = "Position D",
+                            Now = false,
+                            ToTime = 2018,
+                            ToTimeMonth = 6,
+                            FromTime = 2016,
+                            FromTimeMonth = 7
+                        }
+                    }
+                }
+            };
+
+            var result = companies.GetCompaniesWithMostRecentPositionTimesAndUpdateCompanyList();
+
+            Assert.AreEqual(1, result.Count());
+            Assert.AreEqual(1, companies.Count());
+
+            Assert.AreEqual("Company B", result[0].Name);
+            Assert.AreEqual("Company A", companies[0].Name);
+        }
+
+        [TestMethod]
+        public void TestGetCompaniesWithMostRecentPositionTimesAndUpdateCompanyList_OneCurrent()
+        {
+            var companies = new List<Company>
+            {
+                new Company
+                {
+                    Name = "Company A",
+                    Positions = new List<Position>
+                    {
+                        new Position
+                        {
+                            Name = "Position A",
+                            Now = true,
+                            ToTime = null,
+                            ToTimeMonth = null,
+                            FromTime = 2008,
+                            FromTimeMonth = 9
+                        },
+                        new Position
+                        {
+                            Name = "Position B",
+                            Now = false,
+                            ToTime = 2009,
+                            ToTimeMonth = 3,
+                            FromTime = 2007,
+                            FromTimeMonth = 7
+                        }
+                    }
+                },
+                new Company
+                {
+                    Name = "Company B",
+                    Positions = new List<Position>
+                    {
+                        new Position
+                        {
+                            Name = "Position C",
+                            Now = false,
+                            ToTime = 2019,
+                            ToTimeMonth = 5,
+                            FromTime = 2009,
+                            FromTimeMonth = 7
+                        },
+                        new Position
+                        {
+                            Name = "Position D",
+                            Now = false,
+                            ToTime = 2018,
+                            ToTimeMonth = 6,
+                            FromTime = 2016,
+                            FromTimeMonth = 7
+                        }
+                    }
+                }
+            };
+
+            var result = companies.GetCompaniesWithMostRecentPositionTimesAndUpdateCompanyList();
+
+            Assert.AreEqual(1, result.Count());
+            Assert.AreEqual(1, companies.Count());
+
+            Assert.AreEqual("Company A", result[0].Name);
+            Assert.AreEqual("Company B", companies[0].Name);
+        }
+
+        [TestMethod]
+        public void TestGetCompaniesWithMostRecentPositionTimesAndUpdateCompanyList_AllCurrent()
+        {
+            var companies = new List<Company>
+            {
+                new Company
+                {
+                    Name = "Company A",
+                    Positions = new List<Position>
+                    {
+                        new Position
+                        {
+                            Name = "Position A",
+                            Now = false,
+                            ToTime = 2019,
+                            ToTimeMonth = 5,
+                            FromTime = 2008,
+                            FromTimeMonth = 9
+                        },
+                        new Position
+                        {
+                            Name = "Position B",
+                            Now = true,
+                            ToTime = null,
+                            ToTimeMonth = null,
+                            FromTime = 2007,
+                            FromTimeMonth = 7
+                        }
+                    }
+                },
+                new Company
+                {
+                    Name = "Company B",
+                    Positions = new List<Position>
+                    {
+                        new Position
+                        {
+                            Name = "Position C",
+                            Now = true,
+                            ToTime = null,
+                            ToTimeMonth = null,
+                            FromTime = 2009,
+                            FromTimeMonth = 7
+                        },
+                        new Position
+                        {
+                            Name = "Position D",
+                            Now = false,
+                            ToTime = 2018,
+                            ToTimeMonth = 6,
+                            FromTime = 2016,
+                            FromTimeMonth = 7
+                        }
+                    }
+                }
+            };
+
+            var result = companies.GetCompaniesWithMostRecentPositionTimesAndUpdateCompanyList();
+
+            Assert.AreEqual(1, result.Count());
+            Assert.AreEqual(1, companies.Count());
+
+            Assert.AreEqual("Company B", result[0].Name);
+            Assert.AreEqual("Company A", companies[0].Name);
+        }
+
+        [TestMethod]
+        public void TestPositionOrdering_TwoPositions_OneRecent()
+        {
+            var company = new Company
+            {
+                Name = "Company A",
+                Positions = new List<Position>
+                    {
+                        new Position
+                        {
+                            Name = "Position A",
+                            Now = false,
+                            ToTime = 2019,
+                            ToTimeMonth = 5,
+                            FromTime = 2008,
+                            FromTimeMonth = 9
+                        },
+                        new Position
+                        {
+                            Name = "Position B",
+                            Now = true,
+                            ToTime = null,
+                            ToTimeMonth = null,
+                            FromTime = 2007,
+                            FromTimeMonth = 7
+                        }
+                    }
+            };
+
+            var result = company.WithOrderedPositions();
+
+            Assert.AreEqual(2, result.Positions.Count());
+            Assert.AreEqual("Position B", result.Positions.ToList()[0].Name);
+            Assert.AreEqual("Position A", result.Positions.ToList()[1].Name);
+        }
+
+        [TestMethod]
+        public void TestPositionOrdering_OnePosition_OneRecent()
+        {
+            var company = new Company
+            {
+                Name = "Company A",
+                Positions = new List<Position>
+                    {
+                        new Position
+                        {
+                            Name = "Position B",
+                            Now = true,
+                            ToTime = null,
+                            ToTimeMonth = null,
+                            FromTime = 2007,
+                            FromTimeMonth = 7
+                        }
+                    }
+            };
+
+            var result = company.WithOrderedPositions();
+
+            Assert.AreEqual(1, result.Positions.Count());
+            Assert.AreEqual("Position B", result.Positions.ToList()[0].Name);
+        }
+
+        [TestMethod]
+        public void TestPositionOrdering_OnePosition_NoRecent()
+        {
+            var company = new Company
+            {
+                Name = "Company A",
+                Positions = new List<Position>
+                    {
+                        new Position
+                        {
+                            Name = "Position A",
+                            Now = false,
+                            ToTime = 2019,
+                            ToTimeMonth = 5,
+                            FromTime = 2008,
+                            FromTimeMonth = 9
+                        }
+                    }
+            };
+
+            var result = company.WithOrderedPositions();
+
+            Assert.AreEqual(1, result.Positions.Count());
+            Assert.AreEqual("Position A", result.Positions.ToList()[0].Name);
+        }
+
+        [TestMethod]
+        public void TestPositionOrdering_MultiplePositions_MultipleRecent()
+        {
+            var company = new Company
+            {
+                Name = "Company A",
+                Positions = new List<Position>
+                    {
+                        new Position
+                        {
+                            Name = "Position A",
+                            Now = false,
+                            ToTime = 2007,
+                            ToTimeMonth = 5,
+                            FromTime = 2003,
+                            FromTimeMonth = 9
+                        },
+                        new Position
+                        {
+                            Name = "Position B",
+                            Now = true,
+                            ToTime = null,
+                            ToTimeMonth = null,
+                            FromTime = 2007,
+                            FromTimeMonth = 9
+                        },
+                        new Position
+                        {
+                            Name = "Position C",
+                            Now = false,
+                            ToTime = 2019,
+                            ToTimeMonth = 5,
+                            FromTime = 2008,
+                            FromTimeMonth = 9
+                        },
+                        new Position
+                        {
+                            Name = "Position D",
+                            Now = false,
+                            ToTime = 2014,
+                            ToTimeMonth = 5,
+                            FromTime = 2000,
+                            FromTimeMonth = 9
+                        },
+                        new Position
+                        {
+                            Name = "Position E",
+                            Now = true,
+                            ToTime = null,
+                            ToTimeMonth = null,
+                            FromTime = 2007,
+                            FromTimeMonth = 7
+                        }
+                    }
+            };
+
+            var result = company.WithOrderedPositions();
+
+            Assert.AreEqual(5, result.Positions.Count());
+            Assert.AreEqual("Position B", result.Positions.ToList()[0].Name);
+            Assert.AreEqual("Position E", result.Positions.ToList()[1].Name);
+            Assert.AreEqual("Position C", result.Positions.ToList()[2].Name);
+            Assert.AreEqual("Position D", result.Positions.ToList()[3].Name);
+            Assert.AreEqual("Position A", result.Positions.ToList()[4].Name);
+        }
     }
 }

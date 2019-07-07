@@ -10,257 +10,203 @@ namespace CV.Management.Web.Models.Database
         public static List<Company> OrderCompanies(this List<Company> companiesToOrder)
         {
             var result = new List<Company>();
-            
-            var presentCompanies = companiesToOrder.Where(x => x.ContainsCurrentPosition()).ToList();
 
-            var orderedPresentCompanies = GetOrderedCurrentPositionCompanies(presentCompanies);
-
-            // Add all companies with Now positions
-            result.AddCompaniesWithOrderedFromPositionsFromCurrentPositionCompanies(orderedPresentCompanies);
-
-            // Get all companies with no Now positions
-            var nonPresentCompanies = companiesToOrder.Where(x => x.ContainsNoCurrentPosition()).ToList();
-
-            while (nonPresentCompanies.Count() > 0)
+            while (companiesToOrder.Count() > 0)
             {
-                var highestYearAndMonth = GetHighestToYearInNonCurrentPositionCompanies(nonPresentCompanies);
+                var mostRecentCompanies = companiesToOrder.GetCompaniesWithMostRecentPositionTimesAndUpdateCompanyList();
 
-                // Find the highest year companies
-                var highestYearCompanies = nonPresentCompanies.Where(x => x.ContainsPositionWithSpecificToYearInNotCurrentPosition(highestYearAndMonth)).ToList();
-                var highestFromYearAndMonth = GetHighestFromYearInNonCurrentPositionCompanies(highestYearCompanies, highestYearAndMonth);
-
-                var highestYearCompaniesWithHighestFromTime = nonPresentCompanies.GetHighestYearCompanies(highestFromYearAndMonth);
-
-                result.AddCompaniesWithOrderedFromPositions(highestYearCompaniesWithHighestFromTime);
-
-                // Remove highest year companies
-                nonPresentCompanies.RemoveCompaniesWithHighestToYearFromNotCurrent(highestYearAndMonth, highestFromYearAndMonth);
+                foreach (var company in mostRecentCompanies)
+                {
+                    result.Add(company.WithOrderedPositions());
+                }
             }
 
             return result;
         }
 
-        private static List<Company> GetHighestYearCompanies(this List<Company> nonPresentCompanies, Tuple<int?, int> highestYearAndMonth)
+        public static Company WithOrderedPositions(this Company company)
         {
-            return nonPresentCompanies.Where(x => x.Positions.Where(y => y.FromTimeMonth == highestYearAndMonth.Item1 && y.FromTime == highestYearAndMonth.Item2).Count() > 0).ToList();
-        }
+            var positionsToReview = company.Positions.ToList();
 
-        private static List<Company> GetOrderedCurrentPositionCompanies(List<Company> presentCompanies)
-        {
-            var orderedPresentCompanies = new List<Company>();
-
-            while (presentCompanies.Count() > 0)
+            var result = new Company
             {
-                var highestFromYear = GetHighestFromYearInCurrentPositionCompanies(presentCompanies);
+                City = company.City,
+                Industry = company.Industry,
+                MainProductions = company.MainProductions,
+                Name = company.Name,
+                NumberOfEmployess = company.NumberOfEmployess,
+                OtherIndustry = company.OtherIndustry,
+                ParentCompanyName = company.ParentCompanyName,
+                Turnover = company.Turnover,
+                Positions = new List<Position>()
+            };
 
-                var highestFromYearCompanies = presentCompanies.Where(x => x.ContainsPositionWithSpecificFromYearInCurrentPosition(highestFromYear)).ToList();
-
-                orderedPresentCompanies.AddCompaniesWithOrderedFromPositions(highestFromYearCompanies);
-
-                presentCompanies.RemoveCompaniesWithHighestFromYearFromCurrent(highestFromYear);
-            }
-
-            return orderedPresentCompanies;
-        }
-
-        private static int GetHighestFromYearInCurrentPositionCompanies(List<Company> presentCompanies)
-        {
-            var highestFromYear = 0;
-
-            foreach (var company in presentCompanies)
+            while (positionsToReview.Count() > 0)
             {
-                var highestYearInPosition = company.GetHighestFromYearWhereCurrentPositions();
+                var mostRecentPositionTimes = positionsToReview.GetMostRecentPositionTimes();
 
-                if (highestYearInPosition > highestFromYear)
+                var positionsToAdd = mostRecentPositionTimes.Item4 == 9999 ?
+                    positionsToReview.Where(x => x.Now && 
+                                            x.FromTime == mostRecentPositionTimes.Item2 && 
+                                            x.FromTimeMonth == mostRecentPositionTimes.Item1).ToList() :
+                    positionsToReview.Where(x => x.ToTime == mostRecentPositionTimes.Item4 &&
+                                            x.ToTimeMonth == mostRecentPositionTimes.Item3 &&
+                                            x.FromTime == mostRecentPositionTimes.Item2 &&
+                                            x.FromTimeMonth == mostRecentPositionTimes.Item1).ToList();
+
+                foreach (var position in positionsToAdd)
                 {
-                    highestFromYear = highestYearInPosition;
+                    result.Positions.Add(position);
+                }
+
+                if (mostRecentPositionTimes.Item4 == 9999)
+                {
+                    positionsToReview.RemoveAll(x => x.Now &&
+                                            x.FromTime == mostRecentPositionTimes.Item2 &&
+                                            x.FromTimeMonth == mostRecentPositionTimes.Item1);
+                }
+                else
+                {
+                    positionsToReview.RemoveAll(x => x.ToTime == mostRecentPositionTimes.Item4 &&
+                                            x.ToTimeMonth == mostRecentPositionTimes.Item3 &&
+                                            x.FromTime == mostRecentPositionTimes.Item2 &&
+                                            x.FromTimeMonth == mostRecentPositionTimes.Item1);
                 }
             }
 
-            return highestFromYear;
+            return result;
         }
 
-        private static Tuple<int?, int> GetHighestToYearInNonCurrentPositionCompanies(List<Company> nonPresentCompanies)
+        public static Tuple<int?, int, int?, int> GetMostRecentPositionTimes(this List<Position> positions)
         {
-            var highestYear = 0;
-            int? highestMonth = null;
+            var isCurrent = false;
+            var resultToMonth = (int?)null;
+            var resultToYear = 0;
+            var resultFromMonth = (int?)null;
+            var resultFromYear = 0;
 
-            // Find the highest year in the list
-            foreach (var company in nonPresentCompanies)
+            var containsCurrentPosition = positions.Where(x => x.Now).Count() > 0;
+
+            if (containsCurrentPosition)
             {
-                var highestYearInPosition = company.Positions.Max(x => x.ToTime).Value;
-                var positionsWithHighestYear = company.Positions.Where(x => x.ToTime == highestYearInPosition);
-                var highestMonthInHighestYearPositions = positionsWithHighestYear.Max(x => x.ToTimeMonth).HasValue ? positionsWithHighestYear.Max(x => x.ToTimeMonth).Value : (int?)null;
+                resultToYear = 9999;
+                isCurrent = true;
+            }
+            else
+            {
+                var highestToYear = positions.Max(x => x.ToTime).Value;
 
-                if (highestYearInPosition >= highestYear)
-                {
-                    highestYear = highestYearInPosition;
+                resultToYear = highestToYear;
 
-                    if (highestMonthInHighestYearPositions.HasValue && highestMonth.HasValue && highestMonthInHighestYearPositions.Value > highestMonth.Value ||
-                        highestMonthInHighestYearPositions.HasValue && !highestMonth.HasValue ||
-                        !highestMonthInHighestYearPositions.HasValue)
-                    {
-                        highestMonth = highestMonthInHighestYearPositions;
-                    }
+                var highestToYearPositions = positions.Where(x => x.ToTime == highestToYear);
+                var highestToMonth = highestToYearPositions.Max(x => x.ToTimeMonth);
 
-                    
-                }
+                resultToMonth = highestToMonth != null ? highestToMonth : null;
             }
 
-            return new Tuple<int?, int>(highestMonth, highestYear);
+            var mostRecentPositions = isCurrent ?
+                positions.Where(x => x.Now) :
+                positions.Where(x => x.ToTime == resultToYear && x.ToTimeMonth == resultToMonth);
+
+            var highestFromYear = mostRecentPositions.Max(x => x.FromTime).Value;
+            resultFromYear = highestFromYear;
+            var highestFromYearPositions = mostRecentPositions.Where(x => x.FromTime == highestFromYear);
+            var highestFromMonth = highestFromYearPositions.Max(x => x.FromTimeMonth);
+
+            resultFromMonth = highestFromMonth != null ? highestFromMonth : null;
+
+            return new Tuple<int?, int, int?, int>(resultFromMonth, resultFromYear, resultToMonth, resultToYear);
         }
 
-        private static Tuple<int?, int> GetHighestFromYearInNonCurrentPositionCompanies(List<Company> nonPresentCompanies, Tuple<int?, int> highestYearAndMonth)
+        public static Tuple<int?, int, int?, int> GetMostRecentPositionTimes(this Company company)
         {
-            var highestYear = 0;
-            int? highestMonth = null;
+            return company.Positions.ToList().GetMostRecentPositionTimes();
+        }
 
-            // Find the highest year in the list
-            foreach (var company in nonPresentCompanies)
+        public static List<Company> GetCompaniesWithMostRecentPositionTimesAndUpdateCompanyList(this List<Company> companies)
+        {
+            var result = new List<Company>();
+            var highestResult = companies.GetMostRecentPositionTimes();
+
+            result = highestResult.Item4 == 9999 ?
+                companies.Where(x => x.Positions
+                    .Where(y => y.Now && 
+                           y.FromTime == highestResult.Item2 && 
+                           y.FromTimeMonth == highestResult.Item1).Count() > 0).ToList() :
+                companies.Where(x => x.Positions
+                    .Where(y => y.FromTime == highestResult.Item2 && 
+                           y.FromTimeMonth == highestResult.Item1 && 
+                           y.ToTime == highestResult.Item4 && 
+                           y.ToTimeMonth == highestResult.Item3).Count() > 0).ToList();
+
+            if (highestResult.Item4 == 9999)
             {
-                var highestYearInPosition = company.Positions
-                    .Where(x => x.ToTimeMonth == highestYearAndMonth.Item1 && x.ToTime == highestYearAndMonth.Item2)
-                    .Max(x => x.FromTime).Value;
-                var positionsWithHighestYear = company.Positions
-                    .Where(x => x.ToTimeMonth == highestYearAndMonth.Item1 && x.ToTime == highestYearAndMonth.Item2)
-                    .Where(x => x.FromTime == highestYearInPosition);
-                var highestMonthInHighestYearPositions = positionsWithHighestYear.Max(x => x.FromTimeMonth).HasValue ? positionsWithHighestYear.Max(x => x.FromTimeMonth).Value : (int?)null;
-
-                if (highestYearInPosition >= highestYear)
-                {
-                    highestYear = highestYearInPosition;
-
-                    if (highestMonthInHighestYearPositions.HasValue && highestMonth.HasValue && highestMonthInHighestYearPositions.Value > highestMonth.Value ||
-                        highestMonthInHighestYearPositions.HasValue && !highestMonth.HasValue ||
-                        !highestMonthInHighestYearPositions.HasValue)
-                    {
-                        highestMonth = highestMonthInHighestYearPositions;
-                    }
-
-
-                }
+                companies.RemoveAll(x => x.Positions
+                    .Where(y => y.Now &&
+                           y.FromTime == highestResult.Item2 &&
+                           y.FromTimeMonth == highestResult.Item1).Count() > 0);
             }
-
-            return new Tuple<int?, int>(highestMonth, highestYear);
-        }
-
-        public static bool ContainsCurrentPosition(this Company company)
-        {
-            return company.Positions.Where(y => y.ToTime == null && y.Now).Count() > 0;
-        }
-
-        public static bool ContainsNoCurrentPosition(this Company company)
-        {
-            return company.Positions.Where(y => y.ToTime == null && y.Now).Count() == 0;
-        }
-
-        public static bool ContainsPositionWithSpecificFromYearInCurrentPosition(this Company company, int highestFromYear)
-        {
-            return company.Positions.Where(y => y.FromTime == highestFromYear && y.Now).Count() > 0;
-        }
-
-        public static bool ContainsPositionWithSpecificToYearInNotCurrentPosition(this Company company, Tuple<int?, int> highestYearAndTime)
-        {
-            return company.Positions.Where(y => y.ToTimeMonth == highestYearAndTime.Item1 && y.ToTime == highestYearAndTime.Item2 && !y.Now).Count() > 0;
-        }
-
-        public static int GetHighestFromYearWhereCurrentPositions(this Company company)
-        {
-            return company.Positions.Where(y => y.Now).Max(x => x.FromTime).Value;
-        }
-
-        public static void AddCompaniesWithOrderedFromPositions(this List<Company> companies, List<Company> companiesToAdd)
-        {
-            foreach (var company in companiesToAdd)
+            else
             {
-                var nonEmptyTimePositions = company.GetNonEmptyOrderedFromTimePositions();
-                var emptyTimePositions = company.GetEmptyFromTimePositions();
-
-                company.Positions = nonEmptyTimePositions;
-                foreach (var item in emptyTimePositions)
-                {
-                    company.Positions.Add(item);
-                }
-
-                companies.Add(company);
-            }
-        }
-
-        public static void AddCompaniesWithOrderedFromPositionsFromCurrentPositionCompanies(this List<Company> companies, List<Company> companiesToAdd)
-        {
-            foreach (var company in companiesToAdd)
-            {
-                var nowPositions = company.GetCurrentOrderedPositions();
-                var nonEmptyTimePositions = company.GetNotCurrentOrderedPositions();
-
-                company.Positions = nowPositions;
-                foreach (var item in nonEmptyTimePositions)
-                {
-                    company.Positions.Add(item);
-                }
-
-                companies.Add(company);
-            }
-        }
-
-        public static void RemoveCompaniesWithHighestFromYearFromCurrent(this List<Company> presentCompanies, int highestFromYear)
-        {
-            presentCompanies.RemoveAll(x => x.Positions.Where(y => y.FromTime == highestFromYear && y.Now).Count() > 0);
-        }
-
-        public static void RemoveCompaniesWithHighestToYearFromNotCurrent(this List<Company> nonPresentCompanies, Tuple<int?, int> highestYearAndTime, Tuple<int?, int> highestFromYearAndTime)
-        {
-            nonPresentCompanies.RemoveAll(x => x.Positions.Where(y =>
-                y.FromTimeMonth == highestFromYearAndTime.Item1 &&
-                y.FromTime == highestFromYearAndTime.Item2 &&
-                y.ToTimeMonth == highestYearAndTime.Item1 && 
-                y.ToTime == highestYearAndTime.Item2 && 
-                !y.Now).Count() > 0);
-        }
-
-        public static List<Position> GetNonEmptyOrderedFromTimePositions(this Company company)
-        {
-            var orderedPositions = new List<Position>();
-            var positionsToReview = company.Positions.Where(x => x.FromTime.HasValue).ToList();
-
-            while(positionsToReview.Count() > 0)
-            {
-                var highestYearPosition = positionsToReview.Max(x => x.FromTime).Value;
-
-                var highestCurrentPositions = positionsToReview.Where(x => x.FromTime == highestYearPosition);
-
-                orderedPositions.AddRange(highestCurrentPositions.Where(x => x.ToTimeMonth.HasValue).OrderByDescending(x => x.ToTimeMonth));
-                orderedPositions.AddRange(highestCurrentPositions.Where(x => !x.ToTimeMonth.HasValue));
-
-                positionsToReview.RemoveAll(x => x.FromTime == highestYearPosition);
+                companies.RemoveAll(x => x.Positions
+                    .Where(y => y.FromTime == highestResult.Item2 &&
+                           y.FromTimeMonth == highestResult.Item1 &&
+                           y.ToTime == highestResult.Item4 &&
+                           y.ToTimeMonth == highestResult.Item3).Count() > 0);
             }
             
-            return orderedPositions;
-        }
-
-        public static List<Position> GetCurrentOrderedPositions(this Company company)
-        {
-            var result = new List<Position>();
-
-            result.AddRange(company.Positions.Where(x => x.Now && x.FromTime.HasValue).OrderByDescending(x => x.FromTime));
-            result.AddRange(company.Positions.Where(x => x.Now && !x.FromTime.HasValue));
 
             return result;
         }
 
-        public static List<Position> GetNotCurrentOrderedPositions(this Company company)
+        public static Tuple<int?, int, int?, int> GetMostRecentPositionTimes(this List<Company> companies)
         {
-            var result = new List<Position>();
+            Tuple<int?, int, int?, int> highestResult = companies[0].GetMostRecentPositionTimes();
 
-            result.AddRange(company.Positions.Where(x => !x.Now && x.FromTime.HasValue).OrderByDescending(x => x.FromTime));
-            result.AddRange(company.Positions.Where(x => !x.Now && !x.FromTime.HasValue));
+            foreach (var company in companies)
+            {
+                var currentRecentTime = company.GetMostRecentPositionTimes();
 
-            return result;
-        }
+                // If year is higher, update all
+                if (currentRecentTime.Item4 > highestResult.Item4)
+                {
+                    highestResult = currentRecentTime;
+                }
 
-        public static List<Position> GetEmptyFromTimePositions(this Company company)
-        {
-            return company.Positions.Where(x => !x.FromTime.HasValue).ToList();
+                // If year is equal, check month
+                if (currentRecentTime.Item4 == highestResult.Item4)
+                {
+                    // If month has value, but previous do not, update all
+                    // If month is higher, update all
+                    if (currentRecentTime.Item3.HasValue && !highestResult.Item3.HasValue || currentRecentTime.Item3 > highestResult.Item3)
+                    {
+                        highestResult = currentRecentTime;
+                    }
+
+                    // If month are equal, start checking from time
+                    if (currentRecentTime.Item3 == highestResult.Item3)
+                    {
+                        // If year is higher, update all
+                        if (currentRecentTime.Item2 > highestResult.Item2)
+                        {
+                            highestResult = currentRecentTime;
+                        }
+
+                        // If year is equal, check month
+                        if (currentRecentTime.Item2 == highestResult.Item2)
+                        {
+                            // If month has value, but previous do not, update all
+                            // If month is higher, update all
+                            if (currentRecentTime.Item1.HasValue && !highestResult.Item1.HasValue || currentRecentTime.Item1 > highestResult.Item1)
+                            {
+                                highestResult = currentRecentTime;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return highestResult;
         }
 
         public static List<Education> OrderEducation(this List<Education> educationToOrder)
