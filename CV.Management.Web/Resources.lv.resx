@@ -360,4 +360,7 @@
   <data name="ToTimeWithMonth" xml:space="preserve">
     <value>Līdz (GGGG vai MM.GGGG) *</value>
   </data>
+  <data name="InvalidYearWithMonth" xml:space="preserve">
+    <value>Nepareizs gads un/vai mēnesis!</value>
+  </data>
 </root>

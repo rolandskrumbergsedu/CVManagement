@@ -403,6 +403,15 @@ namespace CV.Management.Web {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid year and/or month!.
+        /// </summary>
+        public static string InvalidYearWithMonth {
+            get {
+                return ResourceManager.GetString("InvalidYearWithMonth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Key tasks and responsibilities (write each in new line).
         /// </summary>
         public static string KeyTasks {

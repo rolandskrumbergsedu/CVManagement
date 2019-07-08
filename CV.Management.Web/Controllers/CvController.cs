@@ -423,18 +423,35 @@ namespace CV.Management.Web.Controllers
 
                             foreach (var position in item.Positions)
                             {
+                                int? fromTime = null;
+                                int? fromTimeMonth = null;
+                                int? toTime = null;
+                                int? toTimeMonth = null;
+
+                                if (position.FromTime != null)
+                                {
+                                    fromTime = position.FromTime.Contains(".") ? int.Parse(position.FromTime.Split('.')[1]) : int.Parse(position.FromTime);
+                                    fromTimeMonth = position.FromTime.Contains(".") ? int.Parse(position.FromTime.Split('.')[0]) : (int?)null;
+                                }
+
+                                if (position.ToTime != null)
+                                {
+                                    toTime = position.ToTime.Contains(".") ? int.Parse(position.ToTime.Split('.')[1]) : int.Parse(position.ToTime);
+                                    toTimeMonth = position.ToTime.Contains(".") ? int.Parse(position.ToTime.Split('.')[0]) : (int?)null;
+                                }
+
                                 company.Positions.Add(new Position
                                 {
                                     Achievements = position.Achievements,
                                     DirectSubordinates = position.DirectSubordinates,
-                                    FromTime = position.FromTime.Contains(".") ? int.Parse(position.FromTime.Split('.')[1]) : int.Parse(position.FromTime),
-                                    FromTimeMonth = position.FromTime.Contains(".") ? int.Parse(position.FromTime.Split('.')[0]) : (int?)null,
+                                    FromTime = fromTime,
+                                    FromTimeMonth = fromTimeMonth,
                                     KeyTasks = GetKeyTasks(position.KeyTasks),
                                     Name = position.Name,
                                     ReasonForLeaving = position.ReasonForLeaving,
                                     ReportingTo = position.ReportingTo,
-                                    ToTime = position.ToTime.Contains(".") ? int.Parse(position.ToTime.Split('.')[1]) : int.Parse(position.ToTime),
-                                    ToTimeMonth = position.ToTime.Contains(".") ? int.Parse(position.ToTime.Split('.')[0]) : (int?)null,
+                                    ToTime = toTime,
+                                    ToTimeMonth = toTimeMonth,
                                     Now = position.Now
                                 });
                             }

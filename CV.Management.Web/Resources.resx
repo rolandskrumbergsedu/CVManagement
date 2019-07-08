@@ -363,4 +363,7 @@
   <data name="ToTimeWithMonth" xml:space="preserve">
     <value>To (YYYY or MM.YYYY) *</value>
   </data>
+  <data name="InvalidYearWithMonth" xml:space="preserve">
+    <value>Invalid year and/or month!</value>
+  </data>
 </root>
