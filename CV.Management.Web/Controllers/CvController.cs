@@ -58,40 +58,40 @@ namespace CV.Management.Web.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult Upload(HttpPostedFileBase file)
-        {
-            if (file != null && file.ContentLength > 0)
-            {
-                var ms = new MemoryStream();
-                file.InputStream.CopyTo(ms);
+        //[HttpPost]
+        //public ActionResult Upload(HttpPostedFileBase file)
+        //{
+        //    if (file != null && file.ContentLength > 0)
+        //    {
+        //        var ms = new MemoryStream();
+        //        file.InputStream.CopyTo(ms);
 
-                using (var db = new ProfileInformationDbContext())
-                {
-                    var username = GetCurrentUsername();
-                    var userProfile = db.Profiles.FirstOrDefault(x => x.Username == username);
+        //        using (var db = new ProfileInformationDbContext())
+        //        {
+        //            var username = GetCurrentUsername();
+        //            var userProfile = db.Profiles.FirstOrDefault(x => x.Username == username);
 
-                    if (userProfile != null)
-                    {
-                        userProfile.PictureContent = Convert.ToBase64String(ms.ToArray());
-                        userProfile.PictureType = file.ContentType;
-                    }
-                    else
-                    {
-                        db.Profiles.Add(new Profile
-                        {
-                            Username = GetCurrentUsername(),
-                            PictureContent = Convert.ToBase64String(ms.ToArray()),
-                            PictureType = file.ContentType
-                        });
-                    }
+        //            if (userProfile != null)
+        //            {
+        //                userProfile.PictureContent = Convert.ToBase64String(ms.ToArray());
+        //                userProfile.PictureType = file.ContentType;
+        //            }
+        //            else
+        //            {
+        //                db.Profiles.Add(new Profile
+        //                {
+        //                    Username = GetCurrentUsername(),
+        //                    PictureContent = Convert.ToBase64String(ms.ToArray()),
+        //                    PictureType = file.ContentType
+        //                });
+        //            }
 
-                    db.SaveChanges();
-                }
-            }
+        //            db.SaveChanges();
+        //        }
+        //    }
 
-            return RedirectToAction("Profile");
-        }
+        //    return RedirectToAction("Profile");
+        //}
 
         [HttpPost]
         public ActionResult Delete()
@@ -178,7 +178,7 @@ namespace CV.Management.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult PersonalInformation(PersonalInformationViewModel personal)
+        public ActionResult ProfileSummary(ProfileViewModel profileViewModel)
         {
             using (var db = new ProfileInformationDbContext())
             {
@@ -187,53 +187,37 @@ namespace CV.Management.Web.Controllers
 
                 if (userProfile != null)
                 {
-                    userProfile.Address = personal.Address;
-                    userProfile.Email = personal.Email;
-                    userProfile.FullName = personal.FullName;
-                    userProfile.LinkedInLink = personal.LinkedInLink;
-                    userProfile.Phone = personal.Phone;
-                    userProfile.PhoneCode = personal.PhoneCode;
-                    userProfile.Project = personal.Project;
-                    userProfile.OtherInformation = personal.OtherInformation;
-                }
-                else
-                {
-                    db.Profiles.Add(new Profile
+                    userProfile.Address = profileViewModel.PersonalInformationViewModel.Address;
+                    userProfile.Email = profileViewModel.PersonalInformationViewModel.Email;
+                    userProfile.FullName = profileViewModel.PersonalInformationViewModel.FullName;
+                    userProfile.LinkedInLink = profileViewModel.PersonalInformationViewModel.LinkedInLink;
+                    userProfile.Phone = profileViewModel.PersonalInformationViewModel.Phone;
+                    userProfile.PhoneCode = profileViewModel.PersonalInformationViewModel.PhoneCode;
+                    userProfile.Project = profileViewModel.PersonalInformationViewModel.Project;
+                    userProfile.OtherInformation = profileViewModel.PersonalInformationViewModel.OtherInformation;
+                    userProfile.CurrentBonuses = profileViewModel.CompensationViewModel.CurrentBonuses;
+                    userProfile.CurrentSalary = profileViewModel.CompensationViewModel.CurrentSalary;
+                    userProfile.SalaryRequest = profileViewModel.CompensationViewModel.SalaryRequest;
+                    userProfile.BonusRequest = profileViewModel.CompensationViewModel.BonusRequest;
+                    userProfile.AdditionalBonuses = profileViewModel.CompensationViewModel.AdditionalBonuses;
+                    userProfile.NoticePeriod = profileViewModel.NoticePeriodViewModel.NoticePeriod;
+                    userProfile.Comments = profileViewModel.AdditionalCommentsViewModel.Comments;
+
+                    if (profileViewModel.PersonalInformationViewModel.ProfilePicture != null && profileViewModel.PersonalInformationViewModel.ProfilePicture.ContentLength > 0)
                     {
-                        Username = GetCurrentUsername(),
-                        Address = personal.Address,
-                        Email = personal.Email,
-                        FullName = personal.FullName,
-                        LinkedInLink = personal.LinkedInLink,
-                        Phone = personal.Phone,
-                        PhoneCode = personal.PhoneCode,
-                        Project = personal.Project,
-                        OtherInformation = personal.OtherInformation
-                    });
-                }
+                        var ms = new MemoryStream();
+                        profileViewModel.PersonalInformationViewModel.ProfilePicture.InputStream.CopyTo(ms);
 
-                db.SaveChanges();
-            }
+                        userProfile.PictureContent = Convert.ToBase64String(ms.ToArray());
+                        userProfile.PictureType = profileViewModel.PersonalInformationViewModel.ProfilePicture.ContentType;
+                    }
 
-            return RedirectToAction("Profile");
-        }
-
-        [HttpPost]
-        public ActionResult Education(EducationViewModel personal)
-        {
-            using (var db = new ProfileInformationDbContext())
-            {
-                var username = GetCurrentUsername();
-                var userProfile = db.Profiles.FirstOrDefault(x => x.Username == username);
-
-                if (userProfile != null)
-                {
                     if (userProfile.Educations != null)
                     {
                         userProfile.Educations.ToList().ForEach(x => db.Entry(x).State = System.Data.Entity.EntityState.Deleted);
                     }
 
-                    foreach (var educationItem in personal.Education)
+                    foreach (var educationItem in profileViewModel.EducationViewModel.Education)
                     {
                         userProfile.Educations.Add(new Education
                         {
@@ -244,51 +228,12 @@ namespace CV.Management.Web.Controllers
                             Now = educationItem.Now
                         });
                     }
-                }
-                else
-                {
-                    var profile = new Profile
-                    {
-                        Username = GetCurrentUsername(),
-                        Educations = new List<Education>()
-                    };
 
-                    foreach (var educationItem in personal.Education)
-                    {
-                        profile.Educations.Add(new Education
-                        {
-                            Degree = educationItem.Degree,
-                            FromYear = educationItem.FromYear,
-                            Institution = educationItem.Institution,
-                            ToYear = educationItem.ToYear,
-                            Now = educationItem.Now
-                        });
-                    }
-
-                    db.Profiles.Add(profile);
-                }
-
-                db.SaveChanges();
-            }
-
-            return RedirectToAction("Profile");
-        }
-
-        [HttpPost]
-        public ActionResult AdditionalCourses(AdditionalCoursesViewModel personal)
-        {
-            using (var db = new ProfileInformationDbContext())
-            {
-                var username = GetCurrentUsername();
-                var userProfile = db.Profiles.FirstOrDefault(x => x.Username == username);
-
-                if (userProfile != null)
-                {
                     if (userProfile.AdditionalCourses != null)
                     {
                         userProfile.AdditionalCourses.ToList().ForEach(x => db.Entry(x).State = System.Data.Entity.EntityState.Deleted);
 
-                        foreach (var item in personal.Courses)
+                        foreach (var item in profileViewModel.AdditionalCoursesViewModel.Courses)
                         {
                             userProfile.AdditionalCourses.Add(new AdditionalCourse
                             {
@@ -299,50 +244,12 @@ namespace CV.Management.Web.Controllers
                             });
                         }
                     }
-                }
-                else
-                {
-                    var profile = new Profile
-                    {
-                        Username = GetCurrentUsername(),
-                        AdditionalCourses = new List<AdditionalCourse>()
-                    };
 
-                    foreach (var item in personal.Courses)
-                    {
-                        profile.AdditionalCourses.Add(new AdditionalCourse
-                        {
-                            CourseName = item.CourseName,
-                            NumberOfDays = item.NumberOfDays,
-                            Trainer = item.Trainer,
-                            Year = item.Year
-                        });
-                    }
-
-                    db.Profiles.Add(profile);
-                }
-
-                db.SaveChanges();
-            }
-
-            return RedirectToAction("Profile");
-        }
-
-        [HttpPost]
-        public ActionResult Language(LanguageViewModel personal)
-        {
-            using (var db = new ProfileInformationDbContext())
-            {
-                var username = GetCurrentUsername();
-                var userProfile = db.Profiles.FirstOrDefault(x => x.Username == username);
-
-                if (userProfile != null)
-                {
                     if (userProfile.Languages != null)
                     {
                         userProfile.Languages.ToList().ForEach(x => db.Entry(x).State = System.Data.Entity.EntityState.Deleted);
 
-                        foreach (var item in personal.Languages)
+                        foreach (var item in profileViewModel.LanguageViewModel.Languages)
                         {
                             userProfile.Languages.Add(new Language
                             {
@@ -352,44 +259,7 @@ namespace CV.Management.Web.Controllers
                             });
                         }
                     }
-                }
-                else
-                {
-                    var profile = new Profile
-                    {
-                        Username = GetCurrentUsername(),
-                        Languages = new List<Language>()
-                    };
 
-                    foreach (var item in personal.Languages)
-                    {
-                        userProfile.Languages.Add(new Language
-                        {
-                            LanguageName = item.LanguageName,
-                            SpokenLevel = item.SpokenLevel,
-                            WrittenLevel = item.WrittenLevel
-                        });
-                    }
-
-                    db.Profiles.Add(profile);
-                }
-
-                db.SaveChanges();
-            }
-
-            return RedirectToAction("Profile");
-        }
-
-        [HttpPost]
-        public ActionResult CareerSummary(CareerSummaryViewModel personal)
-        {
-            using (var db = new ProfileInformationDbContext())
-            {
-                var username = GetCurrentUsername();
-                var userProfile = db.Profiles.FirstOrDefault(x => x.Username == username);
-
-                if (userProfile != null)
-                {
                     if (userProfile.Companies != null)
                     {
                         var companies = userProfile.Companies.ToList();
@@ -406,7 +276,7 @@ namespace CV.Management.Web.Controllers
                             db.Entry(item).State = System.Data.Entity.EntityState.Deleted;
                         }
 
-                        foreach (var item in personal.Companies)
+                        foreach (var item in profileViewModel.CareerSummaryViewModel.Companies)
                         {
                             var company = new Company
                             {
@@ -459,16 +329,93 @@ namespace CV.Management.Web.Controllers
                             userProfile.Companies.Add(company);
                         }
                     }
+
+                    if (userProfile.Memberships != null)
+                    {
+                        userProfile.Memberships.ToList().ForEach(x => db.Entry(x).State = System.Data.Entity.EntityState.Deleted);
+
+                        foreach (var item in profileViewModel.MembershipViewModel.Memberships)
+                        {
+                            userProfile.Memberships.Add(new Membership
+                            {
+                                Description = item.Description,
+                                FromTime = item.FromTime,
+                                ToTime = item.ToTime,
+                                Now = item.Now
+                            });
+                        }
+                    }
                 }
                 else
                 {
                     var profile = new Profile
                     {
                         Username = GetCurrentUsername(),
-                        Companies = new List<Company>()
+                        Address = profileViewModel.PersonalInformationViewModel.Address,
+                        Email = profileViewModel.PersonalInformationViewModel.Email,
+                        FullName = profileViewModel.PersonalInformationViewModel.FullName,
+                        LinkedInLink = profileViewModel.PersonalInformationViewModel.LinkedInLink,
+                        Phone = profileViewModel.PersonalInformationViewModel.Phone,
+                        PhoneCode = profileViewModel.PersonalInformationViewModel.PhoneCode,
+                        Project = profileViewModel.PersonalInformationViewModel.Project,
+                        OtherInformation = profileViewModel.PersonalInformationViewModel.OtherInformation,
+                        CurrentBonuses = profileViewModel.CompensationViewModel.CurrentBonuses,
+                        CurrentSalary = profileViewModel.CompensationViewModel.CurrentSalary,
+                        SalaryRequest = profileViewModel.CompensationViewModel.SalaryRequest,
+                        BonusRequest = profileViewModel.CompensationViewModel.BonusRequest,
+                        AdditionalBonuses = profileViewModel.CompensationViewModel.AdditionalBonuses,
+                        NoticePeriod = profileViewModel.NoticePeriodViewModel.NoticePeriod,
+                        Comments = profileViewModel.AdditionalCommentsViewModel.Comments,
+                        Educations = new List<Education>(),
+                        AdditionalCourses = new List<AdditionalCourse>(),
+                        Languages = new List<Language>(),
+                        Companies = new List<Company>(),
+                        Memberships = new List<Membership>()
                     };
 
-                    foreach (var item in personal.Companies)
+                    if (profileViewModel.PersonalInformationViewModel.ProfilePicture != null && profileViewModel.PersonalInformationViewModel.ProfilePicture.ContentLength > 0)
+                    {
+                        var ms = new MemoryStream();
+                        profileViewModel.PersonalInformationViewModel.ProfilePicture.InputStream.CopyTo(ms);
+
+                        profile.PictureContent = Convert.ToBase64String(ms.ToArray());
+                        profile.PictureType = profileViewModel.PersonalInformationViewModel.ProfilePicture.ContentType;
+                    }
+
+                    foreach (var educationItem in profileViewModel.EducationViewModel.Education)
+                    {
+                        profile.Educations.Add(new Education
+                        {
+                            Degree = educationItem.Degree,
+                            FromYear = educationItem.FromYear,
+                            Institution = educationItem.Institution,
+                            ToYear = educationItem.ToYear,
+                            Now = educationItem.Now
+                        });
+                    }
+
+                    foreach (var item in profileViewModel.AdditionalCoursesViewModel.Courses)
+                    {
+                        profile.AdditionalCourses.Add(new AdditionalCourse
+                        {
+                            CourseName = item.CourseName,
+                            NumberOfDays = item.NumberOfDays,
+                            Trainer = item.Trainer,
+                            Year = item.Year
+                        });
+                    }
+
+                    foreach (var item in profileViewModel.LanguageViewModel.Languages)
+                    {
+                        userProfile.Languages.Add(new Language
+                        {
+                            LanguageName = item.LanguageName,
+                            SpokenLevel = item.SpokenLevel,
+                            WrittenLevel = item.WrittenLevel
+                        });
+                    }
+
+                    foreach (var item in profileViewModel.CareerSummaryViewModel.Companies)
                     {
                         var company = new Company
                         {
@@ -504,50 +451,7 @@ namespace CV.Management.Web.Controllers
                         userProfile.Companies.Add(company);
                     }
 
-                    db.Profiles.Add(profile);
-                }
-
-                db.SaveChanges();
-            }
-
-            return RedirectToAction("Profile");
-        }
-
-        [HttpPost]
-        public ActionResult Memberships(MembershipViewModel personal)
-        {
-            using (var db = new ProfileInformationDbContext())
-            {
-                var username = GetCurrentUsername();
-                var userProfile = db.Profiles.FirstOrDefault(x => x.Username == username);
-
-                if (userProfile != null)
-                {
-                    if (userProfile.Memberships != null)
-                    {
-                        userProfile.Memberships.ToList().ForEach(x => db.Entry(x).State = System.Data.Entity.EntityState.Deleted);
-
-                        foreach (var item in personal.Memberships)
-                        {
-                            userProfile.Memberships.Add(new Membership
-                            {
-                                Description = item.Description,
-                                FromTime = item.FromTime,
-                                ToTime = item.ToTime,
-                                Now = item.Now
-                            });
-                        }
-                    }
-                }
-                else
-                {
-                    var profile = new Profile
-                    {
-                        Username = GetCurrentUsername(),
-                        Memberships = new List<Membership>()
-                    };
-
-                    foreach (var item in personal.Memberships)
+                    foreach (var item in profileViewModel.MembershipViewModel.Memberships)
                     {
                         userProfile.Memberships.Add(new Membership
                         {
@@ -558,107 +462,14 @@ namespace CV.Management.Web.Controllers
                         });
                     }
 
+
+
                     db.Profiles.Add(profile);
                 }
 
                 db.SaveChanges();
             }
 
-            return RedirectToAction("Profile");
-        }
-
-        [HttpPost]
-        public ActionResult Compensation(CompensationViewModel personal)
-        {
-            using (var db = new ProfileInformationDbContext())
-            {
-                var username = GetCurrentUsername();
-                var userProfile = db.Profiles.FirstOrDefault(x => x.Username == username);
-
-                if (userProfile != null)
-                {
-                    userProfile.CurrentBonuses = personal.CurrentBonuses;
-                    userProfile.CurrentSalary = personal.CurrentSalary;
-                    userProfile.SalaryRequest = personal.SalaryRequest;
-                    userProfile.BonusRequest = personal.BonusRequest;
-                    userProfile.AdditionalBonuses = personal.AdditionalBonuses;
-                }
-                else
-                {
-                    db.Profiles.Add(new Profile
-                    {
-                        Username = GetCurrentUsername(),
-                        CurrentBonuses = personal.CurrentBonuses,
-                        CurrentSalary = personal.CurrentSalary,
-                        SalaryRequest = personal.SalaryRequest,
-                        BonusRequest = personal.BonusRequest,
-                        AdditionalBonuses = personal.AdditionalBonuses
-                    });
-                }
-
-                db.SaveChanges();
-            }
-
-            return RedirectToAction("Profile");
-        }
-
-        [HttpPost]
-        public ActionResult NoticePeriod(NoticePeriodViewModel personal)
-        {
-            using (var db = new ProfileInformationDbContext())
-            {
-                var username = GetCurrentUsername();
-                var userProfile = db.Profiles.FirstOrDefault(x => x.Username == username);
-
-                if (userProfile != null)
-                {
-                    userProfile.NoticePeriod = personal.NoticePeriod;
-                }
-                else
-                {
-                    db.Profiles.Add(new Profile
-                    {
-                        Username = GetCurrentUsername(),
-                        NoticePeriod = personal.NoticePeriod
-                    });
-                }
-
-                db.SaveChanges();
-            }
-
-            return RedirectToAction("Profile");
-        }
-
-        [HttpPost]
-        public ActionResult AdditionalComments(AdditionalCommentsViewModel personal)
-        {
-            using (var db = new ProfileInformationDbContext())
-            {
-                var username = GetCurrentUsername();
-                var userProfile = db.Profiles.FirstOrDefault(x => x.Username == username);
-
-                if (userProfile != null)
-                {
-                    userProfile.Comments = personal.Comments;
-                }
-                else
-                {
-                    db.Profiles.Add(new Profile
-                    {
-                        Username = GetCurrentUsername(),
-                        Comments = personal.Comments
-                    });
-                }
-
-                db.SaveChanges();
-            }
-
-            return RedirectToAction("Profile");
-        }
-
-        [HttpPost]
-        public ActionResult ProfileSummary(ProfileViewModel profile)
-        {
             return RedirectToAction("Profile");
         }
 
@@ -995,7 +806,7 @@ namespace CV.Management.Web.Controllers
 
                         foreach (var position in company.Positions)
                         {
-                            var fromTime = position.FromTimeMonth.HasValue ? 
+                            var fromTime = position.FromTimeMonth.HasValue ?
                                 position.FromTime.HasValue ? position.FromTimeMonth + "." + position.FromTime.Value : position.FromTimeMonth + "." :
                                 position.FromTime.HasValue ? position.FromTime.ToString() : "";
 
@@ -1271,7 +1082,7 @@ namespace CV.Management.Web.Controllers
 
         public string GetKeyTasks(List<KeyTask> tasks)
         {
-            if(tasks == null)
+            if (tasks == null)
             {
                 return string.Empty;
             }

@@ -8,7 +8,8 @@
 <div id="alert_message" class="alert alert-success" role="alert">
     @Resources.SaveNotice
 </div>
-@using (Html.BeginForm("ProfileSummary", "Cv", FormMethod.Post))
+
+@using (Html.BeginForm("ProfileSummary", "Cv", FormMethod.Post, new { encType = "multipart/form-data" }))
 {
 
     <div class="panel-group" id="accordion">
@@ -22,14 +23,7 @@
             </div>
             <div id="collapse1" class="panel-collapse collapse">
                 <div class="panel-body">
-                    <div class="row">
-                        <div class="col-xs-4">
-                            @Html.Partial("_FileUpload", Model.FileUploadViewModel)
-                        </div>
-                        <div class="col-xs-8 personal-information">
-                            @Html.Partial("_PersonalInformation", Model.PersonalInformationViewModel)
-                        </div>
-                    </div>
+                    @(Html.EditorFor(m => m.PersonalInformationViewModel))
                 </div>
             </div>
         </div>
@@ -43,7 +37,7 @@
             <div id="collapse2" class="panel-collapse collapse">
                 <div class="panel-body">
                     <div class="row">
-                        @Html.Partial("_Education", Model.EducationViewModel)
+                        @(Html.EditorFor(m => m.EducationViewModel))
                     </div>
                 </div>
             </div>
@@ -57,7 +51,7 @@
             </div>
             <div id="collapse3" class="panel-collapse collapse">
                 <div class="panel-body">
-                    @Html.Partial("_AdditionalCourses", Model.AdditionalCoursesViewModel)
+                    @(Html.EditorFor(m => m.AdditionalCoursesViewModel))
                 </div>
             </div>
         </div>
@@ -70,7 +64,7 @@
             </div>
             <div id="collapse4" class="panel-collapse collapse">
                 <div class="panel-body">
-                    @Html.Partial("_Language", Model.LanguageViewModel)
+                    @(Html.EditorFor(m => m.LanguageViewModel))
                 </div>
             </div>
         </div>
@@ -83,7 +77,7 @@
             </div>
             <div id="collapse5" class="panel-collapse collapse">
                 <div class="panel-body">
-                    @Html.Partial("_CareerSummary", Model.CareerSummaryViewModel)
+                    @(Html.EditorFor(m => m.CareerSummaryViewModel))
                 </div>
             </div>
         </div>
@@ -96,7 +90,7 @@
             </div>
             <div id="collapse6" class="panel-collapse collapse">
                 <div class="panel-body">
-                    @Html.Partial("_Memberships", Model.MembershipViewModel)
+                    @(Html.EditorFor(m => m.MembershipViewModel))
                 </div>
             </div>
         </div>
@@ -109,7 +103,7 @@
             </div>
             <div id="collapse7" class="panel-collapse collapse">
                 <div class="panel-body">
-                    @Html.Partial("_Compensation", Model.CompensationViewModel)
+                    @(Html.EditorFor(m => m.CompensationViewModel))
                 </div>
             </div>
         </div>
@@ -122,7 +116,7 @@
             </div>
             <div id="collapse8" class="panel-collapse collapse">
                 <div class="panel-body">
-                    @Html.Partial("_NoticePeriod", Model.NoticePeriodViewModel)
+                    @(Html.EditorFor(m => m.NoticePeriodViewModel))
                 </div>
             </div>
         </div>
@@ -135,9 +129,9 @@
             </div>
             <div id="collapse9" class="panel-collapse collapse">
                 <div class="panel-body">
-                    @Html.Partial("_AdditionalComments", Model.AdditionalCommentsViewModel)
-                    @Html.Partial("_AdditionalFiles", Model.AdditionalFilesViewModel)
-                    @Html.Partial("_AddAdditionalFile")
+                    @(Html.EditorFor(m => m.AdditionalCommentsViewModel))
+                    @(Html.EditorFor(m => m.AdditionalFilesViewModel))
+                    @*@Html.Partial("_AddAdditionalFile")*@
                 </div>
             </div>
         </div>

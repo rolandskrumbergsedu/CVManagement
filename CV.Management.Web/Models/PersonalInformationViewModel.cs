@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Resources;
+using System.Web;
 
 namespace CV.Management.Web.Models
 {
@@ -24,5 +25,7 @@ namespace CV.Management.Web.Models
         public string OtherInformation { get; set; }
         [Display(Name = "Project", ResourceType = typeof(Resources))]
         public string Project { get; set; }
+        public string ImageSrc { get; set; }
+        public HttpPostedFileBase ProfilePicture { get; set; }
     }
 }

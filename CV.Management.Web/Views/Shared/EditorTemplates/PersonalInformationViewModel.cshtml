@@ -15,18 +15,9 @@
 
         <div class="row">
             <div class="col-md-12">
-                <input id="file_upload" type="file" name="ProfilePicture" class="btn btn-default upload-button" />
+                @Html.TextBoxFor(m => m.ProfilePicture, new { id = "file_upload", type = "file", name = "ProfilePicture", @class= "btn btn-default upload-button" })
             </div>
         </div>
-
-        @*<div class="row">
-                @using (Html.BeginForm("Delete", "Cv", FormMethod.Post))
-                {
-                    <div class="col-md-12">
-                        <input id="file_delete" type="submit" name="Delete" value="@Resources.Delete" class="btn btn-primary" />
-                    </div>
-                }
-            </div>*@
     </div>
     <div class="col-xs-8 personal-information">
         <div class="row">
@@ -98,16 +89,6 @@
                     </div>
                 </div>
             </div>
-
-            @*<div class="col-md-12">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group text-right">
-                            <input id="save_personal" type="submit" value="@Resources.Save" class="btn btn-primary float-right" />
-                        </div>
-                    </div>
-                </div>
-            </div>*@
         </div>
     </div>
 </div>

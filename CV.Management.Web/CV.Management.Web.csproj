@@ -449,7 +449,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Shared\_LegacyLayout.cshtml" />
-    <Content Include="Views\Shared\_FileUpload.cshtml" />
     <Content Include="Views\Shared\_PersonalInformation.cshtml" />
     <Content Include="Views\Shared\_Education.cshtml" />
     <Content Include="Views\Shared\_AdditionalCourses.cshtml" />
@@ -465,6 +464,16 @@
     <Content Include="Views\Admin\Overview.cshtml" />
     <Content Include="Views\Admin\_AdminLayout.cshtml" />
     <Content Include="Views\Account\_AccountLayout.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\PersonalInformationViewModel.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\EducationViewModel.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\AdditionalCoursesViewModel.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\LanguageViewModel.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\CareerSummaryViewModel.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\MembershipViewModel.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\CompensationViewModel.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\NoticePeriodViewModel.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\AdditionalCommentsViewModel.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\AdditionalFilesViewModel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
