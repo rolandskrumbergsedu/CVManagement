@@ -22,3 +22,9 @@
         </table>
     </div>
 </div>
+
+<div class="row">
+    <div class="col-md-12">
+        @Html.TextBoxFor(m => m.AdditionalFiles, new { id = "file_upload", type = "file", name = "AdditionalFiles", @class = "btn btn-default upload-button", multiple="multiple" })
+    </div>
+</div>

@@ -143,7 +143,7 @@ namespace CV.Management.Web.Controllers
                 AmountOfDays = x.NumberOfDays,
                 CourseName = x.CourseName,
                 Instructor = x.Trainer,
-                Year = x.Year.Value
+                Year = x.Year.HasValue ? x.Year.Value : (int?)null
             }).ToList();
 
             var languages = profile.Languages.Select(x => new LanguageItem

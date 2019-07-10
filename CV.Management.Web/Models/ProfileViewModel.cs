@@ -2,7 +2,6 @@
 {
     public class ProfileViewModel : ViewModelBase
     {
-        public FileUploadViewModel FileUploadViewModel { get; set; }
         public PersonalInformationViewModel PersonalInformationViewModel { get; set; }
         public EducationViewModel EducationViewModel { get; set; }
         public AdditionalCoursesViewModel AdditionalCoursesViewModel { get; set; }
@@ -13,6 +12,5 @@
         public NoticePeriodViewModel NoticePeriodViewModel { get; set; }
         public AdditionalCommentsViewModel AdditionalCommentsViewModel { get; set; }
         public AdditionalFilesViewModel AdditionalFilesViewModel { get; set; }
-        //public AddAdditionalFileUploadViewModel AddAdditionalFileUploadViewModel { get; set; }
     }
 }

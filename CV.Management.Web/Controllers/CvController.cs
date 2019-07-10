@@ -345,6 +345,37 @@ namespace CV.Management.Web.Controllers
                             });
                         }
                     }
+
+                    if (userProfile.AdditionalFiles != null)
+                    {
+                        var listOfIdsToExclude = new List<int>();
+
+                        if (profileViewModel.AdditionalFilesViewModel.Files != null && profileViewModel.AdditionalFilesViewModel.Files.Count() > 0)
+                        {
+                            profileViewModel.AdditionalFilesViewModel.Files.ForEach(x => listOfIdsToExclude.Add(x.AdditionalFileId));
+                        }
+
+                        userProfile.AdditionalFiles.Where(x => !listOfIdsToExclude.Exists(y => y == x.AdditionalFileId)).ToList().ForEach(x => db.Entry(x).State = System.Data.Entity.EntityState.Deleted);
+
+                        if (profileViewModel.AdditionalFilesViewModel.AdditionalFiles != null && profileViewModel.AdditionalFilesViewModel.AdditionalFiles.Count() > 0)
+                        {
+                            foreach (var additionalFile in profileViewModel.AdditionalFilesViewModel.AdditionalFiles)
+                            {
+                                if (additionalFile != null)
+                                {
+                                    var ms = new MemoryStream();
+                                    additionalFile.InputStream.CopyTo(ms);
+
+                                    userProfile.AdditionalFiles.Add(new AdditionalFile
+                                    {
+                                        FileContent = Convert.ToBase64String(ms.ToArray()),
+                                        FileType = additionalFile.ContentType,
+                                        FileName = additionalFile.FileName
+                                    });
+                                }
+                            }
+                        }
+                    }
                 }
                 else
                 {
@@ -498,7 +529,6 @@ namespace CV.Management.Web.Controllers
                 return new ProfileViewModel
                 {
                     Name = profile.FullName,
-                    FileUploadViewModel = CreateFileUploadViewModel(profile),
                     PersonalInformationViewModel = CreatePersonalInformationViewModel(profile),
                     EducationViewModel = CreateEducationViewModel(profile),
                     AdditionalCoursesViewModel = CreateAdditionalCoursesViewModel(profile),
@@ -535,14 +565,6 @@ namespace CV.Management.Web.Controllers
             }
         }
 
-        private FileUploadViewModel CreateFileUploadViewModel(Profile profile)
-        {
-            return new FileUploadViewModel
-            {
-                ImageSrc = !string.IsNullOrEmpty(profile.PictureContent) ? $"data:{profile.PictureType};base64,{profile.PictureContent}" : string.Empty
-            };
-        }
-
         private PersonalInformationViewModel CreatePersonalInformationViewModel(Profile profile)
         {
             return new PersonalInformationViewModel
@@ -554,7 +576,8 @@ namespace CV.Management.Web.Controllers
                 Phone = profile.Phone,
                 PhoneCode = profile.PhoneCode,
                 Project = profile.Project,
-                OtherInformation = profile.OtherInformation
+                OtherInformation = profile.OtherInformation,
+                ImageSrc = !string.IsNullOrEmpty(profile.PictureContent) ? $"data:{profile.PictureType};base64,{profile.PictureContent}" : string.Empty
             };
         }
 
@@ -924,10 +947,6 @@ namespace CV.Management.Web.Controllers
         {
             return new ProfileViewModel
             {
-                FileUploadViewModel = new FileUploadViewModel
-                {
-                    ImageSrc = string.Empty
-                },
                 PersonalInformationViewModel = new PersonalInformationViewModel
                 {
                     Address = string.Empty,

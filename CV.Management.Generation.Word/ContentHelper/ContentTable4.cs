@@ -229,7 +229,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties7.Append(fontSize7);
             runProperties7.Append(fontSizeComplexScript7);
             Text text7 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text7.Text = education.University.ToUpper();
+            text7.Text = education.University?.ToUpper();
 
             run7.Append(runProperties7);
             run7.Append(text7);
