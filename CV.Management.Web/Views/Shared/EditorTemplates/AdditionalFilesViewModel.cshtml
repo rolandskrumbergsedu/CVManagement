@@ -9,12 +9,12 @@
 <div class="row">
     <div class="col-md-12">
         <table class="table">
-            <tbody>
+            <tbody class="additional-files-table">
 
                 @for (var i = 0; i < Model.Files.Count; i++)
                 {
                     <tr>
-                        @Html.HiddenFor(t => Model.Files[i].AdditionalFileId)
+                        @Html.HiddenFor(t => Model.Files[i].AdditionalFileId, new { @class = "additional-file-hidden" })
                         <td>@Model.Files[i].FileName <img class="remove-image pull-right" src="~/Content/Images/remove.png" /></td>
                     </tr>
                 }

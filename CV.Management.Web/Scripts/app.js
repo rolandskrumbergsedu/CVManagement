@@ -181,12 +181,30 @@
         $.get(window.location.origin + "/api/delete/" + hiddenInputValue, function (data) {
 
             row.remove();
+            updateAdditionalFilesFieldNumbers();
 
         }).fail(function () {
             alert("Error deleting file!");
         });
 
     });
+
+    function updateAdditionalFilesFieldNumbers() {
+
+        var additionalFilesTable = $('.additional-files-table');
+
+        var formName = "AdditionalFilesViewModel_Files";
+        var formNameForName = "AdditionalFilesViewModel.Files";
+        var fieldName = "AdditionalFileId";
+
+        additionalFilesTable.find(".additional-file-hidden").each(function (index) {
+            $(this).attr({
+                "id": formName + "_" + index + "__" + fieldName,
+                "name": formNameForName + "[" + index + "]." + fieldName
+            });
+
+        });
+    }
 
     $('.education-now-input').each(function () {
         var formGroup = $(this).closest('div[class^="form-group"]');
