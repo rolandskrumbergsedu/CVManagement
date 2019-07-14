@@ -9,6 +9,12 @@
     @Resources.SaveNotice
 </div>
 
+<div class="loading-popup">
+    <div class="loading-popup-content">
+        <p>Saving. Please wait...</p>
+    </div>
+</div>
+
 @using (Html.BeginForm("ProfileSummary", "Cv", FormMethod.Post, new { encType = "multipart/form-data" }))
 {
 

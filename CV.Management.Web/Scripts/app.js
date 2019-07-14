@@ -174,6 +174,9 @@
     });
 
     $('.remove-image').click(function () {
+
+        showLoading();
+
         var row = $(this).closest('tr');
         var hiddenInput = row.find("input");
         var hiddenInputValue = hiddenInput.attr("value");
@@ -183,7 +186,10 @@
             row.remove();
             updateAdditionalFilesFieldNumbers();
 
+            hideLoading();
+
         }).fail(function () {
+            hideLoading();
             alert("Error deleting file!");
         });
 
@@ -1222,6 +1228,11 @@
 
     $(".position-remove").click(removePosition);
 
+    $("#save_all").on("click", function () {
+
+        showLoading();
+
+    });
 
     $("#save_personal").on("click", function () {
         createCookie("open", "save_education", 1);
@@ -1443,7 +1454,17 @@
                 eraseCookie("message");
             }, 5000);
     }
+
+    function showLoading() {
+        $('.loading-popup').css("display", "block");
+    }
+
+    function hideLoading() {
+        $('.loading-popup').css("display", "none");
+    }
 });
+
+
 
 function createCookie(name, value, days) {
     var expires;
