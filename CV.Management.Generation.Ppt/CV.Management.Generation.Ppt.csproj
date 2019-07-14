@@ -69,8 +69,10 @@
     <Compile Include="Helpers\GenerateTableStylesPartHelper.cs" />
     <Compile Include="Helpers\GenerateThemePartHelper.cs" />
     <Compile Include="Helpers\GenerateViewPropertiesPartHelper.cs" />
+    <Compile Include="PresentationMetadataTexts.cs" />
     <Compile Include="PresentationDocumentManager.cs" />
     <Compile Include="PresentationGenerationData.cs" />
+    <Compile Include="PresentationMetadataTextsEnum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

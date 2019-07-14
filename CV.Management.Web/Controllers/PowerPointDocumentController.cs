@@ -15,21 +15,24 @@ namespace CV.Management.Web.Controllers
     public class PowerPointDocumentController : ApiController
     {
         [HttpGet]
-        [Route("api/pptdocument/{id}")]
-        public HttpResponseMessage DownloadPdfFile(string id)
+        [Route("api/pptdocument/{language}/{id}")]
+        public HttpResponseMessage DownloadPdfFile(string language, string id)
         {
             try
             {
                 var documentManager = new PresentationDocumentManager();
 
-                var bytes = documentManager.GetDocument(GetGenerationData(id));
+                var generationData = GetGenerationData(language, id);
+                var cleanedFullName = !string.IsNullOrEmpty(generationData.FullName) ? generationData.FullName.Replace(' ', '_') : string.Empty;
+
+                var bytes = documentManager.GetDocument(GetGenerationData(language, id));
 
                 var result = Request.CreateResponse(HttpStatusCode.OK);
                 result.Content = new ByteArrayContent(bytes);
                 result.Content.Headers.ContentDisposition =
                     new System.Net.Http.Headers.ContentDispositionHeaderValue(
                             "attachment")
-                    { FileName = "Test" + ".pptx" };
+                    { FileName = $"CV_{cleanedFullName}_{language.ToUpper()}" + ".pptx" };
 
                 return result;
             }
@@ -41,7 +44,7 @@ namespace CV.Management.Web.Controllers
             }
         }
 
-        private PresentationGenerationData GetGenerationData(string id)
+        private PresentationGenerationData GetGenerationData(string language, string id)
         {
             using (var db = new ProfileInformationDbContext())
             {
@@ -57,68 +60,69 @@ namespace CV.Management.Web.Controllers
                     profile = db.Profiles.FirstOrDefault(x => x.Username == userName);
                 }
 
-                return DataFromProfile(profile);
+                return DataFromProfile(profile, language);
             }
         }
 
-        private string GetCurrentDate()
+        private string GetCurrentDate(string language)
         {
             var year = DateTime.Now.Year.ToString();
 
             switch (DateTime.Now.Month)
             {
                 case 1:
-                    return $"January {year}";
+                    return $"{PresentationMetadataTexts.GetText(PresentationMetadataTextsEnum.CV_MONTH_JANUARY, language)} {year}";
                 case 2:
-                    return $"February {year}";
+                    return $"{PresentationMetadataTexts.GetText(PresentationMetadataTextsEnum.CV_MONTH_FEBRUARY, language)} {year}";
                 case 3:
-                    return $"March {year}";
+                    return $"{PresentationMetadataTexts.GetText(PresentationMetadataTextsEnum.CV_MONTH_MARCH, language)} {year}";
                 case 4:
-                    return $"April {year}";
+                    return $"{PresentationMetadataTexts.GetText(PresentationMetadataTextsEnum.CV_MONTH_APRIL, language)} {year}";
                 case 5:
-                    return $"May {year}";
+                    return $"{PresentationMetadataTexts.GetText(PresentationMetadataTextsEnum.CV_MONTH_MAY, language)} {year}";
                 case 6:
-                    return $"June {year}";
+                    return $"{PresentationMetadataTexts.GetText(PresentationMetadataTextsEnum.CV_MONTH_JUNE, language)} {year}";
                 case 7:
-                    return $"July {year}";
+                    return $"{PresentationMetadataTexts.GetText(PresentationMetadataTextsEnum.CV_MONTH_JULY, language)} {year}";
                 case 8:
-                    return $"August {year}";
+                    return $"{PresentationMetadataTexts.GetText(PresentationMetadataTextsEnum.CV_MONTH_AUGUST, language)} {year}";
                 case 9:
-                    return $"September {year}";
+                    return $"{PresentationMetadataTexts.GetText(PresentationMetadataTextsEnum.CV_MONTH_SEPTEMBER, language)} {year}";
                 case 10:
-                    return $"October {year}";
+                    return $"{PresentationMetadataTexts.GetText(PresentationMetadataTextsEnum.CV_MONTH_OCTOBER, language)} {year}";
                 case 11:
-                    return $"November {year}";
+                    return $"{PresentationMetadataTexts.GetText(PresentationMetadataTextsEnum.CV_MONTH_NOVEMBER, language)} {year}";
                 case 12:
-                    return $"December {year}";
+                    return $"{PresentationMetadataTexts.GetText(PresentationMetadataTextsEnum.CV_MONTH_DECEMBER, language)} {year}";
                 default:
                     return "Unknown";
             }
         }
 
-        private PresentationGenerationData DataFromProfile(Profile profile)
+        private PresentationGenerationData DataFromProfile(Profile profile, string language)
         {
             return new PresentationGenerationData
             {
-                Date = GetCurrentDate(),
+                Date = GetCurrentDate(language),
                 FullName = profile.FullName,
                 Email = profile.Email,
                 Phone = profile.PhoneCode + profile.Phone,
                 PictureContent = profile.PictureContent,
                 PictureType = profile.PictureType,
-                Education = GetEducationItems(profile.Educations),
+                Education = GetEducationItems(profile.Educations, language),
                 Languages = GetLanguageItems(profile.Languages),
-                Motivation = GetMotivationItems(profile),
-                Experience = GetExperienceItems(profile.Companies)
+                Motivation = GetMotivationItems(profile, language),
+                Experience = GetExperienceItems(profile.Companies, language),
+                Language = language
             };
         }
 
-        private static List<EducationItem> GetEducationItems(ICollection<Education> educations)
+        private static List<EducationItem> GetEducationItems(ICollection<Education> educations, string language)
         {
             return educations.Select(x => new EducationItem
             {
                 Degree = x.Degree,
-                EndYear = x.ToYear.HasValue ? x.ToYear.Value.ToString() : "Present",
+                EndYear = x.ToYear.HasValue ? x.ToYear.Value.ToString() : PresentationMetadataTexts.GetText(PresentationMetadataTextsEnum.PRESENT, language),
                 University = x.Institution
             }).ToList();
         }
@@ -150,7 +154,7 @@ namespace CV.Management.Web.Controllers
             return result;
         }
 
-        private static List<MotivationItem> GetMotivationItems(Profile profile)
+        private static List<MotivationItem> GetMotivationItems(Profile profile, string language)
         {
             var result = new List<MotivationItem>();
 
@@ -158,7 +162,7 @@ namespace CV.Management.Web.Controllers
             {
                 result.Add(new MotivationItem
                 {
-                    Label = "Remuneration",
+                    Label = PresentationMetadataTexts.GetText(PresentationMetadataTextsEnum.RENUMERATION, language),
                     Content = profile.SalaryRequest
                 });
             }
@@ -167,7 +171,7 @@ namespace CV.Management.Web.Controllers
             {
                 result.Add(new MotivationItem
                 {
-                    Label = "Requested bonuses",
+                    Label = PresentationMetadataTexts.GetText(PresentationMetadataTextsEnum.REQUESTED_BONUSES, language),
                     Content = profile.BonusRequest
                 });
             }
@@ -176,7 +180,7 @@ namespace CV.Management.Web.Controllers
             {
                 result.Add(new MotivationItem
                 {
-                    Label = "Additional bonuses",
+                    Label = PresentationMetadataTexts.GetText(PresentationMetadataTextsEnum.ADDITIONAL_BONUSES, language),
                     Content = profile.AdditionalBonuses
                 });
             }
@@ -184,7 +188,7 @@ namespace CV.Management.Web.Controllers
             return result;
         }
 
-        private static List<ExperienceItem> GetExperienceItems(ICollection<Company> companies)
+        private static List<ExperienceItem> GetExperienceItems(ICollection<Company> companies, string language)
         {
             var result = new List<ExperienceItem>();
 
@@ -197,7 +201,7 @@ namespace CV.Management.Web.Controllers
                         Company = company.Name?.ToUpper(),
                         Position = position.Name,
                         StartingYear = position.FromTime.HasValue ? position.FromTime.Value.ToString() : string.Empty,
-                        EndingYear = position.Now ? "Present" : position.ToTime.HasValue ? position.ToTime.Value.ToString() : string.Empty
+                        EndingYear = position.Now ? PresentationMetadataTexts.GetText(PresentationMetadataTextsEnum.PRESENT, language) : position.ToTime.HasValue ? position.ToTime.Value.ToString() : string.Empty
                     });
                 }
             }

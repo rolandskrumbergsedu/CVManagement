@@ -147,7 +147,17 @@
         var hiddenInputValue = hiddenInput.attr("value");
 
         e.preventDefault();
-        window.location.href = "/api/pptdocument/" + hiddenInputValue;
+        window.location.href = "/api/pptdocument/en/" + hiddenInputValue;
+    });
+
+    $(".download_ppt_lv").click(function (e) {
+
+        var row = $(this).closest('tr');
+        var hiddenInput = row.find("input");
+        var hiddenInputValue = hiddenInput.attr("value");
+
+        e.preventDefault();
+        window.location.href = "/api/pptdocument/lv/" + hiddenInputValue;
     });
 
     $('.remove-image').click(function () {

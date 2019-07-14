@@ -14,6 +14,7 @@ namespace CV.Management.Generation.Ppt
         public List<LanguageItem> Languages { get; set; }
         public List<ExperienceItem> Experience { get; set; }
         public List<MotivationItem> Motivation { get; set; }
+        public string Language { get; set; }
     }
 
     public class EducationItem

@@ -195,7 +195,7 @@ html, body {
     }
 
 
-.download_ppt_en {
+.download_ppt_en, .download_ppt_lv {
     padding-left: 35px;
     font-size: 24px;
     color: #1c74bb;
@@ -203,7 +203,7 @@ html, body {
     background: url(Images/pptx.png) no-repeat left center;
 }
 
-    .download_ppt_en:hover {
+    .download_ppt_en:hover, .download_ppt_lv:hover {
         background: url(Images/pptx_h.png) no-repeat left center;
         color: #231f20;
         cursor: pointer;

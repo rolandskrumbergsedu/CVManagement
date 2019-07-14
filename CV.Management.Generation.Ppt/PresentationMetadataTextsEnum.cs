@@ -1,0 +1,29 @@
+﻿namespace CV.Management.Generation.Ppt
+{
+    public enum PresentationMetadataTextsEnum
+    {
+        PHONE,
+        EMAIL,
+        CV_MONTH_JANUARY,
+        CV_MONTH_FEBRUARY,
+        CV_MONTH_MARCH,
+        CV_MONTH_APRIL,
+        CV_MONTH_MAY,
+        CV_MONTH_JUNE,
+        CV_MONTH_JULY,
+        CV_MONTH_AUGUST,
+        CV_MONTH_SEPTEMBER,
+        CV_MONTH_OCTOBER,
+        CV_MONTH_NOVEMBER,
+        CV_MONTH_DECEMBER,
+        PRESENT,
+        RENUMERATION,
+        REQUESTED_BONUSES,
+        ADDITIONAL_BONUSES,
+        EXPERIENCE,
+        EDUCATION,
+        LANGUAGES,
+        STRENGTHS,
+        MOTIVATION
+    }
+}

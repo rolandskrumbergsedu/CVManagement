@@ -529,7 +529,7 @@ namespace CV.Management.Generation.Ppt.Helpers
             runProperties12.Append(latinFont43);
             runProperties12.Append(complexScriptFont32);
             A.Text text12 = new A.Text();
-            text12.Text = "Phone: ";
+            text12.Text = $"{PresentationMetadataTexts.GetText(PresentationMetadataTextsEnum.PHONE, data.Language)}: ";
 
             run9.Append(runProperties12);
             run9.Append(text12);
@@ -614,7 +614,7 @@ namespace CV.Management.Generation.Ppt.Helpers
             runProperties14.Append(latinFont46);
             runProperties14.Append(complexScriptFont35);
             A.Text text14 = new A.Text();
-            text14.Text = "E-mail: ";
+            text14.Text = $"{PresentationMetadataTexts.GetText(PresentationMetadataTextsEnum.EMAIL, data.Language)}: ";
 
             run11.Append(runProperties14);
             run11.Append(text14);
@@ -1088,7 +1088,7 @@ namespace CV.Management.Generation.Ppt.Helpers
             runProperties16.Append(latinFont58);
             runProperties16.Append(complexScriptFont38);
             A.Text text16 = new A.Text();
-            text16.Text = "Experience";
+            text16.Text = $"{PresentationMetadataTexts.GetText(PresentationMetadataTextsEnum.EXPERIENCE, data.Language)}";
 
             run13.Append(runProperties16);
             run13.Append(text16);
@@ -2040,7 +2040,7 @@ namespace CV.Management.Generation.Ppt.Helpers
             runProperties29.Append(latinFont81);
             runProperties29.Append(complexScriptFont52);
             A.Text text29 = new A.Text();
-            text29.Text = "Education";
+            text29.Text = $"{PresentationMetadataTexts.GetText(PresentationMetadataTextsEnum.EDUCATION, data.Language)}"; 
 
             run26.Append(runProperties29);
             run26.Append(text29);
@@ -2280,7 +2280,7 @@ namespace CV.Management.Generation.Ppt.Helpers
             runProperties32.Append(latinFont87);
             runProperties32.Append(complexScriptFont58);
             A.Text text32 = new A.Text();
-            text32.Text = "Languages: ";
+            text32.Text = $"{PresentationMetadataTexts.GetText(PresentationMetadataTextsEnum.STRENGTHS, data.Language)}: ";
 
             run29.Append(runProperties32);
             run29.Append(text32);
@@ -2747,7 +2747,7 @@ namespace CV.Management.Generation.Ppt.Helpers
             runProperties34.Append(latinFont98);
             runProperties34.Append(complexScriptFont60);
             A.Text text34 = new A.Text();
-            text34.Text = "Strengths & Weaknesses";
+            text34.Text = $"{PresentationMetadataTexts.GetText(PresentationMetadataTextsEnum.STRENGTHS, data.Language)}";
 
             run31.Append(runProperties34);
             run31.Append(text34);
@@ -3198,7 +3198,7 @@ namespace CV.Management.Generation.Ppt.Helpers
 
             runProperties37.Append(solidFill151);
             A.Text text37 = new A.Text();
-            text37.Text = "Motivation";
+            text37.Text = $"{PresentationMetadataTexts.GetText(PresentationMetadataTextsEnum.MOTIVATION, data.Language)}";
 
             run34.Append(runProperties37);
             run34.Append(text37);

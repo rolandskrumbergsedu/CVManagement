@@ -24,6 +24,9 @@ namespace CV.Management.Web.Controllers
             {
                 var documentManager = new WordDocumentManager();
 
+                var generationData = GetGenerationData(language, id);
+                var cleanedFullName = !string.IsNullOrEmpty(generationData.Personal.FullName) ? generationData.Personal.FullName.Replace(' ', '_') : string.Empty;
+
                 var bytes = documentManager.GetDocument(GetGenerationData(language, id));
 
                 var result = Request.CreateResponse(HttpStatusCode.OK);
@@ -31,7 +34,7 @@ namespace CV.Management.Web.Controllers
                 result.Content.Headers.ContentDisposition =
                     new System.Net.Http.Headers.ContentDispositionHeaderValue(
                             "attachment")
-                    { FileName = "Test" + ".docx" };
+                    { FileName = $"CV_{cleanedFullName}_{language.ToUpper()}" + ".docx" };
 
                 return result;
             }
