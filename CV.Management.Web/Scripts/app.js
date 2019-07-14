@@ -162,12 +162,17 @@
 
     $('.delete-photo').click(function () {
 
+        showLoading();
+
         $.get(window.location.origin + "/api/deletebyusername", function (data) {
 
             $('#real-profile-image').css("display", "none");
             $('#default-profile-image').css("display", "inline");
 
+            hideLoading();
+
         }).fail(function () {
+            hideLoading();
             alert("Error deleting file!");
         });
 
@@ -211,6 +216,13 @@
 
         });
     }
+
+    $(".preview-container").click(function (e) {
+        var language = readCookie("language");
+
+        e.preventDefault();
+        window.location.href = "/api/myworddocument/" + language;
+    });
 
     $('.education-now-input').each(function () {
         var formGroup = $(this).closest('div[class^="form-group"]');

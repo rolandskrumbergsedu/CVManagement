@@ -367,16 +367,6 @@
     <Content Include="Content\Images\up.svg" />
     <Content Include="Content\Images\word-stripes.png" />
     <Content Include="Content\Images\word-stripes_.png" />
-    <Content Include="Content\Legacy\bootstrap-datetimepicker.min.css" />
-    <Content Include="Content\Legacy\croppie.css" />
-    <Content Include="Content\Legacy\js\autosize.js" />
-    <Content Include="Content\Legacy\js\croppie.js" />
-    <Content Include="Content\Legacy\js\jquery.mask.js" />
-    <Content Include="Content\Legacy\js\vendor\bootstrap-datetimepicker.min.js" />
-    <Content Include="Content\Legacy\js\vendor\bootstrap.min.js" />
-    <Content Include="Content\Legacy\js\vendor\jquery.min.js" />
-    <Content Include="Content\Legacy\js\vendor\moment.js" />
-    <Content Include="Content\Legacy\style.css" />
     <Content Include="Content\main.css" />
     <Content Include="EF.txt" />
     <Content Include="favicon.ico" />
@@ -386,11 +376,6 @@
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Content\Legacy\js\vendor\jquery.mCustomScrollbar.concat.min.js" />
-    <Content Include="Content\Legacy\fonts\ufonts.com_dax-regular.eot" />
-    <Content Include="Content\Legacy\fonts\ufonts.com_dax-regular.ttf" />
-    <Content Include="Content\Legacy\fonts\ufonts.com_dax-regular.woff" />
-    <Content Include="Content\Legacy\fonts\ufonts.com_dax-regular.woff2" />
     <Content Include="Content\fonts\ufonts.com_dax-regular.eot" />
     <Content Include="Content\fonts\ufonts.com_dax-regular.ttf" />
     <Content Include="Content\fonts\ufonts.com_dax-regular.woff" />
@@ -447,8 +432,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Profile\Index.cshtml" />
-    <Content Include="Views\Shared\_LegacyLayout.cshtml" />
     <Content Include="Views\Cv\Profile.cshtml" />
     <Content Include="Views\Admin\Overview.cshtml" />
     <Content Include="Views\Admin\_AdminLayout.cshtml" />

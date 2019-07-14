@@ -35,9 +35,14 @@
                                 <li><a href="/cv/profile/lv">LV</a></li>
                             </ul>
                         </li>
+                        <li>
+                            <div class="preview-container">
+                                <img src="~/Content/Images/preview.png" />
+                                <span>Preview</span>
+                            </div>                        </li>
                         @if (User.IsInRole("Administrator"))
                         {
-                            <li><a href="/admin/overview">Admin</a></li>
+                            <li class="admin-link"><a href="/admin/overview">Admin</a></li>
                         }
                     </ul>
                     @Html.Partial("_LoginPartial", new CV.Management.Web.Models.LoginPartialViewModel

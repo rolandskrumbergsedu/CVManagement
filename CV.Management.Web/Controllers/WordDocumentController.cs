@@ -46,6 +46,47 @@ namespace CV.Management.Web.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("api/myworddocument/{language}")]
+        public HttpResponseMessage DownloadMyPdfFile(string language)
+        {
+            try
+            {
+                var documentManager = new WordDocumentManager();
+
+                var generationData = GetGenerationData(language);
+                var cleanedFullName = !string.IsNullOrEmpty(generationData.Personal.FullName) ? generationData.Personal.FullName.Replace(' ', '_') : string.Empty;
+
+                var bytes = documentManager.GetDocument(generationData);
+
+                var result = Request.CreateResponse(HttpStatusCode.OK);
+                result.Content = new ByteArrayContent(bytes);
+                result.Content.Headers.ContentDisposition =
+                    new System.Net.Http.Headers.ContentDispositionHeaderValue(
+                            "attachment")
+                    { FileName = $"CV_{cleanedFullName}_{language.ToUpper()}" + ".docx" };
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Logger logger = LogManager.GetLogger("databaseLogger");
+                logger.Error(ex, $"Exception generating document in language = {language}!");
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+            }
+        }
+
+        private GenerationData GetGenerationData(string language)
+        {
+            using (var db = new ProfileInformationDbContext())
+            {
+                var userName = User.Identity.Name;
+                var profile = db.Profiles.FirstOrDefault(x => x.Username == userName);
+
+                return DataFromProfile(profile, language);
+            }
+        }
+
         private GenerationData GetGenerationData(string language, string id)
         {
             using(var db = new ProfileInformationDbContext())
