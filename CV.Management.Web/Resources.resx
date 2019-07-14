@@ -366,4 +366,7 @@
   <data name="InvalidYearWithMonth" xml:space="preserve">
     <value>Invalid year and/or month!</value>
   </data>
+  <data name="DeletePhoto" xml:space="preserve">
+    <value>Delete photo</value>
+  </data>
 </root>

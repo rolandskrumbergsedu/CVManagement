@@ -5,11 +5,13 @@
         <div class="row text-center">
             @if (!string.IsNullOrEmpty(Model.ImageSrc))
             {
-                <img src="@Model.ImageSrc" class="profile-image img-rounded" />
+                <img id="real-profile-image" src="@Model.ImageSrc" class="profile-image img-rounded" />
+                <img id="default-profile-image" src="~/Content/Images/default_pic.png" class="img-rounded" style="display:none;" />
             }
             else
             {
-                <img src="~/Content/Images/default_pic.png" class="img-rounded" />
+                <img id="default-profile-image" src="~/Content/Images/default_pic.png" class="img-rounded" />
+                <img id="real-profile-image" src="@Model.ImageSrc" class="profile-image img-rounded" style="display:none;"/>
             }
         </div>
 
@@ -18,6 +20,15 @@
                 @Html.TextBoxFor(m => m.ProfilePicture, new { id = "file_upload", type = "file", name = "ProfilePicture", @class= "btn btn-default upload-button" })
             </div>
         </div>
+
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-12">
+                    <span class="btn btn-primary form-control delete-photo">@Resources.DeletePhoto</span>
+                </div>
+            </div>
+        </div>
+
     </div>
     <div class="col-xs-8 personal-information">
         <div class="row">

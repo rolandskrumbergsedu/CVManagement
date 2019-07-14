@@ -26,5 +26,23 @@ namespace CV.Management.Web.Controllers
 
             return Request.CreateResponse(HttpStatusCode.OK);
         }
+
+        [HttpGet]
+        [Route("api/deletebyusername")]
+        public HttpResponseMessage DeleteFileByUsername()
+        {
+            using (var db = new ProfileInformationDbContext())
+            {
+                var userName = User.Identity.Name;
+                var profile = db.Profiles.FirstOrDefault(x => x.Username == userName);
+
+                profile.PictureContent = null;
+                profile.PictureType = null;
+
+                db.SaveChanges();
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
     }
 }

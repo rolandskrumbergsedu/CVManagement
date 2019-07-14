@@ -160,6 +160,19 @@
         window.location.href = "/api/pptdocument/lv/" + hiddenInputValue;
     });
 
+    $('.delete-photo').click(function () {
+
+        $.get(window.location.origin + "/api/deletebyusername", function (data) {
+
+            $('#real-profile-image').css("display", "none");
+            $('#default-profile-image').css("display", "inline");
+
+        }).fail(function () {
+            alert("Error deleting file!");
+        });
+
+    });
+
     $('.remove-image').click(function () {
         var row = $(this).closest('tr');
         var hiddenInput = row.find("input");

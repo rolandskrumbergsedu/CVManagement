@@ -378,6 +378,13 @@ html, body {
     margin-top: 15px;
 }
 
+.photo-delete {
+    -webkit-appearance: button;
+    cursor: pointer;
+    width: 100%;
+    max-width: 100%;
+}
+
 @media only screen and (max-width : 319px) {
     .register-row {
         padding-top: 30px;
@@ -435,3 +442,4 @@ html, body {
         font-size: 14px;
     }
 }
+

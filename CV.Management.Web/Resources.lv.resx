@@ -363,4 +363,7 @@
   <data name="InvalidYearWithMonth" xml:space="preserve">
     <value>Nepareizs gads un/vai mēnesis!</value>
   </data>
+  <data name="DeletePhoto" xml:space="preserve">
+    <value>Dzēst foto</value>
+  </data>
 </root>
