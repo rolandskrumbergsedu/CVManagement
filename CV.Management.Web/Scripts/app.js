@@ -1243,6 +1243,7 @@
     $("#save_all").on("click", function () {
 
         showLoading();
+        createCookie("tosave", "true", 1);
 
     });
 
@@ -1467,6 +1468,11 @@
             }, 5000);
     }
 
+    cookie = readCookie("tosave");
+    if (cookie && cookie === "true") {
+        eraseCookie("tosave");
+    }
+
     function showLoading() {
         $('.loading-popup').css("display", "block");
     }
@@ -1474,6 +1480,20 @@
     function hideLoading() {
         $('.loading-popup').css("display", "none");
     }
+
+    createCookie("dirty", "false", 1);
+    $("input").on("input", function () {
+        createCookie("dirty", "true", 1);
+    });
+
+    $(window).bind('beforeunload', function () {
+
+        if (readCookie("dirty") === "true" && readCookie("tosave") !== "true") {
+            return 'There is unsaved data. Do you really want to leave?';
+        }
+
+        
+    });
 });
 
 
