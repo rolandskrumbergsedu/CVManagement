@@ -118,7 +118,7 @@ namespace CV.Management.Web.Controllers
             return educations.Select(x => new EducationItem
             {
                 Degree = x.Degree,
-                EndYear = x.ToYear.HasValue ? x.ToYear.Value.ToString() : "Currently studying",
+                EndYear = x.ToYear.HasValue ? x.ToYear.Value.ToString() : "Present",
                 University = x.Institution
             }).ToList();
         }
@@ -194,10 +194,10 @@ namespace CV.Management.Web.Controllers
                 {
                     result.Add(new ExperienceItem
                     {
-                        Company = company.Name,
+                        Company = company.Name?.ToUpper(),
                         Position = position.Name,
                         StartingYear = position.FromTime.HasValue ? position.FromTime.Value.ToString() : string.Empty,
-                        EndingYear = position.Now ? "present" : position.ToTime.HasValue ? position.ToTime.Value.ToString() : string.Empty
+                        EndingYear = position.Now ? "Present" : position.ToTime.HasValue ? position.ToTime.Value.ToString() : string.Empty
                     });
                 }
             }
