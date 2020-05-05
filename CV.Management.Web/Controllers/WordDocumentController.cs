@@ -15,12 +15,17 @@ namespace CV.Management.Web.Controllers
     [Authorize]
     public class WordDocumentController : ApiController
     {
+        private readonly ILogger _logger = new LoggerFactory().CreateLogger(typeof(WordDocumentController));
+
         [HttpGet]
         [Route("api/worddocument/{language}/{id}")]
         public HttpResponseMessage DownloadPdfFile(string language, string id)
         {
             try
             {
+
+                _logger.LogInformation($"Generating document with ID = {id} and language = {language}");
+
                 var documentManager = new WordDocumentManager();
 
                 var generationData = GetGenerationData(language, id);
@@ -39,9 +44,7 @@ namespace CV.Management.Web.Controllers
             }
             catch (Exception ex)
             {
-                var logger = new LoggerFactory().CreateLogger(typeof(WordDocumentController));
-
-                logger.LogError(ex, $"Exception generating document for ID = {id} in language = {language}!");
+                _logger.LogError(ex, $"Exception generating document for ID = {id} in language = {language}!");
 
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
