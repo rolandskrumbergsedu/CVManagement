@@ -1,14 +1,13 @@
 ﻿using CV.Management.Generation.Word;
 using CV.Management.Web.DbContexts;
 using CV.Management.Web.Models.Database;
-using NLog;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
-using System.Web;
 using System.Web.Http;
 
 namespace CV.Management.Web.Controllers
@@ -40,8 +39,10 @@ namespace CV.Management.Web.Controllers
             }
             catch (Exception ex)
             {
-                Logger logger = LogManager.GetLogger("databaseLogger");
-                logger.Error(ex, $"Exception generating document for ID = {id} in language = {language}!");
+                var logger = new LoggerFactory().CreateLogger(typeof(WordDocumentController));
+
+                logger.LogError(ex, $"Exception generating document for ID = {id} in language = {language}!");
+
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
@@ -70,8 +71,9 @@ namespace CV.Management.Web.Controllers
             }
             catch (Exception ex)
             {
-                Logger logger = LogManager.GetLogger("databaseLogger");
-                logger.Error(ex, $"Exception generating document in language = {language}!");
+                var logger = new LoggerFactory().CreateLogger(typeof(WordDocumentController));
+
+                logger.LogError(ex, $"Exception generating document in language = {language}!");
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }

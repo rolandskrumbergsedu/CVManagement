@@ -1,4 +1,4 @@
-﻿using NLog;
+﻿using Microsoft.Extensions.Logging;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -15,13 +15,18 @@ namespace CV.Management.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            Microsoft.ApplicationInsights.Extensibility.TelemetryConfiguration.Active.InstrumentationKey = System.Web.Configuration.WebConfigurationManager.AppSettings["InstrumentationKey"];
+
         }
 
         protected void Application_Error()
         {
             var exception = Server.GetLastError();
-            Logger logger = LogManager.GetLogger("databaseLogger");
-            logger.Error(exception, "Global error occured!");
+
+            var logger = new LoggerFactory().CreateLogger(typeof(MvcApplication));
+
+            logger.LogError(exception, "Global error occured!");
         }
     }
 }

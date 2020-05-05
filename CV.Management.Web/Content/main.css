@@ -180,6 +180,16 @@ html, body {
         cursor: pointer;
     }
 
+.remove_user {
+    padding-left: 35px;
+    font-size: 24px;
+    color: #1c74bb;
+    text-transform: uppercase;
+    background: url(Images/remove.png) no-repeat left center;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
 .download_word_empty {
     padding-left: 35px;
     font-size: 24px;

@@ -1,7 +1,7 @@
 ﻿using CV.Management.Generation.Ppt;
 using CV.Management.Web.DbContexts;
 using CV.Management.Web.Models.Database;
-using NLog;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,8 +38,9 @@ namespace CV.Management.Web.Controllers
             }
             catch (Exception ex)
             {
-                Logger logger = LogManager.GetLogger("databaseLogger");
-                logger.Error(ex, $"Exception generating PPT document for ID = {id}!");
+                var logger = new LoggerFactory().CreateLogger(typeof(PowerPointDocumentController));
+
+                logger.LogError(ex, $"Exception generating PPT document for ID = {id}!");
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
