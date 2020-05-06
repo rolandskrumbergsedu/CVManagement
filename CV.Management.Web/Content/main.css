@@ -73,9 +73,9 @@ h5 {
     margin-top: 5px;
 }
 
-.left-control {
+/*.left-control {
     height: 104px;
-}
+}*/
 
 .line {
     display: block;
@@ -210,4 +210,8 @@ h5 {
     .hide-on-large-device {
         display: none;
     }
+}
+
+.position_row {
+    padding-left: 30px;
 }
