@@ -25,6 +25,12 @@ namespace CV.Management.Web
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
+                      "~/Content/navigation-bar.css",
+                      "~/Content/education.css",
+                      "~/Content/login.css",
+                      "~/Content/panel.css",
+                      "~/Content/personal-information.css",
+                      "~/Content/popup.css",
                       "~/Content/main.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(

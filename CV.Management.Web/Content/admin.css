@@ -1,0 +1,52 @@
+﻿.download_word_en, .download_word_lv {
+    padding-left: 35px;
+    font-size: 24px;
+    color: #1c74bb;
+    text-transform: uppercase;
+    background: url(Images/docs.png) no-repeat left center;
+}
+
+    .download_word_en:hover, .download_word_lv:hover {
+        background: url(Images/docs_h.png) no-repeat left center;
+        color: #231f20;
+        cursor: pointer;
+    }
+
+.remove_user {
+    padding-left: 35px;
+    font-size: 24px;
+    color: #1c74bb;
+    text-transform: uppercase;
+    background: url(Images/remove.png) no-repeat left center;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.download_word_empty {
+    padding-left: 35px;
+    font-size: 24px;
+    color: #1c74bb;
+    text-transform: uppercase;
+    background: url(Images/docs.png) no-repeat left center;
+}
+
+    .download_word_empty:hover {
+        background: url(Images/docs_h.png) no-repeat left center;
+        color: #231f20;
+        cursor: pointer;
+    }
+
+
+.download_ppt_en, .download_ppt_lv {
+    padding-left: 35px;
+    font-size: 24px;
+    color: #1c74bb;
+    text-transform: uppercase;
+    background: url(Images/pptx.png) no-repeat left center;
+}
+
+    .download_ppt_en:hover, .download_ppt_lv:hover {
+        background: url(Images/pptx_h.png) no-repeat left center;
+        color: #231f20;
+        cursor: pointer;
+    }

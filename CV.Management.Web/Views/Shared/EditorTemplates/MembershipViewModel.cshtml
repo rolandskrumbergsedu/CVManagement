@@ -20,8 +20,8 @@
                                 @Html.TextBoxFor(model => model.Memberships[i].ToTime, new { @class = "membership-to-time-input form-control", @placeholder = @Resources.ToTime })
                                 @Html.ValidationMessageFor(model => model.Memberships[i].ToTime, "", new { @class = "membership-to-time-validation" })
                                 <div class="checkbox">
-                                    @Html.CheckBoxFor(model => model.Memberships[i].Now, new { @class = "membership-now-input" })
-                                    @Html.LabelFor(model => model.Memberships[i].Now, new { @class = "membership-now-label control-label" })
+                                    @Html.CheckBoxFor(model => model.Memberships[i].Now, new { @class = "membership-now-input date-now-input" })
+                                    @Html.LabelFor(model => model.Memberships[i].Now, new { @class = "membership-now-label date-now-label control-label" })
                                 </div>
                             </div>
                         </div>

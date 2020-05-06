@@ -112,8 +112,8 @@
                                             @Html.TextBoxFor(model => Model.Companies[i].Positions[j].ToTime, new { @class = "position-to-time-input form-control", @placeholder = @Resources.ToTime })
                                             @Html.ValidationMessageFor(model => Model.Companies[i].Positions[j].ToTime, "", new { @class = "position-to-time-validation" })
                                             <div class="checkbox">
-                                                @Html.CheckBoxFor(model => Model.Companies[i].Positions[j].Now, new { @class = "career-position-now-input" })
-                                                @Html.LabelFor(model => Model.Companies[i].Positions[j].Now, new { @class = "career-position-now-label control-label" })
+                                                @Html.CheckBoxFor(model => Model.Companies[i].Positions[j].Now, new { @class = "career-position-now-input date-now-input" })
+                                                @Html.LabelFor(model => Model.Companies[i].Positions[j].Now, new { @class = "career-position-now-label date-now-label control-label" })
                                             </div>
                                         </div>
                                     </div>

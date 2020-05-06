@@ -369,4 +369,7 @@
   <data name="DeletePhoto" xml:space="preserve">
     <value>Delete photo</value>
   </data>
+  <data name="EducationEntry" xml:space="preserve">
+    <value>Education entry</value>
+  </data>
 </root>

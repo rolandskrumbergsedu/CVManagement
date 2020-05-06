@@ -1,0 +1,26 @@
+﻿.loading-popup {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.loading-popup-content {
+    text-align: center;
+    background-color: white;
+    width: 40%;
+    height: 100px;
+    margin: 0 auto;
+}
+
+    .loading-popup-content > p {
+        line-height: 100px;
+        text-align: center;
+        font-size: 24px;
+    }

@@ -366,4 +366,7 @@
   <data name="DeletePhoto" xml:space="preserve">
     <value>Dzēst foto</value>
   </data>
+  <data name="EducationEntry" xml:space="preserve">
+    <value>Izglītības ieraksts</value>
+  </data>
 </root>

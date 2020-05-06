@@ -1,0 +1,37 @@
+﻿.education-main {
+    border-right: 1px solid rgb(221, 221, 221);
+}
+
+/* Custom, iPhone Retina */
+@media only screen and (min-width : 320px) {
+    .register-row {
+        padding-top: 30px;
+        text-align: center;
+    }
+
+    .tab_more {
+        margin-top: 0px;
+    }
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width : 480px) {
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+    .education-main {
+        border-right: 0px;
+    }
+
+    .education-from-year-label, .education-to-year-label, .education-institution-label, .education-degree-label {
+        font-size: 12px;
+    }
+}
+
+@media (min-width: 1200px) {
+}

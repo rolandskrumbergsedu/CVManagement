@@ -1,0 +1,24 @@
+﻿.register-row {
+    padding-top: 30px;
+    text-align: center;
+}
+
+.external-login-list {
+    text-align: center;
+    padding-top: 30px;
+}
+
+.login-image {
+    display: block;
+    margin: 0 auto;
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+
+.login-table {
+    padding-top: 20px;
+}
+
+.login-title {
+    padding-top: 6px;
+}

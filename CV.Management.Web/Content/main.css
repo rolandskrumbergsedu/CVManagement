@@ -1,123 +1,4 @@
-﻿/* ---------------------------- NAVIGATION BAR ----------------------------*/
-
-.navbar {
-    height: 90px;
-    margin: 0px;
-}
-
-.navbar-default {
-    background-color: #FFFFFF;
-    border-color: #FFFFFF;
-}
-
-.navbar-brand {
-    height: 80px;
-}
-
-    .navbar-brand img {
-        max-width: 100%;
-        max-height: 100%;
-    }
-
-.nav > li a {
-    padding-top: 30px;
-    padding-bottom: 30px;
-}
-
-.navbar-default .navbar-nav li a:hover, .navbar-default .navbar-nav li a:focus {
-    color: black;
-    text-decoration: none;
-}
-
-.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
-    background-color: #1a76bc;
-    border-color: #1a76bc;
-}
-
-.navbar-default .navbar-collapse, .navbar-default .navbar-form {
-    background-color: #1a76bc;
-}
-
-.navbar-default .navbar-toggle {
-    background-color: #1a76bc;
-    border-color: #1a76bc;
-    padding: 10px;
-    margin: 25px 15px 25px 0;
-}
-
-    .navbar-default .navbar-toggle .icon-bar {
-        background-color: #FFFFFF;
-    }
-
-.navbar-default .navbar-nav li a, .navbar-default .navbar-nav li span {
-    color: white;
-}
-
-navbar-default .language-submenu-item {
-    color: white
-}
-
-.navbar-default .navbar-nav .open .dropdown-menu > li > a {
-    color: white;
-}
-
-.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-    color: white;
-    background-color: #1a76bc;
-}
-
-.nav > li {
-    border-top: 1px solid white;
-}
-
-.first-element-in-dropdown {
-    border-top: 0px !important;
-}
-
-.preview-container > img {
-    display: none;
-}
-
-/* Small Devices, Tablets */
-@media only screen and (min-width : 768px) {
-    .navbar-default .navbar-collapse, .navbar-default .navbar-form {
-        background-color: white;
-    }
-
-    .nav > li:hover {
-        border-bottom: 2px solid #1a76bc;
-        color: #1a76bc;
-    }
-
-    .nav > li {
-        border-top: 0px;
-    }
-
-    .navbar-default .navbar-nav li a, .navbar-default .navbar-nav li span {
-        color: black;
-    }
-
-    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
-        color: black;
-    }
-
-    .navbar-default .navbar-nav li a:hover, .navbar-default .navbar-nav li a:focus {
-        color: #1a76bc;
-    }
-
-    .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-        color: #1a76bc;
-        background-color: #e7e7e7;
-    }
-
-    .preview-container > img {
-        display: inline;
-    }
-}
-
-/* ---------------------------- NAVIGATION BAR ----------------------------*/
-
-@font-face {
+﻿@font-face {
     font-family: 'dax-regularregular';
     src: url("fonts/ufonts.com_dax-regular.eot");
     src: url("fonts/ufonts.com_dax-regular.eot?#iefix") format("embedded-opentype"), url("fonts/ufonts.com_dax-regular.woff2") format("woff2"), url("fonts/ufonts.com_dax-regular.woff") format("woff"), url("fonts/ufonts.com_dax-regular.ttf") format("truetype");
@@ -131,6 +12,11 @@ html, body {
     font-size: 12px;
 }
 
+h5 {
+    margin-top: 30px;
+    margin-bottom: 0px;
+}
+
 @media only screen and (min-width : 768px) {
 
     html, body {
@@ -138,12 +24,8 @@ html, body {
     }
 }
 
-.panel-body .row {
-    margin: 0px;
-}
-
-.profile-image {
-    max-width: 100%;
+.form-group {
+    margin-bottom: 5px;
 }
 
 .form-group label {
@@ -159,16 +41,6 @@ html, body {
     margin-top: 30px;
     width: 100%;
     max-width: 100%;
-}
-
-#file_upload, #file_save, #file_delete {
-    max-width: 100%;
-    margin-top: 20px;
-    width: 100%;
-}
-
-.personal-information {
-    border-left: 1px solid rgb(221, 221, 221);
 }
 
 .left-border {
@@ -189,11 +61,11 @@ html, body {
     padding-top: 34px;
 }
 
-.education-now-input, .career-position-now-input, .membership-now-input, .remember-input {
+.date-now-input, .remember-input {
     margin-left: 0px !important;
 }
 
-.education-now-label, .career-position-now-label, .membership-now-label, .remember-label {
+.date-now-label, .remember-label {
     padding-top: 0px !important;
 }
 
@@ -221,164 +93,8 @@ html, body {
         background-color: white;
     }
 
-.external-login-list {
-    text-align: center;
-    padding-top: 30px;
-}
-
-.login-image {
-    display: block;
-    margin: 0 auto;
-    padding-top: 20px;
-    padding-bottom: 40px;
-}
-
-.additional-files-label {
-    font-weight: bold;
-}
-
 .uppercase {
     text-transform: uppercase;
-}
-
-.tab_more {
-    display: table;
-    margin: 38px auto;
-    padding-left: 35px;
-    font-size: 12px;
-    color: #1c74bb;
-    text-transform: uppercase;
-    height: 24px;
-    line-height: 24px;
-    background: url(Images/add.png) no-repeat left center;
-}
-
-    .tab_more:hover {
-        background: url(Images/add_h.png) no-repeat left center;
-        color: #231f20;
-        cursor: pointer;
-    }
-
-.download_word_en, .download_word_lv {
-    padding-left: 35px;
-    font-size: 24px;
-    color: #1c74bb;
-    text-transform: uppercase;
-    background: url(Images/docs.png) no-repeat left center;
-}
-
-    .download_word_en:hover, .download_word_lv:hover {
-        background: url(Images/docs_h.png) no-repeat left center;
-        color: #231f20;
-        cursor: pointer;
-    }
-
-.remove_user {
-    padding-left: 35px;
-    font-size: 24px;
-    color: #1c74bb;
-    text-transform: uppercase;
-    background: url(Images/remove.png) no-repeat left center;
-    cursor: pointer;
-    margin-left: 10px;
-}
-
-.download_word_empty {
-    padding-left: 35px;
-    font-size: 24px;
-    color: #1c74bb;
-    text-transform: uppercase;
-    background: url(Images/docs.png) no-repeat left center;
-}
-
-    .download_word_empty:hover {
-        background: url(Images/docs_h.png) no-repeat left center;
-        color: #231f20;
-        cursor: pointer;
-    }
-
-
-.download_ppt_en, .download_ppt_lv {
-    padding-left: 35px;
-    font-size: 24px;
-    color: #1c74bb;
-    text-transform: uppercase;
-    background: url(Images/pptx.png) no-repeat left center;
-}
-
-    .download_ppt_en:hover, .download_ppt_lv:hover {
-        background: url(Images/pptx_h.png) no-repeat left center;
-        color: #231f20;
-        cursor: pointer;
-    }
-
-/* CUSTOM STUFF */
-
-.panel-title {
-    font-size: 16px;
-    text-transform: uppercase;
-    color: white;
-}
-
-.panel {
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    padding-bottom: 15px;
-}
-
-.panel-heading {
-    padding: 16px 15px;
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
-}
-
-    .panel-heading h4 {
-        line-height: 24px;
-    }
-
-.panel-group .panel {
-    border-radius: 0px;
-}
-
-.panel-default {
-    border-color: #FFFFFF;
-}
-
-    .panel-default > .panel-heading + .panel-collapse > .panel-body {
-        background-color: #FFFFFF;
-        border-top-color: #FFFFFF;
-    }
-
-.panel-group .panel-heading + .panel-collapse > .panel-body, .panel-group .panel-heading + .panel-collapse > .list-group {
-    border-top: 0px;
-}
-
-.panel-default > .panel-green {
-    background-color: #009347;
-}
-
-.panel-default > .panel-middle-blue {
-    background-color: #1c74bb;
-}
-
-.panel-default > .panel-pink {
-    background-color: #a21f60;
-}
-
-.panel-default > .panel-red {
-    background-color: #c31826;
-}
-
-.panel-default > .panel-heavy-blue {
-    background-color: #262261;
-}
-
-.panel-default > .panel-orange {
-    background-color: #f15a29;
-}
-
-.panel-default > .panel-light-blue {
-    background-color: #32bdea;
 }
 
 .btn {
@@ -401,43 +117,14 @@ html, body {
     border-radius: 0px;
 }
 
-.file-upload-wrapper {
-    position: relative;
-    overflow: hidden;
-    display: inline-block;
-}
-
-    .file-upload-wrapper input[type=file] {
-        opacity: 0;
-    }
-
 .upload-button {
     background-color: #FFFFFF;
     border-color: #1a76bc;
     color: #1a76bc;
 }
 
-.tab_act {
-    background: url(Images/tab_close_h.png) no-repeat center;
-    width: 24px;
-    height: 24px;
-    cursor: pointer;
-    display: block;
-    float: right;
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    -ms-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-}
-
-.phone-code-input-div {
-    padding-left: 0px;
-    padding-right: 0px;
-}
-
-.phone-input-div {
-    padding-right: 0px;
+.bold {
+    font-weight: bold;
 }
 
 .italic {
@@ -459,118 +146,42 @@ html, body {
     text-align: center;
 }
 
-.login-table {
-    padding-top: 20px;
-}
 
-.login-title {
-    padding-top: 6px;
-}
-
-#file_delete {
-    width: 100%;
-    margin-top: 15px;
-}
-
-.photo-delete {
-    -webkit-appearance: button;
-    cursor: pointer;
-    width: 100%;
-    max-width: 100%;
-}
-
-.loading-popup {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-.loading-popup-content {
-    text-align: center;
-    background-color: white;
-    width: 40%;
-    height: 100px;
-    margin: 0 auto;
-}
-
-    .loading-popup-content > p {
-        line-height: 100px;
-        text-align: center;
-        font-size: 24px;
-    }
-
-.preview-container {
-    padding-top: 30px;
-    padding-bottom: 30px;
-    padding-left: 20px;
-    cursor: pointer;
-}
-
-.preview-link {
-    padding-right: 20px;
-}
-
-@media only screen and (max-width : 319px) {
-    .register-row {
-        padding-top: 30px;
-        text-align: center;
-    }
+.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 5px;
+    padding-left: 5px;
 }
 
 /* Custom, iPhone Retina */
 @media only screen and (min-width : 320px) {
-    .register-row {
-        padding-top: 30px;
-        text-align: center;
-    }
-
-    .education_row {
-        padding-bottom: 30px;
-    }
-
-    .education-main {
-        border-right: 1px solid rgb(221, 221, 221);
-    }
-
-    .tab_more {
-        margin-top: 0px;
-    }
-
-    .education-from-year-label, .education-to-year-label, .education-institution-label, .education-degree-label {
-        font-size: 14px;
+    .remove-button {
+        padding-left: 10px;
     }
 }
 
 /* Extra Small Devices, Phones */
 @media only screen and (min-width : 480px) {
+
 }
 
-/* Small Devices, Tablets */
 @media only screen and (min-width : 768px) {
+
+    .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+        position: relative;
+        min-height: 1px;
+        padding-right: 15px;
+        padding-left: 15px;
+    }
 }
 
 /* Medium Devices, Desktops */
 @media only screen and (min-width : 992px) {
-    .education-main {
-        border-right: 0px;
-    }
 
-    .education-from-year-label, .education-to-year-label, .education-institution-label, .education-degree-label {
-        font-size: 12px;
-    }
 }
 
 @media (min-width: 1200px) {
-    .education-from-year-label, .education-to-year-label, .education-institution-label, .education-degree-label {
-        font-size: 14px;
-    }
 }
 
 
@@ -592,26 +203,5 @@ html, body {
 
     .hide-on-large-device {
         display: none;
-    }
-}
-
-/* Small Devices, Tablets */
-@media only screen and (min-width : 768px) {
-}
-
-/* Medium Devices, Desktops */
-@media only screen and (min-width : 992px) {
-    .education-main {
-        border-right: 0px;
-    }
-
-    .education-from-year-label, .education-to-year-label, .education-institution-label, .education-degree-label {
-        font-size: 12px;
-    }
-}
-
-@media (min-width: 1200px) {
-    .education-from-year-label, .education-to-year-label, .education-institution-label, .education-degree-label {
-        font-size: 14px;
     }
 }

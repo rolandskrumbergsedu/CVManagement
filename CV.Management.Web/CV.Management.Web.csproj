@@ -364,10 +364,12 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\admin.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\education.css" />
     <Content Include="Content\Images\add.png" />
     <Content Include="Content\Images\add_h.png" />
     <Content Include="Content\Images\amrop_s2b_rbg.jpg" />
@@ -435,7 +437,12 @@
     <Content Include="Content\Images\up.svg" />
     <Content Include="Content\Images\word-stripes.png" />
     <Content Include="Content\Images\word-stripes_.png" />
+    <Content Include="Content\login.css" />
     <Content Include="Content\main.css" />
+    <Content Include="Content\navigation-bar.css" />
+    <Content Include="Content\panel.css" />
+    <Content Include="Content\personal-information.css" />
+    <Content Include="Content\popup.css" />
     <Content Include="EF.txt" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
