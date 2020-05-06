@@ -6,49 +6,55 @@
 
         @for (var i = 0; i < Model.Courses.Count; i++)
         {
-            <div class="courses_row row">
-                <div class="col-md-11">
-                    <div class="row">
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Courses[i].NumberOfDays, new { @class = "courses-number-of-days-label control-label" })
-                                @Html.TextBoxFor(model => model.Courses[i].NumberOfDays, new { @class = "courses-number-of-days-input form-control", @placeholder = @Resources.NumberOfDays })
-                                @Html.ValidationMessageFor(model => model.Courses[i].NumberOfDays, "", new { @class = "courses-number-of-days-validation" })
-                            </div>
+        <div class="courses_row row">
+            <div class="col-xs-12">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h5 class="uppercase">@Resources.EducationEntry #<span class="company-number">@(i + 1)</span></h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-11 right-border">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Courses[i].NumberOfDays, new { @class = "courses-number-of-days-label control-label" })
+                            @Html.TextBoxFor(model => model.Courses[i].NumberOfDays, new { @class = "courses-number-of-days-input form-control", @placeholder = @Resources.NumberOfDays })
+                            @Html.ValidationMessageFor(model => model.Courses[i].NumberOfDays, "", new { @class = "courses-number-of-days-validation" })
                         </div>
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Courses[i].Year, new { @class = "courses-year-label control-label" })
-                                @Html.TextBoxFor(model => model.Courses[i].Year, new { @class = "courses-year-input form-control", @placeholder = @Resources.Year })
-                                @Html.ValidationMessageFor(model => model.Courses[i].Year, "", new { @class = "courses-year-validation" })
-                            </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Courses[i].Year, new { @class = "courses-year-label control-label" })
+                            @Html.TextBoxFor(model => model.Courses[i].Year, new { @class = "courses-year-input form-control", @placeholder = @Resources.Year })
+                            @Html.ValidationMessageFor(model => model.Courses[i].Year, "", new { @class = "courses-year-validation" })
                         </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Courses[i].CourseName, new { @class = "courses-name-label control-label" })
-                                @Html.TextBoxFor(model => model.Courses[i].CourseName, new { @class = "courses-name-input form-control", @placeholder = @Resources.CourseName })
-                                @Html.ValidationMessageFor(model => model.Courses[i].CourseName, "", new { @class = "courses-name-validation" })
-                            </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Courses[i].CourseName, new { @class = "courses-name-label control-label" })
+                            @Html.TextBoxFor(model => model.Courses[i].CourseName, new { @class = "courses-name-input form-control", @placeholder = @Resources.CourseName })
+                            @Html.ValidationMessageFor(model => model.Courses[i].CourseName, "", new { @class = "courses-name-validation" })
                         </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Courses[i].Trainer, new { @class = "courses-trainer-label control-label" })
-                                @Html.TextBoxFor(model => model.Courses[i].Trainer, new { @class = "courses-trainer-input form-control", @placeholder = @Resources.Trainer })
-                                @Html.ValidationMessageFor(model => model.Courses[i].Trainer, "", new { @class = "courses-trainer-validation" })
-                            </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Courses[i].Trainer, new { @class = "courses-trainer-label control-label" })
+                            @Html.TextBoxFor(model => model.Courses[i].Trainer, new { @class = "courses-trainer-input form-control", @placeholder = @Resources.Trainer })
+                            @Html.ValidationMessageFor(model => model.Courses[i].Trainer, "", new { @class = "courses-trainer-validation" })
                         </div>
                     </div>
                 </div>
-                <div class="col-md-1">
-                    <img class="remove-button courses-remove" src="~/Content/Images/remove.png" />
-                </div>
             </div>
+            <div class="col-xs-1">
+                <img class="remove-button courses-remove" src="~/Content/Images/remove.png" />
+            </div>
+        </div>
         }
     </div>
 
     <div class="row">
-        <div class="col-md-12 text-center add-button">
-            <span id="additional_course_add" class="tab_more uppercase">@Resources.AddCourse</span>
+        <div class="col-mdxsditional_course_add" class="tab_more uppercase">@Resources.AddCourse</span>
         </div>
     </div>
 </div>

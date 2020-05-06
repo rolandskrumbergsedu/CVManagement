@@ -372,4 +372,10 @@
   <data name="EducationEntry" xml:space="preserve">
     <value>Education entry</value>
   </data>
+  <data name="LanguageEntry" xml:space="preserve">
+    <value>Language entry</value>
+  </data>
+  <data name="MembershipEntry" xml:space="preserve">
+    <value>Social activities entry</value>
+  </data>
 </root>

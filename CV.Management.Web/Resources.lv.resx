@@ -369,4 +369,10 @@
   <data name="EducationEntry" xml:space="preserve">
     <value>Izglītības ieraksts</value>
   </data>
+  <data name="LanguageEntry" xml:space="preserve">
+    <value>Valodu prasmes ieraksts</value>
+  </data>
+  <data name="MembershipEntry" xml:space="preserve">
+    <value>Sociālo aktivitāšu ieraksts</value>
+  </data>
 </root>

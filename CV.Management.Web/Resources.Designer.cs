@@ -457,6 +457,15 @@ namespace CV.Management.Web {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Language entry.
+        /// </summary>
+        public static string LanguageEntry {
+            get {
+                return ResourceManager.GetString("LanguageEntry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
         public static string LanguageName {
@@ -507,6 +516,15 @@ namespace CV.Management.Web {
         public static string MembershipDescription {
             get {
                 return ResourceManager.GetString("MembershipDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Social activities entry.
+        /// </summary>
+        public static string MembershipEntry {
+            get {
+                return ResourceManager.GetString("MembershipEntry", resourceCulture);
             }
         }
         
