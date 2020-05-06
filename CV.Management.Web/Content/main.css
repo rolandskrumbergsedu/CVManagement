@@ -128,6 +128,14 @@ navbar-default .language-submenu-item {
 html, body {
     font-family: "dax-regularregular", sans-serif;
     padding-top: 10px;
+    font-size: 12px;
+}
+
+@media only screen and (min-width : 768px) {
+
+    html, body {
+        font-size: 14px;
+    }
 }
 
 .panel-body .row {
@@ -452,7 +460,7 @@ html, body {
 }
 
 .login-table {
-    padding-top:20px;
+    padding-top: 20px;
 }
 
 .login-title {
@@ -490,7 +498,6 @@ html, body {
     width: 40%;
     height: 100px;
     margin: 0 auto;
-    
 }
 
     .loading-popup-content > p {
@@ -503,7 +510,7 @@ html, body {
     padding-top: 30px;
     padding-bottom: 30px;
     padding-left: 20px;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 .preview-link {
@@ -526,7 +533,6 @@ html, body {
 
     .education_row {
         padding-bottom: 30px;
-
     }
 
     .education-main {
@@ -548,7 +554,6 @@ html, body {
 
 /* Small Devices, Tablets */
 @media only screen and (min-width : 768px) {
-    
 }
 
 /* Medium Devices, Desktops */
@@ -568,3 +573,45 @@ html, body {
     }
 }
 
+
+/* ---------------------------- VISIBILITY RULES ----------------------------*/
+
+.hide-on-small-device {
+    display: none;
+}
+
+.hide-on-large-device {
+    display: block;
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width : 480px) {
+    .hide-on-small-device {
+        display: block;
+    }
+
+    .hide-on-large-device {
+        display: none;
+    }
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+    .education-main {
+        border-right: 0px;
+    }
+
+    .education-from-year-label, .education-to-year-label, .education-institution-label, .education-degree-label {
+        font-size: 12px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .education-from-year-label, .education-to-year-label, .education-institution-label, .education-degree-label {
+        font-size: 14px;
+    }
+}
