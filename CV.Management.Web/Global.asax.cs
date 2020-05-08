@@ -30,5 +30,10 @@ namespace CV.Management.Web
 
             logger.LogError(exception, "Global error occured!");
         }
+
+        protected void Application_EndRequest()
+        {
+            Response.Headers.Remove("Server");
+        }
     }
 }
