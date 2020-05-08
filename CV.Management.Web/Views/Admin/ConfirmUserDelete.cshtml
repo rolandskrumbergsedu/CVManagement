@@ -1,0 +1,25 @@
+﻿@model CV.Management.Web.Models.ConfirmUserDeleteViewModel
+@{
+    ViewBag.Title = "ConfirmUserDelete";
+    Layout = "_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("DeleteUser", "Admin", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <h2>Are you sure you want to delete this user?</h2>
+
+    @Html.HiddenFor(m => m.Id)
+
+    <p><strong>Username:</strong> @Html.ValueFor(m => m.Username)</p>
+    <p><strong>Full name:</strong> @Html.ValueFor(m => m.FullName)</p>
+    <p><strong>Email:</strong> @Html.ValueFor(m => m.Email)</p>
+    <p><strong>LinkedIn:</strong> @Html.ValueFor(m => m.LinkedInLink)</p>
+    <p><strong>Project:</strong> @Html.ValueFor(m => m.Project)</p>
+
+    <input class="btn btn-primary" type="submit" value="Delete" />
+}
+
+
+

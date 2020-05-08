@@ -26,7 +26,7 @@
                         <td>@Model.Profiles[i].FullName</td>
                         <td>@Model.Profiles[i].Username</td>
                         <td>ENG: <span class="download_word_en"></span> <span class="download_ppt_en"></span> | LV: <span class="download_word_lv"></span> <span class="download_ppt_lv"></span></td>
-                        <td><span class="remove_user"></span></td>
+                        <td><a class="remove_user" href="/admin/ConfirmUserDelete?id=@Model.Profiles[i].ProfileId.ToString()"></a></td>
                     </tr>
                     }
                 </tbody>

@@ -293,6 +293,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="MigrationsApp\201902272154437_Initial.cs" />
     <Compile Include="MigrationsApp\201902272154437_Initial.Designer.cs">
       <DependentUpon>201902272154437_Initial.cs</DependentUpon>
@@ -343,6 +344,7 @@
     <Compile Include="Models\AdminOverviewViewModel.cs" />
     <Compile Include="Models\CareerSummaryViewModel.cs" />
     <Compile Include="Models\CompensationViewModel.cs" />
+    <Compile Include="Models\ConfirmUserDeleteViewModel.cs" />
     <Compile Include="Models\Database\AdditionalCourse.cs" />
     <Compile Include="Models\Database\AdditionalFile.cs" />
     <Compile Include="Models\Database\Company.cs" />
@@ -546,6 +548,7 @@
     <Content Include="Views\Shared\EditorTemplates\NoticePeriodViewModel.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\AdditionalCommentsViewModel.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\AdditionalFilesViewModel.cshtml" />
+    <Content Include="Views\Admin\ConfirmUserDelete.cshtml" />
     <None Include="Web.Production.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
