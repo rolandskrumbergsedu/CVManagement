@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.ApplicationInsights;
+using Microsoft.Extensions.Logging;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -26,9 +27,9 @@ namespace CV.Management.Web
         {
             var exception = Server.GetLastError();
 
-            var logger = new LoggerFactory().CreateLogger(typeof(MvcApplication));
+            var telemetry = new TelemetryClient();
 
-            logger.LogError(exception, "Global error occured!");
+            telemetry.TrackException(exception);
         }
 
         protected void Application_EndRequest()

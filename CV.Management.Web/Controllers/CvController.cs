@@ -1,6 +1,7 @@
 ﻿using CV.Management.Web.DbContexts;
 using CV.Management.Web.Models;
 using CV.Management.Web.Models.Database;
+using Microsoft.ApplicationInsights;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,36 +16,44 @@ namespace CV.Management.Web.Controllers
     [Authorize]
     public class CvController : Controller
     {
+        private readonly TelemetryClient telemetry = new TelemetryClient();
+
         public ActionResult Profile(string language)
         {
+            telemetry.TrackPageView("Profile");
+
             if (!string.IsNullOrEmpty(language))
             {
                 if (language == "lv")
                 {
                     Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("lv");
                     Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("lv");
+                    telemetry.TrackEvent("OpenProfile", new Dictionary<string, string> { { "Language", "lv" } });
                 }
                 else
                 {
                     Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en");
                     Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
+                    telemetry.TrackEvent("OpenProfile", new Dictionary<string, string> { { "Language", "en" } });
                 }
             }
             else
             {
                 if (ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("language"))
                 {
-                    HttpCookie cookie = this.ControllerContext.HttpContext.Request.Cookies["language"];
+                    HttpCookie cookie = ControllerContext.HttpContext.Request.Cookies["language"];
 
                     if (cookie.Value == "lv")
                     {
                         Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("lv");
                         Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("lv");
+                        telemetry.TrackEvent("OpenProfile", new Dictionary<string, string> { { "Language", "lv" } });
                     }
                     else
                     {
                         Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en");
                         Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
+                        telemetry.TrackEvent("OpenProfile", new Dictionary<string, string> { { "Language", "en" } });
                     };
                 }
             }
@@ -56,47 +65,15 @@ namespace CV.Management.Web.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Upload(HttpPostedFileBase file)
-        //{
-        //    if (file != null && file.ContentLength > 0)
-        //    {
-        //        var ms = new MemoryStream();
-        //        file.InputStream.CopyTo(ms);
-
-        //        using (var db = new ProfileInformationDbContext())
-        //        {
-        //            var username = GetCurrentUsername();
-        //            var userProfile = db.Profiles.FirstOrDefault(x => x.Username == username);
-
-        //            if (userProfile != null)
-        //            {
-        //                userProfile.PictureContent = Convert.ToBase64String(ms.ToArray());
-        //                userProfile.PictureType = file.ContentType;
-        //            }
-        //            else
-        //            {
-        //                db.Profiles.Add(new Profile
-        //                {
-        //                    Username = GetCurrentUsername(),
-        //                    PictureContent = Convert.ToBase64String(ms.ToArray()),
-        //                    PictureType = file.ContentType
-        //                });
-        //            }
-
-        //            db.SaveChanges();
-        //        }
-        //    }
-
-        //    return RedirectToAction("Profile");
-        //}
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete()
         {
+            telemetry.TrackPageView("Delete");
+
             var username = GetCurrentUsername();
+
+            telemetry.TrackEvent("DeletePicture", new Dictionary<string, string> { { "User", username } });
 
             if (!string.IsNullOrEmpty(username))
             {
@@ -111,7 +88,6 @@ namespace CV.Management.Web.Controllers
 
                         db.SaveChanges();
                     }
-
                 }
             }
 
@@ -122,7 +98,9 @@ namespace CV.Management.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AdditionalFiles(IEnumerable<HttpPostedFileBase> files)
         {
-            if (files != null && files.Count() > 0)
+            telemetry.TrackPageView("AdditionalFiles");
+
+            if (files != null && files.Any())
             {
                 var allFilesToAdd = new List<AdditionalFile>();
 
@@ -130,17 +108,19 @@ namespace CV.Management.Web.Controllers
                 {
                     if (file != null && file.ContentLength > 0)
                     {
-                        var ms = new MemoryStream();
-                        file.InputStream.CopyTo(ms);
-
-                        var additionalFile = new AdditionalFile
+                        using (var ms = new MemoryStream())
                         {
-                            FileContent = Convert.ToBase64String(ms.ToArray()),
-                            FileName = file.FileName,
-                            FileType = file.ContentType
-                        };
+                            file.InputStream.CopyTo(ms);
 
-                        allFilesToAdd.Add(additionalFile);
+                            var additionalFile = new AdditionalFile
+                            {
+                                FileContent = Convert.ToBase64String(ms.ToArray()),
+                                FileName = file.FileName,
+                                FileType = file.ContentType
+                            };
+
+                            allFilesToAdd.Add(additionalFile);
+                        }
                     }
                 }
 
@@ -182,7 +162,7 @@ namespace CV.Management.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ProfileSummary(ProfileViewModel profileViewModel)
         {
-            var errors = ModelState.Where(x => x.Value.Errors.Count > 0);
+            telemetry.TrackEvent("SubmitProfileSummary");
 
             if (ModelState.IsValid)
             {
@@ -507,7 +487,20 @@ namespace CV.Management.Web.Controllers
                     db.SaveChanges();
                 }
             }
+            else
+            {
+                var errors = ModelState.Where(x => x.Value.Errors.Count > 0);
 
+                var result = new Dictionary<string, string>();
+                result.Add("User", GetCurrentUsername());
+                foreach (var error in errors)
+                {
+                    result.Add($"{Guid.NewGuid()}-{error.Key}", string.Join(", ", error.Value.Errors.Select(_ => _.ErrorMessage)));
+                }
+
+                telemetry.TrackEvent("InvalidProfileSummary", result);
+
+            }
             return RedirectToAction("Profile");
         }
 

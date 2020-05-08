@@ -1,6 +1,7 @@
 ﻿using CV.Management.Generation.Word;
 using CV.Management.Web.DbContexts;
 using CV.Management.Web.Models.Database;
+using Microsoft.ApplicationInsights;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -15,16 +16,16 @@ namespace CV.Management.Web.Controllers
     [Authorize]
     public class WordDocumentController : ApiController
     {
-        private readonly ILogger _logger = new LoggerFactory().CreateLogger(typeof(WordDocumentController));
+        private readonly TelemetryClient telemetry = new TelemetryClient();
 
         [HttpGet]
         [Route("api/worddocument/{language}/{id}")]
-        public HttpResponseMessage DownloadPdfFile(string language, string id)
+        public HttpResponseMessage DownloadWordFile(string language, string id)
         {
             try
             {
 
-                _logger.LogInformation($"Generating document with ID = {id} and language = {language}");
+                telemetry.TrackEvent("DownloadWordFile", new Dictionary<string, string> { { "User", User.Identity.Name } });
 
                 var documentManager = new WordDocumentManager();
 
@@ -44,7 +45,7 @@ namespace CV.Management.Web.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Exception generating document for ID = {id} in language = {language}!");
+                telemetry.TrackException(ex);
 
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
@@ -52,10 +53,12 @@ namespace CV.Management.Web.Controllers
 
         [HttpGet]
         [Route("api/myworddocument/{language}")]
-        public HttpResponseMessage DownloadMyPdfFile(string language)
+        public HttpResponseMessage DownloadMyWordFile(string language)
         {
             try
             {
+                telemetry.TrackEvent("DownloadMyWordFile", new Dictionary<string, string> { { "User", User.Identity.Name } });
+
                 var documentManager = new WordDocumentManager();
 
                 var generationData = GetGenerationData(language);
@@ -74,9 +77,8 @@ namespace CV.Management.Web.Controllers
             }
             catch (Exception ex)
             {
-                var logger = new LoggerFactory().CreateLogger(typeof(WordDocumentController));
+                telemetry.TrackException(ex);
 
-                logger.LogError(ex, $"Exception generating document in language = {language}!");
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }

@@ -1,7 +1,10 @@
 ﻿using CV.Management.Generation.Ppt;
 using CV.Management.Web.DbContexts;
 using CV.Management.Web.Models.Database;
+using Microsoft.ApplicationInsights;
+using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.ApplicationInsights;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,12 +17,16 @@ namespace CV.Management.Web.Controllers
     [Authorize]
     public class PowerPointDocumentController : ApiController
     {
+        private readonly TelemetryClient telemetry = new TelemetryClient();
+
         [HttpGet]
         [Route("api/pptdocument/{language}/{id}")]
         public HttpResponseMessage DownloadPdfFile(string language, string id)
         {
             try
             {
+                telemetry.TrackEvent("DownloadPdfFile", new Dictionary<string, string> { { "User", User.Identity.Name } });
+
                 var documentManager = new PresentationDocumentManager();
 
                 var generationData = GetGenerationData(language, id);
@@ -38,9 +45,8 @@ namespace CV.Management.Web.Controllers
             }
             catch (Exception ex)
             {
-                var logger = new LoggerFactory().CreateLogger(typeof(PowerPointDocumentController));
+                telemetry.TrackException(ex);
 
-                logger.LogError(ex, $"Exception generating PPT document for ID = {id}!");
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }

@@ -468,9 +468,6 @@
     <Content Include="Content\fonts\ufonts.com_dax-regular.ttf" />
     <Content Include="Content\fonts\ufonts.com_dax-regular.woff" />
     <Content Include="Content\fonts\ufonts.com_dax-regular.woff2" />
-    <Content Include="NLog.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="ApplicationInsights.config" />
     <Content Include="Connected Services\Application Insights\ConnectedService.json" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
