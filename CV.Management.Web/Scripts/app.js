@@ -1242,9 +1242,10 @@
 
     $("#save_all").on("click", function () {
 
-        showLoading();
-        createCookie("tosave", "true", 1);
-
+        if ($('#profile_form').valid()) {
+            showLoading();
+            createCookie("tosave", "true", 1);
+        }
     });
 
     $("#save_personal").on("click", function () {

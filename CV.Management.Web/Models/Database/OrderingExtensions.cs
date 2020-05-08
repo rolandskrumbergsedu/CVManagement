@@ -94,7 +94,8 @@ namespace CV.Management.Web.Models.Database
             }
             else
             {
-                var highestToYear = positions.Max(x => x.ToTime).Value;
+                var maxYear = positions.Max(x => x.ToTime);
+                var highestToYear = maxYear.HasValue ? maxYear.Value : 9999;
 
                 resultToYear = highestToYear;
 

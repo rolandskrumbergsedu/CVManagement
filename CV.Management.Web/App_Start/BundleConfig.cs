@@ -12,7 +12,8 @@ namespace CV.Management.Web
                         "~/Scripts/jquery-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/jquery.validate*"));
+                    "~/Scripts/jquery.validate*",
+                    "~/Scripts/jquery.unobtrusive*"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at https://modernizr.com to pick only the tests you need.
@@ -31,6 +32,7 @@ namespace CV.Management.Web
                       "~/Content/panel.css",
                       "~/Content/personal-information.css",
                       "~/Content/popup.css",
+                      "~/Content/admin.css",
                       "~/Content/main.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(

@@ -40,7 +40,7 @@ namespace CV.Management.Web.Models
         [RegularExpression("^[0-9]*[0-9]{1}.[12][0-9]{3}|^[12][0-9]{3}$", ErrorMessageResourceType = typeof(Resources), ErrorMessageResourceName = "InvalidYearWithMonth")]
         [Display(Name = "FromTimeWithMonth", ResourceType = typeof(Resources))]
         public string FromTime { get; set; }
-        [Required]
+        //[Required]
         [RegularExpression("^[0-9]*[0-9]{1}.[12][0-9]{3}|^[12][0-9]{3}$", ErrorMessageResourceType = typeof(Resources), ErrorMessageResourceName = "InvalidYearWithMonth")]
         [Display(Name = "ToTimeWithMonth", ResourceType = typeof(Resources))]
         public string ToTime { get; set; }
