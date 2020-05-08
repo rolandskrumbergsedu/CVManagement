@@ -15,7 +15,6 @@ namespace CV.Management.Web.Controllers
     [Authorize]
     public class CvController : Controller
     {
-        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public ActionResult Profile(string language)
         {
             if (!string.IsNullOrEmpty(language))
@@ -58,6 +57,7 @@ namespace CV.Management.Web.Controllers
         }
 
         //[HttpPost]
+        //[ValidateAntiForgeryToken]
         //public ActionResult Upload(HttpPostedFileBase file)
         //{
         //    if (file != null && file.ContentLength > 0)
@@ -93,6 +93,7 @@ namespace CV.Management.Web.Controllers
         //}
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Delete()
         {
             var username = GetCurrentUsername();
@@ -118,6 +119,7 @@ namespace CV.Management.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AdditionalFiles(IEnumerable<HttpPostedFileBase> files)
         {
             if (files != null && files.Count() > 0)
@@ -177,6 +179,7 @@ namespace CV.Management.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult ProfileSummary(ProfileViewModel profileViewModel)
         {
             var errors = ModelState.Where(x => x.Value.Errors.Count > 0);
@@ -506,11 +509,6 @@ namespace CV.Management.Web.Controllers
             }
 
             return RedirectToAction("Profile");
-        }
-
-        private string GetCurrentLanguage()
-        {
-            return Thread.CurrentThread.CurrentCulture.Name.Substring(0, 2);
         }
 
         private string GetCurrentUsername()

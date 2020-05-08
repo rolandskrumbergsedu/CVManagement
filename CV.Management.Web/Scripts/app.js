@@ -217,7 +217,7 @@
         });
     }
 
-    $(".preview-container").click(function (e) {
+    $(".navbar-preview-container").click(function (e) {
         var language = readCookie("language");
 
         e.preventDefault();

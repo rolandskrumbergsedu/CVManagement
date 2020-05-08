@@ -18,6 +18,8 @@ namespace CV.Management.Web
 
             Microsoft.ApplicationInsights.Extensibility.TelemetryConfiguration.Active.InstrumentationKey = System.Web.Configuration.WebConfigurationManager.AppSettings["InstrumentationKey"];
 
+            MvcHandler.DisableMvcResponseHeader = true;
+
         }
 
         protected void Application_Error()

@@ -17,6 +17,7 @@
 
 @using (Html.BeginForm("ProfileSummary", "Cv", FormMethod.Post, new { encType = "multipart/form-data", id = "profile_form" }))
 {
+    @Html.AntiForgeryToken()
 
     <div class="panel-group" id="accordion">
         <div class="panel panel-default">
