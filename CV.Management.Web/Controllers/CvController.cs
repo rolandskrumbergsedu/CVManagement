@@ -18,32 +18,16 @@ namespace CV.Management.Web.Controllers
     {
         private readonly TelemetryClient telemetry = new TelemetryClient();
 
+        [HttpGet]
         public ActionResult Profile(string language)
         {
-            telemetry.TrackPageView("Profile");
-
-            if (!string.IsNullOrEmpty(language))
+            try
             {
-                if (language == "lv")
-                {
-                    Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("lv");
-                    Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("lv");
-                    telemetry.TrackEvent("OpenProfile", new Dictionary<string, string> { { "Language", "lv" } });
-                }
-                else
-                {
-                    Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en");
-                    Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
-                    telemetry.TrackEvent("OpenProfile", new Dictionary<string, string> { { "Language", "en" } });
-                }
-            }
-            else
-            {
-                if (ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("language"))
-                {
-                    HttpCookie cookie = ControllerContext.HttpContext.Request.Cookies["language"];
+                telemetry.TrackPageView("Profile");
 
-                    if (cookie.Value == "lv")
+                if (!string.IsNullOrEmpty(language))
+                {
+                    if (language == "lv")
                     {
                         Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("lv");
                         Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("lv");
@@ -54,12 +38,38 @@ namespace CV.Management.Web.Controllers
                         Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en");
                         Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
                         telemetry.TrackEvent("OpenProfile", new Dictionary<string, string> { { "Language", "en" } });
-                    };
+                    }
                 }
+                else
+                {
+                    if (ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("language"))
+                    {
+                        HttpCookie cookie = ControllerContext.HttpContext.Request.Cookies["language"];
+
+                        if (cookie.Value == "lv")
+                        {
+                            Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("lv");
+                            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("lv");
+                            telemetry.TrackEvent("OpenProfile", new Dictionary<string, string> { { "Language", "lv" } });
+                        }
+                        else
+                        {
+                            Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en");
+                            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
+                            telemetry.TrackEvent("OpenProfile", new Dictionary<string, string> { { "Language", "en" } });
+                        };
+                    }
+                }
+                return View(GetCurrentUserProfileViewModel());
             }
-            return View(GetCurrentUserProfileViewModel());
+            catch (Exception ex)
+            {
+                telemetry.TrackException(ex);
+                throw;
+            }
         }
 
+        [HttpGet]
         public ActionResult Error()
         {
             return View();
@@ -69,159 +79,372 @@ namespace CV.Management.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete()
         {
-            telemetry.TrackPageView("Delete");
-
-            var username = GetCurrentUsername();
-
-            telemetry.TrackEvent("DeletePicture", new Dictionary<string, string> { { "User", username } });
-
-            if (!string.IsNullOrEmpty(username))
+            try
             {
-                using (var db = new ProfileInformationDbContext())
+                telemetry.TrackPageView("Delete");
+
+                var username = GetCurrentUsername();
+
+                telemetry.TrackEvent("DeletePicture", new Dictionary<string, string> { { "User", username } });
+
+                if (!string.IsNullOrEmpty(username))
                 {
-                    var userProfile = db.Profiles.FirstOrDefault(x => x.Username == username);
-
-                    if (userProfile != null)
+                    using (var db = new ProfileInformationDbContext())
                     {
-                        userProfile.PictureContent = null;
-                        userProfile.PictureType = null;
+                        var userProfile = db.Profiles.FirstOrDefault(x => x.Username == username);
 
-                        db.SaveChanges();
+                        if (userProfile != null)
+                        {
+                            userProfile.PictureContent = null;
+                            userProfile.PictureType = null;
+
+                            db.SaveChanges();
+                        }
                     }
                 }
-            }
 
-            return RedirectToAction("Profile");
+                return RedirectToAction("Profile");
+            }
+            catch (Exception ex)
+            {
+                telemetry.TrackException(ex);
+                throw;
+            }
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AdditionalFiles(IEnumerable<HttpPostedFileBase> files)
         {
-            telemetry.TrackPageView("AdditionalFiles");
-
-            if (files != null && files.Any())
+            try
             {
-                var allFilesToAdd = new List<AdditionalFile>();
 
-                foreach (var file in files)
+
+                telemetry.TrackPageView("AdditionalFiles");
+
+                if (files != null && files.Any())
                 {
-                    if (file != null && file.ContentLength > 0)
+                    var allFilesToAdd = new List<AdditionalFile>();
+
+                    foreach (var file in files)
                     {
-                        using (var ms = new MemoryStream())
+                        if (file != null && file.ContentLength > 0)
                         {
-                            file.InputStream.CopyTo(ms);
-
-                            var additionalFile = new AdditionalFile
+                            using (var ms = new MemoryStream())
                             {
-                                FileContent = Convert.ToBase64String(ms.ToArray()),
-                                FileName = file.FileName,
-                                FileType = file.ContentType
-                            };
+                                file.InputStream.CopyTo(ms);
 
-                            allFilesToAdd.Add(additionalFile);
-                        }
-                    }
-                }
+                                var additionalFile = new AdditionalFile
+                                {
+                                    FileContent = Convert.ToBase64String(ms.ToArray()),
+                                    FileName = file.FileName,
+                                    FileType = file.ContentType
+                                };
 
-                using (var db = new ProfileInformationDbContext())
-                {
-                    var username = GetCurrentUsername();
-                    var userProfile = db.Profiles.FirstOrDefault(x => x.Username == username);
-
-                    if (userProfile != null)
-                    {
-                        if (userProfile.AdditionalFiles == null)
-                        {
-                            userProfile.AdditionalFiles = allFilesToAdd;
-                        }
-                        else
-                        {
-                            foreach (var additionalFile in allFilesToAdd)
-                            {
-                                userProfile.AdditionalFiles.Add(additionalFile);
+                                allFilesToAdd.Add(additionalFile);
                             }
                         }
                     }
-                    else
+
+                    using (var db = new ProfileInformationDbContext())
                     {
-                        db.Profiles.Add(new Profile
+                        var username = GetCurrentUsername();
+                        var userProfile = db.Profiles.FirstOrDefault(x => x.Username == username);
+
+                        if (userProfile != null)
                         {
-                            AdditionalFiles = allFilesToAdd
-                        });
+                            if (userProfile.AdditionalFiles == null)
+                            {
+                                userProfile.AdditionalFiles = allFilesToAdd;
+                            }
+                            else
+                            {
+                                foreach (var additionalFile in allFilesToAdd)
+                                {
+                                    userProfile.AdditionalFiles.Add(additionalFile);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            db.Profiles.Add(new Profile
+                            {
+                                AdditionalFiles = allFilesToAdd
+                            });
+                        }
+
+                        db.SaveChanges();
                     }
-
-                    db.SaveChanges();
                 }
-            }
 
-            return RedirectToAction("Profile");
+                return RedirectToAction("Profile");
+            }
+            catch (Exception ex)
+            {
+                telemetry.TrackException(ex);
+                throw;
+            }
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult ProfileSummary(ProfileViewModel profileViewModel)
         {
-            telemetry.TrackEvent("SubmitProfileSummary");
-
-            if (ModelState.IsValid)
+            try
             {
-                using (var db = new ProfileInformationDbContext())
+
+                telemetry.TrackEvent("SubmitProfileSummary");
+
+                if (ModelState.IsValid)
                 {
-                    var username = GetCurrentUsername();
-                    var userProfile = db.Profiles.FirstOrDefault(x => x.Username == username);
-
-                    if (userProfile != null)
+                    using (var db = new ProfileInformationDbContext())
                     {
-                        userProfile.Address = profileViewModel.PersonalInformationViewModel.Address;
-                        userProfile.Email = profileViewModel.PersonalInformationViewModel.Email;
-                        userProfile.FullName = profileViewModel.PersonalInformationViewModel.FullName;
-                        userProfile.LinkedInLink = profileViewModel.PersonalInformationViewModel.LinkedInLink;
-                        userProfile.Phone = profileViewModel.PersonalInformationViewModel.Phone;
-                        userProfile.PhoneCode = profileViewModel.PersonalInformationViewModel.PhoneCode;
-                        userProfile.Project = profileViewModel.PersonalInformationViewModel.Project;
-                        userProfile.OtherInformation = profileViewModel.PersonalInformationViewModel.OtherInformation;
-                        userProfile.CurrentBonuses = profileViewModel.CompensationViewModel.CurrentBonuses;
-                        userProfile.CurrentSalary = profileViewModel.CompensationViewModel.CurrentSalary;
-                        userProfile.SalaryRequest = profileViewModel.CompensationViewModel.SalaryRequest;
-                        userProfile.BonusRequest = profileViewModel.CompensationViewModel.BonusRequest;
-                        userProfile.AdditionalBonuses = profileViewModel.CompensationViewModel.AdditionalBonuses;
-                        userProfile.NoticePeriod = profileViewModel.NoticePeriodViewModel.NoticePeriod;
-                        userProfile.Comments = profileViewModel.AdditionalCommentsViewModel.Comments;
+                        var username = GetCurrentUsername();
+                        var userProfile = db.Profiles.FirstOrDefault(x => x.Username == username);
 
-                        if (profileViewModel.PersonalInformationViewModel.ProfilePicture != null && profileViewModel.PersonalInformationViewModel.ProfilePicture.ContentLength > 0)
+                        if (userProfile != null)
                         {
-                            var ms = new MemoryStream();
-                            profileViewModel.PersonalInformationViewModel.ProfilePicture.InputStream.CopyTo(ms);
+                            userProfile.Address = profileViewModel.PersonalInformationViewModel.Address;
+                            userProfile.Email = profileViewModel.PersonalInformationViewModel.Email;
+                            userProfile.FullName = profileViewModel.PersonalInformationViewModel.FullName;
+                            userProfile.LinkedInLink = profileViewModel.PersonalInformationViewModel.LinkedInLink;
+                            userProfile.Phone = profileViewModel.PersonalInformationViewModel.Phone;
+                            userProfile.PhoneCode = profileViewModel.PersonalInformationViewModel.PhoneCode;
+                            userProfile.Project = profileViewModel.PersonalInformationViewModel.Project;
+                            userProfile.OtherInformation = profileViewModel.PersonalInformationViewModel.OtherInformation;
+                            userProfile.CurrentBonuses = profileViewModel.CompensationViewModel.CurrentBonuses;
+                            userProfile.CurrentSalary = profileViewModel.CompensationViewModel.CurrentSalary;
+                            userProfile.SalaryRequest = profileViewModel.CompensationViewModel.SalaryRequest;
+                            userProfile.BonusRequest = profileViewModel.CompensationViewModel.BonusRequest;
+                            userProfile.AdditionalBonuses = profileViewModel.CompensationViewModel.AdditionalBonuses;
+                            userProfile.NoticePeriod = profileViewModel.NoticePeriodViewModel.NoticePeriod;
+                            userProfile.Comments = profileViewModel.AdditionalCommentsViewModel.Comments;
 
-                            userProfile.PictureContent = Convert.ToBase64String(ms.ToArray());
-                            userProfile.PictureType = profileViewModel.PersonalInformationViewModel.ProfilePicture.ContentType;
-                        }
-
-                        if (userProfile.Educations != null)
-                        {
-                            userProfile.Educations.ToList().ForEach(x => db.Entry(x).State = System.Data.Entity.EntityState.Deleted);
-                        }
-
-                        foreach (var educationItem in profileViewModel.EducationViewModel.Education)
-                        {
-                            userProfile.Educations.Add(new Education
+                            if (profileViewModel.PersonalInformationViewModel.ProfilePicture != null && profileViewModel.PersonalInformationViewModel.ProfilePicture.ContentLength > 0)
                             {
-                                Degree = educationItem.Degree,
-                                FromYear = educationItem.FromYear,
-                                Institution = educationItem.Institution,
-                                ToYear = educationItem.ToYear,
-                                Now = educationItem.Now
-                            });
-                        }
+                                var ms = new MemoryStream();
+                                profileViewModel.PersonalInformationViewModel.ProfilePicture.InputStream.CopyTo(ms);
 
-                        if (userProfile.AdditionalCourses != null)
+                                userProfile.PictureContent = Convert.ToBase64String(ms.ToArray());
+                                userProfile.PictureType = profileViewModel.PersonalInformationViewModel.ProfilePicture.ContentType;
+                            }
+
+                            if (userProfile.Educations != null)
+                            {
+                                userProfile.Educations.ToList().ForEach(x => db.Entry(x).State = System.Data.Entity.EntityState.Deleted);
+                            }
+
+                            foreach (var educationItem in profileViewModel.EducationViewModel.Education)
+                            {
+                                userProfile.Educations.Add(new Education
+                                {
+                                    Degree = educationItem.Degree,
+                                    FromYear = educationItem.FromYear,
+                                    Institution = educationItem.Institution,
+                                    ToYear = educationItem.ToYear,
+                                    Now = educationItem.Now
+                                });
+                            }
+
+                            if (userProfile.AdditionalCourses != null)
+                            {
+                                userProfile.AdditionalCourses.ToList().ForEach(x => db.Entry(x).State = System.Data.Entity.EntityState.Deleted);
+
+                                foreach (var item in profileViewModel.AdditionalCoursesViewModel.Courses)
+                                {
+                                    userProfile.AdditionalCourses.Add(new AdditionalCourse
+                                    {
+                                        CourseName = item.CourseName,
+                                        NumberOfDays = item.NumberOfDays,
+                                        Trainer = item.Trainer,
+                                        Year = item.Year
+                                    });
+                                }
+                            }
+
+                            if (userProfile.Languages != null)
+                            {
+                                userProfile.Languages.ToList().ForEach(x => db.Entry(x).State = System.Data.Entity.EntityState.Deleted);
+
+                                foreach (var item in profileViewModel.LanguageViewModel.Languages)
+                                {
+                                    userProfile.Languages.Add(new Language
+                                    {
+                                        LanguageName = item.LanguageName,
+                                        SpokenLevel = item.SpokenLevel,
+                                        WrittenLevel = item.WrittenLevel
+                                    });
+                                }
+                            }
+
+                            if (userProfile.Companies != null)
+                            {
+                                var companies = userProfile.Companies.ToList();
+                                foreach (var item in companies)
+                                {
+                                    var positions = item.Positions.ToList();
+
+                                    foreach (var position in positions)
+                                    {
+                                        position.KeyTasks.ToList().ForEach(x => db.Entry(x).State = System.Data.Entity.EntityState.Deleted);
+                                        db.Entry(position).State = System.Data.Entity.EntityState.Deleted;
+                                    }
+
+                                    db.Entry(item).State = System.Data.Entity.EntityState.Deleted;
+                                }
+
+                                foreach (var item in profileViewModel.CareerSummaryViewModel.Companies)
+                                {
+                                    var company = new Company
+                                    {
+                                        City = item.City,
+                                        Industry = item.Industry,
+                                        MainProductions = item.MainProductions,
+                                        Name = item.Name,
+                                        NumberOfEmployess = item.NumberOfEmployess,
+                                        OtherIndustry = item.Industry != Industry.Other ? item.OtherIndustry : null,
+                                        ParentCompanyName = item.ParentCompanyName,
+                                        Turnover = item.Turnover,
+                                        Positions = new List<Position>()
+                                    };
+
+                                    foreach (var position in item.Positions)
+                                    {
+                                        int? fromTime = null;
+                                        int? fromTimeMonth = null;
+                                        int? toTime = null;
+                                        int? toTimeMonth = null;
+
+                                        if (position.FromTime != null)
+                                        {
+                                            fromTime = position.FromTime.Contains(".") ? int.Parse(position.FromTime.Split('.')[1]) : int.Parse(position.FromTime);
+                                            fromTimeMonth = position.FromTime.Contains(".") ? int.Parse(position.FromTime.Split('.')[0]) : (int?)null;
+                                        }
+
+                                        if (position.ToTime != null)
+                                        {
+                                            toTime = position.ToTime.Contains(".") ? int.Parse(position.ToTime.Split('.')[1]) : int.Parse(position.ToTime);
+                                            toTimeMonth = position.ToTime.Contains(".") ? int.Parse(position.ToTime.Split('.')[0]) : (int?)null;
+                                        }
+
+                                        company.Positions.Add(new Position
+                                        {
+                                            Achievements = position.Achievements,
+                                            DirectSubordinates = position.DirectSubordinates,
+                                            FromTime = fromTime,
+                                            FromTimeMonth = fromTimeMonth,
+                                            KeyTasks = GetKeyTasks(position.KeyTasks),
+                                            Name = position.Name,
+                                            ReasonForLeaving = position.ReasonForLeaving,
+                                            ReportingTo = position.ReportingTo,
+                                            ToTime = toTime,
+                                            ToTimeMonth = toTimeMonth,
+                                            Now = position.Now
+                                        });
+                                    }
+
+                                    userProfile.Companies.Add(company);
+                                }
+                            }
+
+                            if (userProfile.Memberships != null)
+                            {
+                                userProfile.Memberships.ToList().ForEach(x => db.Entry(x).State = System.Data.Entity.EntityState.Deleted);
+
+                                foreach (var item in profileViewModel.MembershipViewModel.Memberships)
+                                {
+                                    userProfile.Memberships.Add(new Membership
+                                    {
+                                        Description = item.Description,
+                                        FromTime = item.FromTime,
+                                        ToTime = item.ToTime,
+                                        Now = item.Now
+                                    });
+                                }
+                            }
+
+                            if (userProfile.AdditionalFiles != null)
+                            {
+                                var listOfIdsToExclude = new List<int>();
+
+                                if (profileViewModel.AdditionalFilesViewModel.Files != null && profileViewModel.AdditionalFilesViewModel.Files.Count() > 0)
+                                {
+                                    profileViewModel.AdditionalFilesViewModel.Files.ForEach(x => listOfIdsToExclude.Add(x.AdditionalFileId));
+                                }
+
+                                userProfile.AdditionalFiles.Where(x => !listOfIdsToExclude.Exists(y => y == x.AdditionalFileId)).ToList().ForEach(x => db.Entry(x).State = System.Data.Entity.EntityState.Deleted);
+
+                                if (profileViewModel.AdditionalFilesViewModel.AdditionalFiles != null && profileViewModel.AdditionalFilesViewModel.AdditionalFiles.Count() > 0)
+                                {
+                                    foreach (var additionalFile in profileViewModel.AdditionalFilesViewModel.AdditionalFiles)
+                                    {
+                                        if (additionalFile != null)
+                                        {
+                                            var ms = new MemoryStream();
+                                            additionalFile.InputStream.CopyTo(ms);
+
+                                            userProfile.AdditionalFiles.Add(new AdditionalFile
+                                            {
+                                                FileContent = Convert.ToBase64String(ms.ToArray()),
+                                                FileType = additionalFile.ContentType,
+                                                FileName = additionalFile.FileName
+                                            });
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else
                         {
-                            userProfile.AdditionalCourses.ToList().ForEach(x => db.Entry(x).State = System.Data.Entity.EntityState.Deleted);
+                            var profile = new Profile
+                            {
+                                Username = GetCurrentUsername(),
+                                Address = profileViewModel.PersonalInformationViewModel.Address,
+                                Email = profileViewModel.PersonalInformationViewModel.Email,
+                                FullName = profileViewModel.PersonalInformationViewModel.FullName,
+                                LinkedInLink = profileViewModel.PersonalInformationViewModel.LinkedInLink,
+                                Phone = profileViewModel.PersonalInformationViewModel.Phone,
+                                PhoneCode = profileViewModel.PersonalInformationViewModel.PhoneCode,
+                                Project = profileViewModel.PersonalInformationViewModel.Project,
+                                OtherInformation = profileViewModel.PersonalInformationViewModel.OtherInformation,
+                                CurrentBonuses = profileViewModel.CompensationViewModel.CurrentBonuses,
+                                CurrentSalary = profileViewModel.CompensationViewModel.CurrentSalary,
+                                SalaryRequest = profileViewModel.CompensationViewModel.SalaryRequest,
+                                BonusRequest = profileViewModel.CompensationViewModel.BonusRequest,
+                                AdditionalBonuses = profileViewModel.CompensationViewModel.AdditionalBonuses,
+                                NoticePeriod = profileViewModel.NoticePeriodViewModel.NoticePeriod,
+                                Comments = profileViewModel.AdditionalCommentsViewModel.Comments,
+                                Educations = new List<Education>(),
+                                AdditionalCourses = new List<AdditionalCourse>(),
+                                Languages = new List<Language>(),
+                                Companies = new List<Company>(),
+                                Memberships = new List<Membership>()
+                            };
+
+                            if (profileViewModel.PersonalInformationViewModel.ProfilePicture != null && profileViewModel.PersonalInformationViewModel.ProfilePicture.ContentLength > 0)
+                            {
+                                var ms = new MemoryStream();
+                                profileViewModel.PersonalInformationViewModel.ProfilePicture.InputStream.CopyTo(ms);
+
+                                profile.PictureContent = Convert.ToBase64String(ms.ToArray());
+                                profile.PictureType = profileViewModel.PersonalInformationViewModel.ProfilePicture.ContentType;
+                            }
+
+                            foreach (var educationItem in profileViewModel.EducationViewModel.Education)
+                            {
+                                profile.Educations.Add(new Education
+                                {
+                                    Degree = educationItem.Degree,
+                                    FromYear = educationItem.FromYear,
+                                    Institution = educationItem.Institution,
+                                    ToYear = educationItem.ToYear,
+                                    Now = educationItem.Now
+                                });
+                            }
 
                             foreach (var item in profileViewModel.AdditionalCoursesViewModel.Courses)
                             {
-                                userProfile.AdditionalCourses.Add(new AdditionalCourse
+                                profile.AdditionalCourses.Add(new AdditionalCourse
                                 {
                                     CourseName = item.CourseName,
                                     NumberOfDays = item.NumberOfDays,
@@ -229,11 +452,6 @@ namespace CV.Management.Web.Controllers
                                     Year = item.Year
                                 });
                             }
-                        }
-
-                        if (userProfile.Languages != null)
-                        {
-                            userProfile.Languages.ToList().ForEach(x => db.Entry(x).State = System.Data.Entity.EntityState.Deleted);
 
                             foreach (var item in profileViewModel.LanguageViewModel.Languages)
                             {
@@ -243,23 +461,6 @@ namespace CV.Management.Web.Controllers
                                     SpokenLevel = item.SpokenLevel,
                                     WrittenLevel = item.WrittenLevel
                                 });
-                            }
-                        }
-
-                        if (userProfile.Companies != null)
-                        {
-                            var companies = userProfile.Companies.ToList();
-                            foreach (var item in companies)
-                            {
-                                var positions = item.Positions.ToList();
-
-                                foreach (var position in positions)
-                                {
-                                    position.KeyTasks.ToList().ForEach(x => db.Entry(x).State = System.Data.Entity.EntityState.Deleted);
-                                    db.Entry(position).State = System.Data.Entity.EntityState.Deleted;
-                                }
-
-                                db.Entry(item).State = System.Data.Entity.EntityState.Deleted;
                             }
 
                             foreach (var item in profileViewModel.CareerSummaryViewModel.Companies)
@@ -279,46 +480,24 @@ namespace CV.Management.Web.Controllers
 
                                 foreach (var position in item.Positions)
                                 {
-                                    int? fromTime = null;
-                                    int? fromTimeMonth = null;
-                                    int? toTime = null;
-                                    int? toTimeMonth = null;
-
-                                    if (position.FromTime != null)
-                                    {
-                                        fromTime = position.FromTime.Contains(".") ? int.Parse(position.FromTime.Split('.')[1]) : int.Parse(position.FromTime);
-                                        fromTimeMonth = position.FromTime.Contains(".") ? int.Parse(position.FromTime.Split('.')[0]) : (int?)null;
-                                    }
-
-                                    if (position.ToTime != null)
-                                    {
-                                        toTime = position.ToTime.Contains(".") ? int.Parse(position.ToTime.Split('.')[1]) : int.Parse(position.ToTime);
-                                        toTimeMonth = position.ToTime.Contains(".") ? int.Parse(position.ToTime.Split('.')[0]) : (int?)null;
-                                    }
-
                                     company.Positions.Add(new Position
                                     {
                                         Achievements = position.Achievements,
                                         DirectSubordinates = position.DirectSubordinates,
-                                        FromTime = fromTime,
-                                        FromTimeMonth = fromTimeMonth,
+                                        FromTime = position.FromTime.Contains(".") ? int.Parse(position.FromTime.Split('.')[1]) : int.Parse(position.FromTime),
+                                        FromTimeMonth = position.FromTime.Contains(".") ? int.Parse(position.FromTime.Split('.')[0]) : (int?)null,
                                         KeyTasks = GetKeyTasks(position.KeyTasks),
                                         Name = position.Name,
                                         ReasonForLeaving = position.ReasonForLeaving,
                                         ReportingTo = position.ReportingTo,
-                                        ToTime = toTime,
-                                        ToTimeMonth = toTimeMonth,
+                                        ToTime = position.ToTime.Contains(".") ? int.Parse(position.ToTime.Split('.')[1]) : int.Parse(position.ToTime),
+                                        ToTimeMonth = position.ToTime.Contains(".") ? int.Parse(position.ToTime.Split('.')[0]) : (int?)null,
                                         Now = position.Now
                                     });
                                 }
 
                                 userProfile.Companies.Add(company);
                             }
-                        }
-
-                        if (userProfile.Memberships != null)
-                        {
-                            userProfile.Memberships.ToList().ForEach(x => db.Entry(x).State = System.Data.Entity.EntityState.Deleted);
 
                             foreach (var item in profileViewModel.MembershipViewModel.Memberships)
                             {
@@ -330,178 +509,36 @@ namespace CV.Management.Web.Controllers
                                     Now = item.Now
                                 });
                             }
+
+
+
+                            db.Profiles.Add(profile);
                         }
 
-                        if (userProfile.AdditionalFiles != null)
-                        {
-                            var listOfIdsToExclude = new List<int>();
-
-                            if (profileViewModel.AdditionalFilesViewModel.Files != null && profileViewModel.AdditionalFilesViewModel.Files.Count() > 0)
-                            {
-                                profileViewModel.AdditionalFilesViewModel.Files.ForEach(x => listOfIdsToExclude.Add(x.AdditionalFileId));
-                            }
-
-                            userProfile.AdditionalFiles.Where(x => !listOfIdsToExclude.Exists(y => y == x.AdditionalFileId)).ToList().ForEach(x => db.Entry(x).State = System.Data.Entity.EntityState.Deleted);
-
-                            if (profileViewModel.AdditionalFilesViewModel.AdditionalFiles != null && profileViewModel.AdditionalFilesViewModel.AdditionalFiles.Count() > 0)
-                            {
-                                foreach (var additionalFile in profileViewModel.AdditionalFilesViewModel.AdditionalFiles)
-                                {
-                                    if (additionalFile != null)
-                                    {
-                                        var ms = new MemoryStream();
-                                        additionalFile.InputStream.CopyTo(ms);
-
-                                        userProfile.AdditionalFiles.Add(new AdditionalFile
-                                        {
-                                            FileContent = Convert.ToBase64String(ms.ToArray()),
-                                            FileType = additionalFile.ContentType,
-                                            FileName = additionalFile.FileName
-                                        });
-                                    }
-                                }
-                            }
-                        }
+                        db.SaveChanges();
                     }
-                    else
-                    {
-                        var profile = new Profile
-                        {
-                            Username = GetCurrentUsername(),
-                            Address = profileViewModel.PersonalInformationViewModel.Address,
-                            Email = profileViewModel.PersonalInformationViewModel.Email,
-                            FullName = profileViewModel.PersonalInformationViewModel.FullName,
-                            LinkedInLink = profileViewModel.PersonalInformationViewModel.LinkedInLink,
-                            Phone = profileViewModel.PersonalInformationViewModel.Phone,
-                            PhoneCode = profileViewModel.PersonalInformationViewModel.PhoneCode,
-                            Project = profileViewModel.PersonalInformationViewModel.Project,
-                            OtherInformation = profileViewModel.PersonalInformationViewModel.OtherInformation,
-                            CurrentBonuses = profileViewModel.CompensationViewModel.CurrentBonuses,
-                            CurrentSalary = profileViewModel.CompensationViewModel.CurrentSalary,
-                            SalaryRequest = profileViewModel.CompensationViewModel.SalaryRequest,
-                            BonusRequest = profileViewModel.CompensationViewModel.BonusRequest,
-                            AdditionalBonuses = profileViewModel.CompensationViewModel.AdditionalBonuses,
-                            NoticePeriod = profileViewModel.NoticePeriodViewModel.NoticePeriod,
-                            Comments = profileViewModel.AdditionalCommentsViewModel.Comments,
-                            Educations = new List<Education>(),
-                            AdditionalCourses = new List<AdditionalCourse>(),
-                            Languages = new List<Language>(),
-                            Companies = new List<Company>(),
-                            Memberships = new List<Membership>()
-                        };
-
-                        if (profileViewModel.PersonalInformationViewModel.ProfilePicture != null && profileViewModel.PersonalInformationViewModel.ProfilePicture.ContentLength > 0)
-                        {
-                            var ms = new MemoryStream();
-                            profileViewModel.PersonalInformationViewModel.ProfilePicture.InputStream.CopyTo(ms);
-
-                            profile.PictureContent = Convert.ToBase64String(ms.ToArray());
-                            profile.PictureType = profileViewModel.PersonalInformationViewModel.ProfilePicture.ContentType;
-                        }
-
-                        foreach (var educationItem in profileViewModel.EducationViewModel.Education)
-                        {
-                            profile.Educations.Add(new Education
-                            {
-                                Degree = educationItem.Degree,
-                                FromYear = educationItem.FromYear,
-                                Institution = educationItem.Institution,
-                                ToYear = educationItem.ToYear,
-                                Now = educationItem.Now
-                            });
-                        }
-
-                        foreach (var item in profileViewModel.AdditionalCoursesViewModel.Courses)
-                        {
-                            profile.AdditionalCourses.Add(new AdditionalCourse
-                            {
-                                CourseName = item.CourseName,
-                                NumberOfDays = item.NumberOfDays,
-                                Trainer = item.Trainer,
-                                Year = item.Year
-                            });
-                        }
-
-                        foreach (var item in profileViewModel.LanguageViewModel.Languages)
-                        {
-                            userProfile.Languages.Add(new Language
-                            {
-                                LanguageName = item.LanguageName,
-                                SpokenLevel = item.SpokenLevel,
-                                WrittenLevel = item.WrittenLevel
-                            });
-                        }
-
-                        foreach (var item in profileViewModel.CareerSummaryViewModel.Companies)
-                        {
-                            var company = new Company
-                            {
-                                City = item.City,
-                                Industry = item.Industry,
-                                MainProductions = item.MainProductions,
-                                Name = item.Name,
-                                NumberOfEmployess = item.NumberOfEmployess,
-                                OtherIndustry = item.Industry != Industry.Other ? item.OtherIndustry : null,
-                                ParentCompanyName = item.ParentCompanyName,
-                                Turnover = item.Turnover,
-                                Positions = new List<Position>()
-                            };
-
-                            foreach (var position in item.Positions)
-                            {
-                                company.Positions.Add(new Position
-                                {
-                                    Achievements = position.Achievements,
-                                    DirectSubordinates = position.DirectSubordinates,
-                                    FromTime = position.FromTime.Contains(".") ? int.Parse(position.FromTime.Split('.')[1]) : int.Parse(position.FromTime),
-                                    FromTimeMonth = position.FromTime.Contains(".") ? int.Parse(position.FromTime.Split('.')[0]) : (int?)null,
-                                    KeyTasks = GetKeyTasks(position.KeyTasks),
-                                    Name = position.Name,
-                                    ReasonForLeaving = position.ReasonForLeaving,
-                                    ReportingTo = position.ReportingTo,
-                                    ToTime = position.ToTime.Contains(".") ? int.Parse(position.ToTime.Split('.')[1]) : int.Parse(position.ToTime),
-                                    ToTimeMonth = position.ToTime.Contains(".") ? int.Parse(position.ToTime.Split('.')[0]) : (int?)null,
-                                    Now = position.Now
-                                });
-                            }
-
-                            userProfile.Companies.Add(company);
-                        }
-
-                        foreach (var item in profileViewModel.MembershipViewModel.Memberships)
-                        {
-                            userProfile.Memberships.Add(new Membership
-                            {
-                                Description = item.Description,
-                                FromTime = item.FromTime,
-                                ToTime = item.ToTime,
-                                Now = item.Now
-                            });
-                        }
-
-
-
-                        db.Profiles.Add(profile);
-                    }
-
-                    db.SaveChanges();
                 }
-            }
-            else
-            {
-                var errors = ModelState.Where(x => x.Value.Errors.Count > 0);
-
-                var result = new Dictionary<string, string>();
-                result.Add("User", GetCurrentUsername());
-                foreach (var error in errors)
+                else
                 {
-                    result.Add($"{Guid.NewGuid()}-{error.Key}", string.Join(", ", error.Value.Errors.Select(_ => _.ErrorMessage)));
+                    var errors = ModelState.Where(x => x.Value.Errors.Count > 0);
+
+                    var result = new Dictionary<string, string>();
+                    result.Add("User", GetCurrentUsername());
+                    foreach (var error in errors)
+                    {
+                        result.Add($"{Guid.NewGuid()}-{error.Key}", string.Join(", ", error.Value.Errors.Select(_ => _.ErrorMessage)));
+                    }
+
+                    telemetry.TrackEvent("InvalidProfileSummary", result);
+
                 }
-
-                telemetry.TrackEvent("InvalidProfileSummary", result);
-
+                return RedirectToAction("Profile");
             }
-            return RedirectToAction("Profile");
+            catch (Exception ex)
+            {
+                telemetry.TrackException(ex);
+                throw;
+            }
         }
 
         private string GetCurrentUsername()

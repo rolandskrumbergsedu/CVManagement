@@ -1,5 +1,6 @@
 ﻿using CV.Management.Web.DbContexts;
 using Microsoft.ApplicationInsights;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -17,42 +18,58 @@ namespace CV.Management.Web.Controllers
         [Route("api/delete/{id}")]
         public HttpResponseMessage DeleteFile(string id)
         {
-            using (var db = new ProfileInformationDbContext())
+            try
             {
-                var userName = User.Identity.Name;
+                using (var db = new ProfileInformationDbContext())
+                {
+                    var userName = User.Identity.Name;
 
-                telemetry.TrackEvent("DeleteFile", new Dictionary<string, string> { { "User", userName }, { "FileId", id} });
+                    telemetry.TrackEvent("DeleteFile", new Dictionary<string, string> { { "User", userName }, { "FileId", id } });
 
-                var profile = db.Profiles.FirstOrDefault(x => x.Username == userName);
+                    var profile = db.Profiles.FirstOrDefault(x => x.Username == userName);
 
-                var file = profile.AdditionalFiles.FirstOrDefault(x => x.AdditionalFileId == int.Parse(id));
-                db.Entry(file).State = System.Data.Entity.EntityState.Deleted;
+                    var file = profile.AdditionalFiles.FirstOrDefault(x => x.AdditionalFileId == int.Parse(id));
+                    db.Entry(file).State = System.Data.Entity.EntityState.Deleted;
 
-                db.SaveChanges();
+                    db.SaveChanges();
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK);
             }
-
-            return Request.CreateResponse(HttpStatusCode.OK);
+            catch (Exception ex)
+            {
+                telemetry.TrackException(ex);
+                throw;
+            }
         }
 
         [HttpGet]
         [Route("api/deletebyusername")]
         public HttpResponseMessage DeleteFileByUsername()
         {
-            using (var db = new ProfileInformationDbContext())
+            try
             {
-                var userName = User.Identity.Name;
+                using (var db = new ProfileInformationDbContext())
+                {
+                    var userName = User.Identity.Name;
 
-                telemetry.TrackEvent("DeleteFileByUsername", new Dictionary<string, string> { { "User", userName } });
+                    telemetry.TrackEvent("DeleteFileByUsername", new Dictionary<string, string> { { "User", userName } });
 
-                var profile = db.Profiles.FirstOrDefault(x => x.Username == userName);
+                    var profile = db.Profiles.FirstOrDefault(x => x.Username == userName);
 
-                profile.PictureContent = null;
-                profile.PictureType = null;
+                    profile.PictureContent = null;
+                    profile.PictureType = null;
 
-                db.SaveChanges();
+                    db.SaveChanges();
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK);
             }
-
-            return Request.CreateResponse(HttpStatusCode.OK);
+            catch (Exception ex)
+            {
+                telemetry.TrackException(ex);
+                throw;
+            }
         }
     }
 }

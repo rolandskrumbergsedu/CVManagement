@@ -2,6 +2,7 @@
 using CV.Management.Web.Models;
 using CV.Management.Web.Models.Database;
 using Microsoft.ApplicationInsights;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -17,7 +18,7 @@ namespace CV.Management.Web.Controllers
         [HttpGet]
         public ActionResult Overview()
         {
-            using (var db = new ProfileInformationDbContext())
+            try
             {
                 telemetry.TrackPageView("Admin");
 
@@ -25,49 +26,93 @@ namespace CV.Management.Web.Controllers
 
                 telemetry.TrackEvent("OpenAdmin", new Dictionary<string, string> { { "User", currentUsername } });
 
-                var profile = db.Profiles.FirstOrDefault(x => x.Username == currentUsername);
+                AdminOverviewViewModel viewmodel;
 
-                var profiles = db.Profiles.ToList();
-                var viewmodel = ProfilesToViewModel(profile.FullName, profiles);
+                using (var db = new ProfileInformationDbContext())
+                {
+                    using (var transaction = db.Database.BeginTransaction())
+                    {
+                        var profile = db.Profiles.FirstOrDefault(x => x.Username == currentUsername);
 
-                return View(viewmodel);
+                        var profiles = db.Profiles.ToList();
+
+                        viewmodel = ProfilesToViewModel(profile.FullName, profiles);
+
+                        db.AuditLogs.Add(new AuditLog
+                        {
+                            AuditEvent = AuditEvent.ViewAdminPage.ToString(),
+                            EventTime = DateTime.Now,
+                            UserAffected = "None",
+                            Username = currentUsername
+                        });
+
+                        db.SaveChanges();
+                        transaction.Commit();
+                    }
+
+                    return View(viewmodel);
+                }
             }
-
+            catch (Exception ex)
+            {
+                telemetry.TrackException(ex);
+                throw;
+            }
         }
 
         [HttpGet]
         public ActionResult ConfirmUserDelete(string id)
         {
-            using (var db = new ProfileInformationDbContext())
+            try
             {
-                telemetry.TrackPageView("ConfirmUserDelete");
 
-                var currentUsername = User.Identity.Name;
-
-                telemetry.TrackEvent("ConfirmUserDelete", new Dictionary<string, string> { { "User", currentUsername } });
-
-                var profile = db.Profiles.FirstOrDefault(x => x.ProfileId.ToString() == id);
-
-                var userModel = new ConfirmUserDeleteViewModel
+                using (var db = new ProfileInformationDbContext())
                 {
-                    Name = currentUsername,
-                    Id = id,
-                    Email = profile.Email,
-                    FullName = profile.FullName,
-                    LinkedInLink = profile.LinkedInLink,
-                    Project = profile.Project,
-                    Username = profile.Username
-                };
+                    telemetry.TrackPageView("ConfirmUserDelete");
 
-                return View(userModel);
+                    var currentUsername = User.Identity.Name;
+
+                    telemetry.TrackEvent("ConfirmUserDelete", new Dictionary<string, string> { { "User", currentUsername } });
+
+                    var profile = db.Profiles.FirstOrDefault(x => x.ProfileId.ToString() == id);
+
+                    var userModel = new ConfirmUserDeleteViewModel
+                    {
+                        Name = currentUsername,
+                        Id = id,
+                        Email = profile.Email,
+                        FullName = profile.FullName,
+                        LinkedInLink = profile.LinkedInLink,
+                        Project = profile.Project,
+                        Username = profile.Username
+                    };
+
+                    db.AuditLogs.Add(new AuditLog
+                    {
+                        AuditEvent = AuditEvent.ViewConfirmDeleteUserPage.ToString(),
+                        EventTime = DateTime.Now,
+                        UserAffected = profile.FullName,
+                        UserAffectedId = id,
+                        Username = currentUsername
+                    });
+
+                    db.SaveChanges();
+
+                    return View(userModel);
+                }
+            }
+            catch (Exception ex)
+            {
+                telemetry.TrackException(ex);
+                throw;
             }
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteUser(ConfirmUserDeleteViewModel model)
+        public ActionResult DeleteUser(ConfirmUserDeleteViewModel viewModel)
         {
-            using (var db = new ProfileInformationDbContext())
+            try
             {
                 telemetry.TrackPageView("DeleteUser");
 
@@ -75,19 +120,41 @@ namespace CV.Management.Web.Controllers
 
                 telemetry.TrackEvent("DeleteUser", new Dictionary<string, string> { { "User", currentUsername } });
 
-                var profile = db.Profiles
-                    .Include("Educations")
-                    .Include("AdditionalCourses")
-                    .Include("Languages")
-                    .Include("Companies.Positions.KeyTasks")
-                    .Include("Memberships")
-                    .Include("AdditionalFiles")
-                    .FirstOrDefault(x => x.ProfileId.ToString() == model.Id);
-                
-                db.Profiles.Remove(profile);
-                db.SaveChanges();
+                using (var db = new ProfileInformationDbContext())
+                {
+                    using (var transaction = db.Database.BeginTransaction())
+                    {
+                        var profile = db.Profiles
+                            .Include("Educations")
+                            .Include("AdditionalCourses")
+                            .Include("Languages")
+                            .Include("Companies.Positions.KeyTasks")
+                            .Include("Memberships")
+                            .Include("AdditionalFiles")
+                            .FirstOrDefault(x => x.ProfileId.ToString() == viewModel.Id);
 
-                return RedirectToAction("Overview"); 
+                        db.Profiles.Remove(profile);
+
+                        db.AuditLogs.Add(new AuditLog
+                        {
+                            AuditEvent = AuditEvent.DeleteUser.ToString(),
+                            EventTime = DateTime.Now,
+                            UserAffected = profile.FullName,
+                            UserAffectedId = viewModel.Id,
+                            Username = currentUsername
+                        });
+
+                        db.SaveChanges();
+                        transaction.Commit();
+
+                        return RedirectToAction("Overview");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                telemetry.TrackException(ex);
+                throw;
             }
         }
 

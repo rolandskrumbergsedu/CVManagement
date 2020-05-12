@@ -330,6 +330,10 @@
     <Compile Include="MigrationsApp\201907061550210_SplitTimeInMonth.Designer.cs">
       <DependentUpon>201907061550210_SplitTimeInMonth.cs</DependentUpon>
     </Compile>
+    <Compile Include="MigrationsApp\202005120903169_AuditLogs.cs" />
+    <Compile Include="MigrationsApp\202005120903169_AuditLogs.designer.cs">
+      <DependentUpon>202005120903169_AuditLogs.cs</DependentUpon>
+    </Compile>
     <Compile Include="MigrationsApp\Configuration.cs" />
     <Compile Include="Migrations\201902272154540_Initial.cs" />
     <Compile Include="Migrations\201902272154540_Initial.Designer.cs">
@@ -342,11 +346,13 @@
     <Compile Include="Models\AdditionalCoursesViewModel.cs" />
     <Compile Include="Models\AdditionalFilesViewModel.cs" />
     <Compile Include="Models\AdminOverviewViewModel.cs" />
+    <Compile Include="Models\AuditEvent.cs" />
     <Compile Include="Models\CareerSummaryViewModel.cs" />
     <Compile Include="Models\CompensationViewModel.cs" />
     <Compile Include="Models\ConfirmUserDeleteViewModel.cs" />
     <Compile Include="Models\Database\AdditionalCourse.cs" />
     <Compile Include="Models\Database\AdditionalFile.cs" />
+    <Compile Include="Models\Database\AuditLog.cs" />
     <Compile Include="Models\Database\Company.cs" />
     <Compile Include="Models\Database\Education.cs" />
     <Compile Include="Models\Database\KeyTask.cs" />
@@ -587,6 +593,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MigrationsApp\201907061550210_SplitTimeInMonth.resx">
       <DependentUpon>201907061550210_SplitTimeInMonth.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MigrationsApp\202005120903169_AuditLogs.resx">
+      <DependentUpon>202005120903169_AuditLogs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902272154540_Initial.resx">
       <DependentUpon>201902272154540_Initial.cs</DependentUpon>

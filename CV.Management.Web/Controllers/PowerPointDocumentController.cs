@@ -1,10 +1,8 @@
 ﻿using CV.Management.Generation.Ppt;
 using CV.Management.Web.DbContexts;
+using CV.Management.Web.Models;
 using CV.Management.Web.Models.Database;
 using Microsoft.ApplicationInsights;
-using Microsoft.ApplicationInsights.Extensibility;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.ApplicationInsights;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,6 +38,20 @@ namespace CV.Management.Web.Controllers
                     new System.Net.Http.Headers.ContentDispositionHeaderValue(
                             "attachment")
                     { FileName = $"CV_{cleanedFullName}_{language.ToUpper()}" + ".pptx" };
+
+                using (var db = new ProfileInformationDbContext())
+                {
+                    db.AuditLogs.Add(new AuditLog
+                    {
+                        AuditEvent = AuditEvent.DownloadPpt.ToString(),
+                        EventTime = DateTime.Now,
+                        UserAffected = generationData.FullName,
+                        UserAffectedId = id,
+                        Username = User.Identity.Name
+                    });
+
+                    db.SaveChanges();
+                }
 
                 return result;
             }
@@ -124,9 +136,9 @@ namespace CV.Management.Web.Controllers
             };
         }
 
-        private static List<EducationItem> GetEducationItems(ICollection<Education> educations, string language)
+        private static List<Generation.Ppt.EducationItem> GetEducationItems(ICollection<Education> educations, string language)
         {
-            return educations.Select(x => new EducationItem
+            return educations.Select(x => new Generation.Ppt.EducationItem
             {
                 Degree = x.Degree,
                 EndYear = x.ToYear.HasValue ? x.ToYear.Value.ToString() : PresentationMetadataTexts.GetText(PresentationMetadataTextsEnum.PRESENT, language),
@@ -134,15 +146,15 @@ namespace CV.Management.Web.Controllers
             }).ToList();
         }
 
-        private static List<LanguageItem> GetLanguageItems(ICollection<Language> languages)
+        private static List<Generation.Ppt.LanguageItem> GetLanguageItems(ICollection<Language> languages)
         {
-            var result = new List<LanguageItem>();
+            var result = new List<Generation.Ppt.LanguageItem>();
 
             foreach (var language in languages)
             {
                 if ((int)language.SpokenLevel < (int)language.WrittenLevel)
                 {
-                    result.Add(new LanguageItem
+                    result.Add(new Generation.Ppt.LanguageItem
                     {
                         LanguageLevel = language.SpokenLevel.ToString(),
                         LanguageName = language.LanguageName.ToString()
@@ -150,7 +162,7 @@ namespace CV.Management.Web.Controllers
                 }
                 else
                 {
-                    result.Add(new LanguageItem
+                    result.Add(new Generation.Ppt.LanguageItem
                     {
                         LanguageLevel = language.WrittenLevel.ToString(),
                         LanguageName = language.LanguageName.ToString()
@@ -174,7 +186,7 @@ namespace CV.Management.Web.Controllers
                 });
             }
 
-            if(!string.IsNullOrEmpty(profile.BonusRequest))
+            if (!string.IsNullOrEmpty(profile.BonusRequest))
             {
                 result.Add(new MotivationItem
                 {

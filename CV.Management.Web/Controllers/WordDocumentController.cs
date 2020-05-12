@@ -1,8 +1,8 @@
 ﻿using CV.Management.Generation.Word;
 using CV.Management.Web.DbContexts;
+using CV.Management.Web.Models;
 using CV.Management.Web.Models.Database;
 using Microsoft.ApplicationInsights;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,6 +40,20 @@ namespace CV.Management.Web.Controllers
                     new System.Net.Http.Headers.ContentDispositionHeaderValue(
                             "attachment")
                     { FileName = $"CV_{cleanedFullName}_{language.ToUpper()}" + ".docx" };
+
+                using (var db = new ProfileInformationDbContext())
+                {
+                    db.AuditLogs.Add(new AuditLog
+                    {
+                        AuditEvent = AuditEvent.DownloadDoc.ToString(),
+                        EventTime = DateTime.Now,
+                        UserAffected = generationData.Personal.FullName,
+                        UserAffectedId = id,
+                        Username = User.Identity.Name
+                    });
+
+                    db.SaveChanges();
+                }
 
                 return result;
             }
@@ -181,7 +195,7 @@ namespace CV.Management.Web.Controllers
                 ProfilePictureType = profile.PictureType
             };
 
-            var education = profile.Educations.ToList().OrderEducation().Select(x => new EducationItem
+            var education = profile.Educations.ToList().OrderEducation().Select(x => new Generation.Word.EducationItem
             {
                 Degree = x.Degree,
                 EndingYear = x.ToYear,
@@ -197,7 +211,7 @@ namespace CV.Management.Web.Controllers
                 Year = x.Year.HasValue ? x.Year.Value : (int?)null
             }).ToList();
 
-            var languages = profile.Languages.Select(x => new LanguageItem
+            var languages = profile.Languages.Select(x => new Generation.Word.LanguageItem
             {
                 LanguageName = x.LanguageName.ToString(),
                 SpokenLevel = ((int)x.SpokenLevel.Value) + 1,

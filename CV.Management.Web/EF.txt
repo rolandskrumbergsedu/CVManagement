@@ -1,2 +1,2 @@
 ﻿Add new migration
-Add-Migration PhoneCode -ConfigurationTypeName CV.Management.Web.MigrationsApp.Configuration
+Add-Migration AuditLogs -ConfigurationTypeName CV.Management.Web.MigrationsApp.Configuration
