@@ -339,6 +339,8 @@
 
         $(".education_row").each(function (index) {
 
+            $(this).find(".education-number").text(index + 1);
+
             $(this).find(".education-from-year-label").attr("for", formName + "_" + index + "__" + fromYearFieldName);
             $(this).find(".education-from-year-input").attr({
                 "id": formName + "_" + index + "__" + fromYearFieldName,
@@ -401,6 +403,10 @@
         var nowFieldName = "Now";
         var institutionFieldName = "Institution";
         var degreeFieldName = "Degree";
+
+        var currentNumber = parseInt(newRow.find(".education-number").text());
+
+        newRow.find(".education-number").text(currentNumber + 1);
 
         newRow.find(".education-from-year-label").attr("for", formName + "_" + existingEducationRowCount + "__" + fromYearFieldName);
         var educationYearInput = newRow.find(".education-from-year-input");
@@ -488,6 +494,8 @@
 
         $(".courses_row").each(function (index) {
 
+            $(this).find(".courses-number").text(index + 1);
+
             $(this).find(".courses-number-of-days-label").attr("for", formName + "_" + index + "__" + numberOfDaysFieldName);
             $(this).find(".courses-number-of-days-input").attr({
                 "id": formName + "_" + index + "__" + numberOfDaysFieldName,
@@ -539,6 +547,10 @@
         var yearFieldName = "Year";
         var courseNameFieldName = "CourseName";
         var trainerFieldName = "Trainer";
+
+        var currentNumber = parseInt(newRow.find(".courses-number").text());
+
+        newRow.find(".courses-number").text(currentNumber + 1);
 
         newRow.find(".courses-number-of-days-label").attr("for", formName + "_" + index + "__" + numberOfDaysFieldName);
         var daysInput = newRow.find(".courses-number-of-days-input");
@@ -593,6 +605,8 @@
 
         $(".language_row").each(function (index) {
 
+            $(this).find(".language-number").text(index + 1);
+
             $(this).find(".language-name-label").attr("for", formName + "_" + index + "__" + languageNameFieldName);
             $(this).find(".language-name-input").attr({
                 "id": formName + "_" + index + "__" + languageNameFieldName,
@@ -635,6 +649,10 @@
         var languageNameFieldName = "LanguageName";
         var spokenLevelFieldName = "SpokenLevel";
         var writtenLevelFieldName = "WrittenLevel";
+
+        var currentNumber = parseInt(newRow.find(".language-number").text());
+
+        newRow.find(".language-number").text(currentNumber + 1);
 
         newRow.find(".language-name-label").attr("for", formName + "_" + index + "__" + languageNameFieldName);
         newRow.find(".language-name-select").attr({
@@ -679,6 +697,8 @@
         var descriptionFieldName = "Description";
 
         $(".membership_row").each(function (index) {
+
+            $(this).find(".membership-number").text(index + 1);
 
             $(this).find(".membership-from-time-label").attr("for", formName + "_" + index + "__" + fromTimeFieldName);
             $(this).find(".membership-from-time-input").attr({
@@ -734,6 +754,10 @@
         var toTimeFieldName = "ToTime";
         var nowFieldName = "Now";
         var descriptionFieldName = "Description";
+
+        var currentNumber = parseInt(newRow.find(".membership-number").text());
+
+        newRow.find(".membership-number").text(currentNumber + 1);
 
         newRow.find(".membership-from-time-label").attr("for", formName + "_" + existingMembershipRowCount + "__" + fromTimeFieldName);
         var fromTimeInput = newRow.find(".membership-from-time-input");
