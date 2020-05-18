@@ -1,4 +1,5 @@
 ﻿using CV.Management.Web.DbContexts;
+using CV.Management.Web.Helpers;
 using CV.Management.Web.Models;
 using CV.Management.Web.Models.Database;
 using Microsoft.ApplicationInsights;
@@ -9,7 +10,7 @@ using System.Web.Mvc;
 
 namespace CV.Management.Web.Controllers
 {
-    [Authorize(Roles = "Administrator")]
+    [Authorize]
     public class AdminController : Controller
     {
         private readonly TelemetryClient telemetry = new TelemetryClient();
@@ -20,10 +21,14 @@ namespace CV.Management.Web.Controllers
         {
             try
             {
-                telemetry.TrackPageView("Admin");
-
                 var currentUsername = User.Identity.Name;
 
+                if (!AccessHelper.IsAdmin(currentUsername))
+                {
+                    return RedirectToAction("AccessDenied");
+                }
+
+                telemetry.TrackPageView("Admin");
                 telemetry.TrackEvent("OpenAdmin", new Dictionary<string, string> { { "User", currentUsername } });
 
                 AdminOverviewViewModel viewmodel;
@@ -68,10 +73,14 @@ namespace CV.Management.Web.Controllers
 
                 using (var db = new ProfileInformationDbContext())
                 {
-                    telemetry.TrackPageView("ConfirmUserDelete");
-
                     var currentUsername = User.Identity.Name;
 
+                    if (!AccessHelper.IsAdmin(currentUsername))
+                    {
+                        return RedirectToAction("AccessDenied");
+                    }
+
+                    telemetry.TrackPageView("ConfirmUserDelete");
                     telemetry.TrackEvent("ConfirmUserDelete", new Dictionary<string, string> { { "User", currentUsername } });
 
                     var profile = db.Profiles.FirstOrDefault(x => x.ProfileId.ToString() == id);
@@ -114,10 +123,13 @@ namespace CV.Management.Web.Controllers
         {
             try
             {
-                telemetry.TrackPageView("DeleteUser");
-
                 var currentUsername = User.Identity.Name;
+                if (!AccessHelper.IsAdmin(currentUsername))
+                {
+                    return RedirectToAction("AccessDenied");
+                }
 
+                telemetry.TrackPageView("DeleteUser");
                 telemetry.TrackEvent("DeleteUser", new Dictionary<string, string> { { "User", currentUsername } });
 
                 using (var db = new ProfileInformationDbContext())
@@ -156,6 +168,19 @@ namespace CV.Management.Web.Controllers
                 telemetry.TrackException(ex);
                 throw;
             }
+        }
+
+        [HttpGet]
+        public ActionResult AccessDenied()
+        {
+            var currentUsername = User.Identity.Name;
+            telemetry.TrackPageView("AdminAccessDenied");
+            telemetry.TrackEvent("OpenAdminAccessDenied", new Dictionary<string, string> { { "User", currentUsername } });
+
+            return View(new AdminAccessDeniedViewModel
+            {
+                Name = currentUsername
+            });
         }
 
         private AdminOverviewViewModel ProfilesToViewModel(string name, List<Profile> profiles)

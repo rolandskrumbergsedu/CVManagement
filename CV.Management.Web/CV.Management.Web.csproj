@@ -294,6 +294,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Helpers\AccessHelper.cs" />
     <Compile Include="Helpers\ConfigurationHelper.cs" />
     <Compile Include="MigrationsApp\201902272154437_Initial.cs" />
     <Compile Include="MigrationsApp\201902272154437_Initial.Designer.cs">
@@ -341,6 +342,7 @@
     <Compile Include="Models\AdditionalCommentsViewModel.cs" />
     <Compile Include="Models\AdditionalCoursesViewModel.cs" />
     <Compile Include="Models\AdditionalFilesViewModel.cs" />
+    <Compile Include="Models\AdminAccessDeniedViewModel.cs" />
     <Compile Include="Models\AdminOverviewViewModel.cs" />
     <Compile Include="Models\AuditEvent.cs" />
     <Compile Include="Models\CareerSummaryViewModel.cs" />
@@ -486,10 +488,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
-    <None Include="Properties\PublishProfiles\cv-management-app - Web Deploy.pubxml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <None Include="Properties\PublishProfiles\cv-management-app - Web Deploy1.pubxml" />
+    <None Include="Properties\PublishProfiles\cv-management-app - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -551,6 +552,7 @@
     <Content Include="Views\Shared\EditorTemplates\AdditionalCommentsViewModel.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\AdditionalFilesViewModel.cshtml" />
     <Content Include="Views\Admin\ConfirmUserDelete.cshtml" />
+    <Content Include="Views\Admin\AccessDenied.cshtml" />
     <None Include="Web.Production.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

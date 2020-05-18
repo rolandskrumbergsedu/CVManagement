@@ -1,0 +1,7 @@
+﻿@model CV.Management.Web.Models.AdminAccessDeniedViewModel
+@{
+    ViewBag.Title = "AccessDenied";
+    Layout = "_AdminLayout.cshtml";
+}
+
+<p>User @User.Identity.Name is not allowed to access this page. Please, contact support.</p>

@@ -14,14 +14,7 @@ namespace CV.Management.Web.Helpers
         {
             var connectionString = ConfigurationManager.ConnectionStrings[configurationValueName];
 
-            if (connectionString == null)
-            {
-                throw new Exception($"Failed to get {configurationValueName}");
-            }
-
-            var returnValue = connectionString.ConnectionString;
-
-            if (string.IsNullOrEmpty(returnValue))
+            if (connectionString == null || string.IsNullOrEmpty(connectionString.ConnectionString))
             {
                 var variableFromEnvironment = Environment.GetEnvironmentVariable(configurationValueName);
 
@@ -33,7 +26,7 @@ namespace CV.Management.Web.Helpers
                 return variableFromEnvironment;
             }
 
-            return returnValue;
+            return connectionString.ConnectionString;
         }
     }
 }

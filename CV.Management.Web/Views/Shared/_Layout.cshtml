@@ -1,4 +1,6 @@
-﻿@model CV.Management.Web.Models.ViewModelBase
+﻿@using CV.Management.Web.Helpers
+
+@model CV.Management.Web.Models.ViewModelBase
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,7 +54,7 @@
                                 <img src="~/Content/Images/preview.png" />
                                 <a>Preview</a>
                             </div>                        </li>
-                        @if (User.IsInRole("Administrator"))
+                        @if (AccessHelper.IsAdmin(User.Identity.Name))
                         {
                             <li class="admin-link"><a href="/admin/overview">Admin</a></li>
                         }
