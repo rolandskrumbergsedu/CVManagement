@@ -1,15 +1,17 @@
-﻿using CV.Management.Web.Models;
+﻿using CV.Management.Web.Helpers;
 using CV.Management.Web.Models.Database;
 using System.Data.Entity;
+using System.Data.Entity.SqlServer;
 
 namespace CV.Management.Web.DbContexts
 {
+    [DbConfigurationType(typeof(DatabaseConfiguration))]
     public class ProfileInformationDbContext : DbContext
     {
         public ProfileInformationDbContext()
-            : base("DefaultConnection")
+            : base(GetConnectionString())
         {
-           Database.SetInitializer(new MigrateDatabaseToLatestVersion<ProfileInformationDbContext, MigrationsApp.Configuration>("DefaultConnection"));
+           Database.SetInitializer(new MigrateDatabaseToLatestVersion<ProfileInformationDbContext, MigrationsApp.Configuration>(true));
         }
 
         public DbSet<Profile> Profiles { get; set; }
@@ -21,5 +23,18 @@ namespace CV.Management.Web.DbContexts
         public DbSet<AdditionalCourse> AdditionalCourses { get; set; }
         public DbSet<AdditionalFile> AdditionalFiles { get; set; }
         public DbSet<AuditLog> AuditLogs { get; set; }
+
+        private static string GetConnectionString()
+        {
+            return ConfigurationHelper.Database;
+        }
+    }
+
+    public class DatabaseConfiguration : DbConfiguration
+    {
+        public DatabaseConfiguration()
+        {
+            SetExecutionStrategy("System.Data.SqlClient", () => new SqlAzureExecutionStrategy());
+        }
     }
 }

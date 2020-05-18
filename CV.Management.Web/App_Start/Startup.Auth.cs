@@ -9,6 +9,7 @@ using Owin.Security.Providers.LinkedIn;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Security.Claims;
+using CV.Management.Web.Helpers;
 
 namespace CV.Management.Web
 {
@@ -50,8 +51,8 @@ namespace CV.Management.Web
 
             var linkedinOptions = new LinkedInAuthenticationOptions
             {
-                ClientId = "86zbv01ytcpbom",
-                ClientSecret = "jyQmCJ6yy2OD1Tu2",
+                ClientId = ConfigurationHelper.LinkedInClientId,
+                ClientSecret = ConfigurationHelper.LinkedInClientKey,
                 Provider = new LinkedInAuthenticationProvider()
                 {
                     OnAuthenticated = (context) =>

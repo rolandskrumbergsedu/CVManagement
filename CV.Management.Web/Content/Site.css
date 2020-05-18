@@ -30,3 +30,6 @@ textarea {
     max-width: 280px;
 }
 
+.save-button {
+    display: contents;
+}

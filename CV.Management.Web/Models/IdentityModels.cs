@@ -1,6 +1,8 @@
 ﻿using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using CV.Management.Web.DbContexts;
+using CV.Management.Web.Helpers;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -21,16 +23,22 @@ namespace CV.Management.Web.Models
         public string Surname { get; set; }
     }
 
+    [DbConfigurationType(typeof(DatabaseConfiguration))]
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base(GetConnectionString(), throwIfV1Schema: false)
         {
         }
 
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
+        }
+
+        private static string GetConnectionString()
+        {
+            return ConfigurationHelper.Database;
         }
     }
 }

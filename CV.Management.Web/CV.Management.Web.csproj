@@ -294,6 +294,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Helpers\ConfigurationHelper.cs" />
     <Compile Include="MigrationsApp\201902272154437_Initial.cs" />
     <Compile Include="MigrationsApp\201902272154437_Initial.Designer.cs">
       <DependentUpon>201902272154437_Initial.cs</DependentUpon>
@@ -335,11 +336,6 @@
       <DependentUpon>202005120903169_AuditLogs.cs</DependentUpon>
     </Compile>
     <Compile Include="MigrationsApp\Configuration.cs" />
-    <Compile Include="Migrations\201902272154540_Initial.cs" />
-    <Compile Include="Migrations\201902272154540_Initial.Designer.cs">
-      <DependentUpon>201902272154540_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AddAdditionalFileUploadViewModel.cs" />
     <Compile Include="Models\AdditionalCommentsViewModel.cs" />
@@ -596,9 +592,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MigrationsApp\202005120903169_AuditLogs.resx">
       <DependentUpon>202005120903169_AuditLogs.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902272154540_Initial.resx">
-      <DependentUpon>201902272154540_Initial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources.lv.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
