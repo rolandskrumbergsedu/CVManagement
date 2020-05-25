@@ -8,7 +8,7 @@ namespace CV.Management.Web.Helpers
         public static string LinkedInClientId => GetConfigurationValue("LinkedInClientId");
         public static string LinkedInClientKey => GetConfigurationValue("LinkedInClientKey");
         public static string Database => GetConfigurationValue("AmropDb");
-
+        public static string SendGridKey => GetConfigurationValue("AmropSendGridKey");
 
         private static string GetConfigurationValue(string configurationValueName)
         {

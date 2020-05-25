@@ -9,7 +9,7 @@ namespace CV.Management.Web.Helpers
             var allowedUsers = new List<string>
             {
                 "rolands.krumbergs@outlook.com",
-                "larisa.kovsare@amrop.lv"
+                "larisa.kovsare@gmail.com"
             };
 
             return allowedUsers.Contains(username);

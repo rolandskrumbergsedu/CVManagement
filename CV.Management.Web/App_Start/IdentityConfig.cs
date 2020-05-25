@@ -11,15 +11,18 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using CV.Management.Web.Models;
+using CV.Management.Web.Email;
 
 namespace CV.Management.Web
 {
     public class EmailService : IIdentityMessageService
     {
-        public Task SendAsync(IdentityMessage message)
+        public async Task SendAsync(IdentityMessage message)
         {
             // Plug in your email service here to send an email.
-            return Task.FromResult(0);
+            var helper = new SendGridHelper();
+
+            await helper.SendMail(message.Subject, message.Destination, message.Body);
         }
     }
 
