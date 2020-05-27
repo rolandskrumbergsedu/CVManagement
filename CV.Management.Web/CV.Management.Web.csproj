@@ -287,6 +287,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CvController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\FileDeletionController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PowerPointDocumentController.cs" />
@@ -365,6 +366,7 @@
     <Compile Include="Models\Database\Profile.cs" />
     <Compile Include="Models\Database\ProfileImage.cs" />
     <Compile Include="Models\EducationViewModel.cs" />
+    <Compile Include="Models\ErrorViewModel.cs" />
     <Compile Include="Models\FileUploadViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LanguageViewModel.cs" />
@@ -557,6 +559,8 @@
     <Content Include="Views\Shared\EditorTemplates\AdditionalFilesViewModel.cshtml" />
     <Content Include="Views\Admin\ConfirmUserDelete.cshtml" />
     <Content Include="Views\Admin\AccessDenied.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
     <None Include="Web.Production.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
