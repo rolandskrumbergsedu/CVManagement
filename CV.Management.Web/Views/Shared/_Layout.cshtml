@@ -54,7 +54,7 @@
                                 <img src="~/Content/Images/preview.png" />
                                 <a>Preview</a>
                             </div>                        </li>
-                        @if (AccessHelper.IsAdmin(User.Identity.Name))
+                        @if (User.IsInRole("Administrator"))
                         {
                             <li class="admin-link"><a href="/admin/overview">Admin</a></li>
                         }

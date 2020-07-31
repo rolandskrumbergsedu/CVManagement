@@ -22,6 +22,15 @@
     margin-left: 10px;
 }
 
+.edit_user {
+    padding-left: 35px;
+    font-size: 24px;
+    color: #1c74bb;
+    text-transform: uppercase;
+    background: url(Images/edit.png) no-repeat left center;
+    cursor: pointer;
+}
+
 .download_word_empty {
     padding-left: 35px;
     font-size: 24px;
@@ -50,3 +59,19 @@
         color: #231f20;
         cursor: pointer;
     }
+
+html, body {
+    height: 100%;
+}
+
+.body-content {
+    height: calc(100% - 150px);
+}
+
+.edit-user-container {
+    padding-top: 50px;
+}
+
+.edit-user-btn {
+    margin-top: 20px;
+}

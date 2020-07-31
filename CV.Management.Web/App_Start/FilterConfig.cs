@@ -19,7 +19,7 @@ namespace CV.Management.Web
             filters.Add(new CspMediaSrcAttribute { Self = true });
             filters.Add(new CspFrameSrcAttribute { None = true });
             filters.Add(new CspFontSrcAttribute { Self = true });
-            filters.Add(new CspConnectSrcAttribute { CustomSources = "https://dc.services.visualstudio.com" });
+            filters.Add(new CspConnectSrcAttribute { CustomSources = "https://dc.services.visualstudio.com https://cv.amrop.lv/api/deletebyusername" });
             filters.Add(new CspFrameAncestorsAttribute { None = true });
         }
     }

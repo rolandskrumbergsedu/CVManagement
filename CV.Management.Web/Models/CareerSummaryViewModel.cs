@@ -10,7 +10,6 @@ namespace CV.Management.Web.Models
 
     public class CompanyItem
     {
-        [Required]
         [Display(Name = "CompanyName", ResourceType = typeof(Resources))]
         public string Name { get; set; }
         [Display(Name = "City", ResourceType = typeof(Resources))]
@@ -33,14 +32,11 @@ namespace CV.Management.Web.Models
 
     public class PositionItem
     {
-        [Required]
         [Display(Name = "PositionName", ResourceType = typeof(Resources))]
         public string Name { get; set; }
-        [Required]
         [RegularExpression("^[0-9]*[0-9]{1}.[12][0-9]{3}|^[12][0-9]{3}$", ErrorMessageResourceType = typeof(Resources), ErrorMessageResourceName = "InvalidYearWithMonth")]
         [Display(Name = "FromTimeWithMonth", ResourceType = typeof(Resources))]
         public string FromTime { get; set; }
-        //[Required]
         [RegularExpression("^[0-9]*[0-9]{1}.[12][0-9]{3}|^[12][0-9]{3}$", ErrorMessageResourceType = typeof(Resources), ErrorMessageResourceName = "InvalidYearWithMonth")]
         [Display(Name = "ToTimeWithMonth", ResourceType = typeof(Resources))]
         public string ToTime { get; set; }

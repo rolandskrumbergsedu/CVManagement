@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewBag.Title = "UserMissing";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<h2>User is missing</h2>
+
+<p>You are trying to edit user that has been deleted, but it's profile information is still stored in database.</p>
+
+@Html.ActionLink("Return back", "Overview", "Admin", null, new { @class = "btn btn-primary" })
