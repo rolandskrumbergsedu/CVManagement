@@ -1,5 +1,4 @@
 ﻿using CV.Management.Web.DbContexts;
-using CV.Management.Web.Helpers;
 using CV.Management.Web.Models;
 using CV.Management.Web.Models.Database;
 using Microsoft.ApplicationInsights;

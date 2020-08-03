@@ -5,6 +5,7 @@ using CV.Management.Web.Models.Database;
 using Microsoft.ApplicationInsights;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -116,12 +117,28 @@ namespace CV.Management.Web.Controllers
 
                 if (!string.IsNullOrEmpty(id))
                 {
-                    profile = db.Profiles.FirstOrDefault(x => x.ProfileId.ToString() == id);
+                    profile = db.Profiles
+                        .Where(x => x.ProfileId.ToString() == id)
+                        .Include(_ => _.Educations)
+                        .Include(_ => _.AdditionalCourses)
+                        .Include(_ => _.Languages)
+                        .Include(_ => _.Companies.Select(x => x.Positions.Select(y => y.KeyTasks)))
+                        .Include(_ => _.Memberships)
+                        .Include(_ => _.AdditionalFiles)
+                        .FirstOrDefault();
                 }
                 else
                 {
                     var userName = User.Identity.Name;
-                    profile = db.Profiles.FirstOrDefault(x => x.Username == userName);
+                    profile = db.Profiles
+                        .Where(x => x.Username == userName)
+                        .Include(_ => _.Educations)
+                        .Include(_ => _.AdditionalCourses)
+                        .Include(_ => _.Languages)
+                        .Include(_ => _.Companies.Select(x => x.Positions.Select(y => y.KeyTasks)))
+                        .Include(_ => _.Memberships)
+                        .Include(_ => _.AdditionalFiles)
+                        .FirstOrDefault();
                 }
 
                 return DataFromProfile(profile, language);
@@ -195,59 +212,104 @@ namespace CV.Management.Web.Controllers
                 ProfilePictureType = profile.PictureType
             };
 
-            var education = profile.Educations.ToList().OrderEducation().Select(x => new Generation.Word.EducationItem
-            {
-                Degree = x.Degree,
-                EndingYear = x.ToYear,
-                StartingYear = x.FromYear,
-                University = x.Institution
-            }).ToList();
+            List<Generation.Word.EducationItem> education = new List<Generation.Word.EducationItem>();
 
-            var courses = profile.AdditionalCourses.ToList().OrderAdditionalCourse().Select(x => new AdditionalCoursesItem
+            if (profile.Educations != null)
             {
-                AmountOfDays = x.NumberOfDays,
-                CourseName = x.CourseName,
-                Instructor = x.Trainer,
-                Year = x.Year.HasValue ? x.Year.Value : (int?)null
-            }).ToList();
+                var educationList = profile.Educations.ToList();
 
-            var languages = profile.Languages.Select(x => new Generation.Word.LanguageItem
-            {
-                LanguageName = x.LanguageName.ToString(),
-                SpokenLevel = ((int)x.SpokenLevel.Value) + 1,
-                WrittenLevel = ((int)x.WrittenLevel.Value) + 1
-            }).ToList();
-
-            var careerSummary = profile.Companies.ToList().OrderCompanies().Select(x => new CareerSummaryItem
-            {
-                City = x.City,
-                Industry = x.Industry.HasValue ? x.Industry.Value.ToString() : x.OtherIndustry,
-                Company = x.Name,
-                NumberOfEmployees = x.NumberOfEmployess,
-                Services = x.MainProductions,
-                ParentCompany = x.ParentCompanyName,
-                Turnover = x.Turnover,
-                Roles = x.Positions.Select(y => new RoleInformation
+                if (educationList != null && educationList.Count > 0)
                 {
-                    Achievements = y.Achievements,
-                    EndingYear = y.ToTime,
-                    Now = y.Now,
-                    ReasonForLeaving = y.ReasonForLeaving,
-                    ReportingTo = y.ReportingTo,
-                    Role = y.Name,
-                    StartingYear = y.FromTime,
-                    Subordinates = y.DirectSubordinates,
-                    Tasks = y.KeyTasks.Select(z => z.Name).ToList()
-                }).ToList()
+                    education = educationList.OrderEducation().Select(x => new Generation.Word.EducationItem
+                    {
+                        Degree = x.Degree,
+                        EndingYear = x.ToYear,
+                        StartingYear = x.FromYear,
+                        University = x.Institution
+                    }).ToList();
+                }
+            }
 
-            }).ToList();
+            List<AdditionalCoursesItem> courses = new List<AdditionalCoursesItem>();
 
-            var activities = profile.Memberships.ToList().OrderMembership().Select(x => new SocialActivity
+            if (profile.AdditionalCourses != null)
             {
-                StartingYear = x.FromTime,
-                EndingYear = x.ToTime,
-                Description = x.Description
-            }).ToList();
+                var coursList = profile.AdditionalCourses.ToList();
+
+                if (coursList != null && coursList.Count > 0)
+                {
+                    courses = coursList.OrderAdditionalCourse().Select(x => new AdditionalCoursesItem
+                    {
+                        AmountOfDays = x.NumberOfDays,
+                        CourseName = x.CourseName,
+                        Instructor = x.Trainer,
+                        Year = x.Year ?? null
+                    }).ToList();
+                }
+            }
+
+            List<Generation.Word.LanguageItem> languages = new List<Generation.Word.LanguageItem>();
+
+            if (profile.Languages != null && profile.Languages.Count > 0)
+            {
+                languages = profile.Languages.Select(x => new Generation.Word.LanguageItem
+                {
+                    LanguageName = x.LanguageName.HasValue ? x.LanguageName.ToString() : string.Empty,
+                    SpokenLevel = x.SpokenLevel.HasValue ? ((int)x.SpokenLevel.Value) + 1 : 0,
+                    WrittenLevel = x.WrittenLevel.HasValue ? ((int)x.WrittenLevel.Value) + 1 : 0
+                }).ToList();
+            }
+
+            List<CareerSummaryItem> careerSummary = new List<CareerSummaryItem>();
+
+            if (profile.Companies != null)
+            {
+                var careerSummaryList = profile.Companies.ToList();
+
+                if (careerSummaryList != null && careerSummary.Count > 0)
+                {
+                    careerSummary = careerSummaryList.OrderCompanies().Select(x => new CareerSummaryItem
+                    {
+                        City = x.City,
+                        Industry = x.Industry.HasValue ? x.Industry.Value.ToString() : x.OtherIndustry,
+                        Company = x.Name,
+                        NumberOfEmployees = x.NumberOfEmployess,
+                        Services = x.MainProductions,
+                        ParentCompany = x.ParentCompanyName,
+                        Turnover = x.Turnover,
+                        Roles = x.Positions.Select(y => new RoleInformation
+                        {
+                            Achievements = y.Achievements,
+                            EndingYear = y.ToTime,
+                            Now = y.Now,
+                            ReasonForLeaving = y.ReasonForLeaving,
+                            ReportingTo = y.ReportingTo,
+                            Role = y.Name,
+                            StartingYear = y.FromTime,
+                            Subordinates = y.DirectSubordinates,
+                            Tasks = y.KeyTasks.Select(z => z.Name).ToList()
+                        }).ToList()
+
+                    }).ToList();
+                }
+            }
+
+            List<SocialActivity> activities = new List<SocialActivity>();
+
+            if (profile.Memberships != null)
+            {
+                var activityList = profile.Memberships.ToList();
+
+                if (activityList != null && activityList.Count > 0)
+                {
+                    activities = activityList.OrderMembership().Select(x => new SocialActivity
+                    {
+                        StartingYear = x.FromTime,
+                        EndingYear = x.ToTime,
+                        Description = x.Description
+                    }).ToList();
+                }
+            }
 
             var compensation = new CompensationItem
             {

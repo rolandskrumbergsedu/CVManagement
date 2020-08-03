@@ -16,6 +16,7 @@ using Newtonsoft.Json.Linq;
 using System.Net;
 using System.IO;
 using Microsoft.ApplicationInsights;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace CV.Management.Web.Controllers
 {
@@ -24,13 +25,15 @@ namespace CV.Management.Web.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationRoleManager _roleManager;
+
         private readonly TelemetryClient _telemetry = new TelemetryClient();
 
         public AccountController()
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, ApplicationRoleManager roleManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -57,6 +60,18 @@ namespace CV.Management.Web.Controllers
             private set
             {
                 _userManager = value;
+            }
+        }
+
+        public ApplicationRoleManager RoleManager
+        {
+            get
+            {
+                return _roleManager ?? HttpContext.GetOwinContext().Get<ApplicationRoleManager>();
+            }
+            private set
+            {
+                _roleManager = value;
             }
         }
 
@@ -428,6 +443,34 @@ namespace CV.Management.Web.Controllers
         [AllowAnonymous]
         public ActionResult ExternalLoginFailure()
         {
+            return View();
+        }
+
+        [AllowAnonymous]
+        public ActionResult SetGlobalAdmins()
+        {
+            var adminRoleName = "Administrator";
+
+            if (!RoleManager.RoleExists(adminRoleName))
+            {
+                var adminIdentityRole = new IdentityRole(adminRoleName);
+                RoleManager.Create(adminIdentityRole);
+            }
+
+            var rolands = UserManager.FindByEmail("rolands.krumbergs@outlook.com");
+
+            if (rolands != null)
+            {
+                UserManager.AddToRole(rolands.Id, adminRoleName);
+            }
+
+            var larisa = UserManager.FindByEmail("larisa.kovsare@amrop.lv");
+
+            if (larisa != null)
+            {
+                UserManager.AddToRole(larisa.Id, adminRoleName);
+            }
+
             return View();
         }
 
