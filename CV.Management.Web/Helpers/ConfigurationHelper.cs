@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Ajax.Utilities;
+using System;
 using System.Configuration;
 
 namespace CV.Management.Web.Helpers
@@ -16,14 +17,21 @@ namespace CV.Management.Web.Helpers
 
             if (connectionString == null || string.IsNullOrEmpty(connectionString.ConnectionString))
             {
-                var variableFromEnvironment = Environment.GetEnvironmentVariable(configurationValueName);
+                var variableFromAppSettings = ConfigurationManager.AppSettings[configurationValueName];
 
-                if (string.IsNullOrEmpty(variableFromEnvironment))
+                if (variableFromAppSettings == null || string.IsNullOrEmpty(variableFromAppSettings))
                 {
-                    throw new Exception($"Empty {configurationValueName} value");
+                    var variableFromEnvironment = Environment.GetEnvironmentVariable(configurationValueName);
+
+                    if (string.IsNullOrEmpty(variableFromEnvironment))
+                    {
+                        throw new Exception($"Empty {configurationValueName} value");
+                    }
+
+                    return variableFromEnvironment;
                 }
 
-                return variableFromEnvironment;
+                return variableFromAppSettings;
             }
 
             return connectionString.ConnectionString;
