@@ -12,6 +12,10 @@ namespace CV.Management.Web.DbContexts
             : base(GetConnectionString())
         {
            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ProfileInformationDbContext, MigrationsApp.Configuration>(true));
+
+#if DEBUG
+            Database.Log = s => { };
+#endif
         }
 
         public DbSet<Profile> Profiles { get; set; }

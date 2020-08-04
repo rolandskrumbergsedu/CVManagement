@@ -5,6 +5,7 @@ using CV.Management.Web.Models.Database;
 using Microsoft.ApplicationInsights;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -266,12 +267,17 @@ namespace CV.Management.Web.Controllers
             {
                 var careerSummaryList = profile.Companies.ToList();
 
-                if (careerSummaryList != null && careerSummary.Count > 0)
+                if (careerSummaryList != null && careerSummaryList.Count > 0)
                 {
                     careerSummary = careerSummaryList.OrderCompanies().Select(x => new CareerSummaryItem
                     {
                         City = x.City,
-                        Industry = x.Industry.HasValue ? x.Industry.Value.ToString() : x.OtherIndustry,
+                        Industry = x.Industry.HasValue ? (x.Industry.Value
+                            .GetType()
+                            .GetMember(x.Industry.Value.ToString())
+                            .First()
+                            .GetCustomAttributes(typeof(DisplayAttribute), false)
+                            .First() as DisplayAttribute).Name : x.OtherIndustry,
                         Company = x.Name,
                         NumberOfEmployees = x.NumberOfEmployess,
                         Services = x.MainProductions,

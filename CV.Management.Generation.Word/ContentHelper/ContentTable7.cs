@@ -616,7 +616,7 @@ namespace CV.Management.Generation.Word.ContentHelper
                 runProperties26.Append(fontSize26);
                 runProperties26.Append(fontSizeComplexScript26);
                 Text text26 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-                text26.Text = $"{task};";
+                text26.Text = $"{GetTask(task)}";
 
                 run26.Append(runProperties26);
                 run26.Append(text26);
@@ -646,6 +646,16 @@ namespace CV.Management.Generation.Word.ContentHelper
             tableRow5.Append(tableCell9);
 
             return tableRow5;
+        }
+
+        private static string GetTask(string task)
+        {
+            if (task[task.Length - 1] == '.' || task[task.Length - 1] == ';' || task[task.Length - 1] == ':' || task[task.Length - 1] == ',')
+            {
+                task = task.Remove(task.Length - 1, 1);
+            }
+            task += '.';
+            return task;
         }
 
         private static TableRow CreateReportingToRow(RoleInformation data, string language)

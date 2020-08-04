@@ -119,13 +119,13 @@ namespace CV.Management.Generation.Word.ContentHelper
 
             foreach (var activity in activities)
             {
-                table1.Append(CreateMembershipRow(activity));
+                table1.Append(CreateMembershipRow(activity, data.Language));
             }
 
             return table1;
         }
 
-        private static TableRow CreateMembershipRow(SocialActivity data)
+        private static TableRow CreateMembershipRow(SocialActivity data, string language)
         {
             TableRow tableRow2 = new TableRow() { RsidTableRowAddition = "009B2C1D", RsidTableRowProperties = "009E39C2", ParagraphId = "533821CC", TextId = "77777777" };
 
@@ -159,7 +159,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties3.Append(fontSize3);
             runProperties3.Append(fontSizeComplexScript3);
             Text text3 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text3.Text = $" {data.StartingYear} - {data.EndingYear} ";
+            text3.Text = $" {data.StartingYear} - {GetEndingYear(data, language)} ";
 
             run3.Append(runProperties3);
             run3.Append(text3);
@@ -231,6 +231,16 @@ namespace CV.Management.Generation.Word.ContentHelper
             tableRow2.Append(tableCell3);
 
             return tableRow2;
+        }
+
+        private static string GetEndingYear(SocialActivity data, string language)
+        {
+            if (data.EndingYear.HasValue && data.EndingYear > 0)
+            {
+                return data.EndingYear.Value.ToString();
+            }
+
+            return DocumentMetadataTexts.GetText(MetadataTexts.CV_PRESENT, language);
         }
     }
 }

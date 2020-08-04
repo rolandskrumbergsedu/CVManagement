@@ -375,4 +375,13 @@
   <data name="MembershipEntry" xml:space="preserve">
     <value>Sociālo aktivitāšu ieraksts</value>
   </data>
+  <data name="Privacy" xml:space="preserve">
+    <value>Privātuma politika</value>
+  </data>
+  <data name="PrivacyLink" xml:space="preserve">
+    <value>https://www.amrop.lv/lat/privatuma-politika</value>
+  </data>
+  <data name="RightsReserved" xml:space="preserve">
+    <value>Visas tiesības aizsargātas.</value>
+  </data>
 </root>

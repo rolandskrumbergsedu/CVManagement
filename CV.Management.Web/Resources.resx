@@ -378,4 +378,13 @@
   <data name="MembershipEntry" xml:space="preserve">
     <value>Social activities entry</value>
   </data>
+  <data name="Privacy" xml:space="preserve">
+    <value>Privacy policy</value>
+  </data>
+  <data name="PrivacyLink" xml:space="preserve">
+    <value>https://www.amrop.lv/eng/privacy-policy</value>
+  </data>
+  <data name="RightsReserved" xml:space="preserve">
+    <value>All rights reserved.</value>
+  </data>
 </root>

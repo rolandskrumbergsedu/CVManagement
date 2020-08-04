@@ -1119,7 +1119,7 @@ namespace CV.Management.Web.Controllers
                     itemToAdd = itemToAdd.Substring(1);
                 }
 
-                if (itemToAdd.StartsWith(""))
+                if (itemToAdd.StartsWith(" "))
                 {
                     itemToAdd = itemToAdd.Substring(1);
                 }

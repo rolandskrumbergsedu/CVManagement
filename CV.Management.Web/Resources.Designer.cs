@@ -673,6 +673,24 @@ namespace CV.Management.Web {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Privacy policy.
+        /// </summary>
+        public static string Privacy {
+            get {
+                return ResourceManager.GetString("Privacy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://www.amrop.lv/eng/privacy-policy.
+        /// </summary>
+        public static string PrivacyLink {
+            get {
+                return ResourceManager.GetString("PrivacyLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Profile.
         /// </summary>
         public static string Profile {
@@ -714,6 +732,15 @@ namespace CV.Management.Web {
         public static string ReportingTo {
             get {
                 return ResourceManager.GetString("ReportingTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All rights reserved..
+        /// </summary>
+        public static string RightsReserved {
+            get {
+                return ResourceManager.GetString("RightsReserved", resourceCulture);
             }
         }
         
