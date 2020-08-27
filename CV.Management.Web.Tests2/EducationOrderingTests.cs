@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CV.Management.Web.Tests
+namespace CV.Management.Web.Tests2
 {
     [TestClass]
     public class EducationOrderingTests

@@ -1,9 +1,10 @@
-using CV.Management.Web.Models.Database;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CV.Management.Web.Models.Database;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace CV.Management.Web.Tests
+namespace CV.Management.Web.Tests2
 {
     [TestClass]
     public class CompanyOrderingTests
@@ -659,7 +660,7 @@ namespace CV.Management.Web.Tests
                             FromTime = 2007
                         }
                     }
-                },                
+                },
                 new Company
                 {
                     Name = "Company C",
@@ -1636,7 +1637,7 @@ namespace CV.Management.Web.Tests
                             ToTimeMonth = 6,
                             FromTime = 2008,
                             FromTimeMonth = 7
-                            
+
                         }
                     }
                 },
@@ -2111,7 +2112,7 @@ namespace CV.Management.Web.Tests
                     }
                 }
             };
-            
+
             var result = companies.GetMostRecentPositionTimes();
 
             Assert.AreEqual(7, result.Item1);
@@ -2536,6 +2537,186 @@ namespace CV.Management.Web.Tests
             Assert.AreEqual("Position C", result.Positions.ToList()[2].Name);
             Assert.AreEqual("Position D", result.Positions.ToList()[3].Name);
             Assert.AreEqual("Position A", result.Positions.ToList()[4].Name);
+        }
+
+        [TestMethod]
+        public void TestMultipleCompanies_WithMonths_MultiplePositions_WithMissingTimes_1_ReturnsCorrectOrder()
+        {
+            var companies = new List<Company>
+            {
+                new Company
+                {
+                    Name = "Company A",
+                    Positions = new List<Position>
+                    {
+                        new Position
+                        {
+                            Name = "Position A",
+                            Now = false,
+                            ToTime = null,
+                            ToTimeMonth = null,
+                            FromTime = 2009,
+                            FromTimeMonth = 7
+                        },
+                        new Position
+                        {
+                            Name = "Position B",
+                            Now = false,
+                            ToTime = null,
+                            ToTimeMonth = 3,
+                            FromTime = 2007,
+                            FromTimeMonth = 7
+                        }
+                    }
+                },
+                new Company
+                {
+                    Name = "Company B",
+                    Positions = new List<Position>
+                    {
+                        new Position
+                        {
+                            Name = "Position C",
+                            Now = false,
+                            ToTime = null,
+                            ToTimeMonth = null,
+                            FromTime = 2012,
+                            FromTimeMonth = 7
+                        },
+                        new Position
+                        {
+                            Name = "Position D",
+                            Now = false,
+                            ToTime = 2012,
+                            ToTimeMonth = 3,
+                            FromTime = null,
+                            FromTimeMonth = 7
+                        },
+                        new Position
+                        {
+                            Name = "Position E",
+                            Now = false,
+                            ToTime = 2018,
+                            ToTimeMonth = 7,
+                            FromTime = 2014,
+                            FromTimeMonth = 5
+                        }
+                    }
+                },
+                new Company
+                {
+                    Name = "Company C",
+                    Positions = new List<Position>
+                    {
+                        new Position
+                        {
+                            Name = "Position F",
+                            Now = false,
+                            ToTime = 2010,
+                            ToTimeMonth = 3,
+                            FromTime = 2008,
+                            FromTimeMonth = 7
+                        },
+                        new Position
+                        {
+                            Name = "Position G",
+                            Now = false,
+                            ToTime = 2010,
+                            ToTimeMonth = null,
+                            FromTime = 2008,
+                            FromTimeMonth = 7
+                        },
+                        new Position
+                        {
+                            Name = "Position H",
+                            Now = false,
+                            ToTime = 2010,
+                            ToTimeMonth = 3,
+                            FromTime = 2007,
+                            FromTimeMonth = null
+                        }
+                    }
+                },
+                new Company
+                {
+                    Name = "Company D",
+                    Positions = new List<Position>
+                    {
+                        new Position
+                        {
+                            Name = "Position I",
+                            Now = false,
+                            ToTime = 2010,
+                            ToTimeMonth = 3,
+                            FromTime = 2007,
+                            FromTimeMonth = 7
+                        },
+                        new Position
+                        {
+                            Name = "Position J",
+                            Now = false,
+                            ToTime = 2012,
+                            ToTimeMonth = 3,
+                            FromTime = 2010,
+                            FromTimeMonth = 3
+                        }
+                    }
+                },
+                new Company
+                {
+                    Name = "Company E",
+                    Positions = new List<Position>
+                    {
+                        new Position
+                        {
+                            Name = "Position K",
+                            Now = true,
+                            ToTime = null,
+                            ToTimeMonth = null,
+                            FromTime = 2019,
+                            FromTimeMonth = 7
+                        }
+                    }
+                },
+                new Company
+                {
+                    Name = "Company F",
+                    Positions = new List<Position>
+                    {
+                        new Position
+                        {
+                            Name = "Position L",
+                            Now = true,
+                            ToTime = null,
+                            ToTimeMonth = null,
+                            FromTime = null,
+                            FromTimeMonth = null
+                        }
+                    }
+                }
+            };
+
+            var result = companies.OrderCompanies();
+
+            Assert.AreEqual("Company E", result[0].Name);
+            Assert.AreEqual("Company F", result[1].Name);
+            Assert.AreEqual("Company B", result[2].Name);
+            Assert.AreEqual("Company D", result[3].Name);
+            Assert.AreEqual("Company C", result[4].Name);
+            Assert.AreEqual("Company A", result[5].Name);
+            Assert.AreEqual("Position K", result[0].Positions.ElementAt(0).Name);
+            Assert.AreEqual("Position L", result[1].Positions.ElementAt(0).Name);
+            Assert.AreEqual("Position E", result[2].Positions.ElementAt(0).Name);
+            Assert.AreEqual("Position C", result[2].Positions.ElementAt(1).Name);
+            Assert.AreEqual("Position D", result[2].Positions.ElementAt(2).Name);
+            Assert.AreEqual("Position J", result[3].Positions.ElementAt(0).Name);
+            Assert.AreEqual("Position I", result[3].Positions.ElementAt(1).Name);
+            Assert.AreEqual("Position F", result[4].Positions.ElementAt(0).Name);
+            Assert.AreEqual("Position H", result[4].Positions.ElementAt(1).Name);
+            Assert.AreEqual("Position G", result[4].Positions.ElementAt(2).Name);
+            Assert.AreEqual("Position A", result[5].Positions.ElementAt(0).Name);
+            Assert.AreEqual("Position B", result[5].Positions.ElementAt(1).Name);
+
         }
     }
 }
