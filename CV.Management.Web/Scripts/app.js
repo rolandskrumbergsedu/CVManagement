@@ -737,7 +737,7 @@
     }
     function removeMembership() {
 
-        if ($('.language_row').length > 1) {
+        if ($('.membership_row').length > 1) {
             $(this).closest('div[class^="membership_row"]').remove();
             updateMembershipFieldNumbers();
         }

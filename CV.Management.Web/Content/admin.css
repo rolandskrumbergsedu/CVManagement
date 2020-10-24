@@ -22,7 +22,12 @@
     margin-left: 10px;
 }
 
-.edit_user {
+.fa-cog {
+    font-size: 20px;
+    padding-right: 7px;
+}
+
+.view_user {
     padding-left: 35px;
     font-size: 24px;
     color: #1c74bb;

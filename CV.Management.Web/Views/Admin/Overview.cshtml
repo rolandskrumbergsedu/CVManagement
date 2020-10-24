@@ -26,7 +26,11 @@
                         <td>@Model.Profiles[i].FullName</td>
                         <td>@Model.Profiles[i].Username</td>
                         <td>ENG: <span class="download_word_en"></span> <span class="download_ppt_en"></span> | LV: <span class="download_word_lv"></span> <span class="download_ppt_lv"></span></td>
-                        <td><a class="edit_user" href="/admin/EditUser?id=@Model.Profiles[i].ProfileId.ToString()"></a><a class="remove_user" href="/admin/ConfirmUserDelete?id=@Model.Profiles[i].ProfileId.ToString()"></a></td>
+                        <td>
+                            <a class="view_user" href="/cv/profile?profileId=@Model.Profiles[i].ProfileId.ToString()"></a>
+                            <a class="edit_user" href="/admin/EditUser?id=@Model.Profiles[i].ProfileId.ToString()"><i class="fas fa-cog"></i></a>
+                            <a class="remove_user" href="/admin/ConfirmUserDelete?id=@Model.Profiles[i].ProfileId.ToString()"></a>
+                        </td>
                     </tr>
                     }
                 </tbody>

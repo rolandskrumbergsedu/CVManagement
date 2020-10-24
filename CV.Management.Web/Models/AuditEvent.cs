@@ -11,6 +11,7 @@ namespace CV.Management.Web.Models
         ViewConfirmDeleteUserPage,
         DeleteUser,
         DownloadPpt,
-        DownloadDoc
+        DownloadDoc,
+        ViewUser
     }
 }

@@ -4,8 +4,6 @@ using CV.Management.Web.Models.Database;
 using Microsoft.ApplicationInsights;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -21,48 +19,27 @@ namespace CV.Management.Web.Controllers
         private readonly TelemetryClient telemetry = new TelemetryClient();
 
         [HttpGet]
-        public ActionResult Profile(string language)
+        public ActionResult Profile(string language, string profileId)
         {
             try
             {
                 telemetry.TrackPageView("Profile");
 
-                if (!string.IsNullOrEmpty(language))
-                {
-                    if (language == "lv")
-                    {
-                        Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("lv");
-                        Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("lv");
-                        telemetry.TrackEvent("OpenProfile", new Dictionary<string, string> { { "Language", "lv" } });
-                    }
-                    else
-                    {
-                        Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en");
-                        Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
-                        telemetry.TrackEvent("OpenProfile", new Dictionary<string, string> { { "Language", "en" } });
-                    }
-                }
-                else
-                {
-                    if (ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("language"))
-                    {
-                        HttpCookie cookie = ControllerContext.HttpContext.Request.Cookies["language"];
+                SetLanguage(language);
 
-                        if (cookie.Value == "lv")
-                        {
-                            Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("lv");
-                            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("lv");
-                            telemetry.TrackEvent("OpenProfile", new Dictionary<string, string> { { "Language", "lv" } });
-                        }
-                        else
-                        {
-                            Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en");
-                            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
-                            telemetry.TrackEvent("OpenProfile", new Dictionary<string, string> { { "Language", "en" } });
-                        };
-                    }
+                if (string.IsNullOrEmpty(profileId))
+                {
+                    return View(GetCurrentUserProfileViewModel());
                 }
-                return View(GetCurrentUserProfileViewModel());
+
+                if (!IsAdmin())
+                {
+                    telemetry.TrackEvent("AccessDeniedWhenOpeningOtherProfile", new Dictionary<string, string> { { "User", GetCurrentUsername() }, { "ProfileId", profileId } });
+                    return RedirectToAction("AccessDenied");
+                }
+
+                return View(GetRequestedUserProfileViewModel(profileId));
+
             }
             catch (Exception ex)
             {
@@ -72,7 +49,7 @@ namespace CV.Management.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult Error()
+        public ActionResult AccessDenied()
         {
             return View();
         }
@@ -195,6 +172,8 @@ namespace CV.Management.Web.Controllers
             try
             {
 
+                // TO DO add audit log for saving
+
                 telemetry.TrackEvent("SubmitProfileSummary");
 
                 if (ModelState.IsValid)
@@ -202,6 +181,14 @@ namespace CV.Management.Web.Controllers
                     using (var db = new ProfileInformationDbContext())
                     {
                         var username = GetCurrentUsername();
+
+                        // TO DO check rights
+
+                        if (profileViewModel.Username != username)
+                        {
+                            username = profileViewModel.Username;
+                        }
+
                         var userProfile = db.Profiles.FirstOrDefault(x => x.Username == username);
 
                         if (userProfile != null)
@@ -548,11 +535,116 @@ namespace CV.Management.Web.Controllers
             return User.Identity.Name;
         }
 
+        private bool IsAdmin()
+        {
+            var currentUsername = GetCurrentUsername();
+
+            using (var appDb = new ApplicationDbContext())
+            {
+                var adminRole = appDb.Roles.FirstOrDefault(x => x.Name == "Administrator");
+                var user = appDb.Users.FirstOrDefault(x => x.Email == currentUsername);
+                return user.Roles.FirstOrDefault(x => x.RoleId == adminRole.Id) != null;
+            }
+
+        }
+
+        private void SetLanguage(string language)
+        {
+            if (!string.IsNullOrEmpty(language))
+            {
+                if (language == "lv")
+                {
+                    Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("lv");
+                    Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("lv");
+                    telemetry.TrackEvent("OpenProfile", new Dictionary<string, string> { { "Language", "lv" } });
+                }
+                else
+                {
+                    Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en");
+                    Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
+                    telemetry.TrackEvent("OpenProfile", new Dictionary<string, string> { { "Language", "en" } });
+                }
+            }
+            else
+            {
+                if (ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("language"))
+                {
+                    HttpCookie cookie = ControllerContext.HttpContext.Request.Cookies["language"];
+
+                    if (cookie.Value == "lv")
+                    {
+                        Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("lv");
+                        Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("lv");
+                        telemetry.TrackEvent("OpenProfile", new Dictionary<string, string> { { "Language", "lv" } });
+                    }
+                    else
+                    {
+                        Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en");
+                        Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
+                        telemetry.TrackEvent("OpenProfile", new Dictionary<string, string> { { "Language", "en" } });
+                    };
+                }
+            }
+        }
+
+        private ProfileViewModel GetRequestedUserProfileViewModel(string profileId)
+        {
+            ProfileViewModel profileViewModel;
+
+            using (var db = new ProfileInformationDbContext())
+            {
+                using (var transaction = db.Database.BeginTransaction())
+                {
+                    var currentUsername = GetCurrentUsername();
+
+                    telemetry.TrackEvent("ViewOtherProfile", new Dictionary<string, string> { { "ProfileId", profileId.ToString() }, { "Username", currentUsername } });
+
+                    var profile = db.Profiles.FirstOrDefault(x => x.ProfileId.ToString() == profileId);
+
+                    if (profile == null)
+                    {
+                        return CreateEmptyProfileViewModel();
+                    }
+
+                    db.AuditLogs.Add(new AuditLog
+                    {
+                        AuditEvent = AuditEvent.ViewUser.ToString(),
+                        EventTime = DateTime.Now,
+                        UserAffected = string.IsNullOrEmpty(profile.FullName) ? profileId.ToString() : profile.FullName,
+                        Username = currentUsername
+                    });
+
+                    db.SaveChanges();
+                    transaction.Commit();
+
+                    return new ProfileViewModel
+                    {
+                        Username = profile.Username,
+                        Name = profile.FullName,
+                        PersonalInformationViewModel = CreatePersonalInformationViewModel(profile),
+                        EducationViewModel = CreateEducationViewModel(profile),
+                        AdditionalCoursesViewModel = CreateAdditionalCoursesViewModel(profile),
+                        LanguageViewModel = CreateLanguageViewModel(profile),
+                        CareerSummaryViewModel = CreateCareerSummaryViewModel(profile),
+                        MembershipViewModel = CreateMembershipViewModel(profile),
+                        CompensationViewModel = CreateCompensationViewModel(profile),
+                        NoticePeriodViewModel = CreateNoticePeriodViewModel(profile),
+                        AdditionalCommentsViewModel = CreateAdditionalCommentsViewModel(profile),
+                        AdditionalFilesViewModel = CreateAdditionalFilesViewModel(profile)
+                    };
+                }
+                
+            }
+        }
+
         private ProfileViewModel GetCurrentUserProfileViewModel()
         {
             using (var db = new ProfileInformationDbContext())
             {
                 var currentUsername = GetCurrentUsername();
+
+                telemetry.TrackEvent("ViewOwnProfile", new Dictionary<string, string> { { "User", currentUsername } });
+
                 var profile = db.Profiles.FirstOrDefault(x => x.Username == currentUsername);
 
                 if (profile == null)
@@ -562,6 +654,7 @@ namespace CV.Management.Web.Controllers
 
                 return new ProfileViewModel
                 {
+                    Username = currentUsername,
                     Name = profile.FullName,
                     PersonalInformationViewModel = CreatePersonalInformationViewModel(profile),
                     EducationViewModel = CreateEducationViewModel(profile),

@@ -565,6 +565,7 @@
     <Content Include="Views\Admin\EditUser.cshtml" />
     <Content Include="Views\Admin\UserMissing.cshtml" />
     <Content Include="Views\Account\SetGlobalAdmins.cshtml" />
+    <Content Include="Views\Cv\AccessDenied.cshtml" />
     <None Include="Web.Production.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
