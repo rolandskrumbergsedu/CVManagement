@@ -16,6 +16,8 @@ namespace CV.Management.Web.Models
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
+        public bool AcceptTermsAndConditions { get; set; }
     }
 
     public class ExternalLoginListViewModel
@@ -98,6 +100,8 @@ namespace CV.Management.Web.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        public bool AcceptTermsAndConditions { get; set; }
     }
 
     public class ResetPasswordViewModel

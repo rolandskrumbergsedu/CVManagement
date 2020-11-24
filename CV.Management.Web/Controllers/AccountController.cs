@@ -174,7 +174,13 @@ namespace CV.Management.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Name = model.Name, Surname = model.Surname };
+                if(!model.AcceptTermsAndConditions)
+                {
+                    ModelState.AddModelError(string.Empty, Resources.AcceptPrivacyPolicyError);
+                    return View(model);
+                }
+
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Name = model.Name, Surname = model.Surname, HasAcceptedTermsAndConditions = model.AcceptTermsAndConditions };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -280,6 +286,9 @@ namespace CV.Management.Web.Controllers
                 return View(model);
             }
             var user = await UserManager.FindByNameAsync(model.Email);
+
+            var code = Request.QueryString["code"];
+
             if (user == null)
             {
                 // Don't reveal that the user does not exist
@@ -398,6 +407,12 @@ namespace CV.Management.Web.Controllers
 
             if (ModelState.IsValid)
             {
+                if (!model.AcceptTermsAndConditions)
+                {
+                    ModelState.AddModelError(string.Empty, Resources.AcceptPrivacyPolicyError);
+                    return View(model);
+                }
+
                 // Get the information about the user from the external login provider
                 var info = await AuthenticationManager.GetExternalLoginInfoAsync();
                 if (info == null)
@@ -405,7 +420,7 @@ namespace CV.Management.Web.Controllers
                     return View("ExternalLoginFailure");
                 }
 
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Name = model.Name, Surname = model.Surname };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Name = model.Name, Surname = model.Surname, HasAcceptedTermsAndConditions = model.AcceptTermsAndConditions };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

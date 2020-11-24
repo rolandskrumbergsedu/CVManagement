@@ -384,4 +384,13 @@
   <data name="RightsReserved" xml:space="preserve">
     <value>Visas tiesības aizsargātas.</value>
   </data>
+  <data name="ByRegistering" xml:space="preserve">
+    <value>Reģistrējoties, tu piekrīti</value>
+  </data>
+  <data name="Privacy2" xml:space="preserve">
+    <value>Privātuma politikai</value>
+  </data>
+  <data name="AcceptPrivacyPolicyError" xml:space="preserve">
+    <value>Lai reģistrētos, tev ir jāpiekrīt mūsu privātuma politikai</value>
+  </data>
 </root>

@@ -72,6 +72,17 @@
             </div>
 
             <div class="row">
+                <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12">
+                    <div class="form-group">
+                        <div class="checkbox">
+                            @Html.CheckBoxFor(m => m.AcceptTermsAndConditions, new { @class = "remember-input" })
+                            <label class="remember-label">@Resources.ByRegistering <a href="@Resources.PrivacyLink">@Resources.Privacy</a></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
                 <div class="col-md-4 col-md-offset-4">
                     <div class="form-group">
                         <input type="submit" class="btn btn-primary" value="Register" />

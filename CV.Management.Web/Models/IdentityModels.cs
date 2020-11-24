@@ -21,6 +21,7 @@ namespace CV.Management.Web.Models
 
         public string Name { get; set; }
         public string Surname { get; set; }
+        public bool HasAcceptedTermsAndConditions { get; set; }
     }
 
     [DbConfigurationType(typeof(DatabaseConfiguration))]

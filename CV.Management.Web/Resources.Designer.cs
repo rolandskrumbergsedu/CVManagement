@@ -61,6 +61,15 @@ namespace CV.Management.Web {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You must accept our privacy policy to register.
+        /// </summary>
+        public static string AcceptPrivacyPolicyError {
+            get {
+                return ResourceManager.GetString("AcceptPrivacyPolicyError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Achievements.
         /// </summary>
         public static string Achievements {
@@ -183,6 +192,15 @@ namespace CV.Management.Web {
         public static string BonusRequest {
             get {
                 return ResourceManager.GetString("BonusRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to By registering you accept our.
+        /// </summary>
+        public static string ByRegistering {
+            get {
+                return ResourceManager.GetString("ByRegistering", resourceCulture);
             }
         }
         
@@ -678,6 +696,15 @@ namespace CV.Management.Web {
         public static string Privacy {
             get {
                 return ResourceManager.GetString("Privacy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Privacy policy.
+        /// </summary>
+        public static string Privacy2 {
+            get {
+                return ResourceManager.GetString("Privacy2", resourceCulture);
             }
         }
         

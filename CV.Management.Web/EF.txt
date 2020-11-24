@@ -1,2 +1,5 @@
-﻿Add new migration
+﻿Add new migration for app
 Add-Migration AuditLogs -ConfigurationTypeName CV.Management.Web.MigrationsApp.Configuration
+
+Add new migration for identity
+Add-Migration TermsAndConditions2 -ConfigurationTypeName CV.Management.Web.Migrations.Configuration
