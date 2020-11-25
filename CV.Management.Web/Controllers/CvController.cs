@@ -49,6 +49,51 @@ namespace CV.Management.Web.Controllers
         }
 
         [HttpGet]
+        public ActionResult Create()
+        {
+            if (!IsAdmin())
+            {
+                return RedirectToAction("AccessDenied");
+            }
+
+            return View(new CreateProfileViewModel());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(CreateProfileViewModel model)
+        {
+            try
+            {
+                var profile = new Profile();
+
+                using (var db = new ProfileInformationDbContext())
+                {
+                    var existingProfile = db.Profiles.FirstOrDefault(x => x.Username == model.Email);
+
+                    if (existingProfile != null)
+                    {
+                        return View("UserAlreadyExists");
+                    }
+
+                    profile.Email = model.Email;
+                    profile.FullName = model.FullName;
+                    profile.Username = model.Email;
+
+                    var profileId = db.Profiles.Add(profile);
+                    db.SaveChanges();
+
+                    return RedirectToAction("Profile", new { profileId = profileId.ProfileId });
+                }
+            }
+            catch (Exception ex)
+            {
+                telemetry.TrackException(ex);
+                throw;
+            }
+        }
+
+        [HttpGet]
         public ActionResult AccessDenied()
         {
             return View();

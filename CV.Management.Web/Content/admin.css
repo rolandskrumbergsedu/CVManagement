@@ -77,6 +77,10 @@ html, body {
     padding-top: 50px;
 }
 
-.edit-user-btn {
+.edit-user-btn, .create-user-btn {
     margin-top: 20px;
+}
+
+.create-user-button {
+    margin-bottom: 10px;
 }
