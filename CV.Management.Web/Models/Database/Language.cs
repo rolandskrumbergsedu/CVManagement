@@ -7,6 +7,7 @@ namespace CV.Management.Web.Models.Database
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int LanguageId { get; set; }
         public LanguageEnum? LanguageName { get; set; }
+        public string OtherLanguage { get; set; }
         public LevelEnum? SpokenLevel { get; set; }
         public LevelEnum? WrittenLevel { get; set; }
 

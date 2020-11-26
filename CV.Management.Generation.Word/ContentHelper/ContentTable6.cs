@@ -81,7 +81,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             {
                 var tableRow = new TableRow() { RsidTableRowAddition = "009B2C1D", ParagraphId = "37671891", TextId = "77777777" };
 
-                TableCell tableCell5 = GenerateLanguageHeadlineCell(languageItem.LanguageName, data);
+                TableCell tableCell5 = GenerateLanguageHeadlineCell(languageItem, data);
 
                 // Level 1
                 TableCell tableCell6 = languageItem.SpokenLevel >= 1 ? GenerateFilledCell(true, false) : GenerateNotFilledCell(true, false);
@@ -340,7 +340,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             return tableCell6;
         }
 
-        private static TableCell GenerateLanguageHeadlineCell(string languageName, GenerationData data)
+        private static TableCell GenerateLanguageHeadlineCell(LanguageItem languageItem, GenerationData data)
         {
             TableCell tableCell5 = new TableCell();
 
@@ -377,7 +377,15 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties6.Append(fontSize6);
             runProperties6.Append(fontSizeComplexScript6);
             Text text6 = new Text();
-            text6.Text = TranslateLanguageName(languageName, data.Language);
+
+            if(string.IsNullOrEmpty(languageItem.OtherLanguageName))
+            {
+                text6.Text = TranslateLanguageName(languageItem.LanguageName, data.Language);
+            }
+            else
+            {
+                text6.Text = TranslateLanguageName(languageItem.OtherLanguageName, data.Language);
+            }
 
             run6.Append(runProperties6);
             run6.Append(text6);

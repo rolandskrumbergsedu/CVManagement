@@ -289,6 +289,10 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="MigrationsApp\202011261017566_OtherLanguage.cs" />
+    <Compile Include="MigrationsApp\202011261017566_OtherLanguage.designer.cs">
+      <DependentUpon>202011261017566_OtherLanguage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\CreateProfileViewModel.cs" />
     <Compile Include="Controllers\CvController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
@@ -619,6 +623,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MigrationsApp\202005120903169_AuditLogs.resx">
       <DependentUpon>202005120903169_AuditLogs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MigrationsApp\202011261017566_OtherLanguage.resx">
+      <DependentUpon>202011261017566_OtherLanguage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011240820479_TermsAndConditions.resx">
       <DependentUpon>202011240820479_TermsAndConditions.cs</DependentUpon>

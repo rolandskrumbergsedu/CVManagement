@@ -123,7 +123,7 @@
             
 
             if (this.value === "8") {
-
+                otherLanguageBlock.removeAttr('style');
                 otherLanguageBlock.css('display', 'block');
             }
             else {
@@ -706,8 +706,15 @@
 
         var columns = newRow.find(".col-md-4");
         var otherLanguageBlock = $(columns[3]);
-        otherLanguageBlock.css('display', 'none');
+        if (otherLanguageBlock.value === "8") {
 
+            otherLanguageBlock.css('display', 'block');
+            otherLanguageBlock.find('language-other-input').val(null);
+        }
+        else {
+            otherLanguageBlock.css('display', 'none');
+        }
+        
 
         $("#language_container").append(newRow);
     });

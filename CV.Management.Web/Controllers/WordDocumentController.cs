@@ -256,6 +256,7 @@ namespace CV.Management.Web.Controllers
                 languages = profile.Languages.Select(x => new Generation.Word.LanguageItem
                 {
                     LanguageName = x.LanguageName.HasValue ? x.LanguageName.ToString() : string.Empty,
+                    OtherLanguageName = x.OtherLanguage,
                     SpokenLevel = x.SpokenLevel.HasValue ? ((int)x.SpokenLevel.Value) + 1 : 0,
                     WrittenLevel = x.WrittenLevel.HasValue ? ((int)x.WrittenLevel.Value) + 1 : 0
                 }).ToList();

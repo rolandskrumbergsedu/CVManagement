@@ -256,11 +256,13 @@ namespace CV.Management.Web.Controllers
 
                             if (profileViewModel.PersonalInformationViewModel.ProfilePicture != null && profileViewModel.PersonalInformationViewModel.ProfilePicture.ContentLength > 0)
                             {
-                                var ms = new MemoryStream();
-                                profileViewModel.PersonalInformationViewModel.ProfilePicture.InputStream.CopyTo(ms);
+                                using (var ms = new MemoryStream())
+                                {
+                                    profileViewModel.PersonalInformationViewModel.ProfilePicture.InputStream.CopyTo(ms);
 
-                                userProfile.PictureContent = Convert.ToBase64String(ms.ToArray());
-                                userProfile.PictureType = profileViewModel.PersonalInformationViewModel.ProfilePicture.ContentType;
+                                    userProfile.PictureContent = Convert.ToBase64String(ms.ToArray());
+                                    userProfile.PictureType = profileViewModel.PersonalInformationViewModel.ProfilePicture.ContentType;
+                                }
                             }
 
                             if (userProfile.Educations != null)
@@ -305,6 +307,7 @@ namespace CV.Management.Web.Controllers
                                     userProfile.Languages.Add(new Language
                                     {
                                         LanguageName = item.LanguageName,
+                                        OtherLanguage = item.OtherLanguage,
                                         SpokenLevel = item.SpokenLevel,
                                         WrittenLevel = item.WrittenLevel
                                     });
@@ -492,6 +495,7 @@ namespace CV.Management.Web.Controllers
                                 userProfile.Languages.Add(new Language
                                 {
                                     LanguageName = item.LanguageName,
+                                    OtherLanguage = item.OtherLanguage,
                                     SpokenLevel = item.SpokenLevel,
                                     WrittenLevel = item.WrittenLevel
                                 });
@@ -876,6 +880,7 @@ namespace CV.Management.Web.Controllers
                     {
                         new LanguageItem
                         {
+                            OtherLanguage = null,
                             LanguageName = null,
                             SpokenLevel = null,
                             WrittenLevel = null
@@ -895,6 +900,7 @@ namespace CV.Management.Web.Controllers
                     languageViewModel.Languages.Add(new LanguageItem
                     {
                         LanguageName = null,
+                        OtherLanguage = null,
                         SpokenLevel = null,
                         WrittenLevel = null
                     });
@@ -906,6 +912,7 @@ namespace CV.Management.Web.Controllers
                         languageViewModel.Languages.Add(new LanguageItem
                         {
                             LanguageName = languageItem.LanguageName,
+                            OtherLanguage = languageItem.OtherLanguage,
                             SpokenLevel = languageItem.SpokenLevel,
                             WrittenLevel = languageItem.WrittenLevel
                         });
@@ -1158,11 +1165,12 @@ namespace CV.Management.Web.Controllers
                 },
                 LanguageViewModel = new LanguageViewModel
                 {
-                    Languages = new System.Collections.Generic.List<LanguageItem>
+                    Languages = new List<LanguageItem>
                     {
                         new LanguageItem
                         {
                             LanguageName = null,
+                            OtherLanguage = null,
                             SpokenLevel = null,
                             WrittenLevel = null
                         }
@@ -1170,7 +1178,7 @@ namespace CV.Management.Web.Controllers
                 },
                 CareerSummaryViewModel = new CareerSummaryViewModel
                 {
-                    Companies = new System.Collections.Generic.List<CompanyItem>
+                    Companies = new List<CompanyItem>
                     {
                         new CompanyItem
                         {
@@ -1182,7 +1190,7 @@ namespace CV.Management.Web.Controllers
                             OtherIndustry = string.Empty,
                             ParentCompanyName = string.Empty,
                             Turnover = null,
-                            Positions = new System.Collections.Generic.List<PositionItem>
+                            Positions = new List<PositionItem>
                             {
                                 new PositionItem
                                 {
@@ -1201,7 +1209,7 @@ namespace CV.Management.Web.Controllers
                 },
                 MembershipViewModel = new MembershipViewModel
                 {
-                    Memberships = new System.Collections.Generic.List<MembershipItem>
+                    Memberships = new List<MembershipItem>
                     {
                         new MembershipItem
                         {

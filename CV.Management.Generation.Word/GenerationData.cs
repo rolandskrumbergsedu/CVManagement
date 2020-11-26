@@ -85,6 +85,7 @@ namespace CV.Management.Generation.Word
     public class LanguageItem
     {
         public string LanguageName { get; set; }
+        public string OtherLanguageName { get; set; }
         public int SpokenLevel { get; set; }
         public int WrittenLevel { get; set; }
     }
