@@ -619,6 +619,15 @@ namespace CV.Management.Web {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Other language.
+        /// </summary>
+        public static string OtherLanguageName {
+            get {
+                return ResourceManager.GetString("OtherLanguageName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Parent company name.
         /// </summary>
         public static string ParentCompanyName {

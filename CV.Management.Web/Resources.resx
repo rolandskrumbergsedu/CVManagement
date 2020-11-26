@@ -396,4 +396,7 @@
   <data name="AcceptPrivacyPolicyError" xml:space="preserve">
     <value>You must accept our privacy policy to register</value>
   </data>
+  <data name="OtherLanguageName" xml:space="preserve">
+    <value>Other language</value>
+  </data>
 </root>

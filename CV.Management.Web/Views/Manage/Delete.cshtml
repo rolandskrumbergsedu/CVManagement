@@ -1,0 +1,42 @@
+﻿@model CV.Management.Web.Models.AddPhoneNumberViewModel
+@{
+    Layout = "~/Views/Account/_AccountLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+
+        @using (Html.BeginForm("DeleteConfirmed", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <img src="~/Content/Images/logo.png" alt="Amrop" class="login-image">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4 text-center">
+                    <h3>Are you sure you want to delete your account?</h3>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-danger" value="Yes, delete" />
+                    </div>
+                    <div class="form-group">
+                        @Html.ActionLink("No, cancel", "Index", "Manage", null, new { @class = "btn btn-secondary" })
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

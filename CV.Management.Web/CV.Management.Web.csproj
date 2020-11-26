@@ -577,6 +577,7 @@
     <Content Include="Views\Cv\AccessDenied.cshtml" />
     <Content Include="Views\Cv\Create.cshtml" />
     <Content Include="Views\Cv\UserAlreadyExists.cshtml" />
+    <Content Include="Views\Manage\Delete.cshtml" />
     <None Include="Web.Production.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

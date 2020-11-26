@@ -113,6 +113,18 @@ h5 {
         color: #1a76bc;
     }
 
+.btn-secondary {
+    background-color: grey;
+    border-color: grey;
+    color: white;
+}
+
+    .btn-secondary:hover {
+        background-color: dimgray;
+        border-color: dimgray;
+        color: white;
+    }
+
 .form-control {
     border-radius: 0px;
 }

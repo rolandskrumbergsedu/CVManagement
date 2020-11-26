@@ -393,4 +393,7 @@
   <data name="AcceptPrivacyPolicyError" xml:space="preserve">
     <value>Lai reģistrētos, tev ir jāpiekrīt mūsu privātuma politikai</value>
   </data>
+  <data name="OtherLanguageName" xml:space="preserve">
+    <value>Cita valoda</value>
+  </data>
 </root>

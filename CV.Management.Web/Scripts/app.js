@@ -112,8 +112,29 @@
 
     };
 
+    var addOtherLanguageTrigger = function () {
+
+        $(this).change(function () {
+
+            var row = $(this).closest('div[class^="row"]');
+
+            var columns = row.children();
+            var otherLanguageBlock = $(columns[3]);
+            
+
+            if (this.value === "8") {
+
+                otherLanguageBlock.css('display', 'block');
+            }
+            else {
+                otherLanguageBlock.css('display', 'none');
+            }
+        });
+    };
+
     $('.language-spoken-select').each(addNativeTrigger);
     $('.language-written-select').each(addNativeTrigger);
+    $('.language-name-select').each(addOtherLanguageTrigger);
 
     $(".download_word_empty").click(function (e) {
         e.preventDefault();
@@ -659,6 +680,7 @@
             "id": formName + "_" + index + "__" + languageNameFieldName,
             "name": formNameForName + "[" + index + "]." + languageNameFieldName
         });
+        newRow.find(".language-name-select").each(addOtherLanguageTrigger);
         newRow.find(".language-name-select option[selected='selected']").removeAttr("selected");
         newRow.find(".language-name-validation").attr("data-valmsg-for", formNameForName + "[" + index + "]." + languageNameFieldName);
 
@@ -681,6 +703,11 @@
         newRow.find(".language-written-validation").attr("data-valmsg-for", formNameForName + "[" + index + "]." + writtenLevelFieldName);
 
         newRow.find(".language-remove").click(removeLanguage);
+
+        var columns = newRow.find(".col-md-4");
+        var otherLanguageBlock = $(columns[3]);
+        otherLanguageBlock.css('display', 'none');
+
 
         $("#language_container").append(newRow);
     });

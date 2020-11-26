@@ -12,6 +12,8 @@ namespace CV.Management.Web.Models
     {
         [Display(Name = "LanguageName", ResourceType = typeof(Resources))]
         public LanguageEnum? LanguageName { get; set; }
+        [Display(Name = "OtherLanguageName", ResourceType = typeof(Resources))]
+        public string OtherLanguage { get; set; }
         [Display(Name = "SpokenLevel", ResourceType = typeof(Resources))]
         public LevelEnum? SpokenLevel { get; set; }
         [Display(Name = "WrittenLevel", ResourceType = typeof(Resources))]

@@ -332,7 +332,13 @@ namespace CV.Management.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed()
         {
-            return View();
+            var currentUser = User.Identity.Name;
+
+            var appUser = UserManager.FindByEmail(currentUser);
+
+            UserManager.Delete(appUser);
+
+            return RedirectToAction("Login", "Account");
         }
 
         protected override void Dispose(bool disposing)

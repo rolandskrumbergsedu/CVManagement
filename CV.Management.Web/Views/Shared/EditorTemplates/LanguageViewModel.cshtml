@@ -37,6 +37,13 @@
                             @Html.ValidationMessageFor(model => model.Languages[i].WrittenLevel, "", new { @class = "language-written-validation" })
                         </div>
                     </div>
+                    <div class="col-md-4" style="display: none;">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Languages[i].OtherLanguage, new { @class = "language-other-label control-label" })
+                            @Html.TextBoxFor(model => model.Languages[i].OtherLanguage, new { @class = "language-other-input form-control", @placeholder = @Resources.OtherLanguageName })
+                            @Html.ValidationMessageFor(model => model.Languages[i].OtherLanguage, "", new { @class = "language-other-validation" })
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-xs-1">
