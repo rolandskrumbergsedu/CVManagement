@@ -15,6 +15,8 @@ namespace CV.Management.Web.Controllers
         [HttpGet]
         public ViewResult Index()
         {
+            _telemetry.TrackPageView("ErrorPage");
+
             var traceId = Guid.NewGuid().ToString();
 
             _telemetry.TrackEvent("ErrorPage", new Dictionary<string, string> { { "TraceId", traceId } });
@@ -30,6 +32,8 @@ namespace CV.Management.Web.Controllers
         [HttpGet]
         public ViewResult NotFound()
         {
+            _telemetry.TrackPageView("NotFound");
+
             return View("NotFound");
         }
     }

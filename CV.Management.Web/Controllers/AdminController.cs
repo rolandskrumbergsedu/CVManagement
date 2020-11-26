@@ -90,6 +90,7 @@ namespace CV.Management.Web.Controllers
         {
             try
             {
+                telemetry.TrackPageView("ConfirmUserDelete");
 
                 using (var db = new ProfileInformationDbContext())
                 {
@@ -115,7 +116,7 @@ namespace CV.Management.Web.Controllers
                     {
                         AuditEvent = AuditEvent.ViewConfirmDeleteUserPage.ToString(),
                         EventTime = DateTime.Now,
-                        UserAffected = profile.FullName,
+                        UserAffected = profile.Username,
                         UserAffectedId = id,
                         Username = currentUsername
                     });
@@ -140,7 +141,6 @@ namespace CV.Management.Web.Controllers
             {
                 var currentUsername = User.Identity.Name;
 
-                telemetry.TrackPageView("DeleteUser");
                 telemetry.TrackEvent("DeleteUser", new Dictionary<string, string> { { "User", currentUsername } });
 
                 using (var db = new ProfileInformationDbContext())
@@ -162,7 +162,7 @@ namespace CV.Management.Web.Controllers
                         {
                             AuditEvent = AuditEvent.DeleteUser.ToString(),
                             EventTime = DateTime.Now,
-                            UserAffected = profile.FullName,
+                            UserAffected = profile.Username,
                             UserAffectedId = viewModel.Id,
                             Username = currentUsername
                         });
@@ -184,6 +184,8 @@ namespace CV.Management.Web.Controllers
         [HttpGet]
         public async Task<ActionResult> UserMissing(UserMissingViewModel viewModel)
         {
+            telemetry.TrackPageView("UserMissing");
+
             using (var db = new ProfileInformationDbContext())
             {
                 var currentUsername = User.Identity.Name;
@@ -198,13 +200,13 @@ namespace CV.Management.Web.Controllers
                     Name = profile.FullName
                 });
             }
-
-                
         }
 
         [HttpGet]
         public async Task<ActionResult> EditUser(string id)
         {
+            telemetry.TrackPageView("EditUser");
+
             using (var db = new ProfileInformationDbContext())
             {
                 var currentUsername = User.Identity.Name;
@@ -222,6 +224,15 @@ namespace CV.Management.Web.Controllers
                 }
 
                 var isAdmin = (await UserManager.GetRolesAsync(user.Id)).Contains("Administrator");
+
+                db.AuditLogs.Add(new AuditLog
+                {
+                    AuditEvent = AuditEvent.OpenEditUser.ToString(),
+                    EventTime = DateTime.Now,
+                    UserAffected = profile.Username,
+                    UserAffectedId = id,
+                    Username = currentUsername
+                });
 
                 return View(new EditUserViewModel()
                 {
@@ -245,17 +256,35 @@ namespace CV.Management.Web.Controllers
             {
                 var currentUsername = User.Identity.Name;
 
-                telemetry.TrackPageView("EditUserSaved");
                 telemetry.TrackEvent("EditUserSaved", new Dictionary<string, string> { { "User", currentUsername } });
 
                 if (user.SelectedAdminResponse == "Yes")
                 {
                     UserManager.AddToRole(user.UserId, "Administrator");
+
+                    db.AuditLogs.Add(new AuditLog
+                    {
+                        AuditEvent = AuditEvent.UserAddedAsAdministrator.ToString(),
+                        EventTime = DateTime.Now,
+                        UserAffected = user.Email,
+                        UserAffectedId = user.UserId,
+                        Username = currentUsername
+                    });
                 }
                 else
                 {
                     UserManager.RemoveFromRole(user.UserId, "Administrator");
+                    db.AuditLogs.Add(new AuditLog
+                    {
+                        AuditEvent = AuditEvent.UserRemovedFromAdministrators.ToString(),
+                        EventTime = DateTime.Now,
+                        UserAffected = user.Email,
+                        UserAffectedId = user.UserId,
+                        Username = currentUsername
+                    });
                 }
+
+                db.SaveChanges();
 
                 return RedirectToAction("Overview");
             }
@@ -266,6 +295,7 @@ namespace CV.Management.Web.Controllers
         {
             var currentUsername = User.Identity.Name;
             telemetry.TrackPageView("AdminAccessDenied");
+
             telemetry.TrackEvent("OpenAdminAccessDenied", new Dictionary<string, string> { { "User", currentUsername } });
 
             return View(new AdminAccessDeniedViewModel

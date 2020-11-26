@@ -157,7 +157,7 @@ namespace CV.Management.Web.Controllers
                     result.Add(new Generation.Ppt.LanguageItem
                     {
                         LanguageLevel = language.SpokenLevel.ToString(),
-                        LanguageName = language.LanguageName.ToString()
+                        LanguageName = string.IsNullOrEmpty(language.OtherLanguage) ? language.LanguageName.ToString() : language.OtherLanguage,
                     });
                 }
                 else
@@ -165,7 +165,7 @@ namespace CV.Management.Web.Controllers
                     result.Add(new Generation.Ppt.LanguageItem
                     {
                         LanguageLevel = language.WrittenLevel.ToString(),
-                        LanguageName = language.LanguageName.ToString()
+                        LanguageName = string.IsNullOrEmpty(language.OtherLanguage) ? language.LanguageName.ToString() : language.OtherLanguage,
                     });
                 }
             }

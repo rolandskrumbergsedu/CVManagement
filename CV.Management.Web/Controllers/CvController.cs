@@ -51,6 +51,8 @@ namespace CV.Management.Web.Controllers
         [HttpGet]
         public ActionResult Create()
         {
+            telemetry.TrackPageView("Create");
+
             if (!IsAdmin())
             {
                 return RedirectToAction("AccessDenied");
@@ -80,10 +82,20 @@ namespace CV.Management.Web.Controllers
                     profile.FullName = model.FullName;
                     profile.Username = model.Email;
 
-                    var profileId = db.Profiles.Add(profile);
+                    var profileEntity = db.Profiles.Add(profile);
+
+                    db.AuditLogs.Add(new AuditLog
+                    {
+                        AuditEvent = AuditEvent.UserProfileCreated.ToString(),
+                        EventTime = DateTime.Now,
+                        UserAffected = profileEntity.Username,
+                        UserAffectedId = profileEntity.ProfileId.ToString(),
+                        Username = model.Email
+                    });
+
                     db.SaveChanges();
 
-                    return RedirectToAction("Profile", new { profileId = profileId.ProfileId });
+                    return RedirectToAction("Profile", new { profileId = profileEntity.ProfileId });
                 }
             }
             catch (Exception ex)
@@ -96,6 +108,8 @@ namespace CV.Management.Web.Controllers
         [HttpGet]
         public ActionResult AccessDenied()
         {
+            telemetry.TrackPageView("AccessDenied");
+
             return View();
         }
 
@@ -105,8 +119,6 @@ namespace CV.Management.Web.Controllers
         {
             try
             {
-                telemetry.TrackPageView("Delete");
-
                 var username = GetCurrentUsername();
 
                 telemetry.TrackEvent("DeletePicture", new Dictionary<string, string> { { "User", username } });
@@ -142,9 +154,7 @@ namespace CV.Management.Web.Controllers
         {
             try
             {
-
-
-                telemetry.TrackPageView("AdditionalFiles");
+                telemetry.TrackEvent("AdditionalFiles");
 
                 if (files != null && files.Any())
                 {
@@ -227,15 +237,19 @@ namespace CV.Management.Web.Controllers
                     {
                         var username = GetCurrentUsername();
 
-                        // TO DO check rights
-
                         if (profileViewModel.Username != username)
                         {
+                            if (!IsAdmin())
+                            {
+                                telemetry.TrackEvent("AccessDeniedWhenOpeningOtherProfile", new Dictionary<string, string> { { "CurrentUser", username }, { "AffectedUser", profileViewModel.Username } });
+                                return RedirectToAction("AccessDenied");
+                            }
+
                             username = profileViewModel.Username;
                         }
 
                         var userProfile = db.Profiles.FirstOrDefault(x => x.Username == username);
-
+                        Profile newlyCreatedProfile = new Models.Database.Profile();
                         if (userProfile != null)
                         {
                             userProfile.Address = profileViewModel.PersonalInformationViewModel.Address;
@@ -492,7 +506,7 @@ namespace CV.Management.Web.Controllers
 
                             foreach (var item in profileViewModel.LanguageViewModel.Languages)
                             {
-                                userProfile.Languages.Add(new Language
+                                profile.Languages.Add(new Language
                                 {
                                     LanguageName = item.LanguageName,
                                     OtherLanguage = item.OtherLanguage,
@@ -534,12 +548,12 @@ namespace CV.Management.Web.Controllers
                                     });
                                 }
 
-                                userProfile.Companies.Add(company);
+                                profile.Companies.Add(company);
                             }
 
                             foreach (var item in profileViewModel.MembershipViewModel.Memberships)
                             {
-                                userProfile.Memberships.Add(new Membership
+                                profile.Memberships.Add(new Membership
                                 {
                                     Description = item.Description,
                                     FromTime = item.FromTime,
@@ -548,10 +562,25 @@ namespace CV.Management.Web.Controllers
                                 });
                             }
 
-
-
-                            db.Profiles.Add(profile);
+                            newlyCreatedProfile = db.Profiles.Add(profile);
                         }
+
+                        var auditEvent = AuditEvent.SavedOwnProfile;
+
+                        if(GetCurrentUsername() != profileViewModel.Username)
+                        {
+                            auditEvent = AuditEvent.SavedOtherUsersProfile;
+                        }
+
+                        db.AuditLogs.Add(new AuditLog
+                        {
+                            AuditEvent = auditEvent.ToString(),
+                            EventTime = DateTime.Now,
+                            UserAffected = profileViewModel.Username,
+                            UserAffectedId = userProfile != null ? userProfile.ProfileId.ToString() : newlyCreatedProfile.ProfileId.ToString(),
+                            Username = GetCurrentUsername()
+                        });
+
 
                         db.SaveChanges();
                     }
@@ -659,7 +688,7 @@ namespace CV.Management.Web.Controllers
                     {
                         AuditEvent = AuditEvent.ViewUser.ToString(),
                         EventTime = DateTime.Now,
-                        UserAffected = string.IsNullOrEmpty(profile.FullName) ? profileId.ToString() : profile.FullName,
+                        UserAffected = profile.Username,
                         Username = currentUsername
                     });
 

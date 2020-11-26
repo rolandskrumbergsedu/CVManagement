@@ -12,6 +12,12 @@ namespace CV.Management.Web.Models
         DeleteUser,
         DownloadPpt,
         DownloadDoc,
-        ViewUser
+        ViewUser,
+        OpenEditUser,
+        UserAddedAsAdministrator,
+        UserRemovedFromAdministrators,
+        UserProfileCreated,
+        SavedOwnProfile,
+        SavedOtherUsersProfile
     }
 }

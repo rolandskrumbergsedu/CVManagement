@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using CV.Management.Web.Models;
+using Microsoft.ApplicationInsights;
 
 namespace CV.Management.Web.Controllers
 {
@@ -15,6 +16,8 @@ namespace CV.Management.Web.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+
+        private readonly TelemetryClient _telemetry = new TelemetryClient();
 
         public ManageController()
         {
@@ -54,6 +57,8 @@ namespace CV.Management.Web.Controllers
         // GET: /Manage/Index
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
+            _telemetry.TrackPageView("Manage");
+
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
                 : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
@@ -103,6 +108,8 @@ namespace CV.Management.Web.Controllers
         // GET: /Manage/AddPhoneNumber
         public ActionResult AddPhoneNumber()
         {
+            _telemetry.TrackPageView("AddPhoneNumber");
+
             return View();
         }
 
@@ -164,6 +171,8 @@ namespace CV.Management.Web.Controllers
         // GET: /Manage/VerifyPhoneNumber
         public async Task<ActionResult> VerifyPhoneNumber(string phoneNumber)
         {
+            _telemetry.TrackPageView("VerifyPhoneNumber");
+
             var code = await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), phoneNumber);
             // Send an SMS through the SMS provider to verify the phone number
             return phoneNumber == null ? View("Error") : View(new VerifyPhoneNumberViewModel { PhoneNumber = phoneNumber });
@@ -217,6 +226,7 @@ namespace CV.Management.Web.Controllers
         // GET: /Manage/ChangePassword
         public ActionResult ChangePassword()
         {
+            _telemetry.TrackPageView("ChangePassword");
             return View();
         }
 
@@ -248,6 +258,7 @@ namespace CV.Management.Web.Controllers
         // GET: /Manage/SetPassword
         public ActionResult SetPassword()
         {
+            _telemetry.TrackPageView("SetPassword");
             return View();
         }
 
@@ -280,6 +291,8 @@ namespace CV.Management.Web.Controllers
         // GET: /Manage/ManageLogins
         public async Task<ActionResult> ManageLogins(ManageMessageId? message)
         {
+            _telemetry.TrackPageView("ManageLogins");
+
             ViewBag.StatusMessage =
                 message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
                 : message == ManageMessageId.Error ? "An error has occurred."
@@ -313,6 +326,8 @@ namespace CV.Management.Web.Controllers
         // GET: /Manage/LinkLoginCallback
         public async Task<ActionResult> LinkLoginCallback()
         {
+            _telemetry.TrackPageView("LinkLoginCallback");
+
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync(XsrfKey, User.Identity.GetUserId());
             if (loginInfo == null)
             {
@@ -325,6 +340,8 @@ namespace CV.Management.Web.Controllers
         [HttpGet]
         public ActionResult Delete()
         {
+            _telemetry.TrackPageView("DeleteUser");
+
             return View();
         }
 
@@ -332,6 +349,7 @@ namespace CV.Management.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed()
         {
+
             var currentUser = User.Identity.Name;
 
             var appUser = UserManager.FindByEmail(currentUser);

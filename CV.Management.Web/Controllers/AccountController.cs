@@ -80,6 +80,8 @@ namespace CV.Management.Web.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            _telemetry.TrackPageView("Login");
+
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -119,6 +121,8 @@ namespace CV.Management.Web.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> VerifyCode(string provider, string returnUrl, bool rememberMe)
         {
+            _telemetry.TrackPageView("VerifyCode");
+
             // Require that the user has already logged in via username/password or external login
             if (!await SignInManager.HasBeenVerifiedAsync())
             {
@@ -162,6 +166,7 @@ namespace CV.Management.Web.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            _telemetry.TrackPageView("Register");
             return View();
         }
 
@@ -211,6 +216,8 @@ namespace CV.Management.Web.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
+            _telemetry.TrackPageView("ConfirmEmail");
+
             if (userId == null || code == null)
             {
                 return View("Error");
@@ -224,6 +231,8 @@ namespace CV.Management.Web.Controllers
         [AllowAnonymous]
         public ActionResult ForgotPassword()
         {
+            _telemetry.TrackPageView("ForgotPassword");
+
             return View();
         }
 
@@ -271,6 +280,8 @@ namespace CV.Management.Web.Controllers
         [AllowAnonymous]
         public ActionResult ResetPassword(string code)
         {
+            _telemetry.TrackPageView("ResetPassword");
+
             return code == null ? View("Error") : View();
         }
 
@@ -310,6 +321,8 @@ namespace CV.Management.Web.Controllers
         [AllowAnonymous]
         public ActionResult ResetPasswordConfirmation()
         {
+            _telemetry.TrackPageView("ResetPasswordConfirmation");
+
             return View();
         }
 
@@ -329,6 +342,8 @@ namespace CV.Management.Web.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> SendCode(string returnUrl, bool rememberMe)
         {
+            _telemetry.TrackPageView("SendCode");
+
             var userId = await SignInManager.GetVerifiedUserIdAsync();
             if (userId == null)
             {
@@ -364,6 +379,8 @@ namespace CV.Management.Web.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
+            _telemetry.TrackPageView("ExternalLoginCallback");
+
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
 
             if (loginInfo == null)
@@ -458,6 +475,8 @@ namespace CV.Management.Web.Controllers
         [AllowAnonymous]
         public ActionResult ExternalLoginFailure()
         {
+            _telemetry.TrackPageView("ExternalLoginFailure");
+
             return View();
         }
 
