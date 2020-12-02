@@ -25,11 +25,19 @@ namespace CV.Management.Web.Controllers
             {
                 telemetry.TrackPageView("Profile");
 
-                SetLanguage(language);
+                language = SetLanguage(language);
 
                 if (string.IsNullOrEmpty(profileId))
                 {
-                    return View(GetCurrentUserProfileViewModel());
+                    var userProfile = GetCurrentUserProfileViewModel(language);
+                    if (userProfile != null)
+                    {
+                        return View(userProfile);
+                    }
+                    else
+                    {
+                        RedirectToAction("AskToCreateProfile", new { language = language});
+                    }
                 }
 
                 if (!IsAdmin())
@@ -49,9 +57,25 @@ namespace CV.Management.Web.Controllers
         }
 
         [HttpGet]
+        public ActionResult AskToCreateProfile(string language)
+        {
+            // Asks to create profile
+
+            // You do not have a profile in language X. Do you want to create it? 
+
+            return View();
+        }
+
+
+
+        [HttpGet]
         public ActionResult Create()
         {
+
+
             telemetry.TrackPageView("Create");
+
+            // TO DO: Check language and create profile for language
 
             if (!IsAdmin())
             {
@@ -67,6 +91,11 @@ namespace CV.Management.Web.Controllers
         {
             try
             {
+                // If is admin, then allow any user
+                // Is is not admin, then allow only own email
+                // Pass language
+
+
                 var profile = new Profile();
 
                 using (var db = new ProfileInformationDbContext())
@@ -626,7 +655,7 @@ namespace CV.Management.Web.Controllers
 
         }
 
-        private void SetLanguage(string language)
+        private string SetLanguage(string language)
         {
             if (!string.IsNullOrEmpty(language))
             {
@@ -642,6 +671,8 @@ namespace CV.Management.Web.Controllers
                     Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
                     telemetry.TrackEvent("OpenProfile", new Dictionary<string, string> { { "Language", "en" } });
                 }
+
+                return language;
             }
             else
             {
@@ -662,6 +693,8 @@ namespace CV.Management.Web.Controllers
                         telemetry.TrackEvent("OpenProfile", new Dictionary<string, string> { { "Language", "en" } });
                     };
                 }
+
+                return "en";
             }
         }
 
@@ -715,7 +748,7 @@ namespace CV.Management.Web.Controllers
             }
         }
 
-        private ProfileViewModel GetCurrentUserProfileViewModel()
+        private ProfileViewModel GetCurrentUserProfileViewModel(string language)
         {
             using (var db = new ProfileInformationDbContext())
             {
@@ -723,11 +756,11 @@ namespace CV.Management.Web.Controllers
 
                 telemetry.TrackEvent("ViewOwnProfile", new Dictionary<string, string> { { "User", currentUsername } });
 
-                var profile = db.Profiles.FirstOrDefault(x => x.Username == currentUsername);
+                var profile = db.Profiles.FirstOrDefault(x => x.Username == currentUsername && x.Language == language);
 
                 if (profile == null)
                 {
-                    return CreateEmptyProfileViewModel();
+                    return null;
                 }
 
                 return new ProfileViewModel
