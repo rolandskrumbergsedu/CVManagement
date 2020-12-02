@@ -3,6 +3,7 @@ using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Presentation;
 using A = DocumentFormat.OpenXml.Drawing;
 using P14 = DocumentFormat.OpenXml.Office2010.PowerPoint;
+using System;
 
 namespace CV.Management.Generation.Ppt.Helpers
 {
@@ -194,7 +195,7 @@ namespace CV.Management.Generation.Ppt.Helpers
             A.RunProperties runProperties1 = new A.RunProperties() { Language = "en-GB" };
             runProperties1.SetAttribute(new OpenXmlAttribute("", "smtClean", "", "0"));
             A.Text text1 = new A.Text();
-            text1.Text = "07/12/2018";
+            text1.Text = $"{DateTime.Now.Day}.{DateTime.Now.Month}.{DateTime.Now.Year}";
 
             field1.Append(runProperties1);
             field1.Append(text1);

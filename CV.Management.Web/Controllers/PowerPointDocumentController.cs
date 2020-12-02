@@ -152,22 +152,27 @@ namespace CV.Management.Web.Controllers
 
             foreach (var language in languages)
             {
-                if ((int)language.SpokenLevel < (int)language.WrittenLevel)
+                if(language.LanguageName.HasValue && language.SpokenLevel.HasValue && language.WrittenLevel.HasValue)
                 {
-                    result.Add(new Generation.Ppt.LanguageItem
+                    if ((int)language.SpokenLevel < (int)language.WrittenLevel)
                     {
-                        LanguageLevel = language.SpokenLevel.ToString(),
-                        LanguageName = string.IsNullOrEmpty(language.OtherLanguage) ? language.LanguageName.ToString() : language.OtherLanguage,
-                    });
-                }
-                else
-                {
-                    result.Add(new Generation.Ppt.LanguageItem
+                        result.Add(new Generation.Ppt.LanguageItem
+                        {
+                            LanguageLevel = language.SpokenLevel.ToString(),
+                            LanguageName = string.IsNullOrEmpty(language.OtherLanguage) ? language.LanguageName.ToString() : language.OtherLanguage,
+                        });
+                    }
+                    else
                     {
-                        LanguageLevel = language.WrittenLevel.ToString(),
-                        LanguageName = string.IsNullOrEmpty(language.OtherLanguage) ? language.LanguageName.ToString() : language.OtherLanguage,
-                    });
+                        result.Add(new Generation.Ppt.LanguageItem
+                        {
+                            LanguageLevel = language.WrittenLevel.ToString(),
+                            LanguageName = string.IsNullOrEmpty(language.OtherLanguage) ? language.LanguageName.ToString() : language.OtherLanguage,
+                        });
+                    }
                 }
+
+                
             }
 
             return result;

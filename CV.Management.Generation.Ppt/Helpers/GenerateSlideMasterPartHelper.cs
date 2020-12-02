@@ -3,6 +3,7 @@ using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Presentation;
 using A = DocumentFormat.OpenXml.Drawing;
 using A14 = DocumentFormat.OpenXml.Office2010.Drawing;
+using System;
 
 namespace CV.Management.Generation.Ppt.Helpers
 {
@@ -1021,7 +1022,7 @@ namespace CV.Management.Generation.Ppt.Helpers
             runProperties50.Append(eastAsianFont102);
             runProperties50.Append(complexScriptFont63);
             A.Text text50 = new A.Text();
-            text50.Text = "October";
+            text50.Text = ""; // "October"; // TO DO: Date needed?
 
             run45.Append(runProperties50);
             run45.Append(text50);
@@ -1043,7 +1044,7 @@ namespace CV.Management.Generation.Ppt.Helpers
             runProperties51.Append(eastAsianFont103);
             runProperties51.Append(complexScriptFont64);
             A.Text text51 = new A.Text();
-            text51.Text = " 2018";
+            text51.Text = $"{DateTime.Now.Year}";
 
             run46.Append(runProperties51);
             run46.Append(text51);
