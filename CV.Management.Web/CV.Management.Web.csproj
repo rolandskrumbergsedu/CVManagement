@@ -293,6 +293,11 @@
     <Compile Include="MigrationsApp\202011261017566_OtherLanguage.designer.cs">
       <DependentUpon>202011261017566_OtherLanguage.cs</DependentUpon>
     </Compile>
+    <Compile Include="MigrationsApp\202012030554511_ProfileLanguage.cs" />
+    <Compile Include="MigrationsApp\202012030554511_ProfileLanguage.designer.cs">
+      <DependentUpon>202012030554511_ProfileLanguage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AskToCreateCreateViewModel.cs" />
     <Compile Include="Models\CreateProfileViewModel.cs" />
     <Compile Include="Controllers\CvController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
@@ -582,6 +587,7 @@
     <Content Include="Views\Cv\Create.cshtml" />
     <Content Include="Views\Cv\UserAlreadyExists.cshtml" />
     <Content Include="Views\Manage\Delete.cshtml" />
+    <Content Include="Views\Cv\AskToCreateProfile.cshtml" />
     <None Include="Web.Production.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -626,6 +632,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MigrationsApp\202011261017566_OtherLanguage.resx">
       <DependentUpon>202011261017566_OtherLanguage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MigrationsApp\202012030554511_ProfileLanguage.resx">
+      <DependentUpon>202012030554511_ProfileLanguage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011240820479_TermsAndConditions.resx">
       <DependentUpon>202011240820479_TermsAndConditions.cs</DependentUpon>

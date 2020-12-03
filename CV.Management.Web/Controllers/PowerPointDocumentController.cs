@@ -71,7 +71,7 @@ namespace CV.Management.Web.Controllers
 
                 if (!string.IsNullOrEmpty(id))
                 {
-                    profile = db.Profiles.FirstOrDefault(x => x.ProfileId.ToString() == id);
+                    profile = db.Profiles.FirstOrDefault(x => x.ProfileId.ToString() == id && x.Language == language);
                 }
                 else
                 {

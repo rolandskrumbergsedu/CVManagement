@@ -1,0 +1,43 @@
+﻿@model CV.Management.Web.Models.AskToCreateCreateViewModel
+@{
+    ViewBag.Title = "Create new user";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<div class="container edit-user-container">
+
+    @if (!Model.LatvianExists && !Model.EnglishExists)
+    {
+        <div class="row text-center">
+            <p>You do not have a profile. Lets create one. Which language do you want to use?</p>
+        </div>
+
+        <div class="row text-center">
+            @Html.ActionLink("English", "Create", "Cv", new { language = "en" }, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Latvian", "Create", "Cv", new { language = "lv" }, new { @class = "btn btn-primary" })
+        </div>
+    }
+    else if (!Model.EnglishExists)
+    {
+        <div class="row text-center">
+            <p>You do not have a profile in English. Lets create one?</p>
+        </div>
+        <div class="row text-center">
+            @Html.ActionLink("English", "Create", "Cv", new { language = "en" }, new { @class = "btn btn-primary" })
+        </div>
+    }
+    else if (!Model.LatvianExists)
+    {
+        <div class="row text-center">
+            <p>You do not have a profile in Latvian. Lets create one?</p>
+        </div>
+        <div class="row text-center">
+            @Html.ActionLink("Latvian", "Create", "Cv", new { language = "lv" }, new { @class = "btn btn-primary" })
+        </div>
+    }
+
+
+
+
+</div>
+

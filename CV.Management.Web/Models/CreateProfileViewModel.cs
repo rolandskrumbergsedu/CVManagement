@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace CV.Management.Web.Models
 {
@@ -9,5 +11,8 @@ namespace CV.Management.Web.Models
         [Display(Name = "Email", ResourceType = typeof(Resources))]
         public string Email { get; set; }
         public string Name { get; set; }
+        [Display(Name = "Language", ResourceType = typeof(Resources))]
+        public string SelectedLanguage { get; set; }
+        public IEnumerable<SelectListItem> Languages { get; set; }
     }
 }

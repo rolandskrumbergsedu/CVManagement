@@ -119,7 +119,7 @@ namespace CV.Management.Web.Controllers
                 if (!string.IsNullOrEmpty(id))
                 {
                     profile = db.Profiles
-                        .Where(x => x.ProfileId.ToString() == id)
+                        .Where(x => x.ProfileId.ToString() == id && x.Language == language)
                         .Include(_ => _.Educations)
                         .Include(_ => _.AdditionalCourses)
                         .Include(_ => _.Languages)

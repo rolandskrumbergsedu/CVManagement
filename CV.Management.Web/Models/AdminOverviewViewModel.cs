@@ -15,5 +15,6 @@ namespace CV.Management.Web.Models
         public int ProfileId { get; set; }
         public string Username { get; set; }
         public string FullName { get; set; }
+        public string Language { get; set; }
     }
 }

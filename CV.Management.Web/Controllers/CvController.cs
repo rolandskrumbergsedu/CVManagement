@@ -36,7 +36,7 @@ namespace CV.Management.Web.Controllers
                     }
                     else
                     {
-                        RedirectToAction("AskToCreateProfile", new { language = language});
+                        return RedirectToAction("AskToCreateProfile");
                     }
                 }
 
@@ -57,32 +57,67 @@ namespace CV.Management.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult AskToCreateProfile(string language)
+        public ActionResult AskToCreateProfile()
         {
-            // Asks to create profile
-
-            // You do not have a profile in language X. Do you want to create it? 
-
-            return View();
-        }
-
-
-
-        [HttpGet]
-        public ActionResult Create()
-        {
-
-
-            telemetry.TrackPageView("Create");
-
-            // TO DO: Check language and create profile for language
+            var model = new AskToCreateCreateViewModel()
+            {
+                EnglishExists = false,
+                LatvianExists = false
+            };
 
             if (!IsAdmin())
             {
-                return RedirectToAction("AccessDenied");
+                var currentUsername = GetCurrentUsername();
+
+                using (var db = new ProfileInformationDbContext())
+                {
+                    var existingProfile = db.Profiles.Where(x => x.Username == currentUsername);
+                    if (existingProfile != null)
+                    {
+                        model.EnglishExists = existingProfile.Any(x => x.Language == "en");
+                        model.LatvianExists = existingProfile.Any(x => x.Language == "lv");
+                    }
+                }
             }
 
-            return View(new CreateProfileViewModel());
+            return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult Create(string language)
+        {
+            telemetry.TrackPageView("Create");
+
+            var languageItems = new List<SelectListItem>() {
+                new SelectListItem { Value = "en", Text = "English", Selected = language == "en" },
+                new SelectListItem { Value = "lv", Text = "Latviešu", Selected = language == "lv" },
+            };
+            var languages = new SelectList(languageItems, "Value", "Text");
+
+            var model = new CreateProfileViewModel()
+            {
+                Languages = languages,
+                SelectedLanguage = languageItems.FirstOrDefault(x => x.Selected)?.Value
+            };
+
+            if (!IsAdmin())
+            {
+                var currentUsername = GetCurrentUsername();
+                model.Email = currentUsername;
+
+                var languageToCheck = language == "en" ? "lv" : "en";
+
+                using (var db = new ProfileInformationDbContext())
+                {
+                    var existingProfile = db.Profiles.FirstOrDefault(x => x.Username == currentUsername && x.Language == languageToCheck);
+                    if (existingProfile != null)
+                    {
+                        model.FullName = existingProfile.FullName;
+                    }
+                }
+            }
+
+            return View(model);
         }
 
         [HttpPost]
@@ -91,41 +126,57 @@ namespace CV.Management.Web.Controllers
         {
             try
             {
-                // If is admin, then allow any user
-                // Is is not admin, then allow only own email
-                // Pass language
-
-
-                var profile = new Profile();
-
-                using (var db = new ProfileInformationDbContext())
+                if (ModelState.IsValid)
                 {
-                    var existingProfile = db.Profiles.FirstOrDefault(x => x.Username == model.Email);
-
-                    if (existingProfile != null)
+                    var currentUsername = GetCurrentUsername();
+                    if (currentUsername != model.Email && !IsAdmin())
                     {
-                        return View("UserAlreadyExists");
+                        ModelState.AddModelError("NotAllowed", "You are not allowed create profiles for other people");
+                        return View();
                     }
 
-                    profile.Email = model.Email;
-                    profile.FullName = model.FullName;
-                    profile.Username = model.Email;
+                    var profile = new Profile();
 
-                    var profileEntity = db.Profiles.Add(profile);
-
-                    db.AuditLogs.Add(new AuditLog
+                    using (var db = new ProfileInformationDbContext())
                     {
-                        AuditEvent = AuditEvent.UserProfileCreated.ToString(),
-                        EventTime = DateTime.Now,
-                        UserAffected = profileEntity.Username,
-                        UserAffectedId = profileEntity.ProfileId.ToString(),
-                        Username = model.Email
-                    });
+                        var existingProfile = db.Profiles.FirstOrDefault(x => x.Username == model.Email && x.Language == model.SelectedLanguage);
 
-                    db.SaveChanges();
+                        if (existingProfile != null)
+                        {
+                            return View("UserAlreadyExists");
+                        }
 
-                    return RedirectToAction("Profile", new { profileId = profileEntity.ProfileId });
+                        profile.Email = model.Email;
+                        profile.FullName = model.FullName;
+                        profile.Username = model.Email;
+                        profile.Language = model.SelectedLanguage;
+
+                        var profileEntity = db.Profiles.Add(profile);
+
+                        db.AuditLogs.Add(new AuditLog
+                        {
+                            AuditEvent = $"{AuditEvent.UserProfileCreated}{model.SelectedLanguage}",
+                            EventTime = DateTime.Now,
+                            UserAffected = profileEntity.Username,
+                            UserAffectedId = profileEntity.ProfileId.ToString(),
+                            Username = model.Email
+                        });
+
+                        db.SaveChanges();
+
+                        if (IsAdmin())
+                        {
+                            return RedirectToAction("Profile", new { profileId = profileEntity.ProfileId });
+                        }
+                        else
+                        {
+                            return RedirectToAction("Profile", new { language = model.SelectedLanguage });
+                        }
+                        
+                    }
                 }
+
+                return View();
             }
             catch (Exception ex)
             {

@@ -313,7 +313,8 @@ namespace CV.Management.Web.Controllers
                 {
                     FullName = x.FullName,
                     ProfileId = x.ProfileId,
-                    Username = x.Username
+                    Username = x.Username,
+                    Language = x.Language
                 }).ToList()
             };
         }
