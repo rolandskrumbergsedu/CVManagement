@@ -72,6 +72,7 @@ namespace CV.Management.Generation.Word
         public int? EndingYear { get; set; }
         public string University { get; set; }
         public string Degree { get; set; }
+        public bool? Now { get; set; }
     }
 
     public class AdditionalCoursesItem

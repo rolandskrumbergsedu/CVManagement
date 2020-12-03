@@ -65,7 +65,7 @@ namespace CV.Management.Generation.Word.ContentHelper
 
             foreach (var item in educationItems)
             {
-                table1.Append(GenerateEducationRow(item));
+                table1.Append(GenerateEducationRow(item, data.Language));
             }
 
             return table1;
@@ -139,7 +139,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             return tableRow1;
         }
 
-        private static TableRow GenerateEducationRow(EducationItem education)
+        private static TableRow GenerateEducationRow(EducationItem education, string language)
         {
             TableRow tableRow2 = new TableRow() { RsidTableRowAddition = "009B2C1D", ParagraphId = "1EE453E3", TextId = "77777777" };
 
@@ -180,7 +180,15 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties6.Append(fontSize6);
             runProperties6.Append(fontSizeComplexScript6);
             Text text6 = new Text();
-            text6.Text = education.StartingYear + " - " + education.EndingYear;
+
+            var firstPart = education.StartingYear;
+            var secondPart = (education.Now.HasValue && education.Now.Value) ? 
+                DocumentMetadataTexts.GetText(MetadataTexts.CV_PRESENT, language) : 
+                education.EndingYear.HasValue ? 
+                    education.EndingYear.Value.ToString() : 
+                    string.Empty;
+
+            text6.Text = firstPart + "-" + secondPart;
 
             run6.Append(runProperties6);
             run6.Append(text6);

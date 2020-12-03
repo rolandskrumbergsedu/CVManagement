@@ -260,7 +260,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties4.Append(fontSize4);
             runProperties4.Append(fontSizeComplexScript4);
             Text text4 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text4.Text = data.Company;
+            text4.Text = data.Company.ToUpper();
 
             run4.Append(runProperties4);
             run4.Append(text4);

@@ -306,9 +306,6 @@ namespace CV.Management.Web.Controllers
         {
             try
             {
-
-                // TO DO add audit log for saving
-
                 telemetry.TrackEvent("SubmitProfileSummary");
 
                 if (ModelState.IsValid)

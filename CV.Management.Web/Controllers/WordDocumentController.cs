@@ -204,7 +204,7 @@ namespace CV.Management.Web.Controllers
             var personal = new PersonalInformation
             {
                 FullName = profile.FullName,
-                Mobile = profile.PhoneCode + profile.Phone,
+                Mobile = profile.PhoneCode + " " + profile.Phone,
                 Email = profile.Email,
                 Address = profile.Address,
                 OtherInformation = profile.OtherInformation,
@@ -226,7 +226,8 @@ namespace CV.Management.Web.Controllers
                         Degree = x.Degree,
                         EndingYear = x.ToYear,
                         StartingYear = x.FromYear,
-                        University = x.Institution
+                        University = x.Institution,
+                        Now = x.Now
                     }).ToList();
                 }
             }

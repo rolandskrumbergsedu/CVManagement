@@ -641,7 +641,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             runProperties1.Append(fontSize1);
             runProperties1.Append(fontSizeComplexScript1);
             Text text1 = new Text();
-            text1.Text = DocumentMetadataTexts.GetText(MetadataTexts.CV_LANGUAGE_PROFICIENCY, data.Language);
+            text1.Text = DocumentMetadataTexts.GetText(MetadataTexts.CV_LANGUAGE_PROFICIENCY, data.Language).ToUpper();
 
             run1.Append(runProperties1);
             run1.Append(text1);
@@ -706,8 +706,8 @@ namespace CV.Management.Generation.Word.ContentHelper
             Run run39 = new Run();
 
             RunProperties runProperties39 = new RunProperties();
-            FontSize fontSize13 = new FontSize() { Val = "24" };
-            FontSizeComplexScript fontSizeComplexScript13 = new FontSizeComplexScript() { Val = "24" };
+            FontSize fontSize13 = new FontSize() { Val = "10" };
+            FontSizeComplexScript fontSizeComplexScript13 = new FontSizeComplexScript() { Val = "10" };
 
             runProperties39.Append(fontSize13);
             runProperties39.Append(fontSizeComplexScript13);

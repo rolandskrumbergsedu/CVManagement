@@ -128,10 +128,10 @@ namespace CV.Management.Generation.Word.ContentHelper
             {
                 table1.Append(CreateItemRow(DocumentMetadataTexts.GetText(MetadataTexts.CV_COMPENSATION_REQUESTED_BONUSES, data.Language), data.Compensation.BonusRequest));
             }
-            if (!string.IsNullOrEmpty(data.Compensation.AdditionalBonuses))
-            {
-                table1.Append(CreateItemRow(DocumentMetadataTexts.GetText(MetadataTexts.CV_COMPENSATION_ADDITIONAL_BONUSES, data.Language), data.Compensation.AdditionalBonuses));
-            }
+            //if (!string.IsNullOrEmpty(data.Compensation.AdditionalBonuses))
+            //{
+            //    table1.Append(CreateItemRow(DocumentMetadataTexts.GetText(MetadataTexts.CV_COMPENSATION_ADDITIONAL_BONUSES, data.Language), data.Compensation.AdditionalBonuses));
+            //}
 
             return table1;
         }

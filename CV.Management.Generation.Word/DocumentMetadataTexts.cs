@@ -94,7 +94,7 @@ namespace CV.Management.Generation.Word
                 case MetadataTexts.CV_POSITION_REASON_FOR_LEAVING:
                     return language == "lv" ? "Aziešanas iemesls" : "Reason for leaving";
                 case MetadataTexts.CV_PRESENT:
-                    return language == "lv" ? "šobrīd" : "present";
+                    return language == "lv" ? "pašlaik" : "present";
                 case MetadataTexts.CV_SOCIAL_ACTIVITIES:
                     return language == "lv" ? "Sociālās aktivitātes / līdzdalība citās organizācijās" : "Social activities / Memberships";
                 case MetadataTexts.CV_COMPENSATION:
@@ -140,7 +140,7 @@ namespace CV.Management.Generation.Word
                 case MetadataTexts.CV_MONTH_DECEMBER:
                     return language == "lv" ? "Decembris" : "December";
                 default:
-                    throw new Exception($"Could not find the text {textKey.ToString()}!");
+                    throw new Exception($"Could not find the text {textKey}!");
             }
         }
 
