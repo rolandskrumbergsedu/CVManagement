@@ -46,8 +46,14 @@ namespace CV.Management.Web.Controllers
                     return RedirectToAction("AccessDenied");
                 }
 
-                return View(GetRequestedUserProfileViewModel(profileId));
+                var profile = GetRequestedUserProfileViewModel(profileId);
+                if (profile != null)
+                {
+                    SetLanguage(profile.Language);
+                    return View(profile);
+                }
 
+                return RedirectToAction("UserNotFound");
             }
             catch (Exception ex)
             {
@@ -65,8 +71,6 @@ namespace CV.Management.Web.Controllers
                 LatvianExists = false
             };
 
-            if (!IsAdmin())
-            {
                 var currentUsername = GetCurrentUsername();
 
                 using (var db = new ProfileInformationDbContext())
@@ -78,7 +82,6 @@ namespace CV.Management.Web.Controllers
                         model.LatvianExists = existingProfile.Any(x => x.Language == "lv");
                     }
                 }
-            }
 
             return View(model);
         }
@@ -151,6 +154,17 @@ namespace CV.Management.Web.Controllers
                         profile.Username = model.Email;
                         profile.Language = model.SelectedLanguage;
 
+                        var otherLanguageProfile = db.Profiles.FirstOrDefault(x => x.Username == model.Email);
+
+                        if (otherLanguageProfile != null)
+                        {
+                            profile.LinkedInLink = otherLanguageProfile.LinkedInLink;
+                            profile.PhoneCode = otherLanguageProfile.Phone;
+                            profile.Phone = otherLanguageProfile.Phone;
+                            profile.PictureContent = otherLanguageProfile.PictureContent;
+                            profile.PictureType = otherLanguageProfile.PictureType;
+                        }
+
                         var profileEntity = db.Profiles.Add(profile);
 
                         db.AuditLogs.Add(new AuditLog
@@ -189,6 +203,14 @@ namespace CV.Management.Web.Controllers
         public ActionResult AccessDenied()
         {
             telemetry.TrackPageView("AccessDenied");
+
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult UserNotFound()
+        {
+            telemetry.TrackPageView("UserNotFound");
 
             return View();
         }
@@ -326,7 +348,7 @@ namespace CV.Management.Web.Controllers
                         }
 
                         var userProfile = db.Profiles.FirstOrDefault(x => x.Username == username);
-                        Profile newlyCreatedProfile = new Models.Database.Profile();
+                        Profile newlyCreatedProfile = new Profile();
                         if (userProfile != null)
                         {
                             userProfile.Address = profileViewModel.PersonalInformationViewModel.Address;
@@ -415,6 +437,7 @@ namespace CV.Management.Web.Controllers
                                     foreach (var position in positions)
                                     {
                                         position.KeyTasks.ToList().ForEach(x => db.Entry(x).State = System.Data.Entity.EntityState.Deleted);
+                                        position.AchievementList.ToList().ForEach(x => db.Entry(x).State = System.Data.Entity.EntityState.Deleted);
                                         db.Entry(position).State = System.Data.Entity.EntityState.Deleted;
                                     }
 
@@ -457,7 +480,7 @@ namespace CV.Management.Web.Controllers
 
                                         company.Positions.Add(new Position
                                         {
-                                            Achievements = position.Achievements,
+                                            AchievementList = GetAchievements(position.Achievements),
                                             DirectSubordinates = position.DirectSubordinates,
                                             FromTime = fromTime,
                                             FromTimeMonth = fromTimeMonth,
@@ -527,6 +550,7 @@ namespace CV.Management.Web.Controllers
                             var profile = new Profile
                             {
                                 Username = GetCurrentUsername(),
+                                Language = "en",
                                 Address = profileViewModel.PersonalInformationViewModel.Address,
                                 Email = profileViewModel.PersonalInformationViewModel.Email,
                                 FullName = profileViewModel.PersonalInformationViewModel.FullName,
@@ -551,11 +575,13 @@ namespace CV.Management.Web.Controllers
 
                             if (profileViewModel.PersonalInformationViewModel.ProfilePicture != null && profileViewModel.PersonalInformationViewModel.ProfilePicture.ContentLength > 0)
                             {
-                                var ms = new MemoryStream();
-                                profileViewModel.PersonalInformationViewModel.ProfilePicture.InputStream.CopyTo(ms);
+                                using (var ms = new MemoryStream())
+                                {
+                                    profileViewModel.PersonalInformationViewModel.ProfilePicture.InputStream.CopyTo(ms);
 
-                                profile.PictureContent = Convert.ToBase64String(ms.ToArray());
-                                profile.PictureType = profileViewModel.PersonalInformationViewModel.ProfilePicture.ContentType;
+                                    profile.PictureContent = Convert.ToBase64String(ms.ToArray());
+                                    profile.PictureType = profileViewModel.PersonalInformationViewModel.ProfilePicture.ContentType;
+                                }
                             }
 
                             foreach (var educationItem in profileViewModel.EducationViewModel.Education)
@@ -611,7 +637,7 @@ namespace CV.Management.Web.Controllers
                                 {
                                     company.Positions.Add(new Position
                                     {
-                                        Achievements = position.Achievements,
+                                        AchievementList = GetAchievements(position.Achievements),
                                         DirectSubordinates = position.DirectSubordinates,
                                         FromTime = position.FromTime.Contains(".") ? int.Parse(position.FromTime.Split('.')[1]) : int.Parse(position.FromTime),
                                         FromTimeMonth = position.FromTime.Contains(".") ? int.Parse(position.FromTime.Split('.')[0]) : (int?)null,
@@ -778,6 +804,7 @@ namespace CV.Management.Web.Controllers
 
                     return new ProfileViewModel
                     {
+                        Language = profile.Language,
                         Username = profile.Username,
                         Name = profile.FullName,
                         PersonalInformationViewModel = CreatePersonalInformationViewModel(profile),
@@ -1128,7 +1155,7 @@ namespace CV.Management.Web.Controllers
 
                             companyViewModel.Positions.Add(new PositionItem
                             {
-                                Achievements = position.Achievements,
+                                Achievements = GetAchievements(position.AchievementList.ToList()),
                                 DirectSubordinates = position.DirectSubordinates,
                                 FromTime = fromTime,
                                 KeyTasks = GetKeyTasks(position.KeyTasks.ToList()),
@@ -1349,10 +1376,6 @@ namespace CV.Management.Web.Controllers
                 {
                     Files = new List<AdditionalFileItem>()
                 },
-                //AddAdditionalFileUploadViewModel = new AddAdditionalFileUploadViewModel
-                //{
-                //    FileSrc = string.Empty
-                //},
                 Name = string.Empty
             };
         }
@@ -1401,6 +1424,55 @@ namespace CV.Management.Web.Controllers
             foreach (var task in tasks)
             {
                 sb.Append("- " + task.Name + "\r\n");
+            }
+
+            return sb.ToString();
+        }
+
+        private static List<Achievement> GetAchievements(string achievements)
+        {
+            if (string.IsNullOrEmpty(achievements))
+            {
+                return null;
+            }
+
+            var achievementsList = achievements.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+            var result = new List<Achievement>();
+
+            foreach (var item in achievementsList)
+            {
+                var itemToAdd = item;
+                if (itemToAdd.StartsWith("-"))
+                {
+                    itemToAdd = itemToAdd.Substring(1);
+                }
+
+                if (itemToAdd.StartsWith(" "))
+                {
+                    itemToAdd = itemToAdd.Substring(1);
+                }
+
+                result.Add(new Achievement
+                {
+                    Name = itemToAdd
+                });
+            }
+
+            return result;
+        }
+
+        public string GetAchievements(List<Achievement> achievements)
+        {
+            if (achievements == null)
+            {
+                return string.Empty;
+            }
+
+            var sb = new StringBuilder();
+
+            foreach (var achievement in achievements)
+            {
+                sb.Append("- " + achievement.Name + "\r\n");
             }
 
             return sb.ToString();

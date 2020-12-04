@@ -70,11 +70,20 @@ namespace CV.Management.Web {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Achievements.
+        ///   Looks up a localized string similar to Achievements (write each in new line).
         /// </summary>
         public static string Achievements {
             get {
                 return ResourceManager.GetString("Achievements", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Achievements (Please write each in new line);\n Achievement no 1;\n Achievement no 2;\n Achievement no 3;\n Etc..
+        /// </summary>
+        public static string AchievementsPlaceholder {
+            get {
+                return ResourceManager.GetString("AchievementsPlaceholder", resourceCulture);
             }
         }
         
@@ -457,7 +466,7 @@ namespace CV.Management.Web {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Key Tasks and responsibilities (Please write each in new line);\n •Task no 1;\n •Responsibility no 2;\n •Task no 3;\n •Etc..
+        ///   Looks up a localized string similar to Key Tasks and responsibilities (Please write each in new line);\n Task no 1;\n Responsibility no 2;\n Task no 3;\n Etc..
         /// </summary>
         public static string KeyTasksPlaceholder {
             get {

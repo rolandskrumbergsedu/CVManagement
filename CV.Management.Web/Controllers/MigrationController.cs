@@ -1,4 +1,5 @@
 ﻿using CV.Management.Web.DbContexts;
+using CV.Management.Web.Models.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +29,70 @@ namespace CV.Management.Web.Controllers
             }
 
             return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
+        [HttpGet]
+        [Route("api/migrations/achievements")]
+        public HttpResponseMessage MigrateAchievements()
+        {
+            using (var db = new ProfileInformationDbContext())
+            {
+                var profiles = db.Profiles.ToList();
+
+                foreach (var profile in profiles)
+                {
+                    var companies = profile.Companies.ToList();
+
+                    foreach (var company in companies)
+                    {
+                        var positions = company.Positions.ToList();
+
+                        foreach (var position in positions)
+                        {
+                            if ((position.AchievementList == null || position.AchievementList.Count == 0) && !string.IsNullOrEmpty(position.Achievements))
+                            {
+                                position.AchievementList = GetAchievements(position.Achievements);
+                            }
+                        }
+                    }
+                }
+
+                db.SaveChanges();
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
+        private static List<Achievement> GetAchievements(string achievements)
+        {
+            if (string.IsNullOrEmpty(achievements))
+            {
+                return null;
+            }
+
+            var achievementsList = achievements.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+            var result = new List<Achievement>();
+
+            foreach (var item in achievementsList)
+            {
+                var itemToAdd = item;
+                if (itemToAdd.StartsWith("-"))
+                {
+                    itemToAdd = itemToAdd.Substring(1);
+                }
+
+                if (itemToAdd.StartsWith(" "))
+                {
+                    itemToAdd = itemToAdd.Substring(1);
+                }
+
+                result.Add(new Achievement
+                {
+                    Name = itemToAdd
+                });
+            }
+
+            return result;
         }
     }
 }

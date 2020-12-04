@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Achievements" xml:space="preserve">
-    <value>Sasniegumi</value>
+    <value>Sasniegumi (rakstiet katru savā rindiņā)</value>
   </data>
   <data name="AddCompany" xml:space="preserve">
     <value>Pievienot uzņēmumu</value>
@@ -322,7 +322,7 @@
     <value>Pilsēta, valsts</value>
   </data>
   <data name="KeyTasksPlaceholder" xml:space="preserve">
-    <value>Galvenie uzdevumi un atbildības (katru savā rindā); •Uzdevums 1; •Atbildība 2; •Uzdevums 3; •U.t.t..</value>
+    <value>Galvenie uzdevumi un atbildības (katru savā rindā); Uzdevums 1; Atbildība 2; Uzdevums 3; U.t.t..</value>
   </data>
   <data name="LogOff" xml:space="preserve">
     <value>Iziet</value>
@@ -395,5 +395,8 @@
   </data>
   <data name="OtherLanguageName" xml:space="preserve">
     <value>Cita valoda</value>
+  </data>
+  <data name="AchievementsPlaceholder" xml:space="preserve">
+    <value>Galvenie sasniegumu (katru savā rindā); Sasniegums 1; Sasniegums 2; Sasniegums 3; U.t.t..</value>
   </data>
 </root>

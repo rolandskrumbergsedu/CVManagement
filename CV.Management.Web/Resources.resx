@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Achievements" xml:space="preserve">
-    <value>Achievements</value>
+    <value>Achievements (write each in new line)</value>
   </data>
   <data name="AddCompany" xml:space="preserve">
     <value>Add company</value>
@@ -325,7 +325,7 @@
     <value>City, country</value>
   </data>
   <data name="KeyTasksPlaceholder" xml:space="preserve">
-    <value>Key Tasks and responsibilities (Please write each in new line);\n •Task no 1;\n •Responsibility no 2;\n •Task no 3;\n •Etc.</value>
+    <value>Key Tasks and responsibilities (Please write each in new line);\n Task no 1;\n Responsibility no 2;\n Task no 3;\n Etc.</value>
   </data>
   <data name="LogOff" xml:space="preserve">
     <value>Log off</value>
@@ -398,5 +398,8 @@
   </data>
   <data name="OtherLanguageName" xml:space="preserve">
     <value>Other language</value>
+  </data>
+  <data name="AchievementsPlaceholder" xml:space="preserve">
+    <value>Achievements (Please write each in new line);\n Achievement no 1;\n Achievement no 2;\n Achievement no 3;\n Etc.</value>
   </data>
 </root>

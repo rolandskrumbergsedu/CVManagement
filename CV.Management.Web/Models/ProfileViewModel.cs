@@ -2,6 +2,7 @@
 {
     public class ProfileViewModel : ViewModelBase
     {
+        public string Language { get; set; }
         public PersonalInformationViewModel PersonalInformationViewModel { get; set; }
         public EducationViewModel EducationViewModel { get; set; }
         public AdditionalCoursesViewModel AdditionalCoursesViewModel { get; set; }

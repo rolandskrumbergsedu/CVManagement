@@ -19,6 +19,7 @@ namespace CV.Management.Web.Models.Database
         public string ReasonForLeaving { get; set; }
 
         public virtual ICollection<KeyTask> KeyTasks { get; set; }
+        public virtual ICollection<Achievement> AchievementList { get; set; }
         public virtual Company Company { get; set; }
     }
 }

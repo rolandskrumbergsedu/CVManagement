@@ -287,7 +287,7 @@ namespace CV.Management.Web.Controllers
                         Turnover = x.Turnover,
                         Roles = x.Positions.Select(y => new RoleInformation
                         {
-                            Achievements = y.Achievements,
+                            Achievements = y.AchievementList.Select(z => z.Name).ToList(),
                             EndingYear = y.ToTime,
                             Now = y.Now,
                             ReasonForLeaving = y.ReasonForLeaving,

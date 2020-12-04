@@ -112,7 +112,7 @@ namespace CV.Management.Generation.Word
         public List<string> Tasks { get; set; }
         public string ReportingTo { get; set; }
         public string Subordinates { get; set; }
-        public string Achievements { get; set; }
+        public List<string> Achievements { get; set; }
         public string ReasonForLeaving { get; set; }
     }
 }

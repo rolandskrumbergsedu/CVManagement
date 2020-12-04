@@ -139,10 +139,15 @@ namespace CV.Management.Generation.Word.ContentHelper
                             table1.Append(CreateSubordinatesRow(careerSummaries[i].Roles[j], data.Language));
                         }
 
-                        if (!string.IsNullOrEmpty(careerSummaries[i].Roles[j].Achievements))
+                        if (careerSummaries[i].Roles[j].Achievements != null && careerSummaries[i].Roles[j].Achievements.Count() > 1)
                         {
                             table1.Append(CreateAchievementsRow(careerSummaries[i].Roles[j], data.Language));
                         }
+
+                        //if (!string.IsNullOrEmpty(careerSummaries[i].Roles[j].Achievements))
+                        //{
+                        //    table1.Append(CreateAchievementsRow(careerSummaries[i].Roles[j], data.Language));
+                        //}
 
                         if (!string.IsNullOrEmpty(careerSummaries[i].Roles[j].ReasonForLeaving))
                         {
@@ -938,7 +943,7 @@ namespace CV.Management.Generation.Word.ContentHelper
             Bold bold7 = new Bold();
             FontSize fontSize33 = new FontSize() { Val = "22" };
             FontSizeComplexScript fontSizeComplexScript33 = new FontSizeComplexScript() { Val = "22" };
-
+            
             runProperties33.Append(bold7);
             runProperties33.Append(fontSize33);
             runProperties33.Append(fontSizeComplexScript33);
@@ -948,26 +953,55 @@ namespace CV.Management.Generation.Word.ContentHelper
             run33.Append(runProperties33);
             run33.Append(text33);
 
-            Run run148 = new Run();
-
-            RunProperties runProperties148 = new RunProperties();
-            FontSize fontSize148 = new FontSize() { Val = "22" };
-            FontSizeComplexScript fontSizeComplexScript148 = new FontSizeComplexScript() { Val = "22" };
-
-            runProperties148.Append(fontSize148);
-            runProperties148.Append(fontSizeComplexScript148);
-            Text text148 = new Text();
-            text148.Text = data.Achievements;
-
-            run148.Append(runProperties148);
-            run148.Append(text148);
-
             paragraph18.Append(paragraphProperties13);
             paragraph18.Append(run33);
-            paragraph18.Append(run148);
+
+            var achievementParagraphs = new List<Paragraph>();
+
+            foreach (var achievement in data.Achievements)
+            {
+                Paragraph paragraph14 = new Paragraph() { RsidParagraphAddition = "009B2C1D", RsidParagraphProperties = "009E39C2", RsidRunAdditionDefault = "009E39C2", ParagraphId = "0477A132", TextId = "77777777" };
+
+                ParagraphProperties paragraphProperties10 = new ParagraphProperties();
+                SpacingBetweenLines spacingBetweenLines10 = new SpacingBetweenLines() { After = "20" };
+                Indentation indentation9 = new Indentation() { Left = "413", Hanging = "283" };
+
+                paragraphProperties10.Append(spacingBetweenLines10);
+                paragraphProperties10.Append(indentation9);
+
+                Run run26 = new Run();
+
+                RunProperties runProperties26 = new RunProperties();
+                FontSize fontSize26 = new FontSize() { Val = "22" };
+                FontSizeComplexScript fontSizeComplexScript26 = new FontSizeComplexScript() { Val = "22" };
+
+                runProperties26.Append(fontSize26);
+                runProperties26.Append(fontSizeComplexScript26);
+                Text text26 = new Text() { Space = SpaceProcessingModeValues.Preserve };
+                text26.Text = $"{GetTask(achievement)}";
+
+                run26.Append(runProperties26);
+                run26.Append(text26);
+
+                NumberingProperties numberingProperties1 = new NumberingProperties();
+                NumberingLevelReference numberingLevelReference1 = new NumberingLevelReference() { Val = 0 };
+                NumberingId numberingId1 = new NumberingId() { Val = 1 };
+
+                numberingProperties1.Append(numberingLevelReference1);
+                numberingProperties1.Append(numberingId1);
+
+                paragraph14.Append(numberingProperties1);
+
+                paragraph14.Append(paragraphProperties10);
+                paragraph14.Append(run26);
+
+                achievementParagraphs.Add(paragraph14);
+            }
 
             tableCell11.Append(tableCellProperties11);
             tableCell11.Append(paragraph18);
+
+            achievementParagraphs.ForEach(x => tableCell11.Append(x));
 
             tableRow6.Append(tableRowProperties5);
             tableRow6.Append(tableCell10);
