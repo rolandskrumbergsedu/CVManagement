@@ -453,7 +453,7 @@ namespace CV.Management.Web.Controllers
                                         MainProductions = item.MainProductions,
                                         Name = item.Name,
                                         NumberOfEmployess = item.NumberOfEmployess,
-                                        OtherIndustry = item.Industry != Industry.Other ? item.OtherIndustry : null,
+                                        OtherIndustry = item.OtherIndustry,
                                         ParentCompanyName = item.ParentCompanyName,
                                         Turnover = item.Turnover,
                                         Positions = new List<Position>()

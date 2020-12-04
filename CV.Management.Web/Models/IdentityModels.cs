@@ -30,6 +30,11 @@ namespace CV.Management.Web.Models
         public ApplicationDbContext()
             : base(GetConnectionString(), throwIfV1Schema: false)
         {
+            System.Data.Entity.Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Migrations.Configuration>(true));
+
+#if DEBUG
+            Database.Log = s => { };
+#endif
         }
 
         public static ApplicationDbContext Create()
